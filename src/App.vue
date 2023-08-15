@@ -22,7 +22,7 @@ import NavBar from "@/layout/NavBar.vue";
 }
 
 .header {
-  background-color: rgb(0, 0, 0, 70%);
+  background-color: rgb(0, 0, 0, 90%);
 }
 
 @media (max-width: 1024px) {

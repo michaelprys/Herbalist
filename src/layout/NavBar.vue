@@ -1,9 +1,15 @@
 <template>
   <div class="header__wrapper">
     <div>
-      <router-link to="/"
-        ><img class="header__logo" src="public/favicon.ico" alt="Logo"
-      /></router-link>
+      <router-link class="header__logo" to="/"
+        ><img
+          class="header__logo-img"
+          src="@/assets/images/logo/header-logo.png"
+          alt="Herbalist Logo"
+          width="60"
+        />
+        <span>Herbalist</span>
+      </router-link>
     </div>
     <nav class="navigation">
       <ul class="navigation__items">
@@ -38,6 +44,13 @@
     align-items: center;
     justify-content: space-between;
   }
+  &__logo {
+    display: flex;
+    align-items: center;
+    :last-child {
+      margin-left: 6px;
+    }
+  }
 }
 
 .navigation {
@@ -50,21 +63,22 @@
     display: block;
     padding-block: 30px;
     margin-inline: 20px;
-    font-size: 19px;
+    font-size: 115%;
     color: #fff;
-    &:hover {
-      &::after {
-        content: "";
-        position: absolute;
-        bottom: -2px;
-        width: 100%;
-        height: 2px;
-        background-color: #fff;
-        transform: translateX(-50%);
-        left: 50%;
-        top: 98%;
-        transition: opacity 0.3s cubic-bezier(0.55, 0.085, 0.68, 0.53);
-      }
+    &::after {
+      content: "";
+      position: absolute;
+      width: 100%;
+      padding-block: 0.0625rem;
+      background-color: #fff;
+      transform: translateX(-50%);
+      left: 50%;
+      top: 98%;
+      opacity: 0;
+      transition: opacity 0.2s cubic-bezier(0.55, 0.085, 0.68, 0.53);
+    }
+    &:hover::after {
+      opacity: 1;
     }
   }
 }
