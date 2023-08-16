@@ -14,7 +14,7 @@ import NavBar from "@/layout/NavBar.vue";
 
 <!-- style -->
 
-<style>
+<style lang="scss">
 .container {
   max-width: 80%;
   padding-inline: 15px;
