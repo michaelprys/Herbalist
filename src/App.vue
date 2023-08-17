@@ -4,12 +4,22 @@
       <NavBar></NavBar>
     </div>
   </header>
+  <body>
+    <main>
+      <div class="container">
+        <ViewHome></ViewHome>
+      </div>
+    </main>
+  </body>
+
+  <RouterView />
 </template>
 
 <!-- script -->
 
 <script setup>
 import NavBar from "@/layout/NavBar.vue";
+import ViewHome from "@/views/ViewHome.vue";
 </script>
 
 <!-- style -->
@@ -23,21 +33,8 @@ import NavBar from "@/layout/NavBar.vue";
 
 .header {
   background-color: rgb(0, 0, 0, 90%);
-}
-
-@media (max-width: 1024px) {
-  .container {
-    padding: 0 50px;
-  }
-}
-@media (max-width: 768px) {
-  .container {
-    padding: 0 30px;
-  }
-}
-@media (max-width: 480px) {
-  .container {
-    padding: 0 20px;
-  }
+  min-height: 120px;
+  display: flex;
+  align-items: center;
 }
 </style>
