@@ -3,64 +3,69 @@
     <div class="navbar__item">
       <router-link class="navbar__logo" to="/"
         ><img
-          class="navbar__logo-img"
+          class="navbar__logo-image"
           src="@/assets/images/logo/header-logo.png"
           alt="Herbalist Logo"
-          width="60"
+          width="65"
         />
-        <span class="navbar__logo-text">Herbalist</span>
+        <span class="navbar__logo-name">Herbalist</span>
       </router-link>
     </div>
-    <!-- ./navbar logo -->
+    <!-- ./navbar logo item -->
 
     <div class="navbar__item">
-      <ul class="navbar__links">
-        <li>
+      <ul class="navbar__menu">
+        <li class="navbar__menu-item">
           <router-link
-            class="navbar__link navbar__link--primary"
+            class="navbar__menu-link navbar__menu-link--primary"
             to="/searchRecipes"
-            >Search Recipes</router-link
-          >
+            ><span>Search Recipes</span>
+          </router-link>
         </li>
-        <li>
+        <li class="navbar__menu-item">
           <router-link
-            class="navbar__link navbar__link--primary"
+            class="navbar__menu-link navbar__menu-link--primary"
             to="/recipesByLetter"
-            >Recipes By Letter</router-link
-          >
+            ><span>Recipes By Letter</span>
+          </router-link>
         </li>
-        <li>
+        <li class="navbar__menu-item">
           <router-link
-            class="navbar__link navbar__link--primary"
+            class="navbar__menu-link navbar__menu-link--primary"
             to="/recipesByIngredients"
-            >Recipes By Ingredients</router-link
-          >
+            ><span>Recipes By Ingredients</span>
+          </router-link>
         </li>
       </ul>
       <!-- ./navbar links primary -->
 
-      <ul class="navbar__links">
-        <li>
-          <router-link class="navbar__link navbar__link--secondary" to="/about"
-            >About</router-link
+      <ul class="navbar__menu">
+        <li class="navbar__menu-item">
+          <router-link
+            class="navbar__menu-link navbar__menu-link--secondary"
+            to="/about"
+          >
+            About</router-link
           >
         </li>
-        <li>
-          <router-link class="navbar__link navbar__link--secondary" to="/login"
+        <li class="navbar__menu-item">
+          <router-link
+            class="navbar__menu-link navbar__menu-link--secondary"
+            to="/login"
             >Log In</router-link
           >
         </li>
       </ul>
       <!-- ./navbar links secondary -->
     </div>
-    <!-- ./navbar links -->
+    <!-- ./navbar menu item -->
 
     <div class="navbar__item navbar__item--burger">
       <label class="navbar__burger-inner">
         <input type="checkbox" />
       </label>
     </div>
-    <!-- ./navbar burger menu -->
+    <!-- ./navbar burger-menu item -->
   </nav>
   <!-- ./navbar -->
 </template>
@@ -85,15 +90,17 @@
   &__logo {
     display: flex;
     align-items: center;
+    transform: translateX(-4px);
   }
-  &__logo-img {
+  &__logo-image {
     transition: transform 0.9s ease-in-out;
     &:hover {
       transform: rotate(360deg);
     }
   }
-  &__logo-text {
+  &__logo-name {
     margin-left: 0.4375rem;
+    font-size: 1.125rem;
     opacity: 70%;
     transition: opacity 0.3s linear;
     &:hover {
@@ -101,95 +108,101 @@
     }
   }
 
-  // ^ Navbar links -------------------/
-  &__links {
+  // ^ Navbar menu -------------------/
+  &__menu {
     display: flex;
     justify-content: end;
-    margin-top: 1.25rem;
+    margin-top: 20px;
   }
 
-  // ^ Navbar link primary -------------------/
-  &__link--primary {
-    position: relative;
-    text-transform: uppercase;
-    display: block;
-    padding-bottom: 1.5rem;
-    padding-inline: 1.5rem;
-    font-size: 1.125rem;
-    opacity: 70%;
-    &::after {
-      content: "";
-      position: absolute;
-      min-width: $fit-size;
-      padding-block: 0.0625rem;
-      background-color: $white;
-      transform: translateX(-50%);
-      left: 50%;
-      top: 99%;
-      opacity: 0;
-      transition: $smooth-transition;
-    }
-    transition: $smooth-transition;
-    &:hover::after {
-      opacity: 1;
-    }
+  &__menu-item:last-child &__menu-link {
+    padding-right: 0;
+    margin-right: 0;
+  }
+
+  &__menu-link {
     &:hover {
       opacity: 1;
     }
   }
 
-  // ^ Navbar link secondary -------------------/
-  &__link--secondary {
-    position: relative;
-    text-transform: uppercase;
-    margin-inline: 1.5rem;
+  &__menu-link--primary {
     display: block;
+    padding-bottom: 1rem;
+    padding-inline: 1rem;
+    font-size: 20px;
+    text-transform: uppercase;
+    opacity: 0.7;
+    transition: $smooth-transition;
+    & span {
+      position: relative;
+    }
+    & span::after {
+      content: "";
+      position: absolute;
+      padding-block: 1px;
+      left: 0;
+      right: 0;
+      top: 2.9375rem;
+      transition: $smooth-transition;
+      opacity: 0;
+      background-color: white;
+    }
+    &:hover span::after {
+      opacity: 1;
+    }
+  }
+
+  &__menu-link--secondary {
+    display: block;
+    position: relative;
+    margin-inline: 1.5rem;
     font-size: 1.125rem;
-    opacity: 70%;
-    transition:
-      opacity 0.3s linear,
-      background-size 0.125s ease-in,
-      color 0.3s linear;
-    background-image: linear-gradient(120deg, #fc0, #fc0);
+    text-transform: uppercase;
+    background-image: linear-gradient(120deg, #61c98b, #61c98b);
     background-position: 0 100%;
     background-repeat: no-repeat;
     background-size: 100% 0;
-    &:hover {
-      opacity: 100%;
-      color: #000;
-      background-size: 100% 100%;
-    }
+    transition:
+      $smooth-transition,
+      background-size 0.125s ease-in,
+      color 0.3s linear;
+    opacity: 0.7;
+
     &::after {
       content: "";
       position: absolute;
-      min-width: calc(100%);
-      padding-block: 0.0313rem;
-      background-color: #fc0;
-      transform: translateX(-50%);
+      min-width: 100%;
+      padding-block: 0.5008px;
       left: 50%;
       top: 93%;
+      transform: translateX(-50%);
       transition: $smooth-transition;
+      background-color: #61c98b;
+    }
+    &:hover {
+      background-size: 100% 100%;
+      opacity: 1;
+      color: #000;
     }
   }
 
   // ^ Navbar burger -------------------/
-
   &__item--burger {
     display: none;
   }
   &__burger-inner {
     display: none;
     flex-direction: column;
-    gap: 0.5rem;
-    transform: translateX(-65%);
-    cursor: pointer;
+    gap: 8px;
     transition: opacity 2s ease-in-out;
+    cursor: pointer;
     & input,
     &::before,
     &::after {
       content: "";
       padding-block: 0.5008px;
-      padding-inline: 0.9375rem;
+      padding-inline: 15px;
       background-color: $white;
     }
     & input {
@@ -207,7 +220,7 @@
 // * Media -------------------/
 @media (max-width: 1325px) {
   .navbar {
-    &__links {
+    &__menu {
       display: none;
     }
     &__burger-inner {
