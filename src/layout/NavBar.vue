@@ -146,7 +146,7 @@
       top: 2.9375rem;
       transition: $smooth-transition;
       opacity: 0;
-      background-color: white;
+      background-color: $white;
     }
     &:hover span::after {
       opacity: 1;
@@ -159,7 +159,7 @@
     margin-inline: 1.5rem;
     font-size: 1.125rem;
     text-transform: uppercase;
-    background-image: linear-gradient(120deg, #61c98b, #61c98b);
+    background-image: linear-gradient(120deg, $pink, $pink);
     background-position: 0 100%;
     background-repeat: no-repeat;
     background-size: 100% 0;
@@ -178,7 +178,7 @@
       top: 93%;
       transform: translateX(-50%);
       transition: $smooth-transition;
-      background-color: #61c98b;
+      background-color: $pink;
     }
     &:hover {
       background-size: 100% 100%;

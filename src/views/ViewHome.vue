@@ -1,60 +1,206 @@
 <template>
   <section class="recipes">
     <h1 class="recipes__title">Recipes</h1>
-    <div class="card">
-      <div class="card__item">
-        <img
-          class="card__image"
-          src="@/assets/images/card/card-1.jpg"
-          width="250px"
-          alt="Card"
-        />
-        <div class="card__content">
-          <h2 class="card__title">Moon tea</h2>
-          <p class="card__text">
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugit
-            dolor nostrum iure similique eveniet libero quos reiciendis.
-          </p>
-          <button class="card__button">View more</button>
+    <Swiper
+      class="card"
+      :slidesPerView="3"
+      :spaceBetween="30"
+      :pagination="{
+        clickable: true,
+      }"
+      :modules="[Pagination]"
+    >
+      <SwiperSlide>
+        <div class="card__item">
+          <img
+            class="card__image"
+            src="@/assets/images/card/card-1.jpg"
+            width="250px"
+            alt="Card"
+          />
+          <div class="card__content">
+            <h2 class="card__title">Moon tea</h2>
+            <p class="card__text">
+              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugit
+              dolor nostrum iure similique eveniet libero quos reiciendis.
+            </p>
+            <button class="card__button">View more</button>
+          </div>
         </div>
-      </div>
-      <div class="card__item">
-        <img
-          class="card__image"
-          src="@/assets/images/card/card-2.jpg"
-          width="250px"
-          alt="Card"
-        />
-        <div class="card__content">
-          <h2 class="card__title">Rose tea</h2>
-          <p class="card__text">
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugit
-            dolor nostrum iure similique eveniet libero quos reiciendis.
-          </p>
-          <button class="card__button">View more</button>
+      </SwiperSlide>
+      <SwiperSlide>
+        <div class="card__item">
+          <img
+            class="card__image"
+            src="@/assets/images/card/card-2.jpg"
+            width="250px"
+            alt="Card"
+          />
+          <div class="card__content">
+            <h2 class="card__title">Rose tea</h2>
+            <p class="card__text">
+              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugit
+              dolor nostrum iure similique eveniet libero quos reiciendis.
+            </p>
+            <button class="card__button">View more</button>
+          </div>
         </div>
-      </div>
-      <div class="card__item">
-        <img
-          class="card__image"
-          src="@/assets/images/card/card-3.jpg"
-          width="250px"
-          alt="Card"
-        />
-        <div class="card__content">
-          <h2 class="card__title">Green witch</h2>
-          <p class="card__text">
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugit
-            dolor nostrum iure similique eveniet libero quos reiciendis.
-          </p>
-          <button class="card__button">View more</button>
+      </SwiperSlide>
+      <SwiperSlide>
+        <div class="card__item">
+          <img
+            class="card__image"
+            src="@/assets/images/card/card-3.jpg"
+            width="250px"
+            alt="Card"
+          />
+          <div class="card__content">
+            <h2 class="card__title">Green witch</h2>
+            <p class="card__text">
+              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugit
+              dolor nostrum iure similique eveniet libero quos reiciendis.
+            </p>
+            <button class="card__button">View more</button>
+          </div>
         </div>
-      </div>
-    </div>
+      </SwiperSlide>
+      <SwiperSlide>
+        <div class="card__item">
+          <img
+            class="card__image"
+            src="@/assets/images/card/card-4.jpg"
+            width="250px"
+            alt="Card"
+          />
+          <div class="card__content">
+            <h2 class="card__title">Dandelion Mocha</h2>
+            <p class="card__text">
+              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugit
+              dolor nostrum iure similique eveniet libero quos reiciendis.
+            </p>
+            <button class="card__button">View more</button>
+          </div>
+        </div>
+      </SwiperSlide>
+      <SwiperSlide>
+        <div class="card__item">
+          <img
+            class="card__image"
+            src="@/assets/images/card/card-4.jpg"
+            width="250px"
+            alt="Card"
+          />
+          <div class="card__content">
+            <h2 class="card__title">Dandelion Mocha</h2>
+            <p class="card__text">
+              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugit
+              dolor nostrum iure similique eveniet libero quos reiciendis.
+            </p>
+            <button class="card__button">View more</button>
+          </div>
+        </div>
+      </SwiperSlide>
+      <SwiperSlide>
+        <div class="card__item">
+          <img
+            class="card__image"
+            src="@/assets/images/card/card-4.jpg"
+            width="250px"
+            alt="Card"
+          />
+          <div class="card__content">
+            <h2 class="card__title">Dandelion Mocha</h2>
+            <p class="card__text">
+              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugit
+              dolor nostrum iure similique eveniet libero quos reiciendis.
+            </p>
+            <button class="card__button">View more</button>
+          </div>
+        </div>
+      </SwiperSlide>
+      <SwiperSlide>
+        <div class="card__item">
+          <img
+            class="card__image"
+            src="@/assets/images/card/card-4.jpg"
+            width="250px"
+            alt="Card"
+          />
+          <div class="card__content">
+            <h2 class="card__title">Dandelion Mocha</h2>
+            <p class="card__text">
+              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugit
+              dolor nostrum iure similique eveniet libero quos reiciendis.
+            </p>
+            <button class="card__button">View more</button>
+          </div>
+        </div>
+      </SwiperSlide>
+      <SwiperSlide>
+        <div class="card__item">
+          <img
+            class="card__image"
+            src="@/assets/images/card/card-4.jpg"
+            width="250px"
+            alt="Card"
+          />
+          <div class="card__content">
+            <h2 class="card__title">Dandelion Mocha</h2>
+            <p class="card__text">
+              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugit
+              dolor nostrum iure similique eveniet libero quos reiciendis.
+            </p>
+            <button class="card__button">View more</button>
+          </div>
+        </div>
+      </SwiperSlide>
+      <SwiperSlide>
+        <div class="card__item">
+          <img
+            class="card__image"
+            src="@/assets/images/card/card-4.jpg"
+            width="250px"
+            alt="Card"
+          />
+          <div class="card__content">
+            <h2 class="card__title">Dandelion Mocha</h2>
+            <p class="card__text">
+              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugit
+              dolor nostrum iure similique eveniet libero quos reiciendis.
+            </p>
+            <button class="card__button">View more</button>
+          </div>
+        </div>
+      </SwiperSlide>
+      <SwiperSlide>
+        <div class="card__item">
+          <img
+            class="card__image"
+            src="@/assets/images/card/card-4.jpg"
+            width="250px"
+            alt="Card"
+          />
+          <div class="card__content">
+            <h2 class="card__title">Dandelion Mocha</h2>
+            <p class="card__text">
+              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugit
+              dolor nostrum iure similique eveniet libero quos reiciendis.
+            </p>
+            <button class="card__button">View more</button>
+          </div>
+        </div>
+      </SwiperSlide>
+    </Swiper>
   </section>
 </template>
 
-<script setup></script>
+<script setup>
+// swiperjs
+import { Swiper, SwiperSlide } from "swiper/vue";
+import "swiper/css";
+import "swiper/css/pagination";
+import { Pagination } from "swiper/modules";
+</script>
 
 <style lang="scss">
 .recipes {
@@ -113,7 +259,11 @@
   &__button {
     padding: 0.625rem;
     border-radius: 0.3125rem;
+    transition: 0.3s;
     background-color: #afafaf;
+    &:hover {
+      background-color: $pink;
+    }
   }
 }
 </style>
