@@ -1,0 +1,39 @@
+{
+  "recipes": [
+    {
+      "id": 1,
+      "image": "src/assets/images/recipe/recipe-1.jpg",
+      "alt": "recipe-1",
+      "title": "Moon Tea",
+      "text": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugit dolor nostrum iure similique eveniet libero quos reiciendis."
+    },
+    {
+      "id": 2,
+      "image": "src/assets/images/recipe/recipe-2.jpg",
+      "alt": "recipe-2",
+      "title": "Rose Tea",
+      "text": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugit dolor nostrum iure similique eveniet libero quos reiciendis."
+    },
+    {
+      "id": 3,
+      "image": "src/assets/images/recipe/recipe-3.jpg",
+      "alt": "recipe-3",
+      "title": "Mayan Hot Chocolate",
+      "text": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugit dolor nostrum iure similique eveniet libero quos reiciendis."
+    },
+    {
+      "id": 4,
+      "image": "src/assets/images/recipe/recipe-4.jpg",
+      "alt": "recipe-4",
+      "title": "Mineral Salt",
+      "text": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugit dolor nostrum iure similique eveniet libero quos reiciendis."
+    },
+    {
+      "id": 5,
+      "image": "src/assets/images/recipe/recipe-5.jpg",
+      "alt": "recipe-5",
+      "title": "Cherry Shrub",
+      "text": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugit dolor nostrum iure similique eveniet libero quos reiciendis."
+    }
+  ]
+}

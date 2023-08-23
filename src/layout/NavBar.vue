@@ -1,7 +1,8 @@
 <template>
   <nav class="navbar">
     <div class="navbar__item">
-      <router-link class="navbar__logo" to="/"
+      <router-link class="navbar__logo"
+to="/"
         ><img
           class="navbar__logo-image"
           src="@/assets/images/logo/header-logo.png"

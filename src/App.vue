@@ -11,7 +11,6 @@
       </div>
     </main>
   </body>
-  <!-- <RouterView /> -->
 </template>
 
 <!-- script -->
