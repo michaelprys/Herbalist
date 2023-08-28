@@ -1,9 +1,16 @@
 <template>
-  <Swiper :slidesPerView="3" :spaceBetween="30">
-    <template v-for="recipe in storeRecipes.data" :key="recipe.id">
-      <SwiperSlide>
+  <Swiper :breakpoints="swiperOptions.breakpoints"
+    :pagination="{
+      el: 'swiper-custom-pagination',
+      clickable: true,
+    }"
+    :modules="swiperOptions.modules"
+  >
+    <template class="swiper-wrapper" v-for="recipe in storeRecipes.data" :key="recipe.id">
+      <SwiperSlide class="swiper__slide">
         <Card :data="recipe" />
       </SwiperSlide>
+      <div class="swiper-custom-pagination"></div>
     </template>
   </Swiper>
 </template>
@@ -11,14 +18,38 @@
 <!-- script -->
 
 <script setup>
+import { onMounted } from "vue";
 import { Swiper, SwiperSlide } from "swiper/vue";
-import Card from "@/components/Card.vue";
+import { Pagination } from 'swiper/modules';
+import 'swiper/css/free-mode';
+import 'swiper/css/pagination';
 import "swiper/css";
 import { useStoreRecipes } from "@/stores/recipes/storeRecipes.js";
-import { onMounted } from "vue";
+import Card from "@/components/Card.vue";
 
 const storeRecipes = useStoreRecipes();
-onMounted(async () => await storeRecipes.loadRecipes());
+
+const swiperOptions = {
+  modules: [Pagination],
+  breakpoints: {
+      640: {
+        slidesPerView: 1,
+        spaceBetween: 20,
+      },
+      768: {
+        slidesPerView: 2,
+        spaceBetween: 40,
+      },
+      1040: {
+        slidesPerView: 3,
+        spaceBetween: 50,
+      },
+    }
+}
+
+onMounted(() => {
+  storeRecipes.loadRecipes();
+})
 </script>
 
 <!-- style -->
@@ -38,11 +69,5 @@ onMounted(async () => await storeRecipes.loadRecipes());
 .swiper-pagination-bullet-active {
   background-color: $white;
   opacity: 1;
-}
-
-.swiper-button-left,
-.swiper-button-right {
-  color: black;
-  padding: 20px;
 }
 </style>

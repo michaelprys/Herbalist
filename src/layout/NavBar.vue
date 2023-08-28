@@ -2,12 +2,12 @@
   <nav class="navbar">
     <div class="navbar__item">
       <router-link class="navbar__logo"
-to="/"
+:to="{name: 'Home'}"
         ><img
           class="navbar__logo-image"
           src="@/assets/images/logo/header-logo.png"
           alt="Herbalist Logo"
-          width="65"
+          width="60"
         />
         <span class="navbar__logo-name">Herbalist</span>
       </router-link>
@@ -19,21 +19,21 @@ to="/"
         <li class="navbar__menu-item">
           <router-link
             class="navbar__menu-link navbar__menu-link--primary"
-            to="/searchRecipes"
+            :to="{name: 'searchRecipes'}"
             ><span>Search Recipes</span>
           </router-link>
         </li>
         <li class="navbar__menu-item">
           <router-link
             class="navbar__menu-link navbar__menu-link--primary"
-            to="/recipesByLetter"
+            :to="{name: 'recipesByLetter'}"
             ><span>Recipes By Letter</span>
           </router-link>
         </li>
         <li class="navbar__menu-item">
           <router-link
             class="navbar__menu-link navbar__menu-link--primary"
-            to="/recipesByIngredients"
+            :to="{name: 'recipesByIngredients'}"
             ><span>Recipes By Ingredients</span>
           </router-link>
         </li>
@@ -44,7 +44,7 @@ to="/"
         <li class="navbar__menu-item">
           <router-link
             class="navbar__menu-link navbar__menu-link--secondary"
-            to="/about"
+            :to="{name: 'about'}"
           >
             About</router-link
           >
@@ -52,7 +52,7 @@ to="/"
         <li class="navbar__menu-item">
           <router-link
             class="navbar__menu-link navbar__menu-link--secondary"
-            to="/login"
+            :to="{name: 'login'}"
             >Log In</router-link
           >
         </li>
@@ -101,7 +101,7 @@ to="/"
   }
   &__logo-name {
     margin-left: 0.4375rem;
-    font-size: 1.125rem;
+    font-size: 1.0625rem;
     opacity: 70%;
     transition: opacity 0.3s linear;
     &:hover {
@@ -112,7 +112,7 @@ to="/"
   // ^ Navbar menu -------------------/
   &__menu {
     display: flex;
-    justify-content: end;
+    justify-content: flex-end;
     margin-top: 20px;
   }
 
@@ -131,7 +131,7 @@ to="/"
     display: block;
     padding-bottom: 1rem;
     padding-inline: 1rem;
-    font-size: 20px;
+    font-size: 1.1875rem;
     text-transform: uppercase;
     opacity: 0.7;
     transition: $smooth-transition;
@@ -141,7 +141,7 @@ to="/"
     & span::after {
       content: "";
       position: absolute;
-      padding-block: 1px;
+      padding-block: .0625rem;
       left: 0;
       right: 0;
       top: 2.9375rem;
@@ -219,7 +219,7 @@ to="/"
 // ./Navbar -------------------/
 
 // * Media -------------------/
-@media (max-width: 1325px) {
+@media (max-width: 1279px) {
   .navbar {
     &__menu {
       display: none;

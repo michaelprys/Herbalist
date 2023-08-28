@@ -16,7 +16,6 @@
 <!-- script -->
 
 <script setup>
-import { defineProps } from "vue";
 defineProps(["data"]);
 </script>
 
@@ -25,17 +24,19 @@ defineProps(["data"]);
 <style lang="scss">
 .card {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   margin-top: 2.8125rem;
+  align-items: center;
+
   &__item {
     color: #000;
-    width: 22.5625rem;
+    max-width: 361px;
     border-radius: 0.3125rem;
-    overflow: hidden;
     box-shadow: 0 0.25rem 0.5rem 0 rgba(0, 0, 0, 0.2);
     cursor: pointer;
     background-color: $white;
     transition: 0.3s;
+
     &:hover {
       box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.329);
     }
@@ -58,11 +59,11 @@ defineProps(["data"]);
     font-size: 1.25rem;
     font-weight: 800;
     transition: 0.3s;
+
   }
   &__text {
     padding-top: 12px;
     padding-bottom: 20px;
-    font-size: 0.9375rem;
   }
   &__button {
     padding: 0.625rem;

@@ -1,10 +1,10 @@
-@import "@assets/scss/base/_base.scss";
-@import "@assets/scss/base/_font-face.scss";
-@import "@assets/scss/abstracts/_variables.scss";
+@import "@/assets/scss/base/_base.scss";
+@import "@/assets/scss/base/_font-face.scss";
+@import "@/assets/scss/abstracts/_variables.scss";
 
-// @tailwind base;
-// @tailwind components;
-// @tailwind utilities;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 body {
   background: #3a7bd5;

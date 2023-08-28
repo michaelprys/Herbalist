@@ -13,27 +13,27 @@ export const routes = [
   },
   {
     path: "/searchRecipes",
-    name: "ViewSearchRecipes",
+    name: "searchRecipes",
     component: ViewSearchRecipes,
   },
   {
     path: "/recipesByLetter",
-    name: "ViewRecipesByLetter",
+    name: "recipesByLetter",
     component: ViewRecipesByLetter,
   },
   {
     path: "/recipesByIngredients",
-    name: "ViewRecipesByIngredients",
+    name: "recipesByIngredients",
     component: ViewRecipesByIngredients,
   },
   {
     path: "/about",
-    name: "About",
+    name: "about",
     component: About,
   },
   {
     path: "/login",
-    name: "Login",
+    name: "login",
     component: Login,
   },
 ];

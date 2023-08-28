@@ -1,4 +1,4 @@
-import { defineStore } from "pinia";
+import { defineStore, acceptHMRUpdate } from "pinia";
 
 export const useStoreRecipes = defineStore("storeRecipes", {
   state: () => {
@@ -9,7 +9,11 @@ export const useStoreRecipes = defineStore("storeRecipes", {
   actions: {
     async loadRecipes() {
       const response = await import("./recipes.json");
-      this.data = await response.default.recipes;
+      this.data = response.recipes;
     },
   },
 });
+// HMR
+if (import.meta.hot) {
+  import.meta.hot.accept(acceptHMRUpdate(useStoreRecipes, import.meta.hot))
+}
