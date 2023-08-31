@@ -193,26 +193,50 @@
     display: none;
   }
   &__burger-inner {
-    display: none;
     flex-direction: column;
-    gap: 8px;
-    transition: opacity 2s ease-in-out;
+    gap: $burger-gap;
     cursor: pointer;
+
     & input,
     &::before,
     &::after {
       content: "";
-      padding-block: 0.5008px;
-      padding-inline: 15px;
-      background-color: $white;
+    width: $bar-width;
+    height: $bar-height;
+    background-color: $white;
+    border-radius: 9999px;
+    transform-origin: right center;
+    transition:
+      opacity $burger-animation,
+      width $burger-animation,
+      rotate $burger-animation,
+      translate $burger-animation,
     }
     & input {
       -webkit-appearance: none;
+      padding: 0;
+      margin: 0;
       outline: none;
       pointer-events: none;
-      &:checked {
+      transform-origin: left center;
+      rotate: z -180deg;
+      position: relative;
+      left: 100%;
+    }
+
+    &:has(input:checked)::before {
+      rotate: -45deg;
+      width: $x-width;
+      translate: 0 calc($bar-height / -2);
+    }
+    &:has(input:checked)::after {
+      rotate: 45deg;
+      width: $x-width;
+      translate: 0 calc($bar-height / 2);
+    }
+    & input:checked {
+        width: 0;
         opacity: 0;
-      }
     }
   }
 }
