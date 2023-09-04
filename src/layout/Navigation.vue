@@ -15,7 +15,8 @@
 
       <div
         class="nav__item nav__item--menus"
-        :class="{ active: showMobileNav }">
+        :class="{ active: showMobileNav }"
+        ref="navMenuRef">
         <ul class="nav__menu">
           <li class="nav__menu-item">
             <router-link
@@ -65,6 +66,7 @@
         class="nav__item nav__item--burger"
         :class="{ active: showMobileNav }"
         @click="showMobileNav = !showMobileNav"
+        ref="navBurgerRef"
         type="button">
         <span class="nav__burger-item"></span>
       </button>
@@ -74,8 +76,19 @@
 
 <script setup>
 import { ref } from "vue";
+import { onClickOutside } from "@vueuse/core";
 
 const showMobileNav = ref(false);
+const navMenuRef = ref();
+const navBurgerRef = ref();
+
+onClickOutside(
+  navMenuRef,
+  () => {
+    showMobileNav.value = false;
+  },
+  { ignore: [navBurgerRef] }
+);
 </script>
 
 <style lang="scss">
