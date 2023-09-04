@@ -1,10 +1,7 @@
+@import "@/assets/scss/base/_reset.scss";
 @import "@/assets/scss/base/_base.scss";
 @import "@/assets/scss/base/_font-face.scss";
-@import "@/assets/scss/abstracts/_variables.scss";
-
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "@/assets/scss/base/_variables.scss";
 
 body {
   background: #3a7bd5;
@@ -15,4 +12,5 @@ body {
   background-position: center;
   background-size: cover;
   color: white;
+  overflow: hidden;
 }

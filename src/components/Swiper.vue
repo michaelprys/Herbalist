@@ -1,12 +1,15 @@
 <template>
-  <Swiper :breakpoints="swiperOptions.breakpoints"
+  <Swiper
+    :breakpoints="swiperOptions.breakpoints"
     :pagination="{
       el: 'swiper-custom-pagination',
       clickable: true,
     }"
-    :modules="swiperOptions.modules"
-  >
-    <template class="swiper-wrapper" v-for="recipe in storeRecipes.data" :key="recipe.id">
+    :modules="swiperOptions.modules">
+    <template
+      class="swiper-wrapper"
+      v-for="recipe in storeRecipes.data"
+      :key="recipe.id">
       <SwiperSlide class="swiper__slide">
         <Card :data="recipe" />
       </SwiperSlide>
@@ -20,9 +23,9 @@
 <script setup>
 import { onMounted } from "vue";
 import { Swiper, SwiperSlide } from "swiper/vue";
-import { Pagination } from 'swiper/modules';
-import 'swiper/css/free-mode';
-import 'swiper/css/pagination';
+import { Pagination } from "swiper/modules";
+import "swiper/css/free-mode";
+import "swiper/css/pagination";
 import "swiper/css";
 import { useStoreRecipes } from "@/stores/recipes/storeRecipes.js";
 import Card from "@/components/Card.vue";
@@ -32,42 +35,42 @@ const storeRecipes = useStoreRecipes();
 const swiperOptions = {
   modules: [Pagination],
   breakpoints: {
-      640: {
-        slidesPerView: 1,
-        spaceBetween: 20,
-      },
-      768: {
-        slidesPerView: 2,
-        spaceBetween: 40,
-      },
-      1040: {
-        slidesPerView: 3,
-        spaceBetween: 50,
-      },
-    }
-}
+    640: {
+      slidesPerView: 1,
+      spaceBetween: 20,
+    },
+    768: {
+      slidesPerView: 2,
+      spaceBetween: 40,
+    },
+    1040: {
+      slidesPerView: 3,
+      spaceBetween: 50,
+    },
+  },
+};
 
 onMounted(() => {
   storeRecipes.loadRecipes();
-})
+});
 </script>
 
 <!-- style -->
 
 <style lang="scss">
 .swiper-custom-pagination {
-  color: $white;
+  color: $c-white;
   text-align: center;
   padding-top: 1.25rem;
 }
 .swiper-pagination-bullet {
   padding: 0.5rem;
-  background-color: $white;
+  background-color: $c-white;
   opacity: 0.4;
 }
 
 .swiper-pagination-bullet-active {
-  background-color: $white;
+  background-color: $c-white;
   opacity: 1;
 }
 </style>

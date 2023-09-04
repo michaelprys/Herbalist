@@ -2,8 +2,10 @@
   <div class="card">
     <div class="card__item">
       <img
-        class="card__image" :src="data.image" :alt="data.alt" width="250px"
-      />
+        class="card__image"
+        :src="data.image"
+        :alt="data.alt"
+        width="250px" />
       <div class="card__content">
         <h2 class="card__title">{{ data.title }}</h2>
         <p class="card__text">{{ data.text }}</p>
@@ -27,14 +29,13 @@ defineProps(["data"]);
   justify-content: center;
   margin-top: 2.8125rem;
   align-items: center;
-
   &__item {
-    color: #000;
+    color: $c-black;
     max-width: 361px;
     border-radius: 0.3125rem;
     box-shadow: 0 0.25rem 0.5rem 0 rgba(0, 0, 0, 0.2);
     cursor: pointer;
-    background-color: $white;
+    background-color: $c-white;
     transition: 0.3s;
 
     &:hover {
@@ -59,7 +60,6 @@ defineProps(["data"]);
     font-size: 1.25rem;
     font-weight: 800;
     transition: 0.3s;
-
   }
   &__text {
     padding-top: 12px;
@@ -69,9 +69,9 @@ defineProps(["data"]);
     padding: 0.625rem;
     border-radius: 0.3125rem;
     transition: 0.3s;
-    background-color: #afafaf;
+    background-color: $c-grey;
     &:hover {
-      background-color: $pink;
+      background-color: $c-pink;
     }
   }
 }

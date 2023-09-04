@@ -20,7 +20,7 @@ import SwiperComponent from "@/components/Swiper.vue";
   &__title {
     margin-top: 3.125rem;
     font-size: 3rem;
-    text-shadow: 8px 8px 18px black;
+    text-shadow: 8px 8px 18px $c-black;
   }
 }
 </style>

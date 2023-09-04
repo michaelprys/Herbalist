@@ -1,0 +1,25 @@
+// transitions
+$tr-smooth: 200ms cubic-bezier(0.55, 0.085, 0.68, 0.53);
+
+// colors
+$c-white: #fff;
+$c-pink: #ebbcc4;
+$c-grey: #afafaf;
+$c-black: #000;
+$c-light-grey: #2d2d2d;
+$c-dark-grey: #1b1c1c;
+
+// sizes
+$fit-size: calc(100% - 3rem);
+
+// burger menu
+$bar-height: 3px;
+$bar-width: 30px;
+$burger-gap: 6px;
+$burger-margin: 8px;
+$burger-height: calc($bar-height * 3 + $burger-gap * 2);
+$x-width: calc($burger-height * 1.41421356237);
+
+// fonts
+$century: Century Gothic W05 Regular;
+$spectral: Spectral SC ExtraLight;
