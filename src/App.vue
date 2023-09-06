@@ -1,18 +1,16 @@
 <template>
-  <body>
-    <header class="header">
-      <Navigation></Navigation>
-    </header>
-    <main>
-      <div class="container">
-        <ViewHome></ViewHome>
-      </div>
-    </main>
-  </body>
+  <header class="header">
+    <Navigation></Navigation>
+  </header>
+  <main>
+    <ViewHome></ViewHome>
+  </main>
+  <AppFooter></AppFooter>
 </template>
 
 <script setup>
 import Navigation from "@/layout/Navigation.vue";
+import AppFooter from "@/layout/AppFooter.vue";
 import ViewHome from "@/views/ViewHome.vue";
 </script>
 
@@ -27,9 +25,13 @@ import ViewHome from "@/views/ViewHome.vue";
   padding-inline: 1.5rem;
 }
 
+.container--footer {
+  width: 71.6875rem;
+}
+
 .header {
-  background-color: $c-dark-grey;
-  min-height: 7.5rem;
+  background-color: $c-light-grey;
+  background-size: cover;
   display: flex;
   align-items: center;
 }
@@ -64,6 +66,9 @@ import ViewHome from "@/views/ViewHome.vue";
 @media (min-width: 1280px) {
   .container {
     max-width: 1280px;
+  }
+  .container--footer {
+    padding-inline: 0;
   }
 }
 

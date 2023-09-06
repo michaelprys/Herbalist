@@ -97,6 +97,7 @@ onClickOutside(
   display: flex;
   justify-content: space-between;
   align-items: center;
+  min-height: 7.8125rem;
 
   // ^ nav item -------------------/
   &__item {
@@ -161,7 +162,7 @@ onClickOutside(
       padding-block: 0.0625rem;
       left: 0;
       right: 0;
-      top: 2.6875rem;
+      top: 45px;
       transition: opacity $tr-smooth;
       opacity: 0;
       background-color: $c-white;
@@ -206,11 +207,10 @@ onClickOutside(
   &__item--burger {
     display: none;
     flex-direction: column;
-    justify-content: space-between;
     gap: $burger-gap;
     z-index: 5;
     background: none;
-    padding-block: 15px;
+    padding: 0;
     & span,
     &::before,
     &::after {
@@ -240,6 +240,11 @@ onClickOutside(
       width: $x-width;
       transform: translateY(calc($bar-height / 2)) rotate(45deg);
     }
+    &.active {
+      position: fixed;
+      right: 0;
+      margin-right: 1.5rem;
+    }
   }
   // * Media -------------------/
 }
@@ -254,19 +259,23 @@ onClickOutside(
     }
     &__item--menus {
       flex-direction: column;
-      position: absolute;
-      right: -20rem;
+      position: fixed;
+      transform: translateX(100%);
+      right: 0;
       top: 0;
       z-index: 2;
-      min-height: 100vh;
+      height: 100%;
       min-width: 20rem;
       padding-top: calc($burger-height + $burger-margin + 4.1rem);
       font-size: 1.2rem;
       text-transform: uppercase;
-      background-color: $c-light-grey;
-      transition: right $tr-smooth;
+      backdrop-filter: blur(6px);
+      background-color: $c-bright-grey;
+      background: rgba(55, 55, 55, 0.97);
+      transition: transform $tr-smooth, box-shadow $tr-smooth;
       &.active {
-        right: 0;
+        box-shadow: 0 0 0 10000px rgba(0, 0, 0, 0.5);
+        transform: translate(0);
       }
     }
     &__menu {

@@ -3,14 +3,15 @@
 @import "@/assets/scss/base/_font-face.scss";
 @import "@/assets/scss/base/_variables.scss";
 
+// html {
+//   scroll-snap-type: y mandatory;
+// }
+
 body {
-  background: #3a7bd5;
-  background: -webkit-linear-gradient(to bottom, #3a6073, #3a7bd5);
-  background: linear-gradient(to bottom, #3a6073, #3a7bd5);
+  background-color: $c-dark-grey;
   background-image: url("@/assets/images/bg.jpg");
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
   color: white;
-  overflow: hidden;
 }

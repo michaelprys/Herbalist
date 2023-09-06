@@ -2,12 +2,18 @@
 $tr-smooth: 200ms cubic-bezier(0.55, 0.085, 0.68, 0.53);
 
 // colors
-$c-white: #fff;
-$c-pink: #ebbcc4;
-$c-grey: #afafaf;
 $c-black: #000;
-$c-light-grey: #2d2d2d;
-$c-dark-grey: #1b1c1c;
+$c-white: #fff;
+$c-grey-hard: #afafaf;
+$c-grey-soft: #cecece;
+$c-bright-grey: #373737;
+$c-light-grey: #212121;
+$c-dark-grey: #1d1e1f;
+$c-pink: #ebbcc4;
+
+// decorations
+
+$fx-shadow-basic: 8px 8px 18px $c-black;
 
 // sizes
 $fit-size: calc(100% - 3rem);
@@ -23,3 +29,4 @@ $x-width: calc($burger-height * 1.41421356237);
 // fonts
 $century: Century Gothic W05 Regular;
 $spectral: Spectral SC ExtraLight;
+$vegan: Vegan Style;

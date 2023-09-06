@@ -29,6 +29,7 @@ defineProps(["data"]);
   justify-content: center;
   margin-top: 2.8125rem;
   align-items: center;
+  // filter: grayscale(20%);
   &__item {
     color: $c-black;
     max-width: 361px;
@@ -69,7 +70,7 @@ defineProps(["data"]);
     padding: 0.625rem;
     border-radius: 0.3125rem;
     transition: 0.3s;
-    background-color: $c-grey;
+    background-color: $c-grey-hard;
     &:hover {
       background-color: $c-pink;
     }
