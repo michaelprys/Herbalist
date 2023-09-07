@@ -135,8 +135,10 @@ onClickOutside(
   }
 
   &__menu-item:last-child &__menu-link {
-    padding-right: 0;
     margin-right: 0;
+  }
+  &__menu-item:last-child &__menu-link--primary {
+    padding-right: 0;
   }
 
   &__menu-link {
@@ -185,6 +187,7 @@ onClickOutside(
     transition: opacity $tr-smooth, background-size 0.125s ease-in,
       color 0.3s linear;
     opacity: 0.7;
+    padding-inline: 0.5625rem;
 
     &::after {
       content: "";
@@ -210,7 +213,12 @@ onClickOutside(
     gap: $burger-gap;
     z-index: 5;
     background: none;
-    padding: 0;
+    padding-block: 10px;
+    padding-inline: 8px;
+    border-radius: 0.3125rem;
+    &:hover {
+      background-color: #6a6a6a42;
+    }
     & span,
     &::before,
     &::after {
@@ -228,28 +236,32 @@ onClickOutside(
       position: relative;
       left: 100%;
     }
+    &.active {
+      transition: opacity $tr-smooth;
+      position: fixed;
+      right: 0;
+      margin-right: 1.5rem;
+    }
     &.active span {
       width: 0;
       opacity: 0;
     }
     &.active::before {
       width: $x-width;
-      transform: translateY(calc($bar-height / -2)) rotate(-45deg);
+      transform: translateX(-4px) translateY(calc($bar-height / -2))
+        rotate(-45deg);
     }
     &.active::after {
       width: $x-width;
-      transform: translateY(calc($bar-height / 2)) rotate(45deg);
-    }
-    &.active {
-      position: fixed;
-      right: 0;
-      margin-right: 1.5rem;
+      transform: translateX(-4px) translateY(calc($bar-height / 2))
+        rotate(45deg);
     }
   }
   // * Media -------------------/
 }
 @media (max-width: 1279px) {
   .nav {
+    position: relative;
     &__item--burger {
       display: flex;
     }
@@ -260,8 +272,7 @@ onClickOutside(
     &__item--menus {
       flex-direction: column;
       position: fixed;
-      transform: translateX(100%);
-      right: 0;
+      left: 100%;
       top: 0;
       z-index: 2;
       height: 100%;
@@ -275,7 +286,7 @@ onClickOutside(
       transition: transform $tr-smooth, box-shadow $tr-smooth;
       &.active {
         box-shadow: 0 0 0 10000px rgba(0, 0, 0, 0.5);
-        transform: translate(0);
+        transform: translate(-100%);
       }
     }
     &__menu {

@@ -15,5 +15,5 @@ export const useStoreRecipes = defineStore("storeRecipes", {
 });
 // HMR
 if (import.meta.hot) {
-  import.meta.hot.accept(acceptHMRUpdate(useStoreRecipes, import.meta.hot))
+  import.meta.hot.accept(acceptHMRUpdate(useStoreRecipes, import.meta.hot));
 }

@@ -56,6 +56,7 @@
   background-color: $c-light-grey;
   min-height: 7.875rem;
   font-size: 1rem;
+  margin-top: auto;
   &__items {
     display: flex;
     justify-content: space-between;

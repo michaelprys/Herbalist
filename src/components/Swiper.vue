@@ -1,10 +1,11 @@
 <template>
   <Swiper
+    class="swiper"
     :breakpoints="swiperOptions.breakpoints"
     :pagination="{
-      el: 'swiper-custom-pagination',
       clickable: true,
     }"
+    :loop="true"
     :modules="swiperOptions.modules">
     <template
       class="swiper-wrapper"
@@ -58,10 +59,13 @@ onMounted(() => {
 <!-- style -->
 
 <style lang="scss">
+.swiper {
+  margin-bottom: 12.5rem;
+}
 .swiper-custom-pagination {
   color: $c-white;
   text-align: center;
-  padding-top: 1.25rem;
+  padding-top: 0.4rem;
 }
 .swiper-pagination-bullet {
   padding: 0.5rem;
