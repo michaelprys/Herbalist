@@ -2,8 +2,8 @@ import ViewHome from "@/views/ViewHome.vue";
 import ViewRecipesByIngredients from "@/views/ViewRecipesByIngredients.vue";
 import ViewRecipesByLetter from "@/views/ViewRecipesByLetter.vue";
 import ViewSearchRecipes from "@/views/ViewSearchRecipes.vue";
-import About from "@/views/About.vue";
-import Login from "@/views/Login.vue";
+import ViewAbout from "@/views/ViewAbout.vue";
+import ViewLogin from "@/views/ViewLogin.vue";
 
 export const routes = [
   {
@@ -29,11 +29,11 @@ export const routes = [
   {
     path: "/about",
     name: "about",
-    component: About,
+    component: ViewAbout,
   },
   {
     path: "/login",
     name: "login",
-    component: Login,
+    component: ViewLogin,
   },
 ];

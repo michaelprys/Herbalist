@@ -2,7 +2,7 @@
   <div class="card">
     <div class="card__item">
       <img
-        class="card__image skeleton"
+        class="card__image"
         :src="data.image"
         :alt="data.alt"
         width="250px" />

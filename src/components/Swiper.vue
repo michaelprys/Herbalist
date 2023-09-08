@@ -12,7 +12,14 @@
       v-for="recipe in storeRecipes.data"
       :key="recipe.id">
       <SwiperSlide class="swiper__slide">
-        <Card :data="recipe" />
+        <Suspense>
+          <template #default>
+            <Card :data="recipe" />
+          </template>
+          <template #fallback>
+            <p>Loading...</p>
+          </template>
+        </Suspense>
       </SwiperSlide>
       <div class="swiper-custom-pagination"></div>
     </template>

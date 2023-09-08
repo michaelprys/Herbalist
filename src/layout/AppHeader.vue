@@ -92,6 +92,13 @@ onClickOutside(
 </script>
 
 <style lang="scss">
+// * nav-wrapper -------------------/
+.header {
+  background-color: $c-light-grey;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+}
 // * nav -------------------/
 .nav {
   display: flex;
