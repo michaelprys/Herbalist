@@ -1,15 +1,23 @@
 @font-face {
-  font-family: "Spectral SC ExtraLight";
-  src: url("/fonts/Spectral SC ExtraLight.woff2") format("woff2"),
-    url("/fonts/Spectral SC ExtraLight.woff") format("woff");
+  font-display: swap;
+  font-family: "Spectral SC";
+  font-style: normal;
+  font-weight: 400;
+  src: url("../fonts/spectral-sc-v12-latin-regular.woff2") format("woff2");
 }
+
 @font-face {
+  font-display: swap;
   font-family: "Century Gothic W05 Regular";
-  src: url("/fonts/Century Gothic W05 Regular.woff2") format("woff2"),
-    url("/fonts/Century Gothic W05 Regular.woff") format("woff");
+  font-style: normal;
+  font-weight: 400;
+  src: url("../fonts/Century Gothic W05 Regular.woff2") format("woff2");
 }
+
 @font-face {
-  font-family: "Vegan Style";
-  src: url("/fonts/Vegan Style") format("woff2"),
-    url("/fonts/Vegan Style.woff") format("woff");
+  font-display: swap;
+  font-family: "Century Gothic Bold";
+  font-style: normal;
+  font-weight: 800;
+  src: url("../fonts/Century Gothic Bold.woff2") format("woff2");
 }

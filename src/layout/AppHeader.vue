@@ -1,77 +1,79 @@
 <template>
-  <div class="container container--nav">
-    <nav class="nav">
-      <div class="nav__item">
-        <router-link class="nav__logo" :to="{ name: 'Home' }"
-          ><img
-            class="nav__logo-image"
-            src="@/assets/images/logo/header-logo.png"
-            alt="Herbalist Logo"
-            width="60" />
-          <span class="nav__logo-name">Herbalist</span>
-        </router-link>
-      </div>
-      <!-- ./nav logo item -->
+  <header class="header">
+    <div class="container container--nav">
+      <nav class="nav">
+        <div class="nav__item">
+          <router-link class="nav__logo" :to="{ name: 'Home' }"
+            ><img
+              class="nav__logo-image"
+              src="@/assets/images/logo/header-logo.png"
+              alt="Herbalist Logo"
+              width="60" />
+            <span class="nav__logo-name">Herbalist</span>
+          </router-link>
+        </div>
+        <!-- ./nav logo item -->
 
-      <div
-        class="nav__item nav__item--menus"
-        :class="{ active: showMobileNav }"
-        ref="navMenuRef">
-        <ul class="nav__menu">
-          <li class="nav__menu-item">
-            <router-link
-              class="nav__menu-link nav__menu-link--primary"
-              :to="{ name: 'searchRecipes' }"
-              ><span>Search Recipes</span>
-            </router-link>
-          </li>
-          <li class="nav__menu-item">
-            <router-link
-              class="nav__menu-link nav__menu-link--primary"
-              :to="{ name: 'recipesByLetter' }"
-              ><span>Recipes By Letter</span>
-            </router-link>
-          </li>
-          <li class="nav__menu-item">
-            <router-link
-              class="nav__menu-link nav__menu-link--primary"
-              :to="{ name: 'recipesByIngredients' }"
-              ><span>Recipes By Ingredients</span>
-            </router-link>
-          </li>
-        </ul>
-        <!-- ./nav links primary -->
+        <div
+          class="nav__item nav__item--menus"
+          :class="{ active: showMobileNav }"
+          ref="navMenuRef">
+          <ul class="nav__menu">
+            <li class="nav__menu-item">
+              <router-link
+                class="nav__menu-link nav__menu-link--primary"
+                :to="{ name: 'searchRecipes' }"
+                ><span>Search Recipes</span>
+              </router-link>
+            </li>
+            <li class="nav__menu-item">
+              <router-link
+                class="nav__menu-link nav__menu-link--primary"
+                :to="{ name: 'recipesByLetter' }"
+                ><span>Recipes By Letter</span>
+              </router-link>
+            </li>
+            <li class="nav__menu-item">
+              <router-link
+                class="nav__menu-link nav__menu-link--primary"
+                :to="{ name: 'recipesByIngredients' }"
+                ><span>Recipes By Ingredients</span>
+              </router-link>
+            </li>
+          </ul>
+          <!-- ./nav links primary -->
 
-        <ul class="nav__menu">
-          <li class="nav__menu-item">
-            <router-link
-              class="nav__menu-link nav__menu-link--secondary"
-              :to="{ name: 'about' }">
-              About</router-link
-            >
-          </li>
-          <li class="nav__menu-item">
-            <router-link
-              class="nav__menu-link nav__menu-link--secondary"
-              :to="{ name: 'login' }"
-              >Log In</router-link
-            >
-          </li>
-        </ul>
-        <!-- ./nav links secondary -->
-      </div>
-      <!-- ./nav menus item -->
+          <ul class="nav__menu">
+            <li class="nav__menu-item">
+              <router-link
+                class="nav__menu-link nav__menu-link--secondary"
+                :to="{ name: 'about' }">
+                About</router-link
+              >
+            </li>
+            <li class="nav__menu-item">
+              <router-link
+                class="nav__menu-link nav__menu-link--secondary"
+                :to="{ name: 'login' }"
+                >Log In</router-link
+              >
+            </li>
+          </ul>
+          <!-- ./nav links secondary -->
+        </div>
+        <!-- ./nav menus item -->
 
-      <button
-        class="nav__item nav__item--burger"
-        :class="{ active: showMobileNav }"
-        @click="showMobileNav = !showMobileNav"
-        ref="navBurgerRef"
-        type="button">
-        <span class="nav__burger-item"></span>
-      </button>
-    </nav>
-  </div>
+        <button
+          class="nav__item nav__item--burger"
+          :class="{ active: showMobileNav }"
+          @click="showMobileNav = !showMobileNav"
+          ref="navBurgerRef"
+          type="button">
+          <span class="nav__burger-item"></span>
+        </button>
+      </nav>
+    </div>
+  </header>
 </template>
 
 <script setup>
@@ -92,13 +94,11 @@ onClickOutside(
 </script>
 
 <style lang="scss">
-// * nav-wrapper -------------------/
+// * Header -------------------/
 .header {
-  background-color: $c-light-grey;
-  background-size: cover;
-  display: flex;
-  align-items: center;
+  background-color: $c-grey-darkest;
 }
+
 // * nav -------------------/
 .nav {
   display: flex;
@@ -116,7 +116,6 @@ onClickOutside(
     display: flex;
     align-items: center;
     transform: translateX(-4px);
-    font-family: $spectral;
   }
   &__logo-image {
     transition: transform 0.9s ease-in-out;
@@ -128,6 +127,7 @@ onClickOutside(
     margin-left: 0.4375rem;
     font-size: 1.0625rem;
     opacity: 70%;
+    font-family: $ff-spectral;
     transition: opacity 0.3s linear;
     &:hover {
       opacity: 1;
@@ -140,7 +140,6 @@ onClickOutside(
     justify-content: flex-end;
     margin-top: 20px;
   }
-
   &__menu-item:last-child &__menu-link {
     margin-right: 0;
   }
@@ -153,7 +152,6 @@ onClickOutside(
       opacity: 1;
     }
   }
-
   &__menu-link--primary {
     display: block;
     padding-bottom: 1rem;
@@ -180,7 +178,6 @@ onClickOutside(
       opacity: 1;
     }
   }
-
   &__menu-link--secondary {
     display: block;
     position: relative;
@@ -222,7 +219,7 @@ onClickOutside(
     background: none;
     padding-block: 10px;
     padding-inline: 8px;
-    border-radius: 0.3125rem;
+    border-radius: $br-rounded;
     &:hover {
       background-color: #6a6a6a42;
     }
@@ -232,7 +229,7 @@ onClickOutside(
       content: "";
       width: $bar-width;
       height: $bar-height;
-      border-radius: 9999px;
+      border-radius: $br-full;
       transform-origin: right center;
       background-color: $c-white;
       transition: $tr-smooth;
@@ -287,9 +284,8 @@ onClickOutside(
       padding-top: calc($burger-height + $burger-margin + 4.1rem);
       font-size: 1.2rem;
       text-transform: uppercase;
-      backdrop-filter: blur(6px);
-      background-color: $c-bright-grey;
-      background: rgba(55, 55, 55, 0.97);
+      backdrop-filter: $blur;
+      background-color: rgba(55, 55, 55, 0.97);
       transition: transform $tr-smooth, box-shadow $tr-smooth;
       &.active {
         box-shadow: 0 0 0 10000px rgba(0, 0, 0, 0.5);

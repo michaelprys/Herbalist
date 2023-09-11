@@ -1,0 +1,43 @@
+// font-size
+$fs-regular: 0.9375rem;
+
+// font-weight
+$fw-regular: 400;
+$fw-bold: 800;
+
+// fonts
+$ff-century: "Century Gothic W05 Regular";
+$ff-spectral: "Spectral SC";
+
+// transitions & animations
+$tr-basic: 0.3s;
+$tr-smooth: 0.2s cubic-bezier(0.55, 0.085, 0.68, 0.53);
+$skeleton: skeleton-loading 1s linear infinite alternate;
+$tr-fast: 0.1s;
+
+// colors
+$c-black: #000;
+$c-white: #fff;
+$c-pink: #ebbcc4;
+$c-yellow: #ffff8a;
+$c-grey-lightest: #e5e5e5;
+$c-grey-light: #cecece;
+$c-grey-medium: #afafaf;
+$c-grey-dark: #1d1e1f;
+$c-grey-darkest: #212121;
+$c-grey-transparent: #a7a7a77a;
+
+// decorations
+$fx-shadow-light: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.329);
+$fx-shadow-dark: 8px 8px 18px $c-black;
+$br-rounded: 0.3125rem;
+$br-full: 624.9375rem;
+$blur: blur(6px);
+
+// burger menu
+$bar-height: 3px;
+$bar-width: 30px;
+$burger-gap: 6px;
+$burger-margin: 8px;
+$burger-height: calc($bar-height * 3 + $burger-gap * 2);
+$x-width: calc($burger-height * 1.41421356237);

@@ -1,14 +1,10 @@
 <template>
   <div class="global-container">
-    <header class="header">
-      <AppHeader></AppHeader>
-    </header>
-    <main>
+    <AppHeader></AppHeader>
+    <main class="container">
       <RouterView />
     </main>
-    <footer class="footer">
-      <AppFooter></AppFooter>
-    </footer>
+    <AppFooter></AppFooter>
   </div>
 </template>
 
