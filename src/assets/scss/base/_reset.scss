@@ -4,6 +4,11 @@
   box-sizing: border-box;
 }
 
+*::before,
+*::after {
+  display: block;
+}
+
 * {
   margin: 0;
   padding: 0;
