@@ -2,7 +2,7 @@
   <div class="global-container">
     <AppHeader></AppHeader>
     <main class="container">
-      <RouterView />
+      <RouterView @routeChange="closeMobileNav" />
     </main>
     <AppFooter></AppFooter>
   </div>

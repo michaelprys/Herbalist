@@ -3,6 +3,7 @@
   flex-direction: column;
   justify-content: flex-start;
   min-height: 100vh;
+  margin-top: 100px;
 }
 
 .container {
@@ -11,9 +12,9 @@
   padding-inline: 1rem;
 }
 
-@media (min-width: 640px) {
-  .container {
-    max-width: 640px;
+@media (min-width: 320px) {
+  .container--swiper {
+    max-width: 390px;
   }
   .container--nav {
     max-width: 1280px;
@@ -22,7 +23,7 @@
 
 @media (min-width: 800px) {
   .container {
-    max-width: 768px;
+    max-width: 800px;
   }
   .container--nav {
     max-width: 1280px;

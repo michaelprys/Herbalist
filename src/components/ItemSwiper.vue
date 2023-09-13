@@ -31,17 +31,17 @@ const storeRecipes = useStoreRecipes();
 const swiperOptions = {
   modules: [Pagination],
   breakpoints: {
-    640: {
+    320: {
       slidesPerView: 1,
-      spaceBetween: 20,
+      spaceBetween: 40,
     },
-    768: {
+    800: {
       slidesPerView: 2,
       spaceBetween: 40,
     },
     1040: {
       slidesPerView: 3,
-      spaceBetween: 50,
+      spaceBetween: 40,
     },
   },
 };

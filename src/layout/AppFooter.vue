@@ -49,6 +49,7 @@
 <style lang="scss">
 .footer {
   display: flex;
+  bottom: 0;
   align-items: center;
   background-color: $c-grey-darkest;
   min-height: 7.875rem;

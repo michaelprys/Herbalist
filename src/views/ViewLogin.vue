@@ -6,7 +6,7 @@
       <div class="login__input-wrapper">
         <input class="login__input" type="text" placeholder="Username" />
         <svg
-          class="login__input-icon login__input-icon--username"
+          class="login__input-icon"
           xmlns="http://www.w3.org/2000/svg"
           width="24"
           height="24"
@@ -19,7 +19,7 @@
       <div class="login__input-wrapper">
         <input class="login__input" type="text" placeholder="Password" />
         <svg
-          class="login__input-icon login__input-icon--password"
+          class="login__input-icon"
           xmlns="http://www.w3.org/2000/svg"
           width="24"
           height="24"
@@ -30,13 +30,12 @@
       </div>
 
       <div class="login__options">
-        <div class="login__checkbox-wrapper">
-          <input type="checkbox" id="checkbox" />
-          <label for="checkbox">Remember Me</label>
-        </div>
+        <label class="login__checkbox-container" for="checkbox">
+          <input type="checkbox" id="checkbox" /> Remember me
+        </label>
 
         <router-link class="login__forgot" :to="{ name: 'Home' }"
-          >Forgot Password?</router-link
+          >Forgot password?</router-link
         >
       </div>
 
@@ -144,26 +143,28 @@ onMounted(() => {
     @include underline;
   }
 
-  &__checkbox-wrapper {
+  &__checkbox-container {
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    & label {
-      cursor: pointer;
-    }
+    cursor: pointer;
     & input[type="checkbox"] {
       appearance: none;
-      padding: 0.1875rem;
+      padding: 7px;
       background-color: $c-white;
       border-radius: 0.1875rem;
       transition: 120ms transform ease-in-out;
+      position: relative;
       cursor: pointer;
       &:hover {
         transform: scale(1.1);
       }
       &::before {
         content: "";
-        transform: scale(0);
+        position: absolute;
+        transform: translateY(-50%), scale(0);
+        top: 0;
+        left: 0;
         padding: 0.25rem;
         background-color: #585858;
         transition: 80ms transform ease-in-out;

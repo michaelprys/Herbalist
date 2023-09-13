@@ -27,14 +27,3 @@
     outline: none;
   }
 }
-
-@mixin visually-hidden {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  margin: -0.0625rem;
-  border: 0;
-  padding: 0;
-  clip: rect(0 0 0 0);
-  overflow: hidden;
-}

@@ -61,6 +61,7 @@ defineProps(["data"]);
     font-weight: $fw-bold;
     transition: $tr-basic;
     white-space: nowrap;
+    text-overflow: ellipsis;
   }
   &__text {
     font-size: $fs-regular;

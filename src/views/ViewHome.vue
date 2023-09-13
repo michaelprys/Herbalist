@@ -2,7 +2,9 @@
   <div class="container">
     <section class="section section--recipes">
       <h1 class="section__title">Popular recipes</h1>
-      <ItemSwiper></ItemSwiper>
+      <div class="container container--swiper">
+        <ItemSwiper></ItemSwiper>
+      </div>
     </section>
   </div>
 </template>

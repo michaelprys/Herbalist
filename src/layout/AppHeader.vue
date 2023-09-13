@@ -1,5 +1,5 @@
 <template>
-  <header class="header">
+  <header class="header" :class="{ hidden: hideHeader }">
     <div class="container container--nav">
       <nav class="nav">
         <div class="nav__item">
@@ -66,7 +66,7 @@
         <button
           class="nav__item nav__item--burger"
           :class="{ active: showMobileNav }"
-          @click="showMobileNav = !showMobileNav"
+          @click="toggleMobileNav"
           ref="navBurgerRef"
           type="button">
           <span class="nav__burger-item"></span>
@@ -79,24 +79,59 @@
 <script setup>
 import { ref } from "vue";
 import { onClickOutside } from "@vueuse/core";
-
 const showMobileNav = ref(false);
 const navMenuRef = ref();
 const navBurgerRef = ref();
 
+const toggleMobileNav = () => {
+  showMobileNav.value = !showMobileNav.value;
+};
+
+const closeMobileNav = () => {
+  showMobileNav.value = false;
+};
+
 onClickOutside(
   navMenuRef,
   () => {
-    showMobileNav.value = false;
+    closeMobileNav();
   },
   { ignore: [navBurgerRef] }
 );
+
+// hide nav on scroll
+const hideHeader = ref(false);
+
+const header = document.querySelector(".header");
+let lastScrollY = window.scrollY;
+
+window.addEventListener("scroll", () => {
+  if (lastScrollY < window.scrollY) {
+    hideHeader.value = true;
+    console.log("scroll down");
+  } else {
+    hideHeader.value = false;
+    console.log("scroll up");
+  }
+  lastScrollY = window.scrollY;
+});
 </script>
 
 <style lang="scss">
 // * Header -------------------/
+
 .header {
+  position: fixed;
+  top: 0;
+  z-index: 5;
+  width: 100%;
+  margin-bottom: 100px;
   background-color: $c-grey-darkest;
+  transform: translateY(0);
+  transition: transform 0.4s;
+  &.hidden {
+    transform: translateY(-100%);
+  }
 }
 
 // * nav -------------------/
