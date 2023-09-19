@@ -1,5 +1,6 @@
 <template>
   <div class="global-container">
+    <header class="header" :class="{ hidden: hideHeader }"></header>
     <AppHeader></AppHeader>
     <main class="container">
       <RouterView />
