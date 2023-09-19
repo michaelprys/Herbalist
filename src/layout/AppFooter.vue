@@ -55,6 +55,7 @@
   min-height: 7.875rem;
   font-size: 1rem;
   margin-top: auto;
+  background-color: rgba($c-grey-darkest, 0.98);
   &__items {
     display: flex;
     justify-content: space-between;

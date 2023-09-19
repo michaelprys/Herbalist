@@ -5,13 +5,15 @@
 @import "@/assets/scss/utils/_mixins.scss";
 
 body {
+  min-height: 100vh;
+  line-height: 1.6;
+  color: $c-white;
+  font-weight: $fw-regular;
+  font-family: $ff-century, sans-serif;
   background-image: url("@/assets/images/bg.jpg");
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
   background-color: $c-grey-dark;
-  color: $c-white;
-  line-height: 1.6;
-  font-weight: $fw-regular;
-  font-family: $ff-century, sans-serif;
+  background-attachment: fixed;
 }

@@ -32,7 +32,8 @@ $fx-shadow-light: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.329);
 $fx-shadow-dark: 8px 8px 18px $c-black;
 $br-rounded: 0.3125rem;
 $br-full: 624.9375rem;
-$blur: blur(6px);
+$blur-light: blur(6px);
+$blur-hard: blur(20px);
 
 // burger menu
 $bar-height: 3px;

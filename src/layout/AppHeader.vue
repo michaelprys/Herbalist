@@ -14,10 +14,7 @@
         </div>
         <!-- ./nav logo item -->
 
-        <div
-          class="nav__item nav__item--menus"
-          :class="{ active: showMobileNav }"
-          ref="navMenuRef">
+        <div class="nav__item nav__item--menus">
           <ul class="nav__menu">
             <li class="nav__menu-item">
               <router-link
@@ -74,32 +71,34 @@
       </nav>
     </div>
   </header>
+
+  <ItemMobileNav :class="{ active: showMobileNav }" ref="navMenuRef" />
 </template>
 
 <script setup>
+import ItemMobileNav from "@/components/ItemMobileNav.vue";
 import { ref } from "vue";
 import { onClickOutside } from "@vueuse/core";
+
 const showMobileNav = ref(false);
 const navMenuRef = ref();
 const navBurgerRef = ref();
+
+onClickOutside(
+  navMenuRef,
+  () => {
+    showMobileNav.value = false;
+  },
+  { ignore: [navBurgerRef] }
+);
 
 const toggleMobileNav = () => {
   showMobileNav.value = !showMobileNav.value;
 };
 
-const closeMobileNav = () => {
-  showMobileNav.value = false;
-};
-
-onClickOutside(
-  navMenuRef,
-  () => {
-    closeMobileNav();
-  },
-  { ignore: [navBurgerRef] }
-);
-
-// hide nav on scroll
+/*
+  hide nav on scroll
+*/
 const hideHeader = ref(false);
 
 const header = document.querySelector(".header");
@@ -108,10 +107,8 @@ let lastScrollY = window.scrollY;
 window.addEventListener("scroll", () => {
   if (lastScrollY < window.scrollY) {
     hideHeader.value = true;
-    console.log("scroll down");
   } else {
     hideHeader.value = false;
-    console.log("scroll up");
   }
   lastScrollY = window.scrollY;
 });
@@ -308,51 +305,51 @@ window.addEventListener("scroll", () => {
     &__menu-link--secondary {
       display: none;
     }
-    &__item--menus {
-      flex-direction: column;
-      position: fixed;
-      left: 100%;
-      top: 0;
-      z-index: 2;
-      height: 100%;
-      min-width: 20rem;
-      padding-top: calc($burger-height + $burger-margin + 4.1rem);
-      font-size: 1.2rem;
-      text-transform: uppercase;
-      backdrop-filter: $blur;
-      background-color: rgba(55, 55, 55, 0.97);
-      transition: transform $tr-smooth, box-shadow $tr-smooth;
-      &.active {
-        box-shadow: 0 0 0 10000px rgba(0, 0, 0, 0.5);
-        transform: translate(-100%);
-      }
-    }
-    &__menu {
-      flex-direction: column;
-      margin: 0;
-      padding: 0;
-    }
-    &__menu-link--primary,
-    &__menu-link--secondary {
-      all: unset;
-      display: flex;
-      padding-inline: 1.6rem;
-      padding-block: 0.9rem;
-      opacity: 0.7;
-      transition: background-color $tr-smooth, opacity $tr-smooth;
-      cursor: pointer;
-      &::after {
-        display: none;
-      }
-      & span::after {
-        display: none;
-      }
-      &:hover {
-        color: inherit;
-        background-color: #6a6a6a;
-        opacity: 1;
-      }
-    }
+    // &__item--menus {
+    //   flex-direction: column;
+    //   position: fixed;
+    //   left: 100%;
+    //   top: 0;
+    //   z-index: 2;
+    //   height: 100%;
+    //   min-width: 20rem;
+    //   padding-top: calc($burger-height + $burger-margin + 4.1rem);
+    //   font-size: 1.2rem;
+    //   text-transform: uppercase;
+    //   backdrop-filter: $blur-hard;
+    //   background-color: rgba(55, 55, 55, 0.97);
+    //   transition: transform $tr-smooth, box-shadow $tr-smooth;
+    //   &.active {
+    //     box-shadow: 0 0 0 10000px rgba(0, 0, 0, 0.5);
+    //     transform: translate(-100%);
+    //   }
+    // }
+    // &__menu {
+    //   flex-direction: column;
+    //   margin: 0;
+    //   padding: 0;
+    // }
+    // &__menu-link--primary,
+    // &__menu-link--secondary {
+    //   all: unset;
+    //   display: flex;
+    //   padding-inline: 1.6rem;
+    //   padding-block: 0.9rem;
+    //   opacity: 0.7;
+    //   transition: background-color $tr-smooth, opacity $tr-smooth;
+    //   cursor: pointer;
+    //   &::after {
+    //     display: none;
+    //   }
+    //   & span::after {
+    //     display: none;
+    //   }
+    //   &:hover {
+    //     color: inherit;
+    //     background-color: #6a6a6a;
+    //     opacity: 1;
+    //   }
+    // }
   }
 }
 </style>

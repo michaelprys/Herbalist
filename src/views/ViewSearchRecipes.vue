@@ -18,7 +18,7 @@
   &__input {
     display: block;
     min-width: 50rem;
-    margin-top: 80px;
+    margin-top: 100px;
     margin-inline: auto;
     padding-block: 1rem;
     padding-inline: 20px;

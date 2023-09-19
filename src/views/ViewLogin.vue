@@ -67,13 +67,13 @@ onMounted(() => {
 .login {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   width: 400px;
-  margin-inline: auto;
-  margin-top: 7rem;
   padding: 40px;
-  text-align: center;
+  margin-inline: auto;
+  margin-top: 9rem;
   background-color: rgba(76, 76, 76, 0.86);
-  backdrop-filter: blur(20px);
+  backdrop-filter: $blur-hard;
   border-radius: 1rem;
   background-color: transparent;
   border: 2px solid $c-grey-transparent;
@@ -86,6 +86,7 @@ onMounted(() => {
   &__title {
     font-weight: 800;
     font-size: 32px;
+    text-align: center;
   }
   &__input-wrapper {
     position: relative;
@@ -148,29 +149,36 @@ onMounted(() => {
     align-items: center;
     gap: 0.5rem;
     cursor: pointer;
+    user-select: none;
     & input[type="checkbox"] {
       appearance: none;
       padding: 7px;
-      background-color: $c-white;
+      background-color: #fff;
       border-radius: 0.1875rem;
       transition: 120ms transform ease-in-out;
       position: relative;
       cursor: pointer;
+
       &:hover {
         transform: scale(1.1);
       }
+
       &::before {
         content: "";
         position: absolute;
-        transform: translateY(-50%), scale(0);
-        top: 0;
-        left: 0;
-        padding: 0.25rem;
+        opacity: 0;
+        transform: translate(-50%, -50%);
+        top: 50%;
+        left: 50%;
+        width: 0.5rem;
+        height: 0.5rem;
         background-color: #585858;
         transition: 80ms transform ease-in-out;
       }
+
       &:checked::before {
-        transform: scale(1);
+        transform: translate(-50%, -50%);
+        opacity: 1;
       }
     }
   }
