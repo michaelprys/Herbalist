@@ -127,6 +127,10 @@ onUnmounted(() => {
 router.afterEach((to, from) => {
   closeMobileNav();
 });
+
+/*
+  reset sidenav and burger menu on window size change
+*/
 </script>
 
 <style lang="scss">

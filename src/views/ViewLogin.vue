@@ -65,6 +65,7 @@ onMounted(() => {
 
 <style lang="scss">
 .login {
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -72,17 +73,11 @@ onMounted(() => {
   padding: 40px;
   margin-inline: auto;
   margin-block: 9rem;
-  background-color: rgba(76, 76, 76, 0.86);
-  backdrop-filter: $blur-hard;
   border-radius: 1rem;
-  background-color: transparent;
   border: 2px solid $c-grey-transparent;
   box-shadow: $fx-shadow-light;
   transition: transform $tr-basic;
-  transform: scale(0);
-  &.appear {
-    transform: scale(1);
-  }
+  background-color: #2b2f2bfa;
   &__title {
     font-weight: 800;
     font-size: 32px;
@@ -103,7 +98,7 @@ onMounted(() => {
     color: $c-grey-lightest;
     transition: $tr-fast;
     &::placeholder {
-      color: #ffffff65;
+      color: #ffffff8d;
     }
     &:focus {
       border: 1px solid #ffffffb3;

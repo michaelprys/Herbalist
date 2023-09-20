@@ -1,3 +1,9 @@
+// transitions & animations
+$tr-basic: 0.3s;
+$tr-smooth: 0.2s cubic-bezier(0.55, 0.085, 0.68, 0.53);
+$skeleton: skeleton-loading 1s linear infinite alternate;
+$tr-fast: 0.1s;
+
 // font-size
 $fs-regular: 0.9375rem;
 
@@ -8,12 +14,6 @@ $fw-bold: 800;
 // fonts
 $ff-century: "Century Gothic W05 Regular";
 $ff-spectral: "Spectral SC";
-
-// transitions & animations
-$tr-basic: 0.3s;
-$tr-smooth: 0.2s cubic-bezier(0.55, 0.085, 0.68, 0.53);
-$skeleton: skeleton-loading 1s linear infinite alternate;
-$tr-fast: 0.1s;
 
 // colors
 $c-black: #000;
