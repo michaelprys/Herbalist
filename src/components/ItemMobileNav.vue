@@ -1,5 +1,6 @@
 <template>
   <nav class="mobile-nav">
+    <router-link to="/" class="mobile-nav__link">Home</router-link>
     <router-link :to="{ name: 'searchRecipes' }" class="mobile-nav__link"
       >Search Recipes</router-link
     >
@@ -52,6 +53,19 @@
       background-color: #6a6a6a;
       opacity: 1;
     }
+  }
+}
+
+@media (min-width: 1280px) {
+  .mobile-nav {
+    display: none;
+  }
+}
+
+@media (max-width: 680px) {
+  .mobile-nav {
+    min-width: 100%;
+    font-size: 1.4rem;
   }
 }
 </style>

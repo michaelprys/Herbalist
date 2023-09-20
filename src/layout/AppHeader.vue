@@ -71,30 +71,35 @@ import ItemMobileNav from "@/components/ItemMobileNav.vue";
 import ItemBurgerMenu from "@/components/ItemBurgerMenu.vue";
 import { ref, onMounted, onUnmounted } from "vue";
 import { onClickOutside } from "@vueuse/core";
+import { useRouter } from "vue-router";
+
+const router = useRouter();
 
 const showMobileNav = ref(false);
 const navMenuRef = ref();
 const navBurgerRef = ref();
 
-onClickOutside(
-  navMenuRef,
-  () => {
-    showMobileNav.value = false;
-  },
-  { ignore: [navBurgerRef] }
-);
+const closeMobileNav = () => {
+  showMobileNav.value = false;
+};
 
 const toggleMobileNav = () => {
   showMobileNav.value = !showMobileNav.value;
 };
 
+onClickOutside(
+  navMenuRef,
+  () => {
+    closeMobileNav();
+  },
+  { ignore: [navBurgerRef] }
+);
+
 /*
   hide on scroll
 */
 const hideHeader = ref(false);
-
 const header = document.querySelector(".header");
-
 let lastScrollY = window.scrollY;
 
 const handleScroll = () => {
@@ -114,6 +119,13 @@ onMounted(() => {
 
 onUnmounted(() => {
   window.removeEventListener("scroll", handleScroll);
+});
+
+/*
+  hide mobile nav on route change
+*/
+router.afterEach((to, from) => {
+  closeMobileNav();
 });
 </script>
 
@@ -140,12 +152,10 @@ onUnmounted(() => {
   align-items: center;
   min-height: 7.8125rem;
 
-  // ^ nav item -------------------/
   &__item {
     display: flex;
     flex-direction: column-reverse;
   }
-  // ^ nav logo -------------------/
   &__logo {
     display: flex;
     align-items: center;
@@ -244,8 +254,8 @@ onUnmounted(() => {
       color: $c-black;
     }
   }
-  // * Media -------------------/
 }
+// * Media -------------------/
 @media (max-width: 1279px) {
   .nav {
     &__menu-link--primary,

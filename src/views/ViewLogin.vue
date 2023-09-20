@@ -71,7 +71,7 @@ onMounted(() => {
   width: 400px;
   padding: 40px;
   margin-inline: auto;
-  margin-top: 9rem;
+  margin-block: 9rem;
   background-color: rgba(76, 76, 76, 0.86);
   backdrop-filter: $blur-hard;
   border-radius: 1rem;
