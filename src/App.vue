@@ -1,13 +1,11 @@
 <template>
-  <div class="global-container">
-    <AppHeader></AppHeader>
-    <main class="container">
-      <transition mode="out-in" name="fade">
-        <RouterView />
-      </transition>
-    </main>
-    <AppFooter></AppFooter>
-  </div>
+  <AppHeader></AppHeader>
+  <main class="container">
+    <transition mode="out-in" name="fade">
+      <RouterView />
+    </transition>
+  </main>
+  <AppFooter></AppFooter>
 </template>
 
 <script setup>
@@ -23,6 +21,6 @@ import AppFooter from "@/layout/AppFooter.vue";
 
 .fade-enter-active,
 .fade-leave-active {
-  transition: opacity 0.2s ease-in-out;
+  transition: opacity 150ms ease;
 }
 </style>

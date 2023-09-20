@@ -1,67 +1,63 @@
 <template>
   <header class="header" :class="{ hidden: hideHeader }">
-    <div class="container container--nav">
-      <nav class="nav">
-        <div class="nav__item">
-          <router-link class="nav__logo" :to="{ name: 'Home' }"
-            ><img
-              class="nav__logo-image"
-              src="@/assets/images/logo/header-logo.png"
-              alt="Herbalist Logo"
-              width="60" />
-            <span class="nav__logo-name">Herbalist</span>
-          </router-link>
-        </div>
+    <nav class="nav">
+      <div class="nav__item">
+        <router-link class="nav__logo" :to="{ name: 'Home' }"
+          ><img
+            class="nav__logo-image"
+            src="@/assets/images/logo/header-logo.png"
+            alt="Herbalist Logo"
+            width="60" />
+          <span class="nav__logo-name">Herbalist</span>
+        </router-link>
+      </div>
 
-        <div class="nav__item nav__item--menus">
-          <ul class="nav__menu">
-            <li class="nav__menu-item">
-              <router-link
-                class="nav__menu-link nav__menu-link--primary"
-                :to="{ name: 'searchRecipes' }"
-                ><span>Search Recipes</span>
-              </router-link>
-            </li>
-            <li class="nav__menu-item">
-              <router-link
-                class="nav__menu-link nav__menu-link--primary"
-                :to="{ name: 'recipesByLetter' }"
-                ><span>Recipes By Letter</span>
-              </router-link>
-            </li>
-            <li class="nav__menu-item">
-              <router-link
-                class="nav__menu-link nav__menu-link--primary"
-                :to="{ name: 'recipesByIngredients' }"
-                ><span>Recipes By Ingredients</span>
-              </router-link>
-            </li>
-          </ul>
-          <ul class="nav__menu">
-            <li class="nav__menu-item">
-              <router-link
-                class="nav__menu-link nav__menu-link--secondary"
-                :to="{ name: 'about' }">
-                About</router-link
-              >
-            </li>
-            <li class="nav__menu-item">
-              <router-link
-                class="nav__menu-link nav__menu-link--secondary"
-                :to="{ name: 'login' }"
-                >Log In</router-link
-              >
-            </li>
-          </ul>
-        </div>
-
-        <ItemBurgerMenu
-          :class="{ active: showMobileNav }"
-          ref="navBurgerRef"
-          @click="toggleMobileNav" />
-      </nav>
-    </div>
-
+      <div class="nav__item nav__item--menus">
+        <ul class="nav__menu">
+          <li class="nav__menu-item">
+            <router-link
+              class="nav__menu-link nav__menu-link--primary"
+              :to="{ name: 'searchRecipes' }"
+              ><span>Search Recipes</span>
+            </router-link>
+          </li>
+          <li class="nav__menu-item">
+            <router-link
+              class="nav__menu-link nav__menu-link--primary"
+              :to="{ name: 'recipesByLetter' }"
+              ><span>Recipes By Letter</span>
+            </router-link>
+          </li>
+          <li class="nav__menu-item">
+            <router-link
+              class="nav__menu-link nav__menu-link--primary"
+              :to="{ name: 'recipesByIngredients' }"
+              ><span>Recipes By Ingredients</span>
+            </router-link>
+          </li>
+        </ul>
+        <ul class="nav__menu">
+          <li class="nav__menu-item">
+            <router-link
+              class="nav__menu-link nav__menu-link--secondary"
+              :to="{ name: 'about' }">
+              About</router-link
+            >
+          </li>
+          <li class="nav__menu-item">
+            <router-link
+              class="nav__menu-link nav__menu-link--secondary"
+              :to="{ name: 'login' }"
+              >Log In</router-link
+            >
+          </li>
+        </ul>
+      </div>
+      <ItemBurgerMenu
+        :class="{ active: showMobileNav }"
+        ref="navBurgerRef"
+        @click="toggleMobileNav" />
+    </nav>
     <ItemMobileNav :class="{ active: showMobileNav }" ref="navMenuRef" />
   </header>
 </template>
@@ -140,7 +136,6 @@ router.afterEach((to, from) => {
   top: 0;
   z-index: 5;
   width: 100%;
-  margin-bottom: 100px;
   background-color: $c-grey-darkest;
   transform: translateY(0);
   transition: transform 0.4s;
@@ -155,6 +150,7 @@ router.afterEach((to, from) => {
   justify-content: space-between;
   align-items: center;
   min-height: 7.8125rem;
+  padding-inline: $p-header;
 
   &__item {
     display: flex;
@@ -262,6 +258,7 @@ router.afterEach((to, from) => {
 // * Media -------------------/
 @media (max-width: 1279px) {
   .nav {
+    padding-inline: calc($p-header - 2rem);
     &__menu-link--primary,
     &__menu-link--secondary {
       display: none;

@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="login-wrapper">
     <form action="" class="login" :class="{ appear: showLogin }">
       <h1 class="login__title">Login</h1>
 
@@ -64,6 +64,9 @@ onMounted(() => {
 </script>
 
 <style lang="scss">
+.login-wrapper {
+  padding-top: $p-content;
+}
 .login {
   position: relative;
   display: flex;
@@ -72,7 +75,6 @@ onMounted(() => {
   width: 400px;
   padding: 40px;
   margin-inline: auto;
-  margin-block: 9rem;
   border-radius: 1rem;
   border: 2px solid $c-grey-transparent;
   box-shadow: $fx-shadow-light;

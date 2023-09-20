@@ -14,6 +14,7 @@
   padding-block: 10px;
   padding-inline: 8px;
   border-radius: $br-rounded;
+  transition: background-color 0.3s ease-in-out;
   &:hover {
     background-color: #6a6a6a42;
   }

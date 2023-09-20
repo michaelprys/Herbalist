@@ -54,9 +54,6 @@ onMounted(() => {
 <!-- style -->
 
 <style lang="scss">
-.swiper {
-  margin-bottom: 12.5rem;
-}
 .swiper-custom-pagination {
   color: $c-white;
   text-align: center;
@@ -71,5 +68,12 @@ onMounted(() => {
 .swiper-pagination-bullet-active {
   background-color: $c-white;
   opacity: 1;
+}
+
+@media (max-width: 799px) {
+  .swiper {
+    margin-inline: auto;
+    max-width: 360px;
+  }
 }
 </style>

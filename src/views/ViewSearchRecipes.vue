@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="search-wrapper">
     <label class="search">
       <input
         type="text"
@@ -13,12 +13,14 @@
 <script setup></script>
 
 <style lang="scss">
+.search-wrapper {
+  padding-top: $p-content;
+}
 .search {
   position: relative;
   &__input {
     display: block;
     min-width: 50rem;
-    margin-top: 100px;
     margin-inline: auto;
     padding-block: 1rem;
     padding-inline: 20px;

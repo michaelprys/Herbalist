@@ -65,7 +65,7 @@
 @media (max-width: 680px) {
   .mobile-nav {
     min-width: 100%;
-    font-size: 1.4rem;
+    font-size: 1.3rem;
   }
 }
 </style>
