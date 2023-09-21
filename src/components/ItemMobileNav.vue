@@ -36,11 +36,10 @@
   font-size: 1.2rem;
   text-transform: uppercase;
   backdrop-filter: $blur-hard;
-  // background-color: rgba(55, 55, 55, 0.97);
   background-color: rgba(#272727, 0.97);
-  transition: transform $tr-smooth, box-shadow $tr-smooth;
+  transition: transform $tr-smooth;
   &.active {
-    box-shadow: 0 0 0 10000px rgba(0, 0, 0, 0.5);
+    // box-shadow: 0 0 0 10000px rgba(0, 0, 0, 0.5);
     transform: translate(-100%);
   }
   &__link {

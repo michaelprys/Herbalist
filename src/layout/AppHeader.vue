@@ -11,7 +11,6 @@
           <span class="nav__logo-name">Herbalist</span>
         </router-link>
       </div>
-
       <div class="nav__item nav__item--menus">
         <ul class="nav__menu">
           <li class="nav__menu-item">
@@ -53,6 +52,7 @@
           </li>
         </ul>
       </div>
+
       <ItemBurgerMenu
         :class="{ active: showMobileNav }"
         ref="navBurgerRef"
@@ -65,22 +65,22 @@
 <script setup>
 import ItemMobileNav from "@/components/ItemMobileNav.vue";
 import ItemBurgerMenu from "@/components/ItemBurgerMenu.vue";
+
 import { ref, onMounted, onUnmounted } from "vue";
 import { onClickOutside } from "@vueuse/core";
 import { useRouter } from "vue-router";
-
 const router = useRouter();
 
 const showMobileNav = ref(false);
 const navMenuRef = ref();
 const navBurgerRef = ref();
 
-const closeMobileNav = () => {
-  showMobileNav.value = false;
-};
-
 const toggleMobileNav = () => {
   showMobileNav.value = !showMobileNav.value;
+};
+
+const closeMobileNav = () => {
+  showMobileNav.value = false;
 };
 
 onClickOutside(
@@ -109,14 +109,6 @@ const handleScroll = () => {
   }
 };
 
-onMounted(() => {
-  window.addEventListener("scroll", handleScroll);
-});
-
-onUnmounted(() => {
-  window.removeEventListener("scroll", handleScroll);
-});
-
 /*
   hide mobile nav on route change
 */
@@ -125,8 +117,27 @@ router.afterEach((to, from) => {
 });
 
 /*
-  reset sidenav and burger menu on window size change
+  reset sidenav
 */
+const mobileNav = document.getElementById("mobile-nav");
+const handleResize = () => {
+  if (window.innerWidth >= 1280) {
+    closeMobileNav();
+  }
+};
+
+/*
+  hooks
+*/
+onMounted(() => {
+  window.addEventListener("scroll", handleScroll);
+  window.addEventListener("resize", handleResize);
+});
+
+onUnmounted(() => {
+  window.removeEventListener("scroll", handleScroll);
+  window.removeEventListener("resize", handleResize);
+});
 </script>
 
 <style lang="scss">

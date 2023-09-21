@@ -4,17 +4,19 @@
   </button>
 </template>
 
+<script setup></script>
+
 <style lang="scss">
 .burger-menu {
   display: none;
   flex-direction: column;
   gap: $burger-gap;
-  z-index: 999;
+  z-index: 100;
   background: none;
   padding-block: 10px;
   padding-inline: 8px;
   border-radius: $br-rounded;
-  transition: background-color 0.3s ease-in-out;
+  // transition: background-color $tr-smooth;
   &:hover {
     background-color: #6a6a6a42;
   }
