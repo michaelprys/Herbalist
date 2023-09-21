@@ -55,7 +55,7 @@
   }
 }
 
-@media (max-width: 1279px) {
+@media (width <= $screen-xl) {
   .burger-menu {
     display: flex;
   }

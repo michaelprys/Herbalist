@@ -1,19 +1,19 @@
 <template>
-  <nav class="mobile-nav">
-    <router-link to="/" class="mobile-nav__link">Home</router-link>
-    <router-link :to="{ name: 'searchRecipes' }" class="mobile-nav__link"
+  <nav class="drawer">
+    <router-link to="/" class="drawer__link">Home</router-link>
+    <router-link :to="{ name: 'searchRecipes' }" class="drawer__link"
       >Search Recipes</router-link
     >
-    <router-link :to="{ name: 'recipesByLetter' }" class="mobile-nav__link"
+    <router-link :to="{ name: 'recipesByLetter' }" class="drawer__link"
       >Recipes By Letter</router-link
     >
-    <router-link :to="{ name: 'recipesByIngredients' }" class="mobile-nav__link"
+    <router-link :to="{ name: 'recipesByIngredients' }" class="drawer__link"
       >Recipes By Ingredients</router-link
     >
-    <router-link :to="{ name: 'about' }" class="mobile-nav__link">
+    <router-link :to="{ name: 'about' }" class="drawer__link">
       About</router-link
     >
-    <router-link :to="{ name: 'login' }" class="mobile-nav__link"
+    <router-link :to="{ name: 'login' }" class="drawer__link"
       >Log In</router-link
     >
   </nav>
@@ -22,7 +22,7 @@
 <script setup></script>
 
 <style lang="scss">
-.mobile-nav {
+.drawer {
   display: none;
   position: fixed;
   z-index: 12;
@@ -39,7 +39,6 @@
   background-color: rgba(#272727, 0.97);
   transition: transform $tr-smooth;
   &.active {
-    // box-shadow: 0 0 0 10000px rgba(0, 0, 0, 0.5);
     transform: translate(-100%);
   }
   &__link {
@@ -55,14 +54,14 @@
   }
 }
 
-@media (min-width: 1280px) {
-  .mobile-nav {
+@media (width >= $screen-xl) {
+  .drawer {
     display: none;
   }
 }
 
-@media (max-width: 680px) {
-  .mobile-nav {
+@media (width <= $screen-sm) {
+  .drawer {
     min-width: 100%;
     font-size: 1.3rem;
   }

@@ -31,14 +31,17 @@ const storeRecipes = useStoreRecipes();
 const swiperOptions = {
   modules: [Pagination],
   breakpoints: {
+    // screen xs
     320: {
       slidesPerView: 1,
       spaceBetween: 40,
     },
+    // screen md
     800: {
       slidesPerView: 2,
       spaceBetween: 40,
     },
+    // screen lg
     1040: {
       slidesPerView: 3,
       spaceBetween: 40,
@@ -50,8 +53,6 @@ onMounted(() => {
   storeRecipes.loadRecipes();
 });
 </script>
-
-<!-- style -->
 
 <style lang="scss">
 .swiper-custom-pagination {
@@ -70,7 +71,7 @@ onMounted(() => {
   opacity: 1;
 }
 
-@media (max-width: 799px) {
+@media (width <= $screen-md) {
   .swiper {
     margin-inline: auto;
     max-width: 360px;

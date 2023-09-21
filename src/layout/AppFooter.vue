@@ -82,7 +82,7 @@
   }
 }
 
-@media (max-width: 1279px) {
+@media (width <= $screen-xl) {
   .footer {
     padding-inline: calc($p-footer - 2rem);
     &__info-item {

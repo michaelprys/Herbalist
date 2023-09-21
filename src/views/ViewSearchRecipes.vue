@@ -20,10 +20,11 @@
   position: relative;
   &__input {
     display: block;
-    min-width: 50rem;
+    width: 100%;
+    max-width: 50rem;
     margin-inline: auto;
     padding-block: 1rem;
-    padding-inline: 20px;
+    padding-inline: 1.25rem;
     border: 2px solid rgba(255, 255, 255, 0.651);
     border-radius: $br-rounded;
     background-color: rgba(0, 0, 0, 0.77);
@@ -43,38 +44,6 @@
   }
   &__button {
     background: none;
-  }
-}
-
-@media (max-width: 640px) {
-  .search {
-    &__input {
-      min-width: 25rem;
-    }
-  }
-}
-
-@media (min-width: 640px) {
-  .search {
-    &__input {
-      min-width: 30rem;
-    }
-  }
-}
-
-@media (min-width: 800px) {
-  .search {
-    &__input {
-      min-width: 40rem;
-    }
-  }
-}
-
-@media (min-width: 1040px) {
-  .search {
-    &__input {
-      min-width: 50rem;
-    }
   }
 }
 </style>

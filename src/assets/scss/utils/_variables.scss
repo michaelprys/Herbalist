@@ -47,3 +47,11 @@ $burger-gap: 6px;
 $burger-margin: 8px;
 $burger-height: calc($bar-height * 3 + $burger-gap * 2);
 $x-width: calc($burger-height * 1.41421356237);
+
+// screen breakpoints
+$screen-xs: 320px;
+$screen-sm: 680px;
+$screen-md: 800px;
+$screen-lg: 1040px;
+$screen-xl: 1280px;
+$screen-xxl: 1536px;

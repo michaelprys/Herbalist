@@ -54,16 +54,19 @@
       </div>
 
       <ItemBurgerMenu
-        :class="{ active: showMobileNav }"
+        :class="{ active: showDrawer }"
         ref="navBurgerRef"
-        @click="toggleMobileNav" />
+        @click="toggleDrawer" />
     </nav>
-    <ItemMobileNav :class="{ active: showMobileNav }" ref="navMenuRef" />
+    <ItemDrawer
+      :showDrawerProp="showDrawer"
+      :drawerRefProp="drawerRef"
+      :drawerOverlayRefProp="drawerOverlayRef" />
   </header>
 </template>
 
 <script setup>
-import ItemMobileNav from "@/components/ItemMobileNav.vue";
+import ItemDrawer from "@/components/ItemDrawer.vue";
 import ItemBurgerMenu from "@/components/ItemBurgerMenu.vue";
 
 import { ref, onMounted, onUnmounted } from "vue";
@@ -71,24 +74,26 @@ import { onClickOutside } from "@vueuse/core";
 import { useRouter } from "vue-router";
 const router = useRouter();
 
-const showMobileNav = ref(false);
-const navMenuRef = ref();
 const navBurgerRef = ref();
 
-const toggleMobileNav = () => {
-  showMobileNav.value = !showMobileNav.value;
+const showDrawer = ref(false);
+const drawerRef = ref();
+const drawerOverlayRef = ref();
+
+const toggleDrawer = () => {
+  showDrawer.value = !showDrawer.value;
 };
 
-const closeMobileNav = () => {
-  showMobileNav.value = false;
+const closeDrawer = () => {
+  showDrawer.value = false;
 };
 
 onClickOutside(
-  navMenuRef,
+  drawerRef,
   () => {
-    closeMobileNav();
+    closeDrawer();
   },
-  { ignore: [navBurgerRef] }
+  { ignore: [navBurgerRef, drawerOverlayRef] }
 );
 
 /*
@@ -99,7 +104,7 @@ const header = document.querySelector(".header");
 let lastScrollY = window.scrollY;
 
 const handleScroll = () => {
-  if (!showMobileNav.value) {
+  if (!showDrawer.value) {
     if (lastScrollY < window.scrollY) {
       hideHeader.value = true;
     } else {
@@ -113,16 +118,15 @@ const handleScroll = () => {
   hide mobile nav on route change
 */
 router.afterEach((to, from) => {
-  closeMobileNav();
+  closeDrawer();
 });
 
 /*
   reset sidenav
 */
-const mobileNav = document.getElementById("mobile-nav");
 const handleResize = () => {
   if (window.innerWidth >= 1280) {
-    closeMobileNav();
+    closeDrawer();
   }
 };
 
@@ -267,7 +271,7 @@ onUnmounted(() => {
   }
 }
 // * Media -------------------/
-@media (max-width: 1279px) {
+@media (width <= $screen-xl) {
   .nav {
     padding-inline: calc($p-header - 2rem);
     &__menu-link--primary,

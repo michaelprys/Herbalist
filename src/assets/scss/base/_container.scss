@@ -6,26 +6,26 @@
   padding-top: 7.8125rem;
 }
 
-@media (min-width: 800px) {
+@media (width >= $screen-md) {
   .container {
-    max-width: 800px;
+    max-width: $screen-md;
   }
 }
 
-@media (min-width: 1040px) {
+@media (width >= $screen-lg) {
   .container {
-    max-width: 1040px;
+    max-width: $screen-lg;
   }
 }
 
-@media (min-width: 1280px) {
+@media (width >= $screen-xl) {
   .container {
-    max-width: 1280px;
+    max-width: $screen-xl;
   }
 }
 
-@media (min-width: 1536px) {
+@media (width >= $screen-xxl) {
   .container {
-    max-width: 1536px;
+    max-width: $screen-xxl;
   }
 }
