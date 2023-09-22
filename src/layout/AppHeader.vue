@@ -60,7 +60,7 @@
     </nav>
     <ItemDrawer
       :showDrawerProp="showDrawer"
-      :drawerRefProp="drawerRef"
+      ref="drawerRef"
       :drawerOverlayRefProp="drawerOverlayRef" />
   </header>
 </template>
@@ -78,7 +78,7 @@ const navBurgerRef = ref();
 
 const showDrawer = ref(false);
 const drawerRef = ref();
-const drawerOverlayRef = ref();
+// const drawerOverlayRef = ref();
 
 const toggleDrawer = () => {
   showDrawer.value = !showDrawer.value;
@@ -88,12 +88,16 @@ const closeDrawer = () => {
   showDrawer.value = false;
 };
 
+const openDrawer = () => {
+  showDrawer.value = true;
+};
+
 onClickOutside(
   drawerRef,
   () => {
     closeDrawer();
   },
-  { ignore: [navBurgerRef, drawerOverlayRef] }
+  { ignore: [navBurgerRef] }
 );
 
 /*
@@ -125,8 +129,10 @@ router.afterEach((to, from) => {
   reset sidenav
 */
 const handleResize = () => {
-  if (window.innerWidth >= 1280) {
+  if (window.innerWidth > 1280) {
     closeDrawer();
+  } else {
+    openDrawer();
   }
 };
 
