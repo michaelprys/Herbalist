@@ -4,6 +4,7 @@
   padding-inline: 1rem;
   min-height: 100vh;
   padding-top: 7.8125rem;
+  padding-bottom: 10.7rem;
 }
 
 @media (width >= $screen-md) {
@@ -13,12 +14,6 @@
 }
 
 @media (width >= $screen-lg) {
-  .container {
-    max-width: $screen-lg;
-  }
-}
-
-@media (width >= $screen-xl) {
   .container {
     max-width: $screen-xl;
   }

@@ -1,74 +1,74 @@
 {
-  "recipes": [
-    {
-      "id": 1,
-      "image": "src/assets/images/recipe/recipe-1.jpg",
-      "alt": "recipe-1",
-      "title": "Moon Tea",
-      "text": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugit dolor nostrum iure similique eveniet libero quos reiciendis."
-    },
-    {
-      "id": 2,
-      "image": "src/assets/images/recipe/recipe-2.jpg",
-      "alt": "recipe-2",
-      "title": "Rose Tea",
-      "text": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugit dolor nostrum iure similique eveniet libero quos reiciendis."
-    },
-    {
-      "id": 3,
-      "image": "src/assets/images/recipe/recipe-3.jpg",
-      "alt": "recipe-3",
-      "title": "Mayan Hot",
-      "text": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugit dolor nostrum iure similique eveniet libero quos reiciendis."
-    },
-    {
-      "id": 4,
-      "image": "src/assets/images/recipe/recipe-4.jpg",
-      "alt": "recipe-4",
-      "title": "Mineral Salt",
-      "text": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugit dolor nostrum iure similique eveniet libero quos reiciendis."
-    },
-    {
-      "id": 5,
-      "image": "src/assets/images/recipe/recipe-5.jpg",
-      "alt": "recipe-5",
-      "title": "Cherry Shrub",
-      "text": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugit dolor nostrum iure similique eveniet libero quos reiciendis."
-    },
-    {
-      "id": 6,
-      "image": "src/assets/images/recipe/recipe-6.jpg",
-      "alt": "recipe-6",
-      "title": "Sleepy Tea",
-      "text": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugit dolor nostrum iure similique eveniet libero quos reiciendis."
-    },
-    {
-      "id": 7,
-      "image": "src/assets/images/recipe/recipe-7.jpg",
-      "alt": "recipe-7",
-      "title": "Hibiscus Syrup",
-      "text": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugit dolor nostrum iure similique eveniet libero quos reiciendis."
-    },
-    {
-      "id": 8,
-      "image": "src/assets/images/recipe/recipe-8.jpg",
-      "alt": "recipe-8",
-      "title": "Green Witch",
-      "text": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugit dolor nostrum iure similique eveniet libero quos reiciendis."
-    },
-    {
-      "id": 9,
-      "image": "src/assets/images/recipe/recipe-9.jpg",
-      "alt": "recipe-9",
-      "title": "Majoun",
-      "text": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugit dolor nostrum iure similique eveniet libero quos reiciendis."
-    },
-    {
-      "id": 10,
-      "image": "src/assets/images/recipe/recipe-10.jpg",
-      "alt": "recipe-10",
-      "title": "Dandelion Mocha",
-      "text": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugit dolor nostrum iure similique eveniet libero quos reiciendis."
-    }
-  ]
+    "recipes": [
+        {
+            "id": 1,
+            "image": "recipe-1",
+            "alt": "recipe-1",
+            "title": "Moon Tea",
+            "text": "A moon tea is an herbal infusion intended to support women's well-being."
+        },
+        {
+            "id": 2,
+            "image": "recipe-2",
+            "alt": "recipe-2",
+            "title": "Rose Tea",
+            "text": "Rose water is quite diverse in healing benefits and is be able to aid in reducing sore throats."
+        },
+        {
+            "id": 3,
+            "image": "recipe-3",
+            "alt": "recipe-3",
+            "title": "Mayan Hot",
+            "text": "Mayan Hot Chocolate or cacao is a creamy, bitter drink made with chocolate."
+        },
+        {
+            "id": 4,
+            "image": "recipe-4",
+            "alt": "recipe-4",
+            "title": "Mineral Salt",
+            "text": "Salt is a crystalline mineral that is made up of two elements: sodium and chlorine."
+        },
+        {
+            "id": 5,
+            "image": "recipe-5",
+            "alt": "recipe-5",
+            "title": "Cherry Shrub",
+            "text": "Cherry shrub is a drink made with equal parts vinegar and sugar to which fruit are added."
+        },
+        {
+            "id": 6,
+            "image": "recipe-6",
+            "alt": "recipe-6",
+            "title": "Sleepy Tea",
+            "text": "Sleepy tea is a bedtime tea blend that includes nourishing and sleep-supportive herbs."
+        },
+        {
+            "id": 7,
+            "image": "recipe-7",
+            "alt": "recipe-7",
+            "title": "Hibiscus Syrup",
+            "text": "Hibiscus syrup is a sugar-sweetened herbal syrup made from hibiscus flowers."
+        },
+        {
+            "id": 8,
+            "image": "recipe-8",
+            "alt": "recipe-8",
+            "title": "Green Witch",
+            "text": "Elixir made to protect against black death, finds its way to the kitchen in the summer."
+        },
+        {
+            "id": 9,
+            "image": "recipe-9",
+            "alt": "recipe-9",
+            "title": "Majoun",
+            "text": "A traditional Moroccan treat made from dried fruit, nuts and cannabis-infused butter."
+        },
+        {
+            "id": 10,
+            "image": "recipe-10",
+            "alt": "recipe-10",
+            "title": "Dandelion Mocha",
+            "text": "Dandelion Mocha is a captivating fusion of coffee and dandelion components."
+        }
+    ]
 }

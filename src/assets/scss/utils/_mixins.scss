@@ -1,29 +1,29 @@
 @mixin underline {
-  background: linear-gradient($c-white, $c-white);
-  background-repeat: no-repeat;
-  background-position: bottom;
-  transition: background-size $tr-smooth;
-  background-size: 0 2px;
-  &:hover {
-    background-size: 100% 2px;
-  }
+    background: linear-gradient($c-white, $c-white);
+    background-repeat: no-repeat;
+    background-position: bottom;
+    transition: background-size $tr-smooth;
+    background-size: 0 2px;
+    &:hover {
+        background-size: 100% 2px;
+    }
 }
 
 @mixin button-style($c-button-hover) {
-  font-size: $fs-regular;
-  text-align: center;
-  padding: 10px;
-  width: 100%;
-  border-radius: $br-rounded;
-  transition: $tr-basic;
-  color: $c-black;
-  background-color: $c-grey-medium;
-  &:hover {
-    background-color: $c-button-hover;
-  }
-  &:active {
-    background-color: $c-grey-lightest;
-    box-shadow: inset 0px 0px 5px $c-grey-light;
-    outline: none;
-  }
+    font-size: $fs-regular;
+    text-align: center;
+    padding: 10px;
+    width: 100%;
+    border-radius: $br-rounded;
+    transition: $tr-basic;
+    color: $c-black;
+    background-color: $c-grey-medium;
+    &:hover {
+        background-color: $c-button-hover;
+    }
+    &:active {
+        background-color: $c-grey-lightest;
+        box-shadow: inset 0px 0px 5px $c-grey-light;
+        outline: none;
+    }
 }

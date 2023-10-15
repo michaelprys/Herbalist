@@ -1,8 +1,12 @@
 <template>
-  <section class="drawer" ref="drawerRefProp">
-    <div class="drawer__overlay" :class="{ active: showDrawerProp }"></div>
-    <nav class="drawer__wrapper" :class="{ active: showDrawerProp }">
-      <ul class="drawer__list">
+  <section class="drawer">
+    <div
+      class="drawer__overlay"
+      :class="{ active: showDrawer }"
+      ref="drawerOverlayRef"
+      @click="closeDrawer"></div>
+    <nav class="drawer__wrapper" :class="{ active: showDrawer }">
+      <ul>
         <li>
           <router-link
             to="/"
@@ -57,16 +61,13 @@
 </template>
 
 <script setup>
-const props = defineProps([
-  "showDrawerProp",
-  // "drawerRefProp",
-  // "drawerOverlayRefProp",
-]);
+const props = defineProps(["showDrawer", "closeDrawer"]);
 </script>
 
 <style lang="scss">
 .drawer {
   &__overlay {
+    visibility: hidden;
     position: fixed;
     top: 0;
     right: 0;
@@ -76,10 +77,11 @@ const props = defineProps([
     height: 100vh;
     z-index: 1;
     opacity: 0;
-    transition: opacity $tr-smooth;
+    transition: opacity $tr-smooth, visibility $tr-smooth;
     will-change: opacity;
     background-color: rgba($c-black, 0.5);
     &.active {
+      visibility: visible;
       opacity: 1;
     }
   }
