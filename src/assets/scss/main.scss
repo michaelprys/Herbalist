@@ -1,8 +1,8 @@
-@import '@/assets/scss/base/_reset.scss';
-@import '@/assets/scss/base/_font-face.scss';
-@import '@/assets/scss/base/_container.scss';
-@import '@/assets/scss/utils/_variables.scss';
-@import '@/assets/scss/utils/_mixins.scss';
+@import './base/_reset.scss';
+@import './base/_font-face.scss';
+@import './base/_container.scss';
+@import './utils/_variables.scss';
+@import './utils/_mixins.scss';
 
 body {
     line-height: 1.6;

@@ -5,6 +5,7 @@
     "type": "module",
     "scripts": {
         "dev": "vite --port=3000 --open",
+        "devCustom": "node server/server.js",
         "build": "vite build",
         "preview": "vite preview --port=3000 --open",
         "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore",
@@ -19,6 +20,8 @@
         "eslint": "latest",
         "eslint-plugin-vue": "latest",
         "express": "latest",
+        "mongodb": "latest",
+        "mongoose": "latest",
         "pg": "latest",
         "pinia": "latest",
         "sass": "latest",
