@@ -12,7 +12,7 @@ export const useStoreRecipes = defineStore('storeRecipes', {
                 const res = await fetch('/api/recipe');
                 if (res.ok) {
                     const data = await res.json();
-                    this.data = data[0].recipes;
+                    this.data = data;
                 } else {
                     console.error('Error: ', res.status, res.statusText);
                 }

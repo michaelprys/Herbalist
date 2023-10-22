@@ -1,22 +1,22 @@
 import express from 'express';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { connectToDb, getDb } from './db.js';
+import { connectToDb, pool } from './db.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const app = express();
 const PORT = 8000;
 
-connectToDb();
-
 // server
 app.get('/api/recipe', async (req, res) => {
+    const conn = await connectToDb();
     try {
-        const col = getDb().collection('recipe');
-        const recipe = await col.find().toArray();
-        res.json(recipe);
+        const recipe = await pool.query('SELECT * FROM recipe');
+        res.json(recipe.rows);
     } catch (err) {
         console.error(err);
+    } finally {
+        conn.release();
     }
 });
 

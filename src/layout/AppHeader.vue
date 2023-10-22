@@ -212,7 +212,7 @@ onUnmounted(() => {
             padding-block: 0.0625rem;
             left: 0;
             right: 0;
-            top: 45px;
+            top: 47px;
             transition: opacity $tr-smooth;
             opacity: 0;
             background-color: $c-white;

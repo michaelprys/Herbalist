@@ -1,27 +1,15 @@
-import { MongoClient } from 'mongodb';
+import pg from 'pg';
 
-const URL = 'mongodb://127.0.0.1:27017';
-const dbName = 'recipes_db';
+const { Pool } = pg;
 
-let client;
-let db;
+export const pool = new Pool({
+    user: 'postgres',
+    host: 'localhost',
+    database: 'recipes_db',
+    password: '09123',
+    port: 5432,
+});
 
-export const connectToDb = async () => {
-    try {
-        client = new MongoClient(URL);
-        await client.connect();
-        db = client.db(dbName);
-        console.log(`Connected to ${dbName}`);
-    } catch (err) {
-        console.error(`Error connecting to ${dbName}`, err);
-    }
-};
-
-export const getDb = () => {
-    if (db) {
-        return db;
-    } else {
-        console.error('Database client is not connected');
-        return null;
-    }
+export const connectToDb = () => {
+    return pool.connect();
 };
