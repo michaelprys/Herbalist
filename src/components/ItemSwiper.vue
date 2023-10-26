@@ -7,9 +7,9 @@
         }"
         :loop="true"
         :modules="swiperOptions.modules">
-        <template v-for="recipe in storeRecipes.data" :key="recipe.id">
+        <template v-for="recipe in data" :key="recipe.id">
             <SwiperSlide class="swiper__slide">
-                <ItemCard :data="recipe" />
+                <ItemCard :data="recipe" :pending="pending" />
             </SwiperSlide>
             <div class="swiper-custom-pagination"></div>
         </template>
@@ -17,17 +17,21 @@
 </template>
 
 <script setup>
-import { onMounted } from 'vue';
-import { Swiper, SwiperSlide } from 'swiper/vue';
-import { Pagination } from 'swiper/modules';
 import 'swiper/css/free-mode';
 import 'swiper/css/pagination';
 import 'swiper/css';
+import { onMounted } from 'vue';
+import { Swiper, SwiperSlide } from 'swiper/vue';
+import { Pagination } from 'swiper/modules';
 import { useStoreRecipes } from '@/stores/recipes/storeRecipes.js';
+import { storeToRefs } from 'pinia';
+
 import ItemCard from '@/components/ItemCard.vue';
 
 const storeRecipes = useStoreRecipes();
+const { data, pending } = storeToRefs(storeRecipes);
 
+// swiper options
 const swiperOptions = {
     modules: [Pagination],
     breakpoints: {
@@ -49,8 +53,8 @@ const swiperOptions = {
     },
 };
 
-onMounted(() => {
-    storeRecipes.loadRecipes();
+onMounted(async () => {
+    await storeRecipes.loadRecipes();
 });
 </script>
 

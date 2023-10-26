@@ -7,7 +7,6 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const app = express();
 const PORT = 8000;
 
-// server
 app.get('/api/recipe', async (req, res) => {
     const conn = await connectToDb();
     try {
@@ -20,7 +19,6 @@ app.get('/api/recipe', async (req, res) => {
     }
 });
 
-// listen to port
 app.listen(PORT, () => {
     console.log(`Server started at http://localhost:${PORT}`);
 });

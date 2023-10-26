@@ -1,28 +1,32 @@
 <template>
     <div class="card">
         <div class="card__item">
-            <picture>
-                <source :srcset="getSrcset('.avif')" type="image/avif" />
-                <source :srcset="getSrcset('.webp')" type="image/webp" />
+            <ItemCardSkeleton v-if="pending || !isLoaded" />
+            <template v-else>
                 <img
                     class="card__image"
                     :src="getSrc('.jpg')"
                     :alt="data.alt"
                     width="15.625rem" />
-            </picture>
-            <div class="card__content">
-                <h2 class="card__title">{{ data.title }}</h2>
-                <p class="card__text">{{ data.text }}</p>
-                <router-link class="card__link" :to="{ name: 'Home' }"
-                    >View more</router-link
-                >
-            </div>
+                <div class="card__content">
+                    <h2 class="card__title">{{ data.title }}</h2>
+                    <p class="card__text">{{ data.text }}</p>
+                    <router-link class="card__link" :to="{ name: 'Home' }"
+                        >View more</router-link
+                    >
+                </div>
+            </template>
         </div>
     </div>
 </template>
 
 <script setup>
-const props = defineProps(['data']);
+import { onMounted, ref } from 'vue';
+import ItemCardSkeleton from '@/components/SkeletonLoaders/ItemCardSkeleton.vue';
+
+const props = defineProps(['data', 'pending']);
+
+const isLoaded = ref(false);
 
 const getSrc = ext => {
     return new URL(
@@ -31,9 +35,13 @@ const getSrc = ext => {
     ).href;
 };
 
-const getSrcset = ext => {
-    return `${getSrc(ext).replace('.jpg', ext)}`;
-};
+onMounted(() => {
+    const img = new Image(getSrc('.jpg'));
+    img.onload = () => {
+        isLoaded.value = true;
+    };
+    img.src = getSrc('.jpg');
+});
 </script>
 
 <style lang="scss">
@@ -64,7 +72,7 @@ const getSrcset = ext => {
         border-top-right-radius: $br-rounded;
         display: block;
         min-width: 100%;
-        height: 240px;
+        height: 15rem;
         object-fit: cover;
     }
     &__content {

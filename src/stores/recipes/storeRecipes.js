@@ -4,11 +4,13 @@ export const useStoreRecipes = defineStore('storeRecipes', {
     state: () => {
         return {
             data: [],
+            pending: false,
         };
     },
     actions: {
         async loadRecipes() {
             try {
+                this.pending = true;
                 const res = await fetch('/api/recipe');
                 if (res.ok) {
                     const data = await res.json();
@@ -18,6 +20,8 @@ export const useStoreRecipes = defineStore('storeRecipes', {
                 }
             } catch (err) {
                 console.error(err);
+            } finally {
+                this.pending = false;
             }
         },
     },

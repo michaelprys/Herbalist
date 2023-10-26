@@ -20,7 +20,6 @@
         "eslint": "latest",
         "eslint-plugin-vue": "latest",
         "express": "latest",
-        "mongodb": "latest",
         "pg": "latest",
         "pinia": "latest",
         "sass": "latest",
