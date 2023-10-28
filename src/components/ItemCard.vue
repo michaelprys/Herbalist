@@ -3,18 +3,23 @@
         <div class="card__item">
             <ItemCardSkeleton v-if="pending || !isLoaded" />
             <template v-else>
-                <img
-                    class="card__image"
-                    :src="getSrc('.jpg')"
-                    :alt="data.alt"
-                    width="15.625rem" />
-                <div class="card__content">
-                    <h2 class="card__title">{{ data.title }}</h2>
-                    <p class="card__text">{{ data.text }}</p>
-                    <router-link class="card__link" :to="{ name: 'Home' }"
-                        >View more</router-link
-                    >
-                </div>
+                <picture>
+                    <source :srcset="getSrcset('.avif')" type="image/avif" />
+                    <source :srcset="getSrcset('.webp')" type="image/webp" />
+                    <img
+                        class="card__image"
+                        :src="getSrc('.jpg')"
+                        :alt="data.alt"
+                        width="15.625rem"
+                        loading="lazy" />
+                    <div class="card__content">
+                        <h2 class="card__title">{{ data.title }}</h2>
+                        <p class="card__text">{{ data.text }}</p>
+                        <router-link class="card__link" :to="{ name: 'Home' }"
+                            >View more</router-link
+                        >
+                    </div>
+                </picture>
             </template>
         </div>
     </div>
@@ -33,6 +38,10 @@ const getSrc = ext => {
         `../assets/images/recipe/${props.data.image}${ext}`,
         import.meta.url
     ).href;
+};
+
+const getSrcset = ext => {
+    return `${getSrc(ext).replace('.jpg', ext)}`;
 };
 
 onMounted(() => {

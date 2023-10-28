@@ -23,7 +23,7 @@ import 'swiper/css';
 import { onMounted } from 'vue';
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import { Pagination } from 'swiper/modules';
-import { useStoreRecipes } from '@/stores/recipes/storeRecipes.js';
+import { useStoreRecipes } from '@/store/storeRecipes';
 import { storeToRefs } from 'pinia';
 
 import ItemCard from '@/components/ItemCard.vue';
