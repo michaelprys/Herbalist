@@ -5,6 +5,7 @@ import ViewSearchRecipes from '@/views/ViewSearchRecipes.vue';
 import ViewAbout from '@/views/ViewAbout.vue';
 import ViewLogin from '@/views/ViewLogin.vue';
 import ViewNotFound from '@/views/ViewNotFound.vue';
+import ViewRecipeDetails from '@/views/ViewRecipeDetails.vue';
 
 export const routes = [
     {
@@ -16,6 +17,16 @@ export const routes = [
         path: '/',
         name: 'Home',
         component: ViewHome,
+    },
+    {
+        path: '/about',
+        name: 'about',
+        component: ViewAbout,
+    },
+    {
+        path: '/login',
+        name: 'login',
+        component: ViewLogin,
     },
     {
         path: '/searchRecipes',
@@ -33,13 +44,8 @@ export const routes = [
         component: ViewRecipesByIngredients,
     },
     {
-        path: '/about',
-        name: 'about',
-        component: ViewAbout,
-    },
-    {
-        path: '/login',
-        name: 'login',
-        component: ViewLogin,
+        path: '/recipeDetails/:recipe?',
+        name: 'recipeDetails',
+        component: ViewRecipeDetails,
     },
 ];

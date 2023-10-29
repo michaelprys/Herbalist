@@ -17,6 +17,8 @@
     "devDependencies": {
         "@vitejs/plugin-legacy": "latest",
         "@vitejs/plugin-vue": "latest",
+        "axios": "latest",
+        "blurhash": "latest",
         "eslint": "latest",
         "eslint-plugin-vue": "latest",
         "express": "latest",

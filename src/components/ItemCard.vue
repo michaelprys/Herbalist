@@ -15,7 +15,9 @@
                     <div class="card__content">
                         <h2 class="card__title">{{ data.title }}</h2>
                         <p class="card__text">{{ data.text }}</p>
-                        <router-link class="card__link" :to="{ name: 'Home' }"
+                        <router-link
+                            class="card__link"
+                            :to="{ name: 'recipeDetails' }"
                             >View more</router-link
                         >
                     </div>

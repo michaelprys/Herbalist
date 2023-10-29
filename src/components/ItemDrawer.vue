@@ -2,6 +2,7 @@
     <section class="drawer">
         <div
             class="drawer__overlay"
+            :class="{ active: showDrawer }"
             ref="drawerOverlayRef"
             @click="closeDrawer"></div>
         <nav class="drawer__wrapper" :class="{ active: showDrawer }">

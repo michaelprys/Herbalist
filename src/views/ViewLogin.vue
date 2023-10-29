@@ -71,7 +71,7 @@ onMounted(() => {
 
 <style lang="scss">
 .login-wrapper {
-    padding-top: $p-content;
+    margin-top: $m-content;
 }
 .login {
     position: relative;

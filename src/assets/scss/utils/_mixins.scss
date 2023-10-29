@@ -27,3 +27,19 @@
         outline: none;
     }
 }
+
+@mixin bar {
+    display: block;
+    width: 100%;
+    max-width: 50rem;
+    margin-inline: auto;
+    padding-block: 1rem;
+    padding-inline: 1.25rem;
+    border: 2px solid rgba(255, 255, 255, 0.651);
+    border-radius: $br-rounded;
+    background-color: rgba(0, 0, 0, 0.77);
+    font-size: 1.5rem;
+    color: $c-white;
+    outline: none;
+    transition: $tr-basic;
+}
