@@ -1,0 +1,4 @@
+$bar-height: 3px;
+$bar-width: 30px;
+$burger-height: calc($bar-height * 3 + $burger-gap * 2);
+$x-width: calc($burger-height * 1.41421356237);

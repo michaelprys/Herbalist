@@ -98,7 +98,7 @@ const props = defineProps(['showDrawer', 'closeDrawer']);
         padding-top: calc($burger-height + $burger-margin + 4.1rem);
         font-size: 1.2rem;
         text-transform: uppercase;
-        backdrop-filter: $blur-hard;
+        // backdrop-filter: $blur-hard;
         background-color: rgba(#272727, 0.97);
         transition: transform $tr-smooth;
         &.active {

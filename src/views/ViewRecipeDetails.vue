@@ -2,7 +2,7 @@
     <div class="recipe">
         <img
             class="recipe__img"
-            src="https://picsum.photos/id/312/1920/1080"
+            src="../../src/assets/images/recipe/recipe-1.jpg"
             alt="" />
         <div class="recipe__details">
             <h1 class="recipe__title">Moon Tea</h1>

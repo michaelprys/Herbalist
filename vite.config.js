@@ -10,9 +10,21 @@ export default defineConfig({
         preprocessorOptions: {
             scss: {
                 additionalData: `
-        @import "@/assets/scss/utils/_variables.scss";
-        @import "@/assets/scss/utils/_mixins.scss";
-        `,
+                @import '@/assets/scss/util/spacing';
+                @import '@/assets/scss/util/size';
+                @import '@/assets/scss/util/border-radius';
+                @import '@/assets/scss/util/breakpoint';
+                @import '@/assets/scss/util/color';
+                @import '@/assets/scss/util/font-family';
+                @import '@/assets/scss/util/font-size';
+                @import '@/assets/scss/util/font-weight';
+                @import '@/assets/scss/util/mixin';
+                @import '@/assets/scss/util/placeholder';
+                @import '@/assets/scss/util/transition';
+                @import '@/assets/scss/base/container';
+                @import '@/assets/scss/base/font-face';
+                @import '@/assets/scss/base/reset';
+                `,
             },
         },
     },
@@ -84,6 +96,7 @@ export default defineConfig({
             '@img': fileURLToPath(
                 new URL('./src/assets/images', import.meta.url)
             ),
+            '@fonts': fileURLToPath(new URL('./fonts/', import.meta.url)),
         },
     },
 });

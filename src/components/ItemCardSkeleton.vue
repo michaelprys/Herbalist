@@ -19,10 +19,6 @@
     </div>
 </template>
 
-<script setup>
-import ItemBlurHash from '@/components/SkeletonLoaders/ItemBlurHash.vue';
-</script>
-
 <style>
 .card__content--skeleton {
     display: flex;

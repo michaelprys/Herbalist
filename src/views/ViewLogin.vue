@@ -83,7 +83,7 @@ onMounted(() => {
     margin-inline: auto;
     border-radius: 1rem;
     border: 2px solid $c-grey-transparent;
-    box-shadow: $fx-shadow-light;
+    // box-shadow: $fx-shadow-light;
     transition: transform $tr-basic;
     background-color: #2b2f2bfa;
     &__title {

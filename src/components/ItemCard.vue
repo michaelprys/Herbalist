@@ -3,25 +3,25 @@
         <div class="card__item">
             <ItemCardSkeleton v-if="pending || !isLoaded" />
             <template v-else>
-                <picture>
+                <!-- <picture>
                     <source :srcset="getSrcset('.avif')" type="image/avif" />
-                    <source :srcset="getSrcset('.webp')" type="image/webp" />
-                    <img
-                        class="card__image"
-                        :src="getSrc('.jpg')"
-                        :alt="data.alt"
-                        width="15.625rem"
-                        loading="lazy" />
-                    <div class="card__content">
-                        <h2 class="card__title">{{ data.title }}</h2>
-                        <p class="card__text">{{ data.text }}</p>
-                        <router-link
-                            class="card__link"
-                            :to="{ name: 'recipeDetails' }"
-                            >View more</router-link
-                        >
-                    </div>
-                </picture>
+                    <source :srcset="getSrcset('.webp')" type="image/webp" /> -->
+                <img
+                    class="card__image"
+                    :src="getSrc('.jpg')"
+                    :alt="data.alt"
+                    width="15.625rem"
+                    loading="lazy" />
+                <div class="card__content">
+                    <h2 class="card__title">{{ data.title }}</h2>
+                    <p class="card__text">{{ data.short_description }}</p>
+                    <router-link
+                        class="card__link"
+                        :to="{ name: 'recipeDetails' }"
+                        >View more</router-link
+                    >
+                </div>
+                <!-- </picture> -->
             </template>
         </div>
     </div>
@@ -29,7 +29,7 @@
 
 <script setup>
 import { onMounted, ref } from 'vue';
-import ItemCardSkeleton from '@/components/SkeletonLoaders/ItemCardSkeleton.vue';
+import ItemCardSkeleton from '@/components/ItemCardSkeleton.vue';
 
 const props = defineProps(['data', 'pending']);
 

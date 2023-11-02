@@ -23,13 +23,13 @@ import 'swiper/css';
 import { onMounted } from 'vue';
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import { Pagination } from 'swiper/modules';
-import { useStoreRecipes } from '@/store/storeRecipes';
+import { useStoreRecipe } from '@/store/storeRecipe';
 import { storeToRefs } from 'pinia';
 
 import ItemCard from '@/components/ItemCard.vue';
 
-const storeRecipes = useStoreRecipes();
-const { data, pending } = storeToRefs(storeRecipes);
+const storeRecipe = useStoreRecipe();
+const { data, pending } = storeToRefs(storeRecipe);
 
 // swiper options
 const swiperOptions = {
@@ -54,7 +54,7 @@ const swiperOptions = {
 };
 
 onMounted(async () => {
-    await storeRecipes.loadRecipes();
+    await storeRecipe.loadRecipes();
 });
 </script>
 
