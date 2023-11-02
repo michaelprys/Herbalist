@@ -10,7 +10,7 @@ const PORT = 8000;
 app.get('/api/recipe', async (req, res) => {
     const conn = await connectToDb();
     try {
-        const recipe = await pool.query('SELECT * FROM recipe');
+        const recipe = await pool.query('SELECT * FROM recipe ORDER BY id');
         res.json(recipe.rows);
     } catch (err) {
         console.error(err);

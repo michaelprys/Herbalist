@@ -1,6 +1,7 @@
 <template>
     <div class="letters">
         <router-link
+            class="letters__item"
             :to="{ name: 'recipesByLetter', params: { letter } }"
             v-for="letter in letters"
             :key="letter">
@@ -32,7 +33,23 @@ onMounted(async () => {
     flex-wrap: wrap;
     justify-content: center;
     margin-top: $m-content;
-    gap: 12px;
-    font-weight: 400;
+    font-weight: $fw-regular;
+    &__item {
+        padding-inline: 0.3125rem;
+        position: relative;
+        &::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background-color: $c-white;
+            transition: $tr-smooth;
+            transform: translateX(-50%);
+            left: 50%;
+        }
+        &:hover::after {
+            width: 20px;
+        }
+    }
 }
 </style>

@@ -9,36 +9,36 @@
     }
 }
 
-@mixin button-style($c-button-hover) {
-    font-size: $fs-regular;
+@mixin button-style($c-btn-hvr) {
+    font-size: $fs-medium-plus;
     text-align: center;
     padding: 10px;
-    width: 100%;
-    border-radius: $br-rounded;
+    width: $w-full;
+    border-radius: $br-medium;
     transition: $tr-basic;
-    color: $c-black;
-    background-color: $c-grey-medium;
+    color: $c-grey-dk-7;
+    background-color: $c-grey-lt-7;
     &:hover {
-        background-color: $c-button-hover;
+        background-color: $c-btn-hvr;
     }
     &:active {
-        background-color: $c-grey-lightest;
-        box-shadow: inset 0px 0px 5px $c-grey-light;
+        background-color: $c-grey-lt-1;
+        box-shadow: inset 0px 0px 5px $c-grey-lt-1;
         outline: none;
     }
 }
 
 @mixin bar {
     display: block;
-    width: 100%;
+    width: $w-full;
     max-width: 50rem;
     margin-inline: auto;
     padding-block: 1rem;
     padding-inline: 1.25rem;
-    border: 2px solid rgba(255, 255, 255, 0.651);
-    border-radius: $br-rounded;
+    border: $br-mini solid rgba(255, 255, 255, 0.651);
+    border-radius: $br-medium;
     background-color: rgba(0, 0, 0, 0.77);
-    font-size: 1.5rem;
+    font-size: $fs-h4;
     color: $c-white;
     outline: none;
     transition: $tr-basic;

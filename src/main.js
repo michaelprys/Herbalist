@@ -1,4 +1,3 @@
-import '@/assets/scss/main.scss';
 import { createPinia } from 'pinia';
 import { createApp } from 'vue';
 import { router } from '@/router';

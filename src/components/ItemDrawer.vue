@@ -96,9 +96,9 @@ const props = defineProps(['showDrawer', 'closeDrawer']);
         min-width: 20rem;
         height: 100vh;
         padding-top: calc($burger-height + $burger-margin + 4.1rem);
-        font-size: 1.2rem;
+        font-size: $fs-h5;
         text-transform: uppercase;
-        // backdrop-filter: $blur-hard;
+        backdrop-filter: $dc-blur-hard;
         background-color: rgba(#272727, 0.97);
         transition: transform $tr-smooth;
         &.active {
@@ -112,15 +112,15 @@ const props = defineProps(['showDrawer', 'closeDrawer']);
         transition: background-color $tr-smooth, opacity $tr-smooth;
         cursor: pointer;
         &:hover {
-            background-color: rgba($c-grey-hover, 0.5);
+            background-color: rgba($c-grey, 0.5);
             opacity: 1;
         }
     }
     &__active-link {
         opacity: 1;
-        background-color: rgba($c-grey-hover, 0.5);
+        background-color: rgba($c-grey, 0.5);
         &:hover {
-            background-color: rgba($c-grey-hover, 1);
+            background-color: rgba($c-grey, 1);
             opacity: 1;
         }
     }
@@ -128,8 +128,8 @@ const props = defineProps(['showDrawer', 'closeDrawer']);
 
 @media (width <= $screen-sm) {
     .drawer__wrapper {
-        min-width: 100%;
-        font-size: 1.3rem;
+        min-width: $w-full;
+        font-size: $fs-h5;
     }
 }
 </style>

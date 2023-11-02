@@ -134,8 +134,8 @@ onUnmounted(() => {
     position: fixed;
     top: 0;
     z-index: 5;
-    width: 100%;
-    background-color: $c-grey-darkest;
+    width: $w-full;
+    background-color: $c-grey-dk-4;
     transform: translateY(0);
     transition: transform 0.4s;
     &.hidden {
@@ -168,9 +168,9 @@ onUnmounted(() => {
     }
     &__logo-name {
         margin-left: 0.4375rem;
-        font-size: 1.0625rem;
+        font-size: $fs-h6;
         opacity: 70%;
-        font-family: $ff-spectral;
+        font-family: $ff-secondary;
         transition: opacity 0.3s linear;
         &:hover {
             opacity: 1;
@@ -199,7 +199,7 @@ onUnmounted(() => {
         display: block;
         padding-bottom: 1rem;
         padding-inline: 1rem;
-        font-size: 1.1875rem;
+        font-size: $fs-h5;
         text-transform: uppercase;
         opacity: 0.7;
         transition: opacity $tr-smooth;
@@ -225,7 +225,7 @@ onUnmounted(() => {
         display: block;
         position: relative;
         margin-inline: 1.5rem;
-        font-size: 1.125rem;
+        font-size: $fs-h6;
         text-transform: uppercase;
         background-image: linear-gradient(120deg, $c-pink, $c-pink);
         background-position: 0 100%;
@@ -239,7 +239,7 @@ onUnmounted(() => {
         &::after {
             content: '';
             position: absolute;
-            min-width: 100%;
+            min-width: $w-full;
             padding-block: 0.5008px;
             left: 50%;
             top: 93%;

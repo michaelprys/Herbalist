@@ -20,9 +20,9 @@
     position: relative;
     &__input {
         @include bar;
-        font-weight: 800;
+        font-weight: $fw-bold;
         &::placeholder {
-            font-size: 1.5rem;
+            font-size: $fs-h4;
             font-weight: normal;
             color: rgba(255, 255, 255, 0.462);
         }

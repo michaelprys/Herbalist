@@ -15,9 +15,9 @@
     background: none;
     padding-block: 10px;
     padding-inline: 8px;
-    border-radius: $br-rounded;
+    border-radius: $br-medium;
     &:hover {
-        background-color: #6a6a6a42;
+        background-color: $c-grey;
     }
     & span,
     &::before,

@@ -81,14 +81,14 @@ onMounted(() => {
     width: 400px;
     padding: 40px;
     margin-inline: auto;
-    border-radius: 1rem;
-    border: 2px solid $c-grey-transparent;
-    // box-shadow: $fx-shadow-light;
+    border-radius: $br-large;
+    border: $br-mini solid rgba($c-grey-dk-1, 0.5);
+    box-shadow: $dc-shadow-light;
     transition: transform $tr-basic;
-    background-color: #2b2f2bfa;
+    background-color: rgba($c-olive, 0.99);
     &__title {
-        font-weight: 800;
-        font-size: 32px;
+        font-weight: $fw-bold;
+        font-size: $fs-h2;
         text-align: center;
     }
     &__input-wrapper {
@@ -96,20 +96,20 @@ onMounted(() => {
         margin-top: 30px;
     }
     &__input {
-        width: 100%;
+        width: $w-full;
         padding: 10px;
         padding-left: 20px;
         border-radius: $br-full;
-        border: 1px solid $c-grey-transparent;
+        border: $br-micro solid $c-grey-lt-2;
         outline: none;
         background-color: transparent;
-        color: $c-grey-lightest;
+        color: $c-grey-lt-10;
         transition: $tr-fast;
         &::placeholder {
             color: #ffffff8d;
         }
         &:focus {
-            border: 1px solid #ffffffb3;
+            border: $br-micro solid $c-grey-lt-5;
             box-shadow: 0px 0px 3px $c-white;
         }
     }
@@ -124,13 +124,13 @@ onMounted(() => {
         margin-block: 15px;
         display: flex;
         justify-content: space-between;
-        font-size: $fs-regular;
+        font-size: $fs-base;
     }
     &__forgot {
         @include underline;
     }
     &__button {
-        @include button-style($c-yellow);
+        @include button-style($c-citrus);
         margin-block: 5px;
         font-weight: $fw-bold;
         border-radius: $br-full;
@@ -141,7 +141,7 @@ onMounted(() => {
         justify-content: center;
         gap: 8px;
         margin-block: 15px;
-        font-size: $fs-regular;
+        font-size: $fs-base;
     }
     &__register-link {
         @include underline;
@@ -156,8 +156,8 @@ onMounted(() => {
         & input[type='checkbox'] {
             appearance: none;
             padding: 7px;
-            background-color: #fff;
-            border-radius: 0.1875rem;
+            background-color: $c-white;
+            border-radius: $br-small;
             transition: 120ms transform ease-in-out;
             position: relative;
             cursor: pointer;
@@ -175,7 +175,7 @@ onMounted(() => {
                 left: 50%;
                 width: 0.5rem;
                 height: 0.5rem;
-                background-color: #585858;
+                background-color: $c-grey-dk-3;
                 transition: 80ms transform ease-in-out;
             }
 

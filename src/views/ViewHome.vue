@@ -17,8 +17,8 @@ import ItemSwiper from '@/components/ItemSwiper.vue';
     margin-inline: auto;
     padding-top: 3rem;
     &__title {
-        // text-shadow: $fx-shadow-dark;
-        font-size: 3rem;
+        text-shadow: $dc-shadow-dark;
+        font-size: $fs-lg;
     }
 }
 </style>

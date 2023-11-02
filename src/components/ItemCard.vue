@@ -67,7 +67,7 @@ onMounted(() => {
         flex-direction: column;
         justify-content: flex-start;
         color: $c-black;
-        border-radius: $br-rounded;
+        border-radius: $br-medium;
         max-width: 22.5625rem;
         height: 30.25rem;
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
@@ -79,10 +79,10 @@ onMounted(() => {
         }
     }
     &__image {
-        border-top-left-radius: $br-rounded;
-        border-top-right-radius: $br-rounded;
+        border-top-left-radius: $br-medium;
+        border-top-right-radius: $br-medium;
         display: block;
-        min-width: 100%;
+        min-width: $w-full;
         height: 15rem;
         object-fit: cover;
     }
@@ -90,12 +90,12 @@ onMounted(() => {
         padding: 2rem;
     }
     &__title {
-        font-size: 20px;
+        font-size: $fs-h5;
         font-weight: $fw-bold;
         transition: $tr-basic;
     }
     &__text {
-        font-size: $fs-regular;
+        font-size: $fs-medium-plus;
         padding-top: 0.75rem;
         min-height: 106px;
     }

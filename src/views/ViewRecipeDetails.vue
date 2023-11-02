@@ -57,30 +57,30 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    background-color: #2a2d2a;
-    border-radius: 5px;
+    background-color: $c-olive;
+    border-radius: $br-medium;
     &__details {
         padding-inline: 5rem;
         padding-top: 2rem;
     }
     &__img {
-        width: 100%;
+        width: $w-full;
         height: 250px;
         object-fit: cover;
         border-top-left-radius: 5px;
         border-top-right-radius: 5px;
     }
     &__title {
-        font-size: 3rem;
+        font-size: $fs-lg;
     }
     &__description {
         margin-top: 30px;
-        font-size: 1.2rem;
+        font-size: $fs-h5;
         font-style: italic;
         font-family: '';
     }
     &__subtitle {
-        font-size: 1.6rem;
+        font-size: $fs-h3;
         margin-top: 30px;
     }
     &__ingredients-wrapper {
@@ -89,7 +89,7 @@
     &__ingredients {
         padding-left: 20px;
         margin-top: 20px;
-        font-size: 1.2rem;
+        font-size: $fs-h5;
         font-family: '';
     }
     &__ingredients li {
@@ -101,15 +101,15 @@
             content: '';
             width: 0.7rem;
             height: 0.7rem;
-            border-radius: 1rem;
-            background: $c-grey-lightest;
+            border-radius: $br-large;
+            background: $c-grey-lt-1;
             position: absolute;
             left: -20px;
         }
     }
     &__instructions {
         margin-top: 20px;
-        font-size: 1.2rem;
+        font-size: $fs-h5;
         font-family: '';
     }
     &__instruction {
