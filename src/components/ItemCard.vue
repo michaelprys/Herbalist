@@ -61,12 +61,12 @@ onMounted(() => {
     justify-content: center;
     margin-top: 45px;
     align-items: center;
+    color: $c-grey-800;
 
     &__item {
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
-        color: $c-black;
         border-radius: $br-medium;
         max-width: 22.5625rem;
         height: 30.25rem;
@@ -93,9 +93,10 @@ onMounted(() => {
         font-size: $fs-h5;
         font-weight: $fw-bold;
         transition: $tr-basic;
+        color: $c-grey-700;
     }
     &__text {
-        font-size: $fs-medium-plus;
+        font-size: $fs-medium;
         padding-top: 0.75rem;
         min-height: 106px;
     }

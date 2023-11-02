@@ -135,7 +135,7 @@ onUnmounted(() => {
     top: 0;
     z-index: 5;
     width: $w-full;
-    background-color: $c-grey-dk-4;
+    background-color: $c-grey-800;
     transform: translateY(0);
     transition: transform 0.4s;
     &.hidden {
@@ -149,7 +149,7 @@ onUnmounted(() => {
     justify-content: space-between;
     align-items: center;
     min-height: 7.8125rem;
-    padding-inline: $p-header;
+    padding-inline: $p-16;
 
     &__item {
         display: flex;
@@ -257,7 +257,7 @@ onUnmounted(() => {
 // * Media -------------------/
 @media (width <= $screen-xl) {
     .nav {
-        padding-inline: calc($p-header - 2rem);
+        padding-inline: calc($p-16 - 2rem);
         &__menu-link--primary,
         &__menu-link--secondary {
             display: none;

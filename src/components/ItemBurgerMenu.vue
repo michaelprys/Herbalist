@@ -10,7 +10,7 @@
 
     display: none;
     flex-direction: column;
-    gap: $burger-gap;
+    gap: $gp-3;
     z-index: 100;
     background: none;
     padding-block: 10px;

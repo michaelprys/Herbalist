@@ -95,7 +95,7 @@ const props = defineProps(['showDrawer', 'closeDrawer']);
         top: 0;
         min-width: 20rem;
         height: 100vh;
-        padding-top: calc($burger-height + $burger-margin + 4.1rem);
+        padding-top: calc($burger-height + $m-4 + 4.1rem);
         font-size: $fs-h5;
         text-transform: uppercase;
         backdrop-filter: $dc-blur-hard;
@@ -112,15 +112,15 @@ const props = defineProps(['showDrawer', 'closeDrawer']);
         transition: background-color $tr-smooth, opacity $tr-smooth;
         cursor: pointer;
         &:hover {
-            background-color: rgba($c-grey, 0.5);
+            background-color: rgba($c-grey-400, 0.5);
             opacity: 1;
         }
     }
     &__active-link {
         opacity: 1;
-        background-color: rgba($c-grey, 0.5);
+        background-color: rgba($c-grey-400, 0.5);
         &:hover {
-            background-color: rgba($c-grey, 1);
+            background-color: rgba($c-grey-500, 1);
             opacity: 1;
         }
     }

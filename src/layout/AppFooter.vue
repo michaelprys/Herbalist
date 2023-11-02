@@ -48,11 +48,11 @@
     bottom: 0;
     justify-content: space-between;
     align-items: center;
-    background-color: $c-grey-dk-1;
+    background-color: $c-grey-600;
     min-height: 7.875rem;
     font-size: $fs-base;
-    padding-inline: $p-footer;
-    background-color: rgba($c-grey-dk-4, 0.98);
+    padding-inline: $p-20;
+    background-color: rgba($c-grey-800, 0.98);
     &__info-item {
         padding-inline: 1.25rem;
         border-right: 1px solid $c-white;
@@ -71,12 +71,12 @@
     &__link {
         display: block;
         line-height: 0;
-        fill: $c-grey-lt-10;
+        fill: $c-grey-50;
         padding: 0.625rem;
         transition: background-color $tr-smooth, fill $tr-smooth;
         border-radius: $br-medium;
         &:hover {
-            background-color: $c-grey-lt-10;
+            background-color: $c-grey-50;
             fill: $c-black;
         }
     }
@@ -84,7 +84,7 @@
 
 @media (width <= $screen-xl) {
     .footer {
-        padding-inline: calc($p-footer - 2rem);
+        padding-inline: calc($p-20 - 2rem);
         &__info-item {
             border-right: none;
             padding: 0;

@@ -3,6 +3,6 @@ $w-full: 100%;
 
 // burger size
 $bar-height: 3px;
-$burger-height: calc($bar-height * 3 + $burger-gap * 2);
+$burger-height: calc($bar-height * 3 + $gp-3 * 2);
 $bar-width: 30px;
 $x-width: calc($burger-height * 1.41421356237);

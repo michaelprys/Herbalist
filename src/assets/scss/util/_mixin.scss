@@ -10,20 +10,20 @@
 }
 
 @mixin button-style($c-btn-hvr) {
-    font-size: $fs-medium-plus;
+    font-size: $fs-medium;
     text-align: center;
     padding: 10px;
     width: $w-full;
     border-radius: $br-medium;
     transition: $tr-basic;
-    color: $c-grey-dk-7;
-    background-color: $c-grey-lt-7;
+    color: $c-grey-1100;
+    background-color: $c-grey-100;
     &:hover {
         background-color: $c-btn-hvr;
     }
     &:active {
-        background-color: $c-grey-lt-1;
-        box-shadow: inset 0px 0px 5px $c-grey-lt-1;
+        background-color: $c-grey-50;
+        box-shadow: inset 0px 0px 5px $c-grey-50;
         outline: none;
     }
 }
@@ -32,7 +32,7 @@
     display: block;
     width: $w-full;
     max-width: 50rem;
-    margin-inline: auto;
+    margin-inline: $mx-auto;
     padding-block: 1rem;
     padding-inline: 1.25rem;
     border: $br-mini solid rgba(255, 255, 255, 0.651);

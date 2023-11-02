@@ -14,7 +14,7 @@ import ItemSwiper from '@/components/ItemSwiper.vue';
 <style lang="scss">
 .section {
     max-width: 71.6875rem;
-    margin-inline: auto;
+    margin-inline: $mx-auto;
     padding-top: 3rem;
     &__title {
         text-shadow: $dc-shadow-dark;

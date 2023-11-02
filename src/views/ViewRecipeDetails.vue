@@ -51,7 +51,7 @@
 <style lang="scss">
 .recipe {
     max-width: 62.5rem;
-    margin-inline: auto;
+    margin-inline: $mx-auto;
     margin-top: 90px;
     padding-bottom: 1.8rem;
     display: flex;
@@ -102,7 +102,7 @@
             width: 0.7rem;
             height: 0.7rem;
             border-radius: $br-large;
-            background: $c-grey-lt-1;
+            background: $c-grey-50;
             position: absolute;
             left: -20px;
         }

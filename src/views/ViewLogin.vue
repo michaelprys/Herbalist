@@ -71,7 +71,7 @@ onMounted(() => {
 
 <style lang="scss">
 .login-wrapper {
-    margin-top: $m-content;
+    margin-top: $mt-36;
 }
 .login {
     position: relative;
@@ -80,12 +80,13 @@ onMounted(() => {
     justify-content: center;
     width: 400px;
     padding: 40px;
-    margin-inline: auto;
+    margin-inline: $mx-auto;
     border-radius: $br-large;
-    border: $br-mini solid rgba($c-grey-dk-1, 0.5);
+    border: $br-mini solid rgba($c-grey-600, 0.5);
     box-shadow: $dc-shadow-light;
     transition: transform $tr-basic;
     background-color: rgba($c-olive, 0.99);
+
     &__title {
         font-weight: $fw-bold;
         font-size: $fs-h2;
@@ -100,16 +101,17 @@ onMounted(() => {
         padding: 10px;
         padding-left: 20px;
         border-radius: $br-full;
-        border: $br-micro solid $c-grey-lt-2;
+        border: $br-micro solid $c-grey-300;
         outline: none;
         background-color: transparent;
-        color: $c-grey-lt-10;
         transition: $tr-fast;
+        font-size: $fs-medium;
+        color: $c-white;
         &::placeholder {
-            color: #ffffff8d;
+            color: $c-grey-50;
         }
         &:focus {
-            border: $br-micro solid $c-grey-lt-5;
+            border: $br-micro solid $c-grey-50;
             box-shadow: 0px 0px 3px $c-white;
         }
     }
@@ -124,7 +126,7 @@ onMounted(() => {
         margin-block: 15px;
         display: flex;
         justify-content: space-between;
-        font-size: $fs-base;
+        font-size: $fs-medium;
     }
     &__forgot {
         @include underline;
@@ -141,7 +143,7 @@ onMounted(() => {
         justify-content: center;
         gap: 8px;
         margin-block: 15px;
-        font-size: $fs-base;
+        font-size: $fs-medium;
     }
     &__register-link {
         @include underline;
@@ -175,7 +177,7 @@ onMounted(() => {
                 left: 50%;
                 width: 0.5rem;
                 height: 0.5rem;
-                background-color: $c-grey-dk-3;
+                background-color: $c-grey-600;
                 transition: 80ms transform ease-in-out;
             }
 

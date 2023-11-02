@@ -32,7 +32,7 @@ onMounted(async () => {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    margin-top: $m-content;
+    margin-top: $mt-36;
     font-weight: $fw-regular;
     &__item {
         padding-inline: 0.3125rem;

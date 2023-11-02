@@ -77,7 +77,7 @@ onMounted(async () => {
 
 @media (width <= $screen-md) {
     .swiper {
-        margin-inline: auto;
+        margin-inline: $mx-auto;
         max-width: 360px;
     }
 }

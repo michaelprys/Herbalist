@@ -14,7 +14,7 @@
 
 <style lang="scss">
 .search-wrapper {
-    margin-top: $m-content;
+    margin-top: $mt-36;
 }
 .search {
     position: relative;
