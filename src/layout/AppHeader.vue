@@ -10,8 +10,7 @@
                         <img
                             class="nav__logo-image"
                             src="@img/logo/header-logo.png"
-                            alt="Herbalist Logo"
-                            width="60" />
+                            alt="Herbalist Logo" />
                     </picture>
                     <span class="nav__logo-name">Herbalist</span>
                 </router-link>
@@ -35,7 +34,7 @@
                     <li class="nav__menu-item">
                         <router-link
                             class="nav__menu-link nav__menu-link--primary"
-                            :to="{ name: 'recipesByIngredients' }"
+                            :to="{ name: 'recipesByIngredient' }"
                             ><span>Recipes By Ingredients</span>
                         </router-link>
                     </li>
@@ -72,8 +71,8 @@
 
 <script setup>
 // imports
-import ItemBurgerMenu from '@/components/ItemBurgerMenu.vue';
-import ItemDrawer from '@/components/ItemDrawer.vue';
+import ItemBurgerMenu from '@/component/ItemBurgerMenu.vue';
+import ItemDrawer from '@/component/ItemDrawer.vue';
 import { ref, onMounted, onUnmounted } from 'vue';
 import { useRouter } from 'vue-router';
 
@@ -98,13 +97,10 @@ const handleResize = () => {
 };
 
 // hide mobile nav on route change
-router.afterEach((to, from) => {
-    closeDrawer();
-});
+router.afterEach(() => closeDrawer());
 
 // hide on scroll
 const hideHeader = ref(false);
-const header = document.querySelector('.header');
 let lastScrollY = window.scrollY;
 const handleScroll = () => {
     if (!showDrawer.value) {
@@ -123,8 +119,8 @@ onMounted(() => {
     window.addEventListener('resize', handleResize);
 });
 onUnmounted(() => {
-    window.removeEventListener('scroll', handleScroll);
-    window.removeEventListener('resize', handleResize);
+    windowNaNpxoveEventListener('scroll', handleScroll);
+    windowNaNpxoveEventListener('resize', handleResize);
 });
 </script>
 
@@ -132,14 +128,15 @@ onUnmounted(() => {
 // * Header -------------------/
 .header {
     position: fixed;
-    top: 0;
-    z-index: 5;
+    top: $top-0;
+    z-index: $z-index-10;
     width: $w-full;
+    min-height: 7.55rem;
     background-color: $c-grey-800;
-    transform: translateY(0);
-    transition: transform 0.4s;
+    transform: $translateY-0;
+    transition: transform $duration-400;
     &.hidden {
-        transform: translateY(-100%);
+        transform: $translateY-full-neg;
     }
 }
 
@@ -148,8 +145,7 @@ onUnmounted(() => {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    min-height: 7.8125rem;
-    padding-inline: $p-16;
+    padding-inline: $p-12;
 
     &__item {
         display: flex;
@@ -158,22 +154,24 @@ onUnmounted(() => {
     &__logo {
         display: flex;
         align-items: center;
-        transform: translateX(-4px);
+        transform: translateX(-0.25rem);
     }
     &__logo-image {
         transition: transform 0.9s ease-in-out;
+        width: $w-14;
+        min-height: $w-14;
         &:hover {
             transform: rotate(360deg);
         }
     }
     &__logo-name {
-        margin-left: 0.4375rem;
+        margin-left: $m-2_5;
         font-size: $fs-h6;
-        opacity: 70%;
+        opacity: $op-70;
         font-family: $ff-secondary;
         transition: opacity 0.3s linear;
         &:hover {
-            opacity: 1;
+            opacity: $op-100;
         }
     }
 
@@ -181,27 +179,27 @@ onUnmounted(() => {
     &__menu {
         display: flex;
         justify-content: flex-end;
-        margin-top: 20px;
+        margin-top: $m-5;
     }
     &__menu-item:last-child &__menu-link {
-        margin-right: 0;
+        margin-right: $m-0;
     }
     &__menu-item:last-child &__menu-link--primary {
-        padding-right: 0;
+        padding-right: $p-0;
     }
 
     &__menu-link {
         &:hover {
-            opacity: 1;
+            opacity: $op-100;
         }
     }
     &__menu-link--primary {
         display: block;
-        padding-bottom: 1rem;
-        padding-inline: 1rem;
+        padding-bottom: $p-4;
+        padding-inline: $p-4;
         font-size: $fs-h5;
         text-transform: uppercase;
-        opacity: 0.7;
+        opacity: $op-70;
         transition: opacity $tr-smooth;
         & span {
             position: relative;
@@ -209,22 +207,22 @@ onUnmounted(() => {
         & span::after {
             content: '';
             position: absolute;
-            padding-block: 0.0625rem;
-            left: 0;
-            right: 0;
-            top: 47px;
+            padding-block: $p-px;
+            width: 100%;
+            top: 3rem;
             transition: opacity $tr-smooth;
-            opacity: 0;
+            opacity: $op-0;
             background-color: $c-white;
         }
         &:hover span::after {
-            opacity: 1;
+            bottom: 0;
+            opacity: $op-100;
         }
     }
     &__menu-link--secondary {
         display: block;
         position: relative;
-        margin-inline: 1.5rem;
+        margin-inline: $m-6;
         font-size: $fs-h6;
         text-transform: uppercase;
         background-image: linear-gradient(120deg, $c-pink, $c-pink);
@@ -233,23 +231,23 @@ onUnmounted(() => {
         background-size: 100% 0;
         transition: opacity $tr-smooth, background-size 0.125s ease-in,
             color 0.3s linear;
-        opacity: 0.7;
-        padding-inline: 0.5625rem;
+        opacity: $op-70;
+        padding-inline: $p-3;
 
         &::after {
             content: '';
             position: absolute;
             min-width: $w-full;
-            padding-block: 0.5008px;
-            left: 50%;
+            padding-block: calc($p-px / 2);
+            left: $left-half;
             top: 93%;
-            transform: translateX(-50%);
+            transform: $translateX-half-neg;
             transition: opacity $tr-smooth;
             background-color: $c-pink;
         }
         &:hover {
             background-size: 100% 100%;
-            opacity: 1;
+            opacity: $op-100;
             color: $c-black;
         }
     }
@@ -257,10 +255,15 @@ onUnmounted(() => {
 // * Media -------------------/
 @media (width <= $screen-xl) {
     .nav {
-        padding-inline: calc($p-16 - 2rem);
+        position: absolute;
+        top: $top-half;
+        transform: $translateY-half-neg;
+        width: $w-full;
+
+        padding-inline: calc($p-12 - 2rem);
         &__menu-link--primary,
         &__menu-link--secondary {
-            display: none;
+            display: $none;
         }
     }
 }

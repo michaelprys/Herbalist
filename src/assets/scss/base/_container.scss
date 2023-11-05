@@ -1,10 +1,10 @@
 .container {
     width: $w-full;
-    margin-inline: $mx-auto;
-    padding-inline: 1rem;
-    min-height: 100vh;
-    padding-top: 7.8125rem;
-    padding-bottom: 10.7rem;
+    min-height: $h-screen;
+    margin-inline: $auto;
+    padding-inline: $p-4;
+    padding-top: $p-32;
+    padding-bottom: $p-44;
 }
 
 @media (width >= $screen-md) {

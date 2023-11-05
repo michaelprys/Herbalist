@@ -6,13 +6,23 @@ export const actions = {
             if (res.ok) {
                 const data = await res.json();
                 this.data = data;
-            } else {
-                console.error('Error: ', res.status, res.statusText);
             }
         } catch (err) {
             console.error(err);
         } finally {
             this.pending = false;
+        }
+    },
+
+    async searchRecipe(keyword) {
+        try {
+            const res = await fetch(`${this.baseURL}search.php?s=${keyword}`);
+            if (res.ok) {
+                const data = await res.json();
+                this.data = data.meals;
+            }
+        } catch (err) {
+            console.error(err);
         }
     },
 };

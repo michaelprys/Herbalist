@@ -1,9 +1,9 @@
 @font-face {
     font-display: swap;
-    font-family: 'primary SC';
+    font-family: 'Spectral SC';
     font-style: normal;
     font-weight: $fw-regular;
-    src: url('@fonts/primary-sc-v12-latin-regular.woff2') format('woff2');
+    src: url('@font/spectral-sc-v12-latin-regular.woff2') format('woff2');
 }
 
 @font-face {
@@ -11,5 +11,5 @@
     font-family: 'Century Gothic W05 Regular';
     font-style: normal;
     font-weight: $fw-regular;
-    src: url('@fonts/Century Gothic W05 Regular.woff2') format('woff2');
+    src: url('@font/Century Gothic W05 Regular.woff2') format('woff2');
 }

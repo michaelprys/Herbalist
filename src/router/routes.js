@@ -1,11 +1,11 @@
-import ViewHome from '@/views/ViewHome.vue';
-import ViewRecipesByIngredients from '@/views/ViewRecipesByIngredients.vue';
-import ViewRecipesByLetter from '@/views/ViewRecipesByLetter.vue';
-import ViewSearchRecipes from '@/views/ViewSearchRecipes.vue';
-import ViewAbout from '@/views/ViewAbout.vue';
-import ViewLogin from '@/views/ViewLogin.vue';
-import ViewNotFound from '@/views/ViewNotFound.vue';
-import ViewRecipeDetails from '@/views/ViewRecipeDetails.vue';
+import ViewHome from '@/view/ViewHome.vue';
+import ViewRecipesByIngredient from '@/view/ViewRecipesByIngredient.vue';
+import ViewRecipesByLetter from '@/view/ViewRecipesByLetter.vue';
+import ViewSearchRecipe from '@/view/ViewSearchRecipe.vue';
+import ViewAbout from '@/view/ViewAbout.vue';
+import ViewLogin from '@/view/ViewLogin.vue';
+import ViewNotFound from '@/view/ViewNotFound.vue';
+import ViewRecipeDetail from '@/view/ViewRecipeDetail.vue';
 
 export const routes = [
     {
@@ -29,23 +29,23 @@ export const routes = [
         component: ViewLogin,
     },
     {
-        path: '/searchRecipes',
+        path: '/searchRecipes/:name?',
         name: 'searchRecipes',
-        component: ViewSearchRecipes,
+        component: ViewSearchRecipe,
     },
     {
-        path: '/recipesByLetter',
+        path: '/recipesByLetter/:letter?',
         name: 'recipesByLetter',
         component: ViewRecipesByLetter,
     },
     {
-        path: '/recipesByIngredients',
-        name: 'recipesByIngredients',
-        component: ViewRecipesByIngredients,
+        path: '/recipesByIngredient/:ingredient?',
+        name: 'recipesByIngredient',
+        component: ViewRecipesByIngredient,
     },
     {
-        path: '/recipeDetails/:recipe?',
-        name: 'recipeDetails',
-        component: ViewRecipeDetails,
+        path: '/recipeDetail/:recipe?',
+        name: 'recipeDetail',
+        component: ViewRecipeDetail,
     },
 ];

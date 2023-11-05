@@ -7,9 +7,8 @@
         <div class="footer__socials">
             <a class="footer__link" target="_blank" href="#"
                 ><svg
+                    class="footer__icon"
                     xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
                     viewBox="0 0 24 24">
                     <path
                         d="M21.593 7.203a2.506 2.506 0 0 0-1.762-1.766C18.265 5.007 12 5 12 5s-6.264-.007-7.831.404a2.56 2.56 0 0 0-1.766 1.778c-.413 1.566-.417 4.814-.417 4.814s-.004 3.264.406 4.814c.23.857.905 1.534 1.763 1.765 1.582.43 7.83.437 7.83.437s6.265.007 7.831-.403a2.515 2.515 0 0 0 1.767-1.763c.414-1.565.417-4.812.417-4.812s.02-3.265-.407-4.831zM9.996 15.005l.005-6 5.207 3.005-5.212 2.995z"></path>
@@ -17,9 +16,8 @@
             </a>
             <a class="footer__link" target="_blank" href="#"
                 ><svg
+                    class="footer__icon"
                     xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
                     viewBox="0 0 24 24">
                     <path
                         d="M12.001 2.002c-5.522 0-9.999 4.477-9.999 9.999 0 4.99 3.656 9.126 8.437 9.879v-6.988h-2.54v-2.891h2.54V9.798c0-2.508 1.493-3.891 3.776-3.891 1.094 0 2.24.195 2.24.195v2.459h-1.264c-1.24 0-1.628.772-1.628 1.563v1.875h2.771l-.443 2.891h-2.328v6.988C18.344 21.129 22 16.992 22 12.001c0-5.522-4.477-9.999-9.999-9.999z"></path>
@@ -27,9 +25,8 @@
             </a>
             <a class="footer__link" target="_blank" href="#"
                 ><svg
+                    class="footer__icon"
                     xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
                     viewBox="0 0 24 24">
                     <path
                         d="M11.999 7.377a4.623 4.623 0 1 0 0 9.248 4.623 4.623 0 0 0 0-9.248zm0 7.627a3.004 3.004 0 1 1 0-6.008 3.004 3.004 0 0 1 0 6.008z"></path>
@@ -45,53 +42,57 @@
 <style lang="scss">
 .footer {
     display: flex;
-    bottom: 0;
+    bottom: $bottom-0;
     justify-content: space-between;
     align-items: center;
     background-color: $c-grey-600;
-    min-height: 7.875rem;
+    min-height: $h-32;
     font-size: $fs-base;
-    padding-inline: $p-20;
+    padding-inline: $p-16;
     background-color: rgba($c-grey-800, 0.98);
     &__info-item {
-        padding-inline: 1.25rem;
-        border-right: 1px solid $c-white;
+        padding-inline: $p-5;
+        border-right: $bw-px solid $c-white;
         &:first-child {
-            padding-left: 0;
+            padding-top: $p-0;
         }
         &:last-child {
-            border-right: none;
-            padding-right: 0;
+            border-right: $none;
+            padding-right: $p-0;
         }
     }
     &__socials {
         display: flex;
-        gap: 0.9375rem;
+        gap: $g-4;
     }
     &__link {
         display: block;
-        line-height: 0;
+        line-height: $lh-0;
         fill: $c-grey-50;
-        padding: 0.625rem;
+        padding: $p-3;
         transition: background-color $tr-smooth, fill $tr-smooth;
-        border-radius: $br-medium;
+        border-radius: $br-6;
         &:hover {
             background-color: $c-grey-50;
             fill: $c-black;
         }
     }
+    &__icon {
+        width: $w-6;
+        min-height: $h-6;
+    }
 }
 
 @media (width <= $screen-xl) {
     .footer {
-        padding-inline: calc($p-20 - 2rem);
+        padding-inline: calc($p-16 - 2rem);
         &__info-item {
-            border-right: none;
-            padding: 0;
+            border-right: $none;
+            padding: $p-0;
             display: flex;
             font-size: $fs-base;
             &:last-child {
-                padding-top: 5px;
+                padding-top: $p-2;
             }
         }
     }

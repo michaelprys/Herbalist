@@ -10,8 +10,8 @@
 }
 
 * {
-    margin: 0;
-    padding: 0;
+    margin: $m-0;
+    padding: $p-0;
     font: inherit;
 }
 
@@ -21,7 +21,7 @@ li {
 
 a {
     display: block;
-    color: #fff;
+    color: $c-white;
     text-decoration: none;
 }
 button {

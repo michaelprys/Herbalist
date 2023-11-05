@@ -2,10 +2,11 @@
 @import 'base';
 
 body {
-    line-height: 1.6;
+    line-height: $lh-default;
     color: $c-white;
     font-weight: $fw-regular;
     font-family: $ff-primary, sans-serif;
+    font-size: $fs-base;
     @supports (background-image: url('@img/bg.webp')) {
         background-image: url('@img/bg.webp');
     }

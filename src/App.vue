@@ -18,7 +18,7 @@ import AppFooter from '@/layout/AppFooter.vue';
 <style lang="scss">
 .fade-enter-from,
 .fade-leave-to {
-    opacity: 0;
+    opacity: $op-0;
 }
 
 .fade-enter-active,
