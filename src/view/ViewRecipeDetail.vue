@@ -1,26 +1,18 @@
 <template>
     <div class="recipe">
-        <img
-            class="recipe__img"
-            src="../../src/assets/image/recipe/recipe-1.jpg"
-            alt="" />
+        <!-- <ItemCardSkeleton v-if="storeRecipe.pending || !storeRecipe.isLoaded" /> -->
+        <!-- <template v-else> -->
+        <ItemRecipeImage />
         <div class="recipe__details">
             <h1 class="recipe__title">Moon Tea</h1>
             <p class="recipe__description">
-                Rich in protein with a deeply savory aroma and flavor, bone
-                broth is delicious to sip on its own as a restorative tonic. You
-                can also use it as a foundation for soups and stews. This bone
-                broth recipe is easy to make and straightforward.
+                <!-- {{ storeRecipe.data.full_description }} -->
+                {{ recipe.full_description }}
             </p>
             <h2 class="recipe__subtitle">Ingredients</h2>
             <div class="recipe__ingredients-wrapper">
                 <ul class="recipe__ingredients">
                     <li>3 pounds chicken bones</li>
-                    <li>1 yellow onion</li>
-                    <li>1 bulb garlic</li>
-                    <li>2 tablespoons extra virgin olive oil</li>
-                    <li>1 cup white wine</li>
-                    <li>12 cups water</li>
                 </ul>
             </div>
             <h2 class="recipe__subtitle">Method</h2>
@@ -29,38 +21,33 @@
                     1. Toss the Brussels sprouts, shallot, apple, pecan, and
                     pomegranate arils in a large bowl.
                 </li>
-                <li class="recipe__instruction">
-                    2. In a small jar or glass measuring cup, whisk the cider
-                    vinegar, olive oil, mustard, honey, celery seeds, and salt
-                    together until emulsified and uniformly combined.
-                </li>
-                <li class="recipe__instruction">
-                    3. Pour the vinaigrette over the slaw, toss until
-                    well-coated, and allow it to sit for about 5 minutes before
-                    serving so that the flavors come together and the sprouts
-                    begin to soften. Store any leftovers in the fridge for up to
-                    1 day.
-                </li>
             </ul>
         </div>
+        <!-- </template> -->
     </div>
 </template>
 
-<script setup></script>
+<script setup>
+import ItemCardSkeleton from '@/component/ItemCardSkeleton.vue';
+import ItemRecipeImage from '@/component/ItemRecipeImage.vue';
+import { useStoreRecipe } from '@/store/storeRecipe';
+
+const storeRecipe = useStoreRecipe();
+</script>
 
 <style lang="scss">
 .recipe {
-    max-width: 62.5rem;
+    max-width: 57.5rem;
     margin-inline: $auto;
     margin-top: $m-24;
-    padding-bottom: $p-7;
+    padding-bottom: $p-8;
     display: flex;
     flex-direction: column;
     justify-content: center;
     background-color: $c-olive;
     border-radius: $br-6;
     &__details {
-        padding-inline: $p-20;
+        padding-inline: $p-12;
         padding-top: $p-8;
     }
     &__img {

@@ -10,8 +10,17 @@ const PORT = 8000;
 app.get('/api/recipe', async (req, res) => {
     const conn = await connectToDb();
     try {
-        const recipe = await pool.query('SELECT * FROM recipe ORDER BY id');
-        res.json(recipe.rows);
+        const keyword = req.query.keyword;
+        if (keyword) {
+            const recipe = await pool.query(
+                'SELECT * FROM recipe WHERE title ILIKE $1 ORDER BY id',
+                [`%${keyword}%`]
+            );
+            res.json(recipe.rows);
+        } else {
+            const recipe = await pool.query('SELECT * FROM recipe ORDER BY id');
+            res.json(recipe.rows);
+        }
     } catch (err) {
         console.error(err);
     } finally {

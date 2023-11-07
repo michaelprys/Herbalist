@@ -157,8 +157,8 @@ onMounted(() => {
         user-select: $none;
         & input[type='checkbox'] {
             appearance: $none;
-            width: $w-3;
-            min-height: $h-3;
+            width: $w-3_5;
+            min-height: $h-3_5;
             background-color: $c-white;
             border-radius: $br-2;
             transition: 120ms transform ease-in-out;
@@ -176,8 +176,8 @@ onMounted(() => {
                 transform: translate(-50%, -50%);
                 top: $top-half;
                 left: $left-half;
-                width: 0.4375rem;
-                min-height: 0.4375rem;
+                width: $w-2;
+                min-height: $w-2;
                 background-color: $c-grey-600;
                 transition: 80ms transform ease-in-out;
             }

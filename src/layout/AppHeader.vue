@@ -146,7 +146,7 @@ onUnmounted(() => {
     justify-content: space-between;
     align-items: center;
     padding-inline: $p-12;
-
+    z-index: $z-index-1000;
     &__item {
         display: flex;
         flex-direction: column-reverse;
@@ -237,7 +237,7 @@ onUnmounted(() => {
         &::after {
             content: '';
             position: absolute;
-            min-width: $w-full;
+            width: $w-full - 1;
             padding-block: calc($p-px / 2);
             left: $left-half;
             top: 93%;

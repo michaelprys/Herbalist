@@ -1,10 +1,5 @@
 <template>
     <section class="drawer">
-        <div
-            class="drawer__overlay"
-            :class="{ active: showDrawer }"
-            ref="drawerOverlayRef"
-            @click="closeDrawer"></div>
         <nav class="drawer__wrapper" :class="{ active: showDrawer }">
             <ul>
                 <li>
@@ -57,6 +52,11 @@
                 </li>
             </ul>
         </nav>
+        <div
+            class="drawer__overlay"
+            :class="{ active: showDrawer }"
+            ref="drawerOverlayRef"
+            @click="closeDrawer"></div>
     </section>
 </template>
 
@@ -69,13 +69,9 @@ defineProps(['showDrawer', 'closeDrawer']);
     &__overlay {
         visibility: $hidden;
         position: fixed;
-        top: $top-0;
-        right: $right-0;
-        bottom: $bottom-0;
-        top: $left-0;
+        max-height: calc(100vh - 9rem);
         width: $w-screen;
         min-height: $h-screen;
-        z-index: $z-index-1;
         opacity: $op-0;
         transition: opacity $tr-smooth, visibility $tr-smooth;
         will-change: opacity;
@@ -86,13 +82,24 @@ defineProps(['showDrawer', 'closeDrawer']);
         }
     }
     &__wrapper {
-        display: $none;
+        &::-webkit-scrollbar {
+            width: 15px;
+            background-color: $c-white;
+            position: absolute;
+            right: 0;
+        }
+        &::-webkit-scrollbar-thumb {
+            background-color: $c-grey-300;
+        }
         position: fixed;
+        overflow-y: scroll;
+        top: $top-0;
+        bottom: $bottom-0;
+        left: $left-full;
+        display: $none;
         z-index: $z-index-100;
         display: flex;
         flex-direction: column;
-        left: $left-full;
-        top: $top-0;
         min-width: $w-80;
         min-height: $h-screen;
         padding-top: calc($burger-height + $m-2_5 + 4.1rem);

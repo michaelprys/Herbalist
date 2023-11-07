@@ -6,12 +6,9 @@
 
 <style lang="scss">
 .burger-menu {
-    // variables
-
     display: $none;
     flex-direction: column;
     gap: $g-2;
-    z-index: $z-index-1000;
     background: $none;
     padding-block: $p-3;
     padding-inline: $p-2_5;

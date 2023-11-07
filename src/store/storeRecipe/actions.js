@@ -1,8 +1,11 @@
 export const actions = {
-    async loadRecipes() {
+    async loadRecipes(keyword) {
         try {
             this.pending = true;
-            const res = await fetch('/api/recipe');
+            const res = await fetch(`/api/recipe`);
+            // const res = await fetch(
+            //     `/api/recipe?keyword=${encodeURIComponent(keyword)}`
+            // );
             if (res.ok) {
                 const data = await res.json();
                 this.data = data;
@@ -11,18 +14,6 @@ export const actions = {
             console.error(err);
         } finally {
             this.pending = false;
-        }
-    },
-
-    async searchRecipe(keyword) {
-        try {
-            const res = await fetch(`${this.baseURL}search.php?s=${keyword}`);
-            if (res.ok) {
-                const data = await res.json();
-                this.data = data.meals;
-            }
-        } catch (err) {
-            console.error(err);
         }
     },
 };
