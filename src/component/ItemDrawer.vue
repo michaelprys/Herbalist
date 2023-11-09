@@ -61,7 +61,7 @@
 </template>
 
 <script setup>
-defineProps(['showDrawer', 'closeDrawer']);
+defineProps(['showDrawer', 'closeDrawer', 'menuItems']);
 </script>
 
 <style lang="scss">
@@ -119,15 +119,15 @@ defineProps(['showDrawer', 'closeDrawer']);
         transition: background-color $tr-smooth, opacity $tr-smooth;
         cursor: pointer;
         &:hover {
-            background-color: rgba($c-grey-400, 0.5);
+            background-color: rgba($c-grey-600, 0.5);
             opacity: $op-100;
         }
     }
     &__active-link {
         opacity: $op-100;
-        background-color: rgba($c-grey-400, 0.5);
+        background-color: rgba($c-grey-600, 0.5);
         &:hover {
-            background-color: rgba($c-grey-500, 1);
+            background-color: rgba($c-grey-600, 1);
             opacity: $op-100;
         }
     }

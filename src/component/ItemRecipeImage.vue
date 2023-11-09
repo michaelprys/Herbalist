@@ -12,14 +12,5 @@
 </template>
 
 <script setup>
-import { onMounted } from 'vue';
-import { useStoreRecipe } from '@/store/storeRecipe';
-
-const storeRecipe = useStoreRecipe();
-
 const props = defineProps(['recipe']);
-
-onMounted(() => {
-    storeRecipe.onImageLoad();
-});
 </script>

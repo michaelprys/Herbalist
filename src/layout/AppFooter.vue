@@ -71,7 +71,7 @@
         fill: $c-grey-50;
         padding: $p-3;
         transition: background-color $tr-smooth, fill $tr-smooth;
-        border-radius: $br-6;
+        border-radius: $br-circle;
         &:hover {
             background-color: $c-grey-50;
             fill: $c-black;

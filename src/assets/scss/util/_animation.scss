@@ -11,9 +11,10 @@ $duration-75: 75ms;
 $duration-0: 0s;
 
 // Transition
-$tr-basic: $duration-300;
+$tr-basic: all $duration-300 ease-in-out;
 $tr-smooth: $duration-200 cubic-bezier(0.55, 0.085, 0.68, 0.53);
-$tr-fast: $duration-100;
+$tr-fast: all $duration-100 ease-in-out;
+$tr-button: $duration-200;
 
 // Animation
 $an-skeleton: skeleton-loading 1s linear infinite alternate;

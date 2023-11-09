@@ -10,9 +10,10 @@
     flex-direction: column;
     gap: $g-2;
     background: $none;
-    padding-block: $p-3;
-    padding-inline: $p-2_5;
-    border-radius: $br-6;
+    padding-block: calc($p-3 + 0.3125rem);
+    padding-inline: $p-3;
+    border-radius: $br-circle;
+    transition: $tr-fast;
     &:hover {
         background-color: $c-grey;
     }

@@ -1,9 +1,7 @@
 <template>
     <section class="section section--recipes">
         <h1 class="section__title">Popular recipes</h1>
-        <div class="container-swiper">
-            <ItemSwiper></ItemSwiper>
-        </div>
+        <ItemSwiper />
     </section>
 </template>
 

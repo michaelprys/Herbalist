@@ -15,6 +15,7 @@
         "vue": "latest"
     },
     "devDependencies": {
+        "@splidejs/vue-splide": "latest",
         "@vitejs/plugin-legacy": "latest",
         "@vitejs/plugin-vue": "latest",
         "eslint": "latest",
@@ -24,7 +25,6 @@
         "pinia": "latest",
         "sass": "latest",
         "sharp": "latest",
-        "swiper": "latest",
         "terser": "latest",
         "vite": "latest",
         "vite-plugin-image-optimizer": "latest",

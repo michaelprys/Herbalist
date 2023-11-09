@@ -2,7 +2,7 @@
     <div class="recipe">
         <!-- <ItemCardSkeleton v-if="storeRecipe.pending || !storeRecipe.isLoaded" /> -->
         <!-- <template v-else> -->
-        <ItemRecipeImage />
+        <ItemRecipeImage :recipe="recipe" />
         <div class="recipe__details">
             <h1 class="recipe__title">Moon Tea</h1>
             <p class="recipe__description">
@@ -33,6 +33,8 @@ import ItemRecipeImage from '@/component/ItemRecipeImage.vue';
 import { useStoreRecipe } from '@/store/storeRecipe';
 
 const storeRecipe = useStoreRecipe();
+
+const props = defineProps(['recipe']);
 </script>
 
 <style lang="scss">

@@ -1,84 +1,87 @@
 <template>
-    <Swiper
-        class="swiper"
-        :breakpoints="swiperOptions.breakpoints"
-        :pagination="{
-            clickable: true,
-        }"
-        :loop="true"
-        :modules="swiperOptions.modules">
-        <template v-for="recipe in data" :key="recipe.id">
-            <SwiperSlide class="swiper__slide">
-                <ItemCard :data="recipe" :pending="pending" />
-            </SwiperSlide>
-            <div class="swiper-custom-pagination"></div>
-        </template>
-    </Swiper>
+    <Splide class="splide__track" :options="options" :has-track="false">
+        <SplideTrack>
+            <SplideSlide
+                class="splide__slide"
+                v-for="recipe in storeRecipe.data"
+                :key="recipe.id">
+                <ItemCard :data="recipe" :pending="storeRecipe.pending" />
+            </SplideSlide>
+        </SplideTrack>
+        <div class="splide__pagination">
+            <div class="splide__pagination__page is-active" />
+        </div>
+    </Splide>
 </template>
 
 <script setup>
-import 'swiper/css/free-mode';
-import 'swiper/css/pagination';
-import 'swiper/css';
-import { onMounted } from 'vue';
-import { Swiper, SwiperSlide } from 'swiper/vue';
-import { Pagination } from 'swiper/modules';
+import { Splide, SplideSlide, SplideTrack } from '@splidejs/vue-splide';
+import { ref, onMounted } from 'vue';
 import { useStoreRecipe } from '@/store/storeRecipe';
-import { storeToRefs } from 'pinia';
-
 import ItemCard from '@/component/ItemCard.vue';
 
 const storeRecipe = useStoreRecipe();
-const { data, pending } = storeToRefs(storeRecipe);
 
-// swiper options
-const swiperOptions = {
-    modules: [Pagination],
+const isActive = ref(true);
+// slider setup
+const options = {
+    arrows: false,
+    flickPower: 300,
+    // omitEnd: true,
+    // type: 'slide',
+    // focus: 'center',
+    gap: '2.5rem',
+    easing: 'cubic-bezier(0.22, 0.61, 0.36, 1)',
+    mediaQuery: 'min',
     breakpoints: {
-        // screen xs
         320: {
-            slidesPerView: 1,
-            spaceBetween: 40,
+            perPage: 1,
         },
-        // screen md
         801: {
-            slidesPerView: 2,
-            spaceBetween: 40,
+            perPage: 2,
         },
-        // screen lg
         1040: {
-            slidesPerView: 3,
-            spaceBetween: 40,
+            perPage: 3,
         },
     },
 };
 
+// hooks
 onMounted(async () => {
     await storeRecipe.loadRecipes();
 });
 </script>
 
 <style lang="scss">
-.swiper-custom-pagination {
-    color: $c-white;
-    text-align: center;
-    padding-top: $p-2;
-}
-.swiper-pagination-bullet {
-    padding: $p-2_5;
-    background-color: $c-white;
-    opacity: $op-40;
+@import '@splidejs/vue-splide/css/core';
+
+.splide__track {
+    padding-inline: 1rem;
+    margin-inline: auto;
 }
 
-.swiper-pagination-bullet-active {
+.splide__pagination {
+    margin-top: $p-4;
+}
+
+.splide__pagination__page {
+    margin-right: $m-2_5;
+    padding: $p-2_5;
+    border-radius: $br-full;
     background-color: $c-white;
-    opacity: $op-100;
+    opacity: $op-30;
+    transition: $tr-smooth;
+    &:hover {
+        opacity: $op-40;
+    }
+    &.is-active {
+        opacity: $op-80;
+    }
 }
 
 @media (width <= $screen-md) {
-    .swiper {
-        margin-inline: $auto;
-        max-width: 22.5rem;
+    .splide__track {
+        max-width: 26rem;
     }
 }
 </style>

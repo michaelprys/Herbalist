@@ -7,14 +7,15 @@ body {
     font-weight: $fw-regular;
     font-family: $ff-primary, sans-serif;
     font-size: $fs-base;
-    @supports (background-image: url('@img/bg.webp')) {
-        background-image: url('@img/bg.webp');
-    }
-    background-image: url('@img/bg.jpg');
+    // @supports (background-image: url('@img/bg.webp')) {
+    //     background-image: url('@img/bg.webp');
+    // }
+    // background-image: url('@img/bg.jpg');
 
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
-    background-color: $c-grey;
+    background-color: #1e3a56;
+    // background-color: $c-grey;
     background-attachment: fixed;
 }
