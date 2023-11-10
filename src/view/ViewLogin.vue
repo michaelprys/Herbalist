@@ -40,7 +40,7 @@
                     <input type="checkbox" id="checkbox" /> Remember me
                 </label>
 
-                <router-link class="login__forgot" :to="{ name: 'Home' }"
+                <router-link class="login__forgot" :to="{ name: 'home' }"
                     >Forgot password?</router-link
                 >
             </div>
@@ -49,7 +49,7 @@
 
             <div class="login__register">
                 <span>Don't have an account?</span>
-                <router-link class="login__register-link" :to="{ name: 'Home' }"
+                <router-link class="login__register-link" :to="{ name: 'home' }"
                     >Register</router-link
                 >
             </div>

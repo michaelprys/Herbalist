@@ -1,3 +1,6 @@
+// Padding specific values
+$p-layout: 6rem;
+
 // Padding
 $p-96: 24em;
 $p-80: 20em;
@@ -33,6 +36,9 @@ $p-1_5: 0.25em;
 $p-1: 0.125em;
 $p-px: 0.0625em;
 $p-0: 0em;
+
+// Margin specific values
+$m-layout: 6rem;
 
 // Margin
 $m-96: 24rem;
@@ -71,6 +77,30 @@ $m-px: 0.0625rem;
 $m-0: 0rem;
 
 // Gap
+$g-96: 24rem;
+$g-80: 20rem;
+$g-72: 18rem;
+$g-64: 16rem;
+$g-60: 15rem;
+$g-56: 14rem;
+$g-52: 13rem;
+$g-48: 12rem;
+$g-44: 11rem;
+$g-40: 10rem;
+$g-36: 9rem;
+$g-32: 8rem;
+$g-28: 7rem;
+$g-24: 6rem;
+$g-20: 5rem;
+$g-16: 4rem;
+$g-14: 3.5rem;
+$g-12: 3rem;
+$g-11: 2.75rem;
+$g-10: 2.5rem;
+$g-9: 2.25rem;
+$g-8: 2rem;
+$g-7: 1.75rem;
+$g-6: 1.5rem;
 $g-5: 1.25rem;
 $g-4: 1rem;
 $g-3_5: 0.875rem;

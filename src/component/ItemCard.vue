@@ -5,9 +5,7 @@
             <template v-else> -->
             <picture>
                 <source :srcset="getSrcset('.avif')" type="image/avif" />
-                <source
-                    :srcset="getSrcset('.webp')"
-                    type="imagpreventClickOnDrag: falsee/webp" />
+                <source :srcset="getSrcset('.webp')" type="image/webp" />
                 <img
                     class="card__image"
                     :src="getSrc('.jpg')"
@@ -40,7 +38,7 @@ const isLoaded = ref(false);
 
 const getSrc = ext => {
     return new URL(
-        `../assets/image/recipe/${props.data.image}${ext}`,
+        `../assets/images/recipe/${props.data.image}${ext}`,
         import.meta.url
     ).href;
 };

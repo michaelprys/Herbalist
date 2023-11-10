@@ -22,14 +22,10 @@ import ItemCard from '@/component/ItemCard.vue';
 
 const storeRecipe = useStoreRecipe();
 
-const isActive = ref(true);
 // slider setup
 const options = {
     arrows: false,
     flickPower: 300,
-    // omitEnd: true,
-    // type: 'slide',
-    // focus: 'center',
     gap: '2.5rem',
     easing: 'cubic-bezier(0.22, 0.61, 0.36, 1)',
     mediaQuery: 'min',

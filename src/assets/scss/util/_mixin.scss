@@ -29,7 +29,6 @@
 }
 
 @mixin bar {
-    display: block;
     width: $w-full;
     max-width: 50rem;
     margin-inline: $auto;

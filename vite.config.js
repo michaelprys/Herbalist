@@ -81,9 +81,11 @@ export default defineConfig({
         alias: {
             '@': fileURLToPath(new URL('./src', import.meta.url)),
             '@img': fileURLToPath(
-                new URL('./src/assets/image', import.meta.url)
+                new URL('./src/assets/images', import.meta.url)
             ),
-            '@font': fileURLToPath(new URL('./public/font/', import.meta.url)),
+            '@fonts': fileURLToPath(
+                new URL('./public/fonts/', import.meta.url)
+            ),
         },
     },
 });

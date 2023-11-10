@@ -42,10 +42,9 @@
 <style lang="scss">
 .footer {
     display: flex;
-    bottom: $bottom-0;
     justify-content: space-between;
+    flex-wrap: wrap;
     align-items: center;
-    background-color: $c-grey-600;
     min-height: $h-32;
     font-size: $fs-base;
     padding-inline: $p-16;
@@ -79,7 +78,7 @@
     }
     &__icon {
         width: $w-6;
-        min-height: $h-6;
+        height: $h-6;
     }
 }
 

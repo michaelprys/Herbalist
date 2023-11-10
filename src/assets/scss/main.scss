@@ -15,7 +15,8 @@ body {
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
-    background-color: #1e3a56;
-    // background-color: $c-grey;
+    background-color: #014148;
     background-attachment: fixed;
+    scroll-snap-type: y proximity;
+    scroll-snap-points-y: repeat(100vh);
 }

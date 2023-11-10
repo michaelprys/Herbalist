@@ -35,12 +35,7 @@
                     >
                 </li>
                 <li>
-                    <router-link
-                        :to="{ name: 'about' }"
-                        class="drawer__link"
-                        active-class="drawer__active-link">
-                        About</router-link
-                    >
+                    <a class="drawer__link" href="#about"> About</a>
                 </li>
                 <li>
                     <router-link

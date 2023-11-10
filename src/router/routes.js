@@ -2,7 +2,6 @@ import ViewHome from '@/view/ViewHome.vue';
 import ViewRecipesByIngredient from '@/view/ViewRecipesByIngredient.vue';
 import ViewRecipesByLetter from '@/view/ViewRecipesByLetter.vue';
 import ViewSearchRecipe from '@/view/ViewSearchRecipe.vue';
-import ViewAbout from '@/view/ViewAbout.vue';
 import ViewLogin from '@/view/ViewLogin.vue';
 import ViewNotFound from '@/view/ViewNotFound.vue';
 import ViewRecipeDetail from '@/view/ViewRecipeDetail.vue';
@@ -15,13 +14,8 @@ export const routes = [
     },
     {
         path: '/',
-        name: 'Home',
+        name: 'home',
         component: ViewHome,
-    },
-    {
-        path: '/about',
-        name: 'about',
-        component: ViewAbout,
     },
     {
         path: '/login',

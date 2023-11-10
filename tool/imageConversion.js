@@ -4,7 +4,7 @@ import sharp from 'sharp';
 import { fileURLToPath } from 'url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const sourceDir = path.join(__dirname, '../src/assets/image');
+const sourceDir = path.join(__dirname, '../src/assets/images');
 
 async function main() {
     try {

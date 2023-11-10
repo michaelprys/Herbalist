@@ -2,12 +2,31 @@
     <div class="recipe">
         <!-- <ItemCardSkeleton v-if="storeRecipe.pending || !storeRecipe.isLoaded" /> -->
         <!-- <template v-else> -->
-        <ItemRecipeImage :recipe="recipe" />
+        <!-- <ItemRecipeImage :recipe="recipe" /> -->
+
+        <!-- TODO: img needs to be replaced with ItemRecipeImage component -->
+        <picture>
+            <source :srcset="getSrcset('.avif')" type="images/avif" />
+            <source :srcset="getSrcset('.webp')" type="images/webp" />
+            <img
+                class="card__image"
+                :src="getSrc('.jpg')"
+                :alt="storeRecipe.data.alt"
+                width="15.625rem"
+                loading="lazy" />
+            <div class="card__content">
+                <h2 class="card__title">{{ storeRecipe.data.title }}</h2>
+                <p class="card__text">
+                    <!-- {{ storeRecipe.data.short_description }} -->
+                </p>
+            </div>
+        </picture>
+
         <div class="recipe__details">
             <h1 class="recipe__title">Moon Tea</h1>
             <p class="recipe__description">
                 <!-- {{ storeRecipe.data.full_description }} -->
-                {{ recipe.full_description }}
+                <!-- {{ recipe.full_description }} -->
             </p>
             <h2 class="recipe__subtitle">Ingredients</h2>
             <div class="recipe__ingredients-wrapper">
@@ -28,13 +47,33 @@
 </template>
 
 <script setup>
+import { ref, onMounted } from 'vue';
 import ItemCardSkeleton from '@/component/ItemCardSkeleton.vue';
 import ItemRecipeImage from '@/component/ItemRecipeImage.vue';
 import { useStoreRecipe } from '@/store/storeRecipe';
 
 const storeRecipe = useStoreRecipe();
 
-const props = defineProps(['recipe']);
+const isLoaded = ref(false);
+
+const getSrc = ext => {
+    return new URL(
+        `../assets/images/recipe/${storeRecipe.data.image}${ext}`,
+        import.meta.url
+    ).href;
+};
+
+const getSrcset = ext => {
+    return `${getSrc(ext).replace('.jpg', ext)}`;
+};
+
+onMounted(() => {
+    const img = new Image(getSrc('.jpg'));
+    img.onload = () => {
+        isLoaded.value = true;
+    };
+    img.src = getSrc('.jpg');
+});
 </script>
 
 <style lang="scss">

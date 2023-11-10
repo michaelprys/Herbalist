@@ -1,6 +1,6 @@
 <template>
     <AppHeader></AppHeader>
-    <main class="container">
+    <main>
         <RouterView #="{ Component }">
             <transition mode="out-in" name="fade">
                 <component :is="Component" />

@@ -1,26 +1,27 @@
 .container {
     width: $w-full;
-    min-height: $h-screen;
     margin-inline: $auto;
-    padding-inline: $p-4;
-    padding-top: $p-32;
-    padding-bottom: $p-44;
 }
 
 @media (width >= $screen-md) {
     .container {
-        max-width: $screen-md;
+        max-width: $container-md;
     }
 }
 
 @media (width >= $screen-lg) {
     .container {
-        max-width: $screen-xl;
+        max-width: $container-lg;
+    }
+}
+@media (width >= $screen-xl) {
+    .container {
+        max-width: $container-xl;
     }
 }
 
 @media (width >= $screen-xxl) {
     .container {
-        max-width: $screen-xxl;
+        max-width: $container-xxl;
     }
 }

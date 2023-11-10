@@ -2,7 +2,7 @@
     <header class="header" :class="{ hidden: hideHeader }">
         <nav class="nav">
             <div class="nav__item">
-                <router-link class="nav__logo" :to="{ name: 'Home' }">
+                <router-link class="nav__logo" :to="{ name: 'home' }">
                     <picture>
                         <source
                             srcset="@img/logo/header-logo.avif"
@@ -41,10 +41,10 @@
                 </ul>
                 <ul class="nav__menu">
                     <li class="nav__menu-item">
-                        <router-link
-                            class="nav__menu-link nav__menu-link--secondary"
-                            :to="{ name: 'about' }">
-                            About</router-link
+                        <a
+                            href="#about"
+                            class="nav__menu-link nav__menu-link--secondary">
+                            About</a
                         >
                     </li>
                     <li class="nav__menu-item">
@@ -131,10 +131,10 @@ onUnmounted(() => {
     top: $top-0;
     z-index: $z-index-10;
     width: $w-full;
-    min-height: 7.55rem;
+    min-height: $h-header;
     background-color: $c-grey-800;
     transform: $translateY-0;
-    transition: transform $duration-400;
+    transition: transform $duration-300;
     &.hidden {
         transform: $translateY-full-neg;
     }
@@ -159,7 +159,6 @@ onUnmounted(() => {
     &__logo-image {
         transition: transform 0.9s ease-in-out;
         width: $w-14;
-        min-height: $w-14;
         &:hover {
             transform: rotate(360deg);
         }
