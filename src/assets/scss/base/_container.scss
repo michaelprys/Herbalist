@@ -1,9 +1,10 @@
 .container {
     width: $w-full;
+    padding-inline: $p-16;
     margin-inline: $auto;
 }
 
-@media (width >= $screen-md) {
+@media (width >= $screen-xs) {
     .container {
         max-width: $container-md;
     }

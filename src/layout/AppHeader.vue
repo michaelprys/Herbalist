@@ -3,15 +3,15 @@
         <nav class="nav">
             <div class="nav__item">
                 <router-link class="nav__logo" :to="{ name: 'home' }">
-                    <picture>
+                    <!-- <picture>
                         <source
-                            srcset="@img/logo/header-logo.avif"
-                            type="image/avif" />
-                        <img
-                            class="nav__logo-image"
-                            src="@img/logo/header-logo.png"
-                            alt="Herbalist Logo" />
-                    </picture>
+                            srcset="@img/content/logo/header-logo.avif"
+                            type="image/avif" /> -->
+                    <img
+                        class="nav__logo-image"
+                        src="@img/content/logo/header-logo.png"
+                        alt="Herbalist Logo" />
+                    <!-- </picture> -->
                     <span class="nav__logo-name">Herbalist</span>
                 </router-link>
             </div>

@@ -1,28 +1,13 @@
 <template>
-    <AppHeader></AppHeader>
-    <main>
-        <RouterView #="{ Component }">
-            <transition mode="out-in" name="fade">
-                <component :is="Component" />
-            </transition>
-        </RouterView>
-    </main>
-    <AppFooter></AppFooter>
+    <div>
+        <AppHeader></AppHeader>
+        <AppMain></AppMain>
+        <AppFooter></AppFooter>
+    </div>
 </template>
 
 <script setup>
 import AppHeader from '@/layout/AppHeader.vue';
+import AppMain from '@/layout/AppMain.vue';
 import AppFooter from '@/layout/AppFooter.vue';
 </script>
-
-<style lang="scss">
-.fade-enter-from,
-.fade-leave-to {
-    opacity: $op-0;
-}
-
-.fade-enter-active,
-.fade-leave-active {
-    transition: opacity 0.1s ease;
-}
-</style>

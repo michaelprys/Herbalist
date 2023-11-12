@@ -2894,6 +2894,11 @@ safe-buffer@5.2.1, safe-buffer@^5.0.1, safe-buffer@~5.2.0:
   resolved "https://registry.yarnpkg.com/safer-buffer/-/safer-buffer-2.1.2.tgz#44fa161b0187b9549dd84bb91802f9bd8385cd6a"
   integrity sha512-YZo3K82SD7Riyi0E1EQPojLz7kpepnSQI9IyPbHHg1XXXevb5dJI7tpyN2ADxGcQbHG7vcyRHk0cbwqcQriUtg==
 
+sass-alias@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/sass-alias/-/sass-alias-2.0.1.tgz#75f1e851081a75383c18bd560d64165265a0a953"
+  integrity sha512-KsVcyzpqzwdtSTQy+C2QhV5sivhAL836Dmv/kkIcYgnLYJ85scgMU5SF6LpsIOoaE911CtGfkuvhLdnqmhSXqQ==
+
 sass@^1.69.5:
   version "1.69.5"
   resolved "https://registry.yarnpkg.com/sass/-/sass-1.69.5.tgz#23e18d1c757a35f2e52cc81871060b9ad653dfde"

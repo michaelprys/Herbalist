@@ -8,12 +8,18 @@ const sourceDir = path.join(__dirname, '../src/assets/images');
 
 async function main() {
     try {
-        const converted = await processImages(sourceDir);
-        console.log(
-            converted
-                ? '\x1b[32m- Images converted.'
-                : '\x1b[36m- Nothing to convert.'
+        const convertedDecorative = await processImages(
+            path.join(sourceDir, 'decorative')
         );
+        const convertedContent = await processImages(
+            path.join(sourceDir, 'content')
+        );
+
+        if (convertedDecorative || convertedContent) {
+            console.log('\x1b[32m- Images converted.');
+        } else {
+            console.log('\x1b[36m- Nothing to convert.');
+        }
     } catch (err) {
         console.error('\x1b[31m- Error:', err);
     }
@@ -36,13 +42,28 @@ async function processImages(dir) {
             const avifPath = path.join(dir, baseName + '.avif');
 
             try {
-                await fs.access(webpPath);
-                await fs.access(avifPath);
+                // Check only for the /content folder
+                if (dir.includes('content')) {
+                    await fs.access(webpPath);
+                    await fs.access(avifPath);
+                } else if (dir.includes('decorative')) {
+                    // Check only for the /decorative folder
+                    await fs.access(webpPath);
+                }
             } catch (err) {
                 const sharpImage = sharp(filePath);
 
-                await sharpImage.webp().toFile(webpPath);
-                await sharpImage.avif().toFile(avifPath);
+                // Convert to .webp for /decorative and /content
+                if (dir.includes('content')) {
+                    await sharpImage.webp().toFile(webpPath);
+                } else if (dir.includes('decorative')) {
+                    await sharpImage.webp().toFile(webpPath);
+                }
+
+                // Convert to .avif only for /content
+                if (dir.includes('content')) {
+                    await sharpImage.avif().toFile(avifPath);
+                }
 
                 converted = true;
             }

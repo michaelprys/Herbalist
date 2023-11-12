@@ -12,11 +12,18 @@ body {
     // }
     // background-image: url('@img/bg.jpg');
 
-    background-repeat: no-repeat;
     background-position: center;
+    background-repeat: no-repeat;
     background-size: cover;
-    background-color: #014148;
-    background-attachment: fixed;
-    scroll-snap-type: y proximity;
-    scroll-snap-points-y: repeat(100vh);
+    background-color: #194c5a;
+
+    // background-attachment: fixed;
+    // scroll-snap-type: y proximity;
+    // scroll-snap-points-y: repeat(100vh);
 }
+
+// Burger size (make mixin)
+$bar-height: 0.1875rem;
+$burger-height: calc($bar-height * 3 + $g-2 * 2);
+$bar-width: 1.875rem;
+$x-width: calc($burger-height * 1.41421356237);

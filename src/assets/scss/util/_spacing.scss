@@ -1,5 +1,6 @@
-// Padding specific values
-$p-layout: 6rem;
+// Specific values
+$spacing-common: 6rem;
+$spacing-fixed-header: calc($h-header + $spacing-common);
 
 // Padding
 $p-96: 24em;
@@ -36,9 +37,6 @@ $p-1_5: 0.25em;
 $p-1: 0.125em;
 $p-px: 0.0625em;
 $p-0: 0em;
-
-// Margin specific values
-$m-layout: 6rem;
 
 // Margin
 $m-96: 24rem;

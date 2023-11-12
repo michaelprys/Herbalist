@@ -12,6 +12,9 @@ export default defineConfig({
                 additionalData: `
                 @import '@/assets/scss/main.scss';
                 `,
+                // importer: create({
+                //     '@scss': path.join(__dirname, 'scss'),
+                // }),
             },
         },
     },

@@ -5,108 +5,97 @@
             <ItemSwiper />
         </section>
     </div>
-    <div class="section__wrapper">
-        <div class="container">
-            <section class="section section--about" id="about">
-                <h2 class="section__title">About</h2>
-                <p class="section__description">
-                    Welcome to Herbalist, your ultimate destination for
-                    exploring the enchanting world of herbal concoctions! At
-                    Herbalist, we believe in harnessing the power of nature to
-                    create delightful and nourishing experiences for your body
-                    and soul. Our passion lies in curating a collection of
-                    exquisite herbal tea, invigorating herbal drinks, and
-                    delectable herbal food recipes that not only tantalize your
-                    taste buds but also promote overall well-being.
-                </p>
-            </section>
-        </div>
-    </div>
-    <div class="section__wrapper">
-        <section class="section section--feedback">
-            <div class="container">
-                <picture>
-                    <source
-                        srcset="@img/avatar/avatar-1.avif"
-                        type="image/avif" />
-                    <source
-                        srcset="@img/avatar/avatar-1.webp"
-                        type="image/webp" />
-                    <img
-                        class="section__avatar"
-                        src="@img/avatar/avatar-1.jpg"
-                        loading="lazy"
-                        alt="avatar 1" />
-                </picture>
-            </div>
+    <!-- ./popular -->
+
+    <div class="container">
+        <section class="section section--about" id="about">
+            <h2 class="section__title">About Us</h2>
+            <p class="section--about__text">
+                Welcome to Herbalist, your ultimate destination for exploring
+                the enchanting world of herbal concoctions! At Herbalist, we
+                believe in harnessing the power of nature to create delightful
+                and nourishing experiences for your body and soul. Our passion
+                lies in curating a collection of exquisite herbal tea,
+                invigorating herbal drinks, and delectable herbal food recipes
+                that not only tantalize your taste buds but also promote overall
+                well-being.
+            </p>
         </section>
     </div>
-    <div class="section__wrapper">
+    <!-- ./about -->
+
+    <section class="section section--feedback">
         <div class="container">
-            <section class="section section--philosophy">
-                <h3 class="section__title">Our philosophy</h3>
-                <p class="section__description">
+            <div
+                class="section--feedback__avatar section--feedback__avatar--1"></div>
+            <div class="section--feedback__overlay"></div>
+        </div>
+    </section>
+    <!-- ./feedback -->
+
+    <div class="container">
+        <section class="section section--philosophy">
+            <h3 class="section__title">Our Philosophy</h3>
+            <div class="wrapper-content">
+                <p class="section--philosophy__text">
                     Herbalist is rooted in the belief that nature provides us
                     with an abundance of healing herbs and botanicals that can
                     be artfully combined to create beverages and dishes that are
                     both delicious and healthful. We strive to celebrate the
                     bountiful gifts of the earth by sharing recipes that embrace
-                    the holistic benefits of herbs, fostering a harmonious
-                    balance between flavor and wellness.
+                    the holistic benefits of herbs. Our mission is to inspire a
+                    deeper connection with the natural world, promoting
+                    well-being through the transformative power of plant-based
+                    recipes. living.
                 </p>
-            </section>
-        </div>
-    </div>
-    <div class="section__wrapper">
-        <section class="section section--feedback">
-            <div class="container">
-                <picture>
-                    <source
-                        srcset="@img/avatar/avatar-3.avif"
-                        type="image/avif" />
-                    <source
-                        srcset="@img/avatar/avatar-3.webp"
-                        type="image/webp" />
-                    <img
-                        class="section__avatar"
-                        src="@img/avatar/avatar-3.jpg"
-                        loading="lazy"
-                        alt="avatar 3" />
-                </picture>
+                <div class="section--philosophy__img"></div>
             </div>
         </section>
     </div>
-    <div class="section__wrapper">
+    <!-- ./philosophy -->
+
+    <section class="section section--feedback">
         <div class="container">
-            <section class="section section--sets-us">
-                <h3 class="section__title">What sets us apart</h3>
-                <ul class="section__description">
-                    <li class="section__description-item">
-                        <i>Quality Ingredients</i>: We source the finest herbs
-                        and botanicals to ensure the highest quality in every
-                        recipe. Our commitment to excellence begins with the
-                        selection of premium ingredients that reflect our
-                        dedication to your well-being.
+            <div
+                class="section--feedback__avatar section--feedback__avatar--2"></div>
+        </div>
+    </section>
+    <!-- ./feedback -->
+
+    <div class="container">
+        <section class="section section--apart">
+            <h3 class="section__title">What Sets Us Apart</h3>
+            <div class="wrapper-content">
+                <div class="section--apart__img"></div>
+                <ul class="section--apart__list">
+                    <li class="section--apart__item">
+                        <strong>Quality Ingredients</strong>: We source the
+                        finest herbs and botanicals to ensure the highest
+                        quality in every recipe. Our commitment to excellence
+                        begins with the selection of premium ingredients that
+                        reflect our dedication to your well-being.
                     </li>
-                    <li class="section__description-item">
-                        <i>Expertly Curated Recipes</i>: Our team of experienced
-                        herbalists and chefs work in harmony to bring you
-                        recipes that not only taste exceptional but also harness
-                        the natural healing properties of herbs. Each creation
-                        is a testament to our passion for herbalism and culinary
-                        artistry.
+                    <li class="section--apart__item">
+                        <strong>Expertly Curated Recipes</strong>: Our team of
+                        experienced herbalists and chefs work in harmony to
+                        bring you recipes that not only taste exceptional but
+                        also harness the natural healing properties of herbs.
+                        Each creation is a testament to our passion for
+                        herbalism and culinary artistry.
                     </li>
-                    <li class="section__description-item">
-                        <i>Wellness and Flavor Fusion</i>: At Herbalist, we
-                        believe that wellness and flavor should go hand in hand.
-                        Our recipes are designed to not only satisfy your taste
-                        buds but also provide an array of health benefits,
-                        making every sip and bite a holistic experience.
+                    <li class="section--apart__item">
+                        <strong>Wellness and Flavor Fusion</strong>: At
+                        Herbalist, we believe that wellness and flavor should go
+                        hand in hand. Our recipes are designed to not only
+                        satisfy your taste buds but also provide an array of
+                        health benefits, making every sip and bite a holistic
+                        experience.
                     </li>
                 </ul>
-            </section>
-        </div>
+            </div>
+        </section>
     </div>
+    <!-- ./apart -->
 </template>
 
 <script setup>
@@ -114,50 +103,139 @@ import ItemSwiper from '@/component/ItemSwiper.vue';
 </script>
 
 <style lang="scss">
+.wrapper-content {
+    display: flex;
+    align-items: top;
+    margin-top: $m-12;
+    gap: $g-16;
+}
+
 .section {
-    padding-block: $p-layout;
-    padding-inline: $p-12;
-    scroll-behavior: smooth;
+    padding-block: $spacing-common;
     &__title {
-        text-shadow: $dc-shadow-dark;
+        // text-shadow: $dc-shadow-dark;
         font-size: $fs-lg;
     }
-    &__description {
-        font-family: $ff-primary;
-        font-size: $fs-h6;
-        margin-top: $m-8;
-        &:nth-child(n + 5) {
-            margin-left: $m-12;
-        }
-    }
-    &__description-item {
-        margin-top: $m-5;
-        list-style: circle;
-    }
-    &__avatar {
-        width: 240px;
-        height: 240px;
-        border-radius: $br-circle;
-        object-fit: cover;
+}
+
+.section--about {
+    &__text {
+        font-size: $fs-h5;
+        line-height: 2;
+        margin-top: $m-10;
     }
 }
 
 .section--popular {
-    margin-top: calc($h-header);
+    padding-top: $p-0;
 }
 
 .section--feedback {
-    display: flex;
-    justify-content: start;
-    gap: $g-16;
-    min-height: $h-6;
-    padding-block: $p-16;
-    background-color: #54ecc4;
+    background-color: #ddf2ed;
+    &__overlay {
+        @include bg;
+        background-image: url('@img/decor/feedback/overlay.jpg');
+    }
+    &__avatar {
+        @include bg;
+        width: 240px;
+        height: 240px;
+        border-radius: $br-circle;
+
+        &--1 {
+            // @supports (
+            //     background-image: url('@img/decor/feedback/avatar/avatar-1.webp')
+            // ) {
+            //     background-image: url('@img/decor/feedback/avatar/avatar-1.webp');
+            // }
+            background-color: $c-placeholder;
+            background-image: url('@img/decor/feedback/avatar/avatar-1.jpg');
+        }
+        &--2 {
+            // @supports (
+            //     background-image: url('@img/decor/feedback/avatar/avatar-1.webp')
+            // ) {
+            //     background-image: url('@img/decor/feedback/avatar/avatar-1.webp');
+            // }
+            background-color: $c-placeholder;
+            background-image: url('@img/decor/feedback/avatar/avatar-1.jpg');
+        }
+    }
 }
 
-@media (width <= $screen-lg) {
-    .section--feedback {
-        flex-wrap: wrap;
+.section--philosophy {
+    &__img {
+        @include bg;
+        width: 400px;
+        height: 400px;
+        display: block;
+        border-radius: $br-6;
+        background-color: $c-placeholder;
+        background-image: url('@img/decor/section/philosophy/philosophy.jpg');
+    }
+    &__text {
+        font-size: $fs-h5;
+        line-height: 2;
+    }
+}
+
+.section--apart {
+    &__img {
+        @include bg;
+        width: 700px;
+        height: 400px;
+        display: block;
+        border-radius: $br-6;
+        background-color: $c-placeholder;
+        background-image: url('@img/decor/section/apart/apart.jpg');
+    }
+    &__list {
+        font-size: $fs-h5;
+        line-height: 2;
+    }
+    &__item {
+        margin-top: $m-6;
+        &:first-child {
+            margin-top: $m-0;
+        }
+        position: relative;
+        padding-left: $p-7;
+        &::before {
+            position: absolute;
+            content: '';
+            padding: calc($p-1_5 + 0.125rem);
+            border-radius: $br-circle;
+            background-color: $c-white;
+            top: 0.75rem;
+            left: 0;
+        }
+    }
+}
+
+//* media
+@media (width <= $screen-xxl) {
+    .wrapper-content {
+        flex-direction: column;
+    }
+
+    .section--philosophy,
+    .section--apart {
+        &__img {
+            margin-inline: auto;
+            max-width: 600px;
+            width: 100%;
+        }
+    }
+}
+@media (width <= $screen-md) {
+    .section__title {
+        font-size: $fs-h1;
+    }
+    .section--philosophy,
+    .section--apart {
+        &__img {
+            height: 300px;
+        }
     }
 }
 </style>

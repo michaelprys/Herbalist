@@ -41,3 +41,10 @@
     outline: none;
     transition: $tr-basic;
 }
+
+@mixin bg {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    flex-shrink: 0;
+}
