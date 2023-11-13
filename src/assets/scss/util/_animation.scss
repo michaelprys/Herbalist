@@ -11,9 +11,9 @@ $duration-75: 75ms;
 $duration-0: 0s;
 
 // Transition
-$tr-basic: all $duration-300 ease-in-out;
+$tr-basic: $duration-300 ease-in-out;
 $tr-smooth: $duration-200 cubic-bezier(0.55, 0.085, 0.68, 0.53);
-$tr-fast: all $duration-100 ease-in-out;
+$tr-fast: $duration-100 ease-in-out;
 $tr-button: $duration-200;
 $tr-carousel: cubic-bezier(0.22, 0.61, 0.36, 1);
 

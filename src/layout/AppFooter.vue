@@ -46,12 +46,12 @@
     flex-wrap: wrap;
     align-items: center;
     min-height: $h-32;
-    font-size: $fs-base;
     padding-inline: $p-16;
     background-color: rgba($c-grey-800, 0.98);
     &__info-item {
         padding-inline: $p-5;
         border-right: $bw-px solid $c-white;
+        font-size: $fs-base;
         &:first-child {
             padding-top: $p-0;
         }
@@ -82,17 +82,29 @@
     }
 }
 
-@media (width <= $screen-xl) {
+@media (width <= $screen-lg) {
     .footer {
         padding-inline: calc($p-16 - 2rem);
         &__info-item {
             border-right: $none;
             padding: $p-0;
             display: flex;
-            font-size: $fs-base;
+            font-size: $fs-medium;
             &:last-child {
                 padding-top: $p-2;
             }
+        }
+    }
+}
+
+@media (width <= $screen-sm) {
+    .footer {
+        &__link {
+            padding: $p-2;
+        }
+        &__icon {
+            width: $w-5;
+            height: $h-5;
         }
     }
 }

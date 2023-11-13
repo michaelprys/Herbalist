@@ -70,7 +70,7 @@ onMounted(() => {
         flex-direction: column;
         justify-content: flex-start;
         border-radius: $br-6;
-        box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.2);
+        box-shadow: $dc-shadow-card
         cursor: pointer;
         background-color: $c-white;
         transition: 0.3s;

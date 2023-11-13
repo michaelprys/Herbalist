@@ -1,6 +1,7 @@
 //& font-family
 $ff-primary: 'Century Gothic W05 Regular';
 $ff-secondary: 'Spectral SC';
+$ff-italic: 'Libre Baskerville';
 
 //& font-weight
 $fw-bold: 800;
@@ -27,7 +28,7 @@ $fs-h5: 1.25rem;
 $fs-h6: 1.125rem;
 
 // Smaller than heading
-$fs-base: 100%;
+$fs-base: 1rem;
 $fs-medium: 0.9375rem;
 $fs-small: 0.875rem;
 $fs-smaller: 0.8125rem;

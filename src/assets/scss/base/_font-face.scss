@@ -2,7 +2,7 @@
     font-display: swap;
     font-family: 'Spectral SC';
     font-style: normal;
-    font-weight: $fw-regular;
+    font-weight: 400;
     src: url('@fonts/spectral-sc-v12-latin-regular.woff2') format('woff2');
 }
 
@@ -10,6 +10,14 @@
     font-display: swap;
     font-family: 'Century Gothic W05 Regular';
     font-style: normal;
-    font-weight: $fw-regular;
+    font-weight: 400;
     src: url('@fonts/Century Gothic W05 Regular.woff2') format('woff2');
+}
+
+@font-face {
+    font-display: swap;
+    font-family: 'Libre Baskerville';
+    font-style: italic;
+    font-weight: 400;
+    src: url('@fonts/libre-baskerville-v14-latin-italic.woff2') format('woff2');
 }
