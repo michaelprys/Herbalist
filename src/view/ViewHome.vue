@@ -1,10 +1,12 @@
 <template>
-    <div class="container">
-        <section class="section section--popular">
-            <h1 class="section__title">Popular recipes</h1>
+    <section class="section section--popular">
+        <div class="section--popular__container-slider">
+            <h1 class="section__title section__title--popular">
+                Popular recipes
+            </h1>
             <ItemSwiper />
-        </section>
-    </div>
+        </div>
+    </section>
     <!-- ./popular -->
 
     <div class="container">
@@ -25,57 +27,60 @@
     <!-- ./about -->
 
     <section class="section section--feedback">
-        <div class="container">
-            <Splide class="slider" :options="options">
-                <SplideSlide class="slider__slide"
-                    ><div class="section--feedback__wrapper">
-                        <div
-                            class="section--feedback__avatar section--feedback__avatar--1"></div>
-                        <div class="section--feedback__content">
-                            <blockquote class="section--feedback__quote">
-                                "These recipes have proven to be transformative
-                                for individuals, contributing to their
-                                well-being in profound ways."
-                            </blockquote>
-                            <span class="section--feedback__name"
-                                >Maija Ahnger, Herbalist
-                            </span>
+        <div class="section--feedback__bg-wrapper">
+            <div class="section--feedback__bg"></div>
+            <div class="container">
+                <Splide class="section--feedback__slider" :options="options">
+                    <SplideSlide class="section--feedback__slide"
+                        ><div class="section--feedback__wrapper">
+                            <div
+                                class="section--feedback__avatar section--feedback__avatar--1"></div>
+                            <div class="section--feedback__content">
+                                <blockquote class="section--feedback__quote">
+                                    "These recipes have proven to be
+                                    transformative for individuals, contributing
+                                    to their well-being in profound ways."
+                                </blockquote>
+                                <span class="section--feedback__name"
+                                    >Maija Ahnger, Herbalist
+                                </span>
+                            </div>
                         </div>
-                    </div>
-                </SplideSlide>
-                <SplideSlide class="slider__slide"
-                    ><div class="section--feedback__wrapper">
-                        <div
-                            class="section--feedback__avatar section--feedback__avatar--2"></div>
-                        <div class="section--feedback__content">
-                            <blockquote class="section--feedback__quote">
-                                "Explore adaptogenic herbs like ashwagandha or
-                                rhodiola to help your body adapt to stress and
-                                promote overall balance."
-                            </blockquote>
-                            <span class="section--feedback__name"
-                                >Akari Fujimura, Naturopath
-                            </span>
+                    </SplideSlide>
+                    <SplideSlide class="section--feedback__slide"
+                        ><div class="section--feedback__wrapper">
+                            <div
+                                class="section--feedback__avatar section--feedback__avatar--2"></div>
+                            <div class="section--feedback__content">
+                                <blockquote class="section--feedback__quote">
+                                    "Explore adaptogenic herbs like ashwagandha
+                                    or rhodiola to help your body adapt to
+                                    stress and promote overall balance."
+                                </blockquote>
+                                <span class="section--feedback__name"
+                                    >Akari Fujimura, Naturopath
+                                </span>
+                            </div>
                         </div>
-                    </div>
-                </SplideSlide>
-                <SplideSlide class="slider__slide"
-                    ><div class="section--feedback__wrapper">
-                        <div
-                            class="section--feedback__avatar section--feedback__avatar--3"></div>
-                        <div class="section--feedback__content">
-                            <blockquote class="section--feedback__quote">
-                                "Consider calendula salves or creams for skin
-                                irritations and minor wounds due to its soothing
-                                and healing properties."
-                            </blockquote>
-                            <span class="section--feedback__name"
-                                >Yu Ming, Herbalist
-                            </span>
+                    </SplideSlide>
+                    <SplideSlide class="section--feedback__slide"
+                        ><div class="section--feedback__wrapper">
+                            <div
+                                class="section--feedback__avatar section--feedback__avatar--3"></div>
+                            <div class="section--feedback__content">
+                                <blockquote class="section--feedback__quote">
+                                    "Consider calendula salves or creams for
+                                    skin irritations and minor wounds due to its
+                                    soothing and healing properties."
+                                </blockquote>
+                                <span class="section--feedback__name"
+                                    >Yu Ming, Herbalist
+                                </span>
+                            </div>
                         </div>
-                    </div>
-                </SplideSlide>
-            </Splide>
+                    </SplideSlide>
+                </Splide>
+            </div>
         </div>
     </section>
     <!-- ./feedback -->
@@ -107,7 +112,7 @@
                 <h3 class="section__title section__title--herb-notes">
                     Herb Notes
                 </h3>
-                <div class="wrapper-content">
+                <div class="wrapper-content wrapper-content--herb-notes">
                     <div class="section--herb-notes__wrapper">
                         <div
                             class="section--herb-notes__wrapper-img section--herb-notes__wrapper-img--1">
@@ -230,6 +235,7 @@
 </template>
 
 <script setup>
+import ItemSwiper from '@/component/ItemSwiper.vue';
 import { Splide, SplideSlide } from '@splidejs/vue-splide';
 
 const options = {
@@ -238,6 +244,7 @@ const options = {
     gap: '2.5rem',
     easing: 'cubic-bezier(0.645, 0.045, 0.355, 1)',
     type: 'loop',
+    pagination: false,
     // autoplay: true,
     interval: 6000,
 };
@@ -252,16 +259,32 @@ const options = {
     margin-top: $m-10;
     gap: $g-16;
     margin-inline: auto;
-    // max-width: 75rem;
+    &--herb-notes {
+        padding-inline: $p-20;
+    }
 }
 
 .section {
     padding-block: $spacing-common;
+    padding-bottom: $p-32;
     &__title {
         font-size: $fs-lg;
     }
-    &__title--herb-notes {
+    &__title--herb-notes,
+    &__title--popular {
         text-shadow: $dc-shadow-dark;
+    }
+}
+
+.section--popular {
+    @include bg;
+    padding-top: calc($spacing-fixed-header + $p-16);
+    padding-bottom: $p-28;
+    background-image: url('@img/decor/section/popular/bg.jpg');
+    &__container-slider {
+        max-width: $screen-xl;
+        margin-inline: auto;
+        padding-inline: $p-6;
     }
 }
 
@@ -272,19 +295,36 @@ const options = {
     }
 }
 
-.section--popular {
-    padding-top: $p-0;
-}
-
 .section--feedback {
-    padding-block: 0;
     display: flex;
-    background-color: #e8eeee;
     user-select: none;
+    padding-block: $p-0;
+    background-color: #e8eeee;
+    &__slider {
+        display: flex;
+    }
+    &__slide {
+        padding-block: $p-9;
+    }
     &__wrapper {
         display: flex;
         align-items: center;
         gap: $g-10;
+    }
+    &__bg-wrapper {
+        position: relative;
+        margin-inline: auto;
+        width: 100%;
+        height: 100%;
+    }
+    &__bg {
+        @include bg;
+        opacity: 12%;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+
+        background-image: url('@img/decor/section/popular/bg.jpg');
     }
     &__avatar {
         @include bg;
@@ -293,30 +333,30 @@ const options = {
         border-radius: $br-circle;
         &--1 {
             // @supports (
-            //     background-image: url('@img/decor/section/feedback/avatar/avatar-1.webp')
+            //     background-image: url('@img/decor/section/feedback/avatar-1.webp')
             // ) {
-            //     background-image: url('@img/decor/section/feedback/avatar/avatar-1.webp');
+            //     background-image: url('@img/decor/section/feedback/avatar-1.webp');
             // }
             background-color: $c-placeholder;
-            background-image: url('@img/decor/section/feedback/avatar/avatar-1.jpg');
+            background-image: url('@img/decor/section/feedback/avatar-1.jpg');
         }
         &--2 {
             // @supports (
-            //     background-image: url('@img/decor/section/feedback/avatar/avatar-2.webp')
+            //     background-image: url('@img/decor/section/feedback/avatar-2.webp')
             // ) {
-            //     background-image: url('@img/decor/section/feedback/avatar/avatar-2.webp');
+            //     background-image: url('@img/decor/section/feedback/avatar-2.webp');
             // }
             background-color: $c-placeholder;
-            background-image: url('@img/decor/section/feedback/avatar/avatar-2.jpg');
+            background-image: url('@img/decor/section/feedback/avatar-2.jpg');
         }
         &--3 {
             // @supports (
-            //     background-image: url('@img/decor/section/feedback/avatar/avatar-3.webp')
+            //     background-image: url('@img/decor/section/feedback/avatar-3.webp')
             // ) {
-            //     background-image: url('@img/decor/section/feedback/avatar/avatar-3.webp');
+            //     background-image: url('@img/decor/section/feedback/avatar-3.webp');
             // }
             background-color: $c-placeholder;
-            background-image: url('@img/decor/section/feedback/avatar/avatar-3.jpg');
+            background-image: url('@img/decor/section/feedback/avatar-3.jpg');
         }
     }
     &__quote,
@@ -334,7 +374,7 @@ const options = {
             width: $w-16;
             top: 100%;
             margin-top: $m-3_5;
-            background-color: $c-pink;
+            background-color: darken($c-pink, 10%);
         }
     }
     &__name {
@@ -390,7 +430,6 @@ const options = {
         color: $c-grey-800;
     }
     &__text {
-        font-size: $fs-h6;
         text-align: justify;
         margin-top: $m-2;
         line-height: 2;
@@ -433,8 +472,8 @@ const options = {
         transition: opacity 0.4s ease-in-out;
         background-image: linear-gradient(
             to right,
-            rgba(#ddd6f3, 0.52),
-            rgba(#faaca8, 0.73)
+            rgba(#d6e4f3, 0.52),
+            rgba(#fad9a8, 0.73)
         );
         &:hover {
             opacity: 1;
@@ -445,7 +484,7 @@ const options = {
         padding-block: $p-3;
         padding-inline: $p-4;
         border-radius: $br-full;
-        color: rgba(118, 49, 56, 0.854);
+        color: rgba(0, 0, 0, 0.854);
         font-weight: 800;
         background-color: rgba($c-white, 70%);
         transition: background-color 0.4s ease-in-out;
@@ -488,15 +527,7 @@ const options = {
     }
 }
 
-// slider
-.slider {
-    display: flex;
-    &__slide {
-        padding-block: $p-12;
-    }
-}
-
-//& media
+//& media - section
 @media (width <= $screen-xxl) {
     .wrapper-content {
         flex-direction: column;
@@ -537,26 +568,59 @@ const options = {
             }
         }
     }
+    .wrapper-content {
+        padding-inline: $p-8;
+    }
 }
 @media (width <= $screen-md) {
-    .section__title {
-        font-size: $fs-h1;
-    }
     .section--philosophy,
     .section--apart {
         &__img {
             height: 260px;
         }
     }
-
     .section--herb-notes {
-        margin-inline: auto;
         &__img--1,
         &__img--2 {
             max-width: 800px;
             width: 100%;
-            height: 250px;
+            height: 320px;
         }
+    }
+}
+@media (width <= $screen-sm) {
+    .section__title {
+        font-size: $fs-h1;
+    }
+    .wrapper-content {
+        padding-inline: 0;
+    }
+    .section--herb-notes {
+        padding-inline: $p-8;
+    }
+}
+
+//& media - slider
+@media (width <= $screen-xl) {
+    .section--popular__container-slider {
+        width: $w-full;
+        max-width: $container-md;
+    }
+}
+@media (width <= $screen-xl) {
+    .section--popular__container-slider {
+        padding-inline: $p-12;
+    }
+}
+@media (width <= $screen-md) {
+    .section--popular__container-slider {
+        max-width: $container-sm;
+    }
+}
+@media (width <= $screen-md) {
+    .splide__track {
+        max-width: 26rem;
+        margin-inline: auto;
     }
 }
 </style>

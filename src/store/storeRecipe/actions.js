@@ -3,7 +3,8 @@ export const actions = {
         try {
             this.pending = true;
             const res = await fetch(
-                `/api/recipe?keyword=${encodeURIComponent(keyword)}`
+                // `/api/recipe?keyword=${encodeURIComponent(keyword)}`
+                `/api/recipe`
             );
             if (res.ok) {
                 const data = await res.json();

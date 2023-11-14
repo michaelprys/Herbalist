@@ -36,7 +36,7 @@ const options = {
         801: {
             perPage: 2,
         },
-        1040: {
+        1280: {
             perPage: 3,
         },
     },
@@ -51,18 +51,13 @@ onMounted(async () => {
 <style lang="scss">
 @import '@splidejs/vue-splide/css/core';
 
-.splide__track {
-    padding-inline: 1rem;
-    margin-inline: auto;
-}
-
 .splide__pagination {
-    margin-top: $p-4;
+    padding-top: $p-6;
 }
 
 .splide__pagination__page {
     margin-right: $m-2_5;
-    padding: $p-2_5;
+    padding: $p-3;
     border-radius: $br-full;
     background-color: $c-white;
     opacity: $op-30;
@@ -72,12 +67,6 @@ onMounted(async () => {
     }
     &.is-active {
         opacity: $op-80;
-    }
-}
-
-@media (width <= $screen-md) {
-    .splide__track {
-        max-width: 26rem;
     }
 }
 </style>

@@ -1,6 +1,6 @@
 // Specific values
 $spacing-common: 6rem;
-$spacing-fixed-header: calc($h-header + $spacing-common);
+$spacing-fixed-header: $h-header;
 
 // Padding
 $p-96: 24em;

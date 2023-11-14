@@ -1,5 +1,5 @@
 <template>
-    <main class="general-wrapper">
+    <main>
         <RouterView />
         <!-- <RouterView #="{ Component }"> -->
         <!-- <transition mode="out-in" name="fade"> -->
@@ -10,11 +10,6 @@
 </template>
 
 <style lang="scss">
-.general-wrapper {
-    min-height: 100vh;
-    margin-top: $spacing-fixed-header;
-}
-
 // .fade-enter-from,
 // .fade-leave-to {
 //     opacity: $op-0;
