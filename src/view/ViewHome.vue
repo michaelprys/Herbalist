@@ -1,30 +1,24 @@
 <template>
-    <section class="section section--popular">
+    <section class="section section--intro" id="intro">
+        <div class="container">
+            <h2 class="section--intro__suptitle">
+                —&nbsp Revitalize, Nourish, Thrive &nbsp—
+            </h2>
+            <h1 class="section--intro__title">Welcome to Herbalist</h1>
+            <a class="section--intro__link" href="#popular">
+                <button class="section--intro__button">Popular recipes</button>
+            </a>
+        </div>
+    </section>
+    <section class="section section--popular" id="popular">
         <div class="section--popular__container-slider">
-            <h1 class="section__title section__title--popular">
+            <h2 class="section__title section__title--popular">
                 Popular recipes
-            </h1>
-            <ItemSwiper />
+            </h2>
+            <ItemSwiper class="section--popular__slider" />
         </div>
     </section>
     <!-- ./popular -->
-
-    <div class="container">
-        <section class="section section--about" id="about">
-            <h2 class="section__title">About Us</h2>
-            <p class="section--about__text">
-                Welcome to Herbalist, your ultimate destination for exploring
-                the enchanting world of herbal concoctions! At Herbalist, we
-                believe in harnessing the power of nature to create delightful
-                and nourishing experiences for your body and soul. Our passion
-                lies in curating a collection of exquisite herbal tea,
-                invigorating herbal drinks, and delectable herbal food recipes
-                that not only tantalize your taste buds but also promote overall
-                well-being.
-            </p>
-        </section>
-    </div>
-    <!-- ./about -->
 
     <section class="section section--feedback">
         <div class="section--feedback__bg-wrapper">
@@ -86,7 +80,7 @@
     <!-- ./feedback -->
 
     <div class="container">
-        <section class="section section--philosophy">
+        <section class="section section--philosophy" id="philosophy">
             <h3 class="section__title">Our Philosophy</h3>
             <div class="wrapper-content">
                 <p class="section--philosophy__text">
@@ -197,38 +191,48 @@
 
     <div class="container">
         <section class="section section--apart">
-            <div class="section--apart__wrapper">
-                <h3 class="section__title">What Sets Us Apart</h3>
-                <div class="wrapper-content">
-                    <div class="section--apart__img"></div>
-                    <ul class="section--apart__list">
-                        <li class="section--apart__item">
-                            <strong>Quality Ingredients</strong>: We source the
-                            finest herbs and botanicals to ensure the highest
-                            quality in every recipe. Our commitment to
-                            excellence begins with the selection of premium
-                            ingredients that reflect our dedication to your
-                            well-being.
-                        </li>
-                        <li class="section--apart__item">
-                            <strong>Expertly Curated Recipes</strong>: Our team
-                            of experienced herbalists and chefs work in harmony
-                            to bring you recipes that not only taste exceptional
-                            but also harness the natural healing properties of
-                            herbs. Each creation is a testament to our passion
-                            for herbalism and culinary artistry.
-                        </li>
-                        <li class="section--apart__item">
-                            <strong>Wellness and Flavor Fusion</strong>: At
-                            Herbalist, we believe that wellness and flavor
-                            should go hand in hand. Our recipes are designed to
-                            not only satisfy your taste buds but also provide an
-                            array of health benefits, making every sip and bite
-                            a holistic experience.
-                        </li>
-                    </ul>
-                </div>
+            <h3 class="section__title">What Sets Us Apart</h3>
+            <div class="wrapper-content">
+                <div class="section--apart__img"></div>
+                <ul class="section--apart__list">
+                    <li class="section--apart__item">
+                        <strong>Quality Ingredients</strong>: We source the
+                        finest herbs and botanicals to ensure the highest
+                        quality in every recipe. Our commitment to excellence
+                        begins with the selection of premium ingredients that
+                        reflect our dedication to your well-being.
+                    </li>
+                    <li class="section--apart__item">
+                        <strong>Expertly Curated Recipes</strong>: Our team of
+                        experienced herbalists and chefs work in harmony to
+                        bring you recipes that not only taste exceptional but
+                        also harness the natural healing properties of herbs.
+                        Each creation is a testament to our passion for
+                        herbalism and culinary artistry.
+                    </li>
+                    <li class="section--apart__item">
+                        <strong>Wellness and Flavor Fusion</strong>: At
+                        Herbalist, we believe that wellness and flavor should go
+                        hand in hand. Our recipes are designed to not only
+                        satisfy your taste buds but also provide an array of
+                        health benefits, making every sip and bite a holistic
+                        experience.
+                    </li>
+                </ul>
             </div>
+            <a href="#intro">
+                <svg
+                    class="section--apart__icon"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="3rem"
+                    height="3rem"
+                    viewBox="0 0 24 24">
+                    <path
+                        d="m6.293 11.293 1.414 1.414L12 8.414l4.293 4.293 1.414-1.414L12 5.586z"></path>
+                    <path
+                        d="m6.293 16.293 1.414 1.414L12 13.414l4.293 4.293 1.414-1.414L12 10.586z"></path>
+                </svg>
+            </a>
         </section>
     </div>
     <!-- ./apart -->
@@ -266,7 +270,7 @@ const options = {
 
 .section {
     padding-block: $spacing-common;
-    padding-bottom: $p-32;
+    // padding-bottom: $p-32;
     &__title {
         font-size: $fs-lg;
     }
@@ -276,15 +280,61 @@ const options = {
     }
 }
 
-.section--popular {
+.section--intro {
     @include bg;
     padding-top: calc($spacing-fixed-header + $p-16);
     padding-bottom: $p-28;
-    background-image: url('@img/decor/section/popular/bg.jpg');
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    position: relative;
+    background-image: url('@img/decor/section/intro/bg.jpg');
+    &__suptitle {
+        font-size: $fs-h5;
+        font-family: $ff-tertiary;
+        text-align: center;
+        text-transform: uppercase;
+    }
+    &__title {
+        font-size: 8rem;
+        font-family: $ff-intro;
+        text-align: center;
+        padding-bottom: $p-3_5;
+        line-height: 1.4;
+    }
+    &__button {
+        position: absolute;
+        bottom: 8rem;
+        left: 50%;
+        transform: $translateX-half-neg;
+        padding-block: $p-4;
+        padding-inline: $p-8;
+        border-radius: $br-2;
+        text-transform: uppercase;
+        color: $c-grey-500;
+        font-size: $fs-medium;
+        transition: $tr-basic;
+        background-color: lighten($c-grey-50, 13%);
+        color: $c-grey-900;
+        font-family: $ff-tertiary;
+        &:hover {
+            background-color: #edeeac;
+        }
+    }
+}
+
+.section--popular {
+    min-height: 100vh;
+    @include bg;
+    // background-image: url('@img/decor/section/popular/bg.jpg');
     &__container-slider {
         max-width: $screen-xl;
         margin-inline: auto;
         padding-inline: $p-6;
+    }
+    &__slider {
+        margin-top: $m-6;
     }
 }
 
@@ -299,7 +349,7 @@ const options = {
     display: flex;
     user-select: none;
     padding-block: $p-0;
-    background-color: #e8eeee;
+    background-color: #ebf1f1;
     &__slider {
         display: flex;
     }
@@ -323,7 +373,6 @@ const options = {
         width: 100%;
         height: 100%;
         position: absolute;
-
         background-image: url('@img/decor/section/popular/bg.jpg');
     }
     &__avatar {
@@ -362,11 +411,11 @@ const options = {
     &__quote,
     &__name {
         color: $c-grey-500;
+        font-size: $fs-h5;
         font-style: italic;
     }
     &__quote {
         position: relative;
-        font-family: $ff-italic;
         &::after {
             position: absolute;
             content: '';
@@ -380,7 +429,6 @@ const options = {
     &__name {
         display: block;
         margin-top: $m-7;
-        font-family: $ff-italic;
     }
 }
 
@@ -401,6 +449,8 @@ const options = {
 }
 
 .section--herb-notes {
+    min-height: 100vh;
+
     &__wrapper {
         display: flex;
         flex-direction: column;
@@ -495,6 +545,9 @@ const options = {
 }
 
 .section--apart {
+    position: relative;
+    min-height: 100vh;
+
     &__img {
         @include bg;
         width: 400px;
@@ -507,6 +560,7 @@ const options = {
     }
     &__list {
         line-height: 2;
+        margin-bottom: 11rem;
     }
     &__item {
         margin-top: $m-6;
@@ -525,10 +579,34 @@ const options = {
             left: 0;
         }
     }
+    &__icon {
+        fill: $c-white;
+        position: absolute;
+        left: 50%;
+        bottom: 8%;
+        transform: $translateX-half-neg;
+        border: 2px solid $c-white;
+        padding: 0.1875rem;
+        border-radius: $br-circle;
+        opacity: $op-80;
+        transition: $tr-smooth;
+        cursor: pointer;
+        &:hover {
+            opacity: $op-100;
+        }
+    }
 }
 
 //& media - section
 @media (width <= $screen-xxl) {
+    .section--intro {
+        &__suptitle {
+            font-size: $fs-h6;
+        }
+        &__title {
+            font-size: 7rem;
+        }
+    }
     .wrapper-content {
         flex-direction: column;
     }
@@ -553,6 +631,18 @@ const options = {
     }
 }
 @media (width <= $screen-lg) {
+    .section--intro {
+        &__suptitle {
+            font-size: $fs-base;
+        }
+        &__title {
+            font-size: 5rem;
+        }
+        &__button {
+            padding-block: $p-3;
+            padding-inline: $p-5;
+        }
+    }
     .section--feedback {
         &__wrapper {
             flex-direction: column;
@@ -568,15 +658,39 @@ const options = {
             }
         }
     }
+    .section--philosophy,
+    .section--apart {
+        &__img {
+            max-width: 500px;
+            width: 100%;
+            height: 380px;
+        }
+    }
+    .section--apart {
+        &__list {
+            margin-bottom: 8rem;
+        }
+        &__icon {
+            bottom: 5%;
+        }
+    }
     .wrapper-content {
         padding-inline: $p-8;
     }
 }
 @media (width <= $screen-md) {
+    .section--intro {
+        &__suptitle {
+            font-size: 0.85rem;
+        }
+        &__title {
+            font-size: 4rem;
+        }
+    }
     .section--philosophy,
     .section--apart {
         &__img {
-            height: 260px;
+            max-width: 450px;
         }
     }
     .section--herb-notes {
@@ -594,6 +708,14 @@ const options = {
     }
     .wrapper-content {
         padding-inline: 0;
+        gap: $g-12;
+    }
+    .section--philosophy,
+    .section--apart {
+        &__img {
+            max-width: 350px;
+            height: 300px;
+        }
     }
     .section--herb-notes {
         padding-inline: $p-8;

@@ -1,10 +1,7 @@
 <template>
-    <Splide class="splide__track" :options="options" :has-track="false">
+    <Splide :options="options" :has-track="false">
         <SplideTrack>
-            <SplideSlide
-                class="splide__slide"
-                v-for="recipe in storeRecipe.data"
-                :key="recipe.id">
+            <SplideSlide v-for="recipe in storeRecipe.data" :key="recipe.id">
                 <ItemCard :data="recipe" :pending="storeRecipe.pending" />
             </SplideSlide>
         </SplideTrack>

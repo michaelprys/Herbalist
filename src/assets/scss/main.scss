@@ -1,6 +1,10 @@
 @import 'util';
 @import 'base';
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     line-height: $lh-default;
     color: $c-white;
