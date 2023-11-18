@@ -5,22 +5,23 @@
         <!-- <ItemRecipeImage :recipe="recipe" /> -->
 
         <!-- TODO: img needs to be replaced with ItemRecipeImage component -->
-        <picture>
+        <!-- <picture>
             <source :srcset="getSrcset('.avif')" type="images/avif" />
-            <source :srcset="getSrcset('.webp')" type="images/webp" />
-            <img
-                class="card__image"
-                :src="getSrc('.jpg')"
-                :alt="storeRecipe.data.alt"
-                width="15.625rem"
-                loading="lazy" />
-            <div class="card__content">
-                <h2 class="card__title">{{ storeRecipe.data.title }}</h2>
-                <p class="card__text">
-                    <!-- {{ storeRecipe.data.short_description }} -->
-                </p>
-            </div>
-        </picture>
+            <source :srcset="getSrcset('.webp')" type="images/webp" /> -->
+        <!-- <img
+            class="card__image"
+            :src="getSrc('.jpg')"
+            :alt="storeRecipe.data.alt"
+            width="15.625rem"
+            loading="lazy" /> -->
+        <img class="card__image" src="https://unsplash.it/400/150" />
+        <!-- <div class="card__content">
+            <h2 class="card__title">{{ storeRecipe.data.title }}</h2>
+            <p class="card__text">
+                {{ storeRecipe.data.short_description }}
+            </p>
+        </div> -->
+        <!-- </picture> -->
 
         <div class="recipe__details">
             <h1 class="recipe__title">Moon Tea</h1>
@@ -78,9 +79,10 @@ onMounted(() => {
 
 <style lang="scss">
 .recipe {
+    margin-top: calc($spacing-fixed-header + $p-6);
+    margin-bottom: $m-48;
     max-width: 57.5rem;
     margin-inline: $auto;
-    margin-top: $m-24;
     padding-bottom: $p-8;
     display: flex;
     flex-direction: column;
@@ -89,7 +91,6 @@ onMounted(() => {
     border-radius: $br-6;
     &__details {
         padding-inline: $p-12;
-        padding-top: $p-8;
     }
     &__img {
         width: $w-full;

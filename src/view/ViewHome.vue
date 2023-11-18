@@ -1,16 +1,19 @@
 <template>
-    <section class="section section--intro" id="intro">
+    <section class="section section--intro" id="intro" ref="introRef">
         <div class="container">
             <h2 class="section--intro__suptitle">
                 —&nbsp Revitalize, Nourish, Thrive &nbsp—
             </h2>
             <h1 class="section--intro__title">Welcome to Herbalist</h1>
-            <a class="section--intro__link" href="#popular">
-                <button class="section--intro__button">Popular recipes</button>
-            </a>
+            <button
+                class="section--intro__button"
+                @click="scrollToSection(popularRef)"
+                type="button">
+                Popular recipes
+            </button>
         </div>
     </section>
-    <section class="section section--popular" id="popular">
+    <section class="section section--popular" id="popular" ref="popularRef">
         <div class="section--popular__container-slider">
             <h2 class="section__title section__title--popular">
                 Popular recipes
@@ -24,7 +27,9 @@
         <div class="section--feedback__bg-wrapper">
             <div class="section--feedback__bg"></div>
             <div class="container">
-                <Splide class="section--feedback__slider" :options="options">
+                <Splide
+                    class="section--feedback__slider"
+                    :options="sliderOptions">
                     <SplideSlide class="section--feedback__slide"
                         ><div class="section--feedback__wrapper">
                             <div
@@ -80,7 +85,7 @@
     <!-- ./feedback -->
 
     <div class="container">
-        <section class="section section--philosophy" id="philosophy">
+        <section class="section section--philosophy" id="about">
             <h3 class="section__title">Our Philosophy</h3>
             <div class="wrapper-content">
                 <p class="section--philosophy__text">
@@ -220,7 +225,7 @@
                     </li>
                 </ul>
             </div>
-            <a href="#intro">
+            <button @click="scrollToSection(introRef)" type="button">
                 <svg
                     class="section--apart__icon"
                     xmlns="http://www.w3.org/2000/svg"
@@ -232,17 +237,18 @@
                     <path
                         d="m6.293 16.293 1.414 1.414L12 13.414l4.293 4.293 1.414-1.414L12 10.586z"></path>
                 </svg>
-            </a>
+            </button>
         </section>
     </div>
     <!-- ./apart -->
 </template>
 
 <script setup>
+import { ref } from 'vue';
 import ItemSwiper from '@/component/ItemSwiper.vue';
 import { Splide, SplideSlide } from '@splidejs/vue-splide';
 
-const options = {
+const sliderOptions = {
     arrows: false,
     flickPower: 300,
     gap: '2.5rem',
@@ -251,6 +257,13 @@ const options = {
     pagination: false,
     // autoplay: true,
     interval: 6000,
+};
+
+const popularRef = ref(null);
+const introRef = ref(null);
+
+const scrollToSection = sectionRef => {
+    sectionRef.scrollIntoView({ behavior: 'smooth' });
 };
 </script>
 
@@ -274,8 +287,7 @@ const options = {
     &__title {
         font-size: $fs-lg;
     }
-    &__title--herb-notes,
-    &__title--popular {
+    &__title--herb-notes {
         text-shadow: $dc-shadow-dark;
     }
 }

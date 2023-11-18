@@ -1,6 +1,14 @@
 <template>
-    <div class="letters">
-        <router-link class="letters__item"> </router-link>
+    <div class="container">
+        <div class="letters-wrapper">
+            <div class="letters">
+                <router-link
+                    class="letters__item"
+                    :to="{ name: recipesByLetter }"
+                    >Hello</router-link
+                >
+            </div>
+        </div>
     </div>
 </template>
 
@@ -11,13 +19,15 @@
 </script>
 
 <style lang="scss">
+.letters-wrapper {
+    min-height: 100vh;
+    padding-top: calc($spacing-fixed-header + $p-32);
+}
 .letters {
     @include bar;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    margin-top: $m-32;
-    font-weight: $fw-regular;
     &__item {
         padding-inline: $p-2;
         position: relative;

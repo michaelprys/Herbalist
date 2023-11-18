@@ -72,6 +72,8 @@ onMounted(() => {
 <style lang="scss">
 .login-wrapper {
     margin-top: $m-32;
+    min-height: 100vh;
+    padding-top: calc($spacing-fixed-header + $p-6);
 }
 .login {
     position: relative;
@@ -134,7 +136,6 @@ onMounted(() => {
     &__button {
         @include button-style($c-citrus);
         margin-block: $m-2;
-        font-weight: $fw-bold;
         border-radius: $br-full;
         background-color: $c-white;
     }

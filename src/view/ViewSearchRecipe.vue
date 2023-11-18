@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <div class="section section--search">
-            <label class="search-wrapper">
+            <label class="search__wrapper">
                 <input
                     type="text"
                     class="search__input"
@@ -63,7 +63,17 @@ const loadRecipes = async () => {
 </script>
 
 <style lang="scss">
+.section--search {
+    min-height: 100vh;
+    text-align: center;
+    padding: 0;
+    padding-top: calc($spacing-fixed-header + $p-32);
+}
+
 .search {
+    &__wrapper {
+        position: relative;
+    }
     &__input {
         @include bar;
         font-weight: $fw-bold;
@@ -121,14 +131,5 @@ const loadRecipes = async () => {
         position: absolute;
         fill: $c-grey-200;
     }
-}
-
-.section--search {
-    text-align: center;
-    padding: 0;
-}
-
-.search-wrapper {
-    position: relative;
 }
 </style>

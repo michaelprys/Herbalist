@@ -41,10 +41,11 @@
                 </ul>
                 <ul class="nav__menu">
                     <li class="nav__menu-item">
-                        <a
+                        <router-link
+                            :to="{ name: 'home' }"
                             href="#about"
                             class="nav__menu-link nav__menu-link--secondary">
-                            About</a
+                            About</router-link
                         >
                     </li>
                     <li class="nav__menu-item">
