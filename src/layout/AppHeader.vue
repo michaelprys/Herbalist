@@ -42,9 +42,8 @@
                 <ul class="nav__menu">
                     <li class="nav__menu-item">
                         <router-link
-                            :to="{ name: 'home' }"
-                            href="#about"
-                            class="nav__menu-link nav__menu-link--secondary">
+                            class="nav__menu-link nav__menu-link--secondary"
+                            :to="{ name: 'home', hash: '#about' }">
                             About</router-link
                         >
                     </li>
@@ -71,7 +70,9 @@
 </template>
 
 <script setup>
-// imports
+/*
+    imports
+*/
 import ItemBurgerMenu from '@/component/ItemBurgerMenu.vue';
 import ItemDrawer from '@/component/ItemDrawer.vue';
 import { ref, onMounted, onUnmounted } from 'vue';
@@ -103,6 +104,7 @@ router.afterEach(() => closeDrawer());
 // hide on scroll
 const hideHeader = ref(false);
 let lastScrollY = window.scrollY;
+
 const handleScroll = () => {
     if (!showDrawer.value) {
         if (lastScrollY < window.scrollY && window.scrollY >= 50) {
@@ -120,8 +122,8 @@ onMounted(() => {
     window.addEventListener('resize', handleResize);
 });
 onUnmounted(() => {
-    windowNaNpxoveEventListener('scroll', handleScroll);
-    windowNaNpxoveEventListener('resize', handleResize);
+    windowRemoveEventListener('scroll', handleScroll);
+    windowRemoveEventListener('resize', handleResize);
 });
 </script>
 

@@ -13,7 +13,7 @@
 
 <script setup>
 import { Splide, SplideSlide, SplideTrack } from '@splidejs/vue-splide';
-import { ref, onMounted } from 'vue';
+import { onMounted } from 'vue';
 import { useStoreRecipe } from '@/store/storeRecipe';
 import ItemCard from '@/component/ItemCard.vue';
 

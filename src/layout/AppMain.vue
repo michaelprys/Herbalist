@@ -2,22 +2,18 @@
     <main>
         <RouterView #="{ Component }">
             <transition mode="out-in" name="fade">
-                <component :is="Component" :key="$route.fullPath" />
+                <component :is="Component" :key="route.path" />
             </transition>
         </RouterView>
     </main>
 </template>
 
-<script setup></script>
+<script setup>
+import { useRouter } from 'vue-router';
+
+const route = useRouter();
+</script>
 
 <style lang="scss">
-.fade-enter-from,
-.fade-leave-to {
-    opacity: $op-0;
-}
-
-.fade-enter-active,
-.fade-leave-active {
-    transition: opacity 0.2s ease;
-}
+@import '../assets/scss/util/animation.scss';
 </style>

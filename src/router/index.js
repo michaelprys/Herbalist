@@ -8,10 +8,7 @@ export const router = createRouter({
         if (savedPosition) {
             return savedPosition;
         } else if (to.hash) {
-            return {
-                el: to.hash,
-                behavior: 'smooth',
-            };
+            return { el: to.hash, behavior: 'smooth' };
         } else {
             return { top: 0 };
         }

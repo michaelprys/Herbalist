@@ -2,9 +2,9 @@ export const actions = {
     async loadRecipes(keyword) {
         try {
             this.pending = true;
+            keyword ??= '';
             const res = await fetch(
-                // `/api/recipe?keyword=${encodeURIComponent(keyword)}`
-                `/api/recipe`
+                `/api/recipe?keyword=${encodeURIComponent(keyword)}`
             );
             if (res.ok) {
                 const data = await res.json();

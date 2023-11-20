@@ -1,246 +1,251 @@
 <template>
-    <section class="section section--intro" id="intro" ref="introRef">
-        <div class="container">
-            <h2 class="section--intro__suptitle">
-                —&nbsp Revitalize, Nourish, Thrive &nbsp—
-            </h2>
-            <h1 class="section--intro__title">Welcome to Herbalist</h1>
-            <button
-                class="section--intro__button"
-                @click="scrollToSection(popularRef)"
-                type="button">
-                Popular recipes
-            </button>
-        </div>
-    </section>
-    <section class="section section--popular" id="popular" ref="popularRef">
-        <div class="section--popular__container-slider">
-            <h2 class="section__title section__title--popular">
-                Popular recipes
-            </h2>
-            <ItemSwiper class="section--popular__slider" />
-        </div>
-    </section>
-    <!-- ./popular -->
-
-    <section class="section section--feedback">
-        <div class="section--feedback__bg-wrapper">
-            <div class="section--feedback__bg"></div>
+    <div class="transition-container">
+        <section class="section section--intro" id="intro">
             <div class="container">
-                <Splide
-                    class="section--feedback__slider"
-                    :options="sliderOptions">
-                    <SplideSlide class="section--feedback__slide"
-                        ><div class="section--feedback__wrapper">
-                            <div
-                                class="section--feedback__avatar section--feedback__avatar--1"></div>
-                            <div class="section--feedback__content">
-                                <blockquote class="section--feedback__quote">
-                                    "These recipes have proven to be
-                                    transformative for individuals, contributing
-                                    to their well-being in profound ways."
-                                </blockquote>
-                                <span class="section--feedback__name"
-                                    >Maija Ahnger, Herbalist
-                                </span>
-                            </div>
-                        </div>
-                    </SplideSlide>
-                    <SplideSlide class="section--feedback__slide"
-                        ><div class="section--feedback__wrapper">
-                            <div
-                                class="section--feedback__avatar section--feedback__avatar--2"></div>
-                            <div class="section--feedback__content">
-                                <blockquote class="section--feedback__quote">
-                                    "Explore adaptogenic herbs like ashwagandha
-                                    or rhodiola to help your body adapt to
-                                    stress and promote overall balance."
-                                </blockquote>
-                                <span class="section--feedback__name"
-                                    >Akari Fujimura, Naturopath
-                                </span>
-                            </div>
-                        </div>
-                    </SplideSlide>
-                    <SplideSlide class="section--feedback__slide"
-                        ><div class="section--feedback__wrapper">
-                            <div
-                                class="section--feedback__avatar section--feedback__avatar--3"></div>
-                            <div class="section--feedback__content">
-                                <blockquote class="section--feedback__quote">
-                                    "Consider calendula salves or creams for
-                                    skin irritations and minor wounds due to its
-                                    soothing and healing properties."
-                                </blockquote>
-                                <span class="section--feedback__name"
-                                    >Yu Ming, Herbalist
-                                </span>
-                            </div>
-                        </div>
-                    </SplideSlide>
-                </Splide>
-            </div>
-        </div>
-    </section>
-    <!-- ./feedback -->
-
-    <div class="container">
-        <section class="section section--philosophy" id="about">
-            <h3 class="section__title">Our Philosophy</h3>
-            <div class="wrapper-content">
-                <p class="section--philosophy__text">
-                    Herbalist is rooted in the belief that nature provides us
-                    with an abundance of healing herbs and botanicals that can
-                    be artfully combined to create beverages and dishes that are
-                    both delicious and healthful. We strive to celebrate the
-                    bountiful gifts of the earth by sharing recipes that embrace
-                    the holistic benefits of herbs. Our mission is to inspire a
-                    deeper connection with the natural world, promoting
-                    well-being through the transformative power of plant-based
-                    recipes.
-                </p>
-                <div class="section--philosophy__img"></div>
+                <h2 class="section--intro__suptitle">
+                    —&nbsp Revitalize, Nourish, Thrive &nbsp—
+                </h2>
+                <h1 class="section--intro__title">Welcome to Herbalist</h1>
+                <router-link to="#popular" class="section--intro__button">
+                    Popular recipes
+                </router-link>
             </div>
         </section>
-    </div>
-    <!-- ./philosophy -->
+        <section class="section section--popular" id="popular">
+            <div class="section--popular__container-slider">
+                <h2 class="section__title section__title--popular">
+                    Popular recipes
+                </h2>
+                <ItemSwiper class="section--popular__slider" />
+            </div>
+        </section>
+        <!-- ./popular -->
 
-    <div class="section--herb-notes__bg">
-        <div class="container">
-            <section class="section section--herb-notes">
-                <h3 class="section__title section__title--herb-notes">
-                    Herb Notes
-                </h3>
-                <div class="wrapper-content wrapper-content--herb-notes">
-                    <div class="section--herb-notes__wrapper">
-                        <div
-                            class="section--herb-notes__wrapper-img section--herb-notes__wrapper-img--1">
-                            <div class="section--herb-notes__overlay">
-                                <a href="#">
-                                    <span
-                                        class="section--herb-notes__overlay-link"
-                                        >See recipes with tumeric</span
-                                    >
-                                </a>
+        <section class="section section--feedback">
+            <div class="section--feedback__bg-wrapper">
+                <div class="section--feedback__bg"></div>
+                <div class="container">
+                    <Splide
+                        class="section--feedback__slider"
+                        :options="sliderOptions">
+                        <SplideSlide class="section--feedback__slide"
+                            ><div class="section--feedback__wrapper">
+                                <div
+                                    class="section--feedback__avatar section--feedback__avatar--1"></div>
+                                <div class="section--feedback__content">
+                                    <blockquote
+                                        class="section--feedback__quote">
+                                        "These recipes have proven to be
+                                        transformative for individuals,
+                                        contributing to their well-being in
+                                        profound ways."
+                                    </blockquote>
+                                    <span class="section--feedback__name"
+                                        >Maija Ahnger, Herbalist
+                                    </span>
+                                </div>
                             </div>
-                            <!-- <picture>
+                        </SplideSlide>
+                        <SplideSlide class="section--feedback__slide"
+                            ><div class="section--feedback__wrapper">
+                                <div
+                                    class="section--feedback__avatar section--feedback__avatar--2"></div>
+                                <div class="section--feedback__content">
+                                    <blockquote
+                                        class="section--feedback__quote">
+                                        "Explore adaptogenic herbs like
+                                        ashwagandha or rhodiola to help your
+                                        body adapt to stress and promote overall
+                                        balance."
+                                    </blockquote>
+                                    <span class="section--feedback__name"
+                                        >Akari Fujimura, Naturopath
+                                    </span>
+                                </div>
+                            </div>
+                        </SplideSlide>
+                        <SplideSlide class="section--feedback__slide"
+                            ><div class="section--feedback__wrapper">
+                                <div
+                                    class="section--feedback__avatar section--feedback__avatar--3"></div>
+                                <div class="section--feedback__content">
+                                    <blockquote
+                                        class="section--feedback__quote">
+                                        "Consider calendula salves or creams for
+                                        skin irritations and minor wounds due to
+                                        its soothing and healing properties."
+                                    </blockquote>
+                                    <span class="section--feedback__name"
+                                        >Yu Ming, Herbalist
+                                    </span>
+                                </div>
+                            </div>
+                        </SplideSlide>
+                    </Splide>
+                </div>
+            </div>
+        </section>
+        <!-- ./feedback -->
+
+        <div class="container">
+            <section class="section section--philosophy" id="about">
+                <h3 class="section__title">Our Philosophy</h3>
+                <div class="wrapper-content">
+                    <p class="section--philosophy__text">
+                        Herbalist is rooted in the belief that nature provides
+                        us with an abundance of healing herbs and botanicals
+                        that can be artfully combined to create beverages and
+                        dishes that are both delicious and healthful. We strive
+                        to celebrate the bountiful gifts of the earth by sharing
+                        recipes that embrace the holistic benefits of herbs. Our
+                        mission is to inspire a deeper connection with the
+                        natural world, promoting well-being through the
+                        transformative power of plant-based recipes.
+                    </p>
+                    <div class="section--philosophy__img"></div>
+                </div>
+            </section>
+        </div>
+        <!-- ./philosophy -->
+
+        <div class="section--herb-notes__bg">
+            <div class="container">
+                <section class="section section--herb-notes">
+                    <h3 class="section__title section__title--herb-notes">
+                        Herb Notes
+                    </h3>
+                    <div class="wrapper-content wrapper-content--herb-notes">
+                        <div class="section--herb-notes__wrapper">
+                            <div
+                                class="section--herb-notes__wrapper-img section--herb-notes__wrapper-img--1">
+                                <div class="section--herb-notes__overlay">
+                                    <a href="#">
+                                        <span
+                                            class="section--herb-notes__overlay-link"
+                                            >See recipes with tumeric</span
+                                        >
+                                    </a>
+                                </div>
+                                <!-- <picture>
                 <source
                     srcset="@img/content/herb-notes/tumeric.avif"
                     type="image/avif" />
                 <source
                     srcset="@img/content/herb-notes/tumeric.webp"
                     type="image/webp" /> -->
-                            <img
-                                class="section--herb-notes__img--1"
-                                src="@img/content/section/herb-notes/tumeric.jpg"
-                                loading="lazy"
-                                alt="tumeric" />
-                            <!-- </picture> -->
-                        </div>
-                        <div class="section--herb-notes__wrapper-content">
-                            <h4 class="section--herb-notes__subtitle">
-                                The Benefits of Tumeric
-                            </h4>
-                            <p class="section--herb-notes__text">
-                                Turmeric, derived from the Curcuma longa plant,
-                                is a powerhouse of health benefits. Its key
-                                active compound, curcumin, lends a golden hue
-                                and a range of advantages.
-                            </p>
-                        </div>
-                    </div>
-
-                    <div class="section--herb-notes__wrapper">
-                        <div
-                            class="section--herb-notes__wrapper-img section--herb-notes__wrapper-img--2">
-                            <div class="section--herb-notes__overlay">
-                                <a href="#">
-                                    <span
-                                        class="section--herb-notes__overlay-link"
-                                        >See recipes with ginger</span
-                                    >
-                                </a>
+                                <img
+                                    class="section--herb-notes__img--1"
+                                    src="@img/content/section/herb-notes/tumeric.jpg"
+                                    loading="lazy"
+                                    alt="tumeric" />
+                                <!-- </picture> -->
                             </div>
+                            <div class="section--herb-notes__wrapper-content">
+                                <h4 class="section--herb-notes__subtitle">
+                                    The Benefits of Tumeric
+                                </h4>
+                                <p class="section--herb-notes__text">
+                                    Turmeric, derived from the Curcuma longa
+                                    plant, is a powerhouse of health benefits.
+                                    Its key active compound, curcumin, lends a
+                                    golden hue and a range of advantages.
+                                </p>
+                            </div>
+                        </div>
 
-                            <!-- <picture> -->
-                            <!-- <source
+                        <div class="section--herb-notes__wrapper">
+                            <div
+                                class="section--herb-notes__wrapper-img section--herb-notes__wrapper-img--2">
+                                <div class="section--herb-notes__overlay">
+                                    <a href="#">
+                                        <span
+                                            class="section--herb-notes__overlay-link"
+                                            >See recipes with ginger</span
+                                        >
+                                    </a>
+                                </div>
+
+                                <!-- <picture> -->
+                                <!-- <source
                     srcset="@img/content/section/herb-notes/ginger.avif"
                     type="image/avif" />
                 <source
                     srcset="@img/content/section/herb-notes/ginger.webp"
                     type="image/webp" /> -->
-                            <img
-                                class="section--herb-notes__img--2"
-                                src="@img/content/section/herb-notes/ginger.jpg"
-                                loading="lazy"
-                                alt="ginger" />
-                            <!-- </picture> -->
-                        </div>
+                                <img
+                                    class="section--herb-notes__img--2"
+                                    src="@img/content/section/herb-notes/ginger.jpg"
+                                    loading="lazy"
+                                    alt="ginger" />
+                                <!-- </picture> -->
+                            </div>
 
-                        <div class="section--herb-notes__wrapper-content">
-                            <h4 class="section--herb-notes__subtitle">
-                                Ginger's Positive Impact
-                            </h4>
-                            <p class="section--herb-notes__text">
-                                Ginger, celebrated for its distinctive flavor,
-                                brings more than just taste to the table with a
-                                myriad of health benefits.
-                            </p>
+                            <div class="section--herb-notes__wrapper-content">
+                                <h4 class="section--herb-notes__subtitle">
+                                    Ginger's Positive Impact
+                                </h4>
+                                <p class="section--herb-notes__text">
+                                    Ginger, celebrated for its distinctive
+                                    flavor, brings more than just taste to the
+                                    table with a myriad of health benefits.
+                                </p>
+                            </div>
                         </div>
                     </div>
+                </section>
+            </div>
+        </div>
+        <!-- ./herb notes -->
+
+        <div class="container">
+            <section class="section section--apart">
+                <h3 class="section__title">What Sets Us Apart</h3>
+                <div class="wrapper-content">
+                    <div class="section--apart__img"></div>
+                    <ul class="section--apart__list">
+                        <li class="section--apart__item">
+                            <strong>Quality Ingredients</strong>: We source the
+                            finest herbs and botanicals to ensure the highest
+                            quality in every recipe. Our commitment to
+                            excellence begins with the selection of premium
+                            ingredients that reflect our dedication to your
+                            well-being.
+                        </li>
+                        <li class="section--apart__item">
+                            <strong>Expertly Curated Recipes</strong>: Our team
+                            of experienced herbalists and chefs work in harmony
+                            to bring you recipes that not only taste exceptional
+                            but also harness the natural healing properties of
+                            herbs. Each creation is a testament to our passion
+                            for herbalism and culinary artistry.
+                        </li>
+                        <li class="section--apart__item">
+                            <strong>Wellness and Flavor Fusion</strong>: At
+                            Herbalist, we believe that wellness and flavor
+                            should go hand in hand. Our recipes are designed to
+                            not only satisfy your taste buds but also provide an
+                            array of health benefits, making every sip and bite
+                            a holistic experience.
+                        </li>
+                    </ul>
                 </div>
+                <router-link to="#intro">
+                    <svg
+                        class="section--apart__icon"
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="3rem"
+                        height="3rem"
+                        viewBox="0 0 24 24">
+                        <path
+                            d="m6.293 11.293 1.414 1.414L12 8.414l4.293 4.293 1.414-1.414L12 5.586z"></path>
+                        <path
+                            d="m6.293 16.293 1.414 1.414L12 13.414l4.293 4.293 1.414-1.414L12 10.586z"></path>
+                    </svg>
+                </router-link>
             </section>
         </div>
+        <!-- ./apart -->
     </div>
-    <!-- ./herb notes -->
-
-    <div class="container">
-        <section class="section section--apart">
-            <h3 class="section__title">What Sets Us Apart</h3>
-            <div class="wrapper-content">
-                <div class="section--apart__img"></div>
-                <ul class="section--apart__list">
-                    <li class="section--apart__item">
-                        <strong>Quality Ingredients</strong>: We source the
-                        finest herbs and botanicals to ensure the highest
-                        quality in every recipe. Our commitment to excellence
-                        begins with the selection of premium ingredients that
-                        reflect our dedication to your well-being.
-                    </li>
-                    <li class="section--apart__item">
-                        <strong>Expertly Curated Recipes</strong>: Our team of
-                        experienced herbalists and chefs work in harmony to
-                        bring you recipes that not only taste exceptional but
-                        also harness the natural healing properties of herbs.
-                        Each creation is a testament to our passion for
-                        herbalism and culinary artistry.
-                    </li>
-                    <li class="section--apart__item">
-                        <strong>Wellness and Flavor Fusion</strong>: At
-                        Herbalist, we believe that wellness and flavor should go
-                        hand in hand. Our recipes are designed to not only
-                        satisfy your taste buds but also provide an array of
-                        health benefits, making every sip and bite a holistic
-                        experience.
-                    </li>
-                </ul>
-            </div>
-            <button @click="scrollToSection(introRef)" type="button">
-                <svg
-                    class="section--apart__icon"
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="3rem"
-                    height="3rem"
-                    viewBox="0 0 24 24">
-                    <path
-                        d="m6.293 11.293 1.414 1.414L12 8.414l4.293 4.293 1.414-1.414L12 5.586z"></path>
-                    <path
-                        d="m6.293 16.293 1.414 1.414L12 13.414l4.293 4.293 1.414-1.414L12 10.586z"></path>
-                </svg>
-            </button>
-        </section>
-    </div>
-    <!-- ./apart -->
 </template>
 
 <script setup>
@@ -257,13 +262,6 @@ const sliderOptions = {
     pagination: false,
     // autoplay: true,
     interval: 6000,
-};
-
-const popularRef = ref(null);
-const introRef = ref(null);
-
-const scrollToSection = sectionRef => {
-    sectionRef.scrollIntoView({ behavior: 'smooth' });
 };
 </script>
 
@@ -283,7 +281,6 @@ const scrollToSection = sectionRef => {
 
 .section {
     padding-block: $spacing-common;
-    // padding-bottom: $p-32;
     &__title {
         font-size: $fs-lg;
     }
@@ -359,7 +356,6 @@ const scrollToSection = sectionRef => {
 
 .section--feedback {
     display: flex;
-    user-select: none;
     padding-block: $p-0;
     background-color: #ebf1f1;
     &__slider {
