@@ -30,8 +30,7 @@
                         :to="{
                             name: 'recipeDetail',
                             params: { recipe: result.id },
-                        }"
-                        append>
+                        }">
                         <svg
                             class="search__icon-recipe"
                             xmlns="http://www.w3.org/2000/svg"
@@ -115,7 +114,6 @@ const loadRecipes = async () => {
         transition: $tr-basic;
         background-color: rgba($c-grey-50, 0.95);
         padding: $p-0;
-
         margin-top: $m-1_5;
     }
     &__link {

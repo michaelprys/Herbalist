@@ -2,6 +2,7 @@
     <div class="section section--recipe-details">
         <div class="container">
             <div class="recipe">
+                <div class="recipe__bookmark-icon"></div>
                 <!-- <ItemCardSkeleton v-if="storeRecipe.pending || !storeRecipe.isLoaded" /> -->
                 <!-- <template v-else> -->
                 <!-- <ItemRecipeImage :recipe="recipe" /> -->
@@ -17,17 +18,19 @@
             width="15.625rem"
             loading="lazy" /> -->
                 <div class="recipe__content">
-                    <img
-                        class="recipe__img"
-                        src="@img/content/recipe/recipe-1.jpg" />
+                    <div class="recipe__img-wrapper">
+                        <img
+                            class="recipe__img"
+                            src="@img/content/recipe/recipe-1.jpg" />
 
-                    <!-- <div class="card__content">
-            <h2 class="card__title">{{ storeRecipe.data.title }}</h2>
-            <p class="card__text">
-                {{ storeRecipe.data.short_description }}
-            </p>
-        </div> -->
-                    <!-- </picture> -->
+                        <!-- <div class="card__content">
+                            <h2 class="card__title">{{ storeRecipe.data.title }}</h2>
+                            <p class="card__text">
+                                {{ storeRecipe.data.short_description }}
+                            </p>
+                        </div> -->
+                        <!-- </picture> -->
+                    </div>
 
                     <div class="recipe__details">
                         <h1 class="recipe__title">Moon Tea</h1>
@@ -43,10 +46,7 @@
                             </svg>
                             <span>5 min</span>
                         </div>
-                        <p class="recipe__description">
-                            <!-- {{ storeRecipe.data.full_description }} -->
-                            <!-- {{ recipe.full_description }} -->
-                        </p>
+                        <p class="recipe__description"></p>
                         <h2 class="recipe__subtitle">Ingredients</h2>
                         <div class="recipe__ingredients-wrapper">
                             <ul class="recipe__ingredients">
@@ -57,22 +57,20 @@
                         <ul class="recipe__instructions">
                             <li class="recipe__instruction">
                                 1. Toss the Brussels sprouts, shallot, apple,
-                                pecan, and pomegranate arils in a large bowl.
-                            </li>
-                            <li class="recipe__instruction">
-                                1. Toss the Brussels sprouts, shallot, apple,
-                                pecan, and pomegranate arils in a large bowl.
-                            </li>
-                            <li class="recipe__instruction">
-                                1. Toss the Brussels sprouts, shallot, apple,
-                                pecan, and pomegranate arils in a large bowl.
-                            </li>
-                            <li class="recipe__instruction">
-                                1. Toss the Brussels sprouts, shallot, apple,
-                                pecan, and pomegranate arils in a large bowl.
-                            </li>
-                            <li class="recipe__instruction">
-                                1. Toss the Brussels sprouts, shallot, apple,
+                                pecan, and pomegranate arils in a large bowl. 1.
+                                Toss the Brussels sprouts, shallot, apple,
+                                pecan, and pomegranate arils in a large bowl. 1.
+                                Toss the Brussels sprouts, shallot, apple,
+                                pecan, and pomegranate arils in a large bowl. 1.
+                                Toss the Brussels sprouts, shallot, apple,
+                                pecan, and pomegranate arils in a large bowl. 1.
+                                Toss the Brussels sprouts, shallot, apple,
+                                pecan, and pomegranate arils in a large bowl. 1.
+                                Toss the Brussels sprouts, shallot, apple,
+                                pecan, and pomegranate arils in a large bowl. 1.
+                                Toss the Brussels sprouts, shallot, apple,
+                                pecan, and pomegranate arils in a large bowl. 1.
+                                Toss the Brussels sprouts, shallot, apple,
                                 pecan, and pomegranate arils in a large bowl.
                             </li>
                         </ul>
@@ -128,20 +126,35 @@ onMounted(() => {
     margin-bottom: $m-40;
     margin-inline: auto;
     max-width: 70rem;
-    height: 42rem;
+    height: 43.8rem;
     background-color: #ffffffda;
     color: #4a5f72;
     border-radius: $br-4;
+    box-shadow: $dc-shadow-card;
+    position: relative;
+
+    &__bookmark-icon {
+        @include bg;
+        background-image: url('@img/decor/section/recipe-details/bookmark.png');
+        width: 80px;
+        height: 80px;
+        position: absolute;
+        top: -1.85%;
+        right: 6%;
+        z-index: 5;
+    }
     &__content {
         display: flex;
         justify-content: space-between;
-        padding: $p-9;
-        gap: $g-6;
+        padding: $p-8;
+        border: 0.625rem solid #e1c1ae54;
     }
     &__details {
-        position: relative;
-        padding: $p-4;
+        border-left: 1px solid $c-grey-50;
         overflow-y: scroll;
+        padding-left: $p-6;
+        padding-bottom: $p-4;
+        box-shadow: $dc-shadow-card;
         &::-webkit-scrollbar {
             background-color: $c-grey-50;
             width: 0.375rem;
@@ -152,37 +165,38 @@ onMounted(() => {
             border-radius: $br-4;
             transition: $tr-smooth;
         }
-        // &::before {
-        //     content: '';
+        // &::after {
         //     position: absolute;
-        //     bottom: 0;
-        //     left: 0;
+        //     bottom: 0px;
+        //     height: 100px;
         //     width: 100%;
-        //     height: 20px;
-        //     background: linear-gradient(
-        //         to bottom,
-        //         rgba(255, 255, 255, 0),
-        //         #ffffffda
-        //     );
-        //     pointer-events: none;
-        //     z-index: 1;
+        //     content: '';
+        //     background-image: linear-gradient(to bottom, transparent, white);
+        //     z-index: 10;
         // }
     }
     &__preparation {
         display: flex;
         align-items: center;
-        gap: $g-3;
+        gap: $g-2_5;
+        margin-top: $m-3;
         & svg {
             fill: #50677bc8;
         }
     }
+    &__img-wrapper {
+        @include bg;
+        padding-right: $p-7;
+        box-shadow: $dc-shadow-card;
+    }
     &__img {
-        width: 30rem;
-        height: 25rem;
+        width: 100%;
+        height: 100%;
         object-fit: cover;
         border-radius: $br-4;
-        border-top-right-radius: 0;
-        border-bottom-right-radius: 0;
+        // TODO: some weird shadow here
+        box-shadow: $dc-shadow-card;
+        clip-path: inset(0px -15px 0px 0px);
     }
     &__title {
         font-size: $fs-lg;

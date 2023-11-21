@@ -260,6 +260,7 @@ const sliderOptions = {
     easing: 'cubic-bezier(0.645, 0.045, 0.355, 1)',
     type: 'loop',
     pagination: false,
+    // TODO: enable autoplay
     // autoplay: true,
     interval: 6000,
 };
