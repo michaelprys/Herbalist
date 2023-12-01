@@ -13,12 +13,14 @@ app.get('/api/recipe', async (req, res) => {
         const keyword = req.query.keyword;
         if (keyword) {
             const recipe = await pool.query(
-                'SELECT * FROM recipe WHERE title ILIKE $1 ORDER BY id',
+                'SELECT * FROM recipe WHERE title ILIKE $1 ORDER BY recipe_id',
                 [`%${keyword}%`]
             );
             res.json(recipe.rows);
         } else {
-            const recipe = await pool.query('SELECT * FROM recipe ORDER BY id');
+            const recipe = await pool.query(
+                'SELECT * FROM recipe ORDER BY recipe_id'
+            );
             res.json(recipe.rows);
         }
     } catch (err) {

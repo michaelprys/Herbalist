@@ -1,5 +1,7 @@
 <template>
-    <div class="section section--recipe-details">
+    <div
+        class="section section--recipe-details"
+        v-if="storeRecipe.selectedRecipe">
         <div class="container">
             <div class="recipe">
                 <div class="recipe__bookmark-icon"></div>
@@ -8,73 +10,71 @@
                 <!-- <ItemRecipeImage :recipe="recipe" /> -->
 
                 <!-- TODO: img needs to be replaced with ItemRecipeImage component -->
-                <!-- <picture>
-            <source :srcset="getSrcset('.avif')" type="images/avif" />
-            <source :srcset="getSrcset('.webp')" type="images/webp" /> -->
-                <!-- <img
-            class="card__image"
-            :src="getSrc('.jpg')"
-            :alt="storeRecipe.data.alt"
-            width="15.625rem"
-            loading="lazy" /> -->
+
                 <div class="recipe__content">
                     <div class="recipe__img-wrapper">
                         <img
                             class="recipe__img"
-                            src="@img/content/recipe/recipe-1.jpg" />
+                            :src="getSrc('.jpg')"
+                            :alt="storeRecipe.selectedRecipe.alt" />
 
-                        <!-- <div class="card__content">
-                            <h2 class="card__title">{{ storeRecipe.data.title }}</h2>
-                            <p class="card__text">
-                                {{ storeRecipe.data.short_description }}
+                        <div class="card__content">
+                            <h2 class="card__title"></h2>
+                            <p class="card__text"></p>
+                        </div>
+                    </div>
+                    <div class="recipe__details-wrapper">
+                        <div class="recipe__details">
+                            <h1 class="recipe__title">
+                                {{ storeRecipe.selectedRecipe.title }}
+                            </h1>
+                            <div class="recipe__preparation">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="2rem"
+                                    height="2rem"
+                                    viewBox="0 0 24 24">
+                                    <path
+                                        d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8z"></path>
+                                    <path d="M13 7h-2v6h6v-2h-4z"></path>
+                                </svg>
+                                <span
+                                    >{{
+                                        storeRecipe.selectedRecipe.prep_time
+                                    }}
+                                    min</span
+                                >
+                            </div>
+                            <p class="recipe__description">
+                                {{
+                                    storeRecipe.selectedRecipe.full_description
+                                }}
                             </p>
-                        </div> -->
-                        <!-- </picture> -->
+                            <h2 class="recipe__subtitle">Ingredients</h2>
+                            <div class="recipe__ingredients-wrapper">
+                                <ol
+                                    class="recipe__ingredients"
+                                    v-for="ingredient in storeRecipe.selectedRecipe.ingredient.split(
+                                        '\n'
+                                    )"
+                                    :key="ingredient.recipe_id">
+                                    <li>{{ ingredient }}</li>
+                                </ol>
+                            </div>
+                            <h2 class="recipe__subtitle">Method</h2>
+                            <ol class="recipe__instructions">
+                                <li
+                                    class="recipe__instruction"
+                                    v-for="step in storeRecipe.selectedRecipe.method.split(
+                                        '\n'
+                                    )"
+                                    :key="step.recipe_id">
+                                    {{ step }}
+                                </li>
+                            </ol>
+                        </div>
                     </div>
 
-                    <div class="recipe__details">
-                        <h1 class="recipe__title">Moon Tea</h1>
-                        <div class="recipe__preparation">
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                width="2rem"
-                                height="2rem"
-                                viewBox="0 0 24 24">
-                                <path
-                                    d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8z"></path>
-                                <path d="M13 7h-2v6h6v-2h-4z"></path>
-                            </svg>
-                            <span>5 min</span>
-                        </div>
-                        <p class="recipe__description"></p>
-                        <h2 class="recipe__subtitle">Ingredients</h2>
-                        <div class="recipe__ingredients-wrapper">
-                            <ul class="recipe__ingredients">
-                                <li>3 pounds chicken bones</li>
-                            </ul>
-                        </div>
-                        <h2 class="recipe__subtitle">Method</h2>
-                        <ul class="recipe__instructions">
-                            <li class="recipe__instruction">
-                                1. Toss the Brussels sprouts, shallot, apple,
-                                pecan, and pomegranate arils in a large bowl. 1.
-                                Toss the Brussels sprouts, shallot, apple,
-                                pecan, and pomegranate arils in a large bowl. 1.
-                                Toss the Brussels sprouts, shallot, apple,
-                                pecan, and pomegranate arils in a large bowl. 1.
-                                Toss the Brussels sprouts, shallot, apple,
-                                pecan, and pomegranate arils in a large bowl. 1.
-                                Toss the Brussels sprouts, shallot, apple,
-                                pecan, and pomegranate arils in a large bowl. 1.
-                                Toss the Brussels sprouts, shallot, apple,
-                                pecan, and pomegranate arils in a large bowl. 1.
-                                Toss the Brussels sprouts, shallot, apple,
-                                pecan, and pomegranate arils in a large bowl. 1.
-                                Toss the Brussels sprouts, shallot, apple,
-                                pecan, and pomegranate arils in a large bowl.
-                            </li>
-                        </ul>
-                    </div>
                     <!-- </template> -->
                 </div>
             </div>
@@ -83,33 +83,15 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue';
-import ItemCardSkeleton from '@/component/ItemCardSkeleton.vue';
-import ItemRecipeImage from '@/component/ItemRecipeImage.vue';
 import { useStoreRecipe } from '@/store/storeRecipe';
-
 const storeRecipe = useStoreRecipe();
-
-const isLoaded = ref(false);
 
 const getSrc = ext => {
     return new URL(
-        `../assets/images/recipe/${storeRecipe.data.image}${ext}`,
+        `../assets/images/content/recipe/${storeRecipe.selectedRecipe.image}${ext}`,
         import.meta.url
     ).href;
 };
-
-const getSrcset = ext => {
-    return `${getSrc(ext).replace('.jpg', ext)}`;
-};
-
-onMounted(() => {
-    const img = new Image(getSrc('.jpg'));
-    img.onload = () => {
-        isLoaded.value = true;
-    };
-    img.src = getSrc('.jpg');
-});
 </script>
 
 <style lang="scss">
@@ -125,7 +107,7 @@ onMounted(() => {
     margin-top: calc($spacing-fixed-header - $m-6);
     margin-bottom: $m-40;
     margin-inline: auto;
-    max-width: 70rem;
+    max-width: 78rem;
     height: 43.8rem;
     background-color: #ffffffda;
     color: #4a5f72;
@@ -146,15 +128,20 @@ onMounted(() => {
     &__content {
         display: flex;
         justify-content: space-between;
-        padding: $p-8;
-        border: 0.625rem solid #e1c1ae54;
+        box-shadow: $dc-shadow-card;
+        // border: 0.625rem solid #e7e7e754;
+        width: 100%;
+        margin-inline: auto;
+    }
+    &__details-wrapper {
+        position: relative;
+        width: 100%;
     }
     &__details {
-        border-left: 1px solid $c-grey-50;
         overflow-y: scroll;
-        padding-left: $p-6;
-        padding-bottom: $p-4;
-        box-shadow: $dc-shadow-card;
+        position: absolute;
+        inset: 2em;
+        padding-left: $p-5;
         &::-webkit-scrollbar {
             background-color: $c-grey-50;
             width: 0.375rem;
@@ -165,20 +152,11 @@ onMounted(() => {
             border-radius: $br-4;
             transition: $tr-smooth;
         }
-        // &::after {
-        //     position: absolute;
-        //     bottom: 0px;
-        //     height: 100px;
-        //     width: 100%;
-        //     content: '';
-        //     background-image: linear-gradient(to bottom, transparent, white);
-        //     z-index: 10;
-        // }
     }
     &__preparation {
         display: flex;
         align-items: center;
-        gap: $g-2_5;
+        gap: $g-3;
         margin-top: $m-3;
         & svg {
             fill: #50677bc8;
@@ -186,17 +164,16 @@ onMounted(() => {
     }
     &__img-wrapper {
         @include bg;
-        padding-right: $p-7;
         box-shadow: $dc-shadow-card;
+        padding: $p-8;
+        border-radius: $br-4;
+        width: 50%;
     }
     &__img {
         width: 100%;
         height: 100%;
         object-fit: cover;
         border-radius: $br-4;
-        // TODO: some weird shadow here
-        box-shadow: $dc-shadow-card;
-        clip-path: inset(0px -15px 0px 0px);
     }
     &__title {
         font-size: $fs-lg;
@@ -205,6 +182,7 @@ onMounted(() => {
         font-size: $fs-h5;
         font-style: italic;
         font-family: '';
+        padding-top: $p-4;
     }
     &__subtitle {
         font-size: $fs-h3;
@@ -228,7 +206,7 @@ onMounted(() => {
             border-radius: $br-10;
             background-color: #50677bc8;
             position: absolute;
-            left: -1.25rem;
+            left: -1.5rem;
             top: 50%;
             transform: $translateY-half-neg;
         }
@@ -236,9 +214,68 @@ onMounted(() => {
     &__instructions {
         font-size: $fs-h5;
         font-family: '';
+        padding-left: $p-4;
     }
     &__instruction {
         margin-top: $m-4;
+        list-style: decimal;
+        padding-left: $p-2;
+    }
+}
+
+@media (width <= $screen-xl) {
+    .recipe-container {
+        max-width: $screen-md;
+        margin-inline: auto;
+    }
+    .recipe {
+        flex-direction: column;
+        &__bookmark-icon {
+            display: none;
+        }
+        &__img-wrapper {
+            box-shadow: none;
+            padding: 0;
+            width: 100%;
+            height: 18.75rem;
+        }
+        &__img {
+            width: 100%;
+        }
+
+        &__content {
+            flex-direction: column;
+            min-height: 300px;
+            padding: 0;
+            border: none;
+        }
+        &__details {
+            width: 100%;
+            box-shadow: none;
+            border: none;
+            padding-inline: $p-9;
+            padding-top: $p-5;
+            padding-bottom: $p-9;
+        }
+    }
+}
+@media (width <= $screen-lg) {
+    .recipe-container {
+        padding-inline: $p-6;
+    }
+}
+@media (width <= $screen-sm) {
+    .recipe {
+        &__title {
+            font-size: $fs-h2;
+        }
+        &__subtitle {
+            font-size: $fs-h4;
+        }
+        &__ingredients,
+        &__instructions {
+            font-size: $fs-h6;
+        }
     }
 }
 </style>

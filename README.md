@@ -1,4 +1,6 @@
-# Herbalist
+# Herbalist - a herbal recipe library.
+
+## Browse herbal recipes to learn about their effectiveness and positive impact on your body.
 
 This template should help get you started developing with Vue 3 in Vite.
 

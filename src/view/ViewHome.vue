@@ -122,7 +122,7 @@
                                     <a href="#">
                                         <span
                                             class="section--herb-notes__overlay-link"
-                                            >See recipes with tumeric</span
+                                            >See recipes with turmeric</span
                                         >
                                     </a>
                                 </div>
@@ -142,7 +142,7 @@
                             </div>
                             <div class="section--herb-notes__wrapper-content">
                                 <h4 class="section--herb-notes__subtitle">
-                                    The Benefits of Tumeric
+                                    The Benefits of Turmeric
                                 </h4>
                                 <p class="section--herb-notes__text">
                                     Turmeric, derived from the Curcuma longa
@@ -249,7 +249,6 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
 import ItemSwiper from '@/component/ItemSwiper.vue';
 import { Splide, SplideSlide } from '@splidejs/vue-splide';
 

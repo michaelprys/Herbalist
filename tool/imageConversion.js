@@ -8,14 +8,14 @@ const sourceDir = path.join(__dirname, '../src/assets/images');
 
 async function main() {
     try {
-        const convertedDecorative = await processImages(
-            path.join(sourceDir, 'decorative')
+        const convertedDecor = await processImages(
+            path.join(sourceDir, 'decor')
         );
         const convertedContent = await processImages(
             path.join(sourceDir, 'content')
         );
 
-        if (convertedDecorative || convertedContent) {
+        if (convertedDecor || convertedContent) {
             console.log('\x1b[32m- Images converted.');
         } else {
             console.log('\x1b[36m- Nothing to convert.');
@@ -46,17 +46,17 @@ async function processImages(dir) {
                 if (dir.includes('content')) {
                     await fs.access(webpPath);
                     await fs.access(avifPath);
-                } else if (dir.includes('decorative')) {
-                    // Check only for the /decorative folder
+                } else if (dir.includes('decor')) {
+                    // Check only for the /decor folder
                     await fs.access(webpPath);
                 }
             } catch (err) {
                 const sharpImage = sharp(filePath);
 
-                // Convert to .webp for /decorative and /content
+                // Convert to .webp for /decor and /content
                 if (dir.includes('content')) {
                     await sharpImage.webp().toFile(webpPath);
-                } else if (dir.includes('decorative')) {
+                } else if (dir.includes('decor')) {
                     await sharpImage.webp().toFile(webpPath);
                 }
 

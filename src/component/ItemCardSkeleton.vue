@@ -24,7 +24,7 @@
 }
 
 .skeleton {
-    min-height: 30.6729rem;
+    min-height: 31.1719rem;
     &__image {
         animation: $an-skeleton;
         opacity: $op-70;

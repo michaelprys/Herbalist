@@ -23,13 +23,15 @@
             <ul class="search__list">
                 <li
                     v-for="result in recipe"
-                    :key="result.id"
+                    :key="result.recipe_id"
                     v-if="keyword !== ''">
                     <router-link
                         class="search__link"
                         :to="{
                             name: 'recipeDetail',
-                            params: { recipe: result.id },
+                            params: {
+                                recipe: result.slug,
+                            },
                         }">
                         <svg
                             class="search__icon-recipe"

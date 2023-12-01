@@ -11,9 +11,14 @@ export const actions = {
                 this.data = data;
             }
         } catch (err) {
-            console.error(err);
+            console.error('Error fetching data:', err);
+            this.error = 'Failed to fetch data';
         } finally {
             this.pending = false;
         }
+    },
+
+    selectRecipe(recipe) {
+        this.selectedRecipe = recipe;
     },
 };
