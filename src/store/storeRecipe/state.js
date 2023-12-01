@@ -1,7 +1,7 @@
 export const state = () => {
     return {
         data: [],
-        pending: false,
         selectedRecipe: null,
+        pending: false,
     };
 };

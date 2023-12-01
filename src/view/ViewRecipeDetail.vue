@@ -140,8 +140,8 @@ const getSrc = ext => {
     &__details {
         overflow-y: scroll;
         position: absolute;
-        inset: 2em;
-        padding-left: $p-5;
+        inset: 2em 0 2em 0;
+        padding-inline: $p-7;
         &::-webkit-scrollbar {
             background-color: $c-grey-50;
             width: 0.375rem;
@@ -223,11 +223,7 @@ const getSrc = ext => {
     }
 }
 
-@media (width <= $screen-xl) {
-    .recipe-container {
-        max-width: $screen-md;
-        margin-inline: auto;
-    }
+@media (width <= $screen-lg) {
     .recipe {
         flex-direction: column;
         &__bookmark-icon {
@@ -250,18 +246,8 @@ const getSrc = ext => {
             border: none;
         }
         &__details {
-            width: 100%;
-            box-shadow: none;
-            border: none;
-            padding-inline: $p-9;
-            padding-top: $p-5;
-            padding-bottom: $p-9;
+            min-height: 20.625rem;
         }
-    }
-}
-@media (width <= $screen-lg) {
-    .recipe-container {
-        padding-inline: $p-6;
     }
 }
 @media (width <= $screen-sm) {
