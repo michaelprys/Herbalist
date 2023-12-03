@@ -12,18 +12,18 @@
                 </li>
                 <li>
                     <router-link
-                        :to="{ name: 'searchRecipes' }"
+                        :to="{ name: 'recipes' }"
                         class="drawer__link"
                         active-class="drawer__active-link"
-                        >Search Recipes</router-link
+                        >All Recipes</router-link
                     >
                 </li>
                 <li>
                     <router-link
-                        :to="{ name: 'recipesByLetter' }"
+                        :to="{ name: 'searchRecipes' }"
                         class="drawer__link"
                         active-class="drawer__active-link"
-                        >Recipes By Letter</router-link
+                        >Search Recipes</router-link
                     >
                 </li>
                 <li>

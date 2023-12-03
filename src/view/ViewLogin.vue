@@ -1,5 +1,5 @@
 <template>
-    <div class="login-wrapper">
+    <div class="section section--login">
         <form action="" class="login" :class="{ appear: showLogin }">
             <h1 class="login__title">Login</h1>
 
@@ -70,10 +70,11 @@ onMounted(() => {
 </script>
 
 <style lang="scss">
-.login-wrapper {
-    margin-top: $m-32;
+.section--login {
+    padding-block: $spacing-common;
+    padding-top: calc($spacing-fixed-header + $p-32);
+
     min-height: 100vh;
-    padding-top: calc($spacing-fixed-header + $p-6);
 }
 .login {
     position: relative;

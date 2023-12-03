@@ -25,6 +25,22 @@
                     </div>
                     <div class="recipe__details-wrapper">
                         <div class="recipe__details">
+                            <div class="recipe__route">
+                                <span>»</span>
+                                <router-link
+                                    :to="{ name: 'home' }"
+                                    class="recipe__route-link"
+                                    >Home</router-link
+                                >
+                                <span>»</span>
+                                <router-link
+                                    :to="{ name: 'recipes' }"
+                                    class="recipe__route-link"
+                                    >Recipes</router-link
+                                >
+                                <span>»</span>
+                                {{ storeRecipe.selectedRecipe.title }}
+                            </div>
                             <h1 class="recipe__title">
                                 {{ storeRecipe.selectedRecipe.title }}
                             </h1>
@@ -51,7 +67,7 @@
                                 }}
                             </p>
                             <h2 class="recipe__subtitle">Ingredients</h2>
-                            <div class="recipe__ingredients-wrapper">
+                            <!-- <div class="recipe__ingredients-wrapper">
                                 <ol
                                     class="recipe__ingredients"
                                     v-for="ingredient in storeRecipe.selectedRecipe.ingredient.split(
@@ -60,7 +76,7 @@
                                     :key="ingredient.recipe_id">
                                     <li>{{ ingredient }}</li>
                                 </ol>
-                            </div>
+                            </div> -->
                             <h2 class="recipe__subtitle">Method</h2>
                             <ol class="recipe__instructions">
                                 <li
@@ -92,6 +108,10 @@ const getSrc = ext => {
         import.meta.url
     ).href;
 };
+
+// onBeforeUnmount(() => {
+//     storeRecipe.clearSelectedRecipe();
+// });
 </script>
 
 <style lang="scss">
@@ -99,6 +119,7 @@ const getSrc = ext => {
     min-height: 100vh;
     @include bg;
     background-image: url('@img/decor/section/recipe-details/bg.jpg');
+    padding-block: $spacing-common;
 }
 
 .recipe {
@@ -114,7 +135,23 @@ const getSrc = ext => {
     border-radius: $br-4;
     box-shadow: $dc-shadow-card;
     position: relative;
-
+    &__route {
+        display: flex;
+        gap: $g-2;
+        &-link {
+            color: #4a5f72;
+            background: linear-gradient(#349632a7, #349632a7);
+            background-repeat: no-repeat;
+            background-position: bottom;
+            transition: background-size $tr-smooth;
+            background-size: 0 2px;
+            transition: 0.3s linear;
+            &:hover {
+                background-size: 100% 2px;
+                color: #349632;
+            }
+        }
+    }
     &__bookmark-icon {
         @include bg;
         background-image: url('@img/decor/section/recipe-details/bookmark.png');

@@ -30,6 +30,7 @@
 
 @mixin bar {
     width: $w-full;
+    height: $h-20;
     max-width: 50rem;
     margin-inline: $auto;
     padding-block: $p-3_5;

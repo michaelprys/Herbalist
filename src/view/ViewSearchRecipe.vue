@@ -22,7 +22,7 @@
 
             <ul class="search__list">
                 <li
-                    v-for="result in recipe"
+                    v-for="result in recipe.slice(0, 5)"
                     :key="result.recipe_id"
                     v-if="keyword !== ''">
                     <router-link
@@ -51,6 +51,7 @@
 </template>
 
 <script setup>
+import { handleClick } from '@/helper';
 import { ref, computed } from 'vue';
 import { useStoreRecipe } from '@/store/storeRecipe';
 
@@ -73,7 +74,7 @@ const loadRecipes = async () => {
     background-image: url('@img/decor/section/recipe-details/bg.jpg');
     min-height: 100vh;
     text-align: center;
-    padding: 0;
+    padding-block: $spacing-common;
     padding-top: calc($spacing-fixed-header + $p-32);
 }
 

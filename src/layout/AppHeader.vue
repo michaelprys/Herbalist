@@ -20,15 +20,15 @@
                     <li class="nav__menu-item">
                         <router-link
                             class="nav__menu-link nav__menu-link--primary"
-                            :to="{ name: 'searchRecipes' }"
-                            ><span>Search Recipes</span>
+                            :to="{ name: 'recipes' }"
+                            ><span>All Recipes</span>
                         </router-link>
                     </li>
                     <li class="nav__menu-item">
                         <router-link
                             class="nav__menu-link nav__menu-link--primary"
-                            :to="{ name: 'recipesByLetter' }"
-                            ><span>Recipes By Letter</span>
+                            :to="{ name: 'searchRecipes' }"
+                            ><span>Search Recipes</span>
                         </router-link>
                     </li>
                     <li class="nav__menu-item">

@@ -1,4 +1,5 @@
 export const actions = {
+    // load recipes
     async loadRecipes(keyword) {
         try {
             this.pending = true;
@@ -11,8 +12,8 @@ export const actions = {
                 this.data = data;
             }
         } catch (err) {
-            console.error('Error fetching data:', err);
-            this.error = 'Failed to fetch data';
+            console.error('Error fetching recipes:', err);
+            this.error = 'Failed to fetch recipes';
         } finally {
             this.pending = false;
         }
@@ -20,5 +21,9 @@ export const actions = {
 
     selectRecipe(recipe) {
         this.selectedRecipe = recipe;
+    },
+
+    clearSelectedRecipe() {
+        this.selectedRecipe = null;
     },
 };

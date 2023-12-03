@@ -41,7 +41,6 @@ const options = {
     },
 };
 
-// hooks
 onMounted(async () => {
     await storeRecipe.loadRecipes();
 });

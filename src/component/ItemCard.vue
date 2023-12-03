@@ -61,7 +61,6 @@ const handleClick = () => {
     align-items: center;
     margin-top: $m-11;
     color: $c-grey-800;
-
     &__item {
         width: 100%;
         display: flex;

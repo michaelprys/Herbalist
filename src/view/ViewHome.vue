@@ -280,7 +280,6 @@ const sliderOptions = {
 }
 
 .section {
-    padding-block: $spacing-common;
     &__title {
         font-size: $fs-lg;
     }
@@ -336,6 +335,7 @@ const sliderOptions = {
 .section--popular {
     min-height: 100vh;
     @include bg;
+    padding-block: $spacing-common;
     // background-image: url('@img/decor/section/popular/bg.jpg');
     &__container-slider {
         max-width: $screen-xl;
@@ -347,17 +347,11 @@ const sliderOptions = {
     }
 }
 
-.section--about {
-    &__text {
-        line-height: 2;
-        margin-top: $m-10;
-    }
-}
-
 .section--feedback {
     display: flex;
     padding-block: $p-0;
     background-color: #ebf1f1;
+
     &__slider {
         display: flex;
     }
@@ -441,6 +435,7 @@ const sliderOptions = {
 }
 
 .section--philosophy {
+    padding-block: $spacing-common;
     &__img {
         @include bg;
         width: 400px;
@@ -458,7 +453,7 @@ const sliderOptions = {
 
 .section--herb-notes {
     min-height: 100vh;
-
+    padding-block: $spacing-common;
     &__wrapper {
         display: flex;
         flex-direction: column;
@@ -555,7 +550,7 @@ const sliderOptions = {
 .section--apart {
     position: relative;
     min-height: 100vh;
-
+    padding-block: $spacing-common;
     &__img {
         @include bg;
         width: 400px;
