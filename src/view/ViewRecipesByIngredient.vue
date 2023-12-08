@@ -6,7 +6,7 @@
                 <!-- <ul class="ingredient__list">
                     <li
                         class="ingredient__item"
-                        v-for="ingredient in storeRecipe.data"
+                        v-for="ingredient in storeRecipe.ingredients"
                         :key="ingredient.recipe_id">
                         <router-link to="/">
                             <span class="ingredient__link">
@@ -28,13 +28,13 @@ const storeRecipe = useStoreRecipe();
 
 // hooks
 onMounted(async () => {
-    await storeRecipe.loadRecipes();
+    await storeRecipe.loadRecipesByKeyword();
 });
 </script>
 
 <style lang="scss">
 .section--ingredients {
-    min-height: 100vh;
+    min-height: $h-section;
     @include bg;
     background-image: url('@img/decor/section/recipe-details/bg.jpg');
     padding-block: $spacing-common;

@@ -1,9 +1,9 @@
 <template>
-    <div class="skeleton">
+    <div class="skeleton" :class="{ active: isSkeletonActive }">
         <div class="card__image skeleton__image"></div>
         <div class="card__content card__content--skeleton">
             <div class="skeleton__title"></div>
-            <div class="skeleton__text-wrapper">
+            <div class="card__title card__text skeleton__text-wrapper">
                 <div class="skeleton__text"></div>
                 <div class="skeleton__text"></div>
                 <div class="skeleton__text"></div>
@@ -11,10 +11,14 @@
                 <div class="skeleton__text"></div>
                 <div class="skeleton__text"></div>
             </div>
-            <div class="skeleton__link"></div>
+            <div class="card__link skeleton__link"></div>
         </div>
     </div>
 </template>
+
+<script setup>
+const props = defineProps(['isSkeletonActive']);
+</script>
 
 <style lang="scss">
 .card__content--skeleton {
@@ -24,12 +28,22 @@
 }
 
 .skeleton {
-    min-height: 31.1719rem;
+    opacity: 0;
+    border-radius: $br-6;
+    position: absolute;
+    z-index: 1000;
+    width: 100%;
+    background-color: $c-white;
+    box-shadow: $dc-shadow-card;
+    transition: opacity $tr-smooth;
+    &.active {
+        opacity: 1;
+    }
     &__image {
         animation: $an-skeleton;
         opacity: $op-70;
         width: 100%;
-        min-height: $h-60;
+        height: $h-60;
     }
     &__link {
         height: 2.6729rem;
@@ -37,13 +51,13 @@
         animation: $an-skeleton;
     }
     &__title {
-        min-height: $p-5;
+        min-height: $h-6;
         width: 60%;
         animation: $an-skeleton;
         border-radius: $br-2;
     }
     &__text-wrapper {
-        min-height: $h-28;
+        margin-top: 0.5rem;
         padding-top: $p-3_5;
     }
     &__text {
@@ -60,8 +74,10 @@
 @keyframes skeleton-loading {
     0% {
         background-color: hsl(200, 20%, 70%);
+        opacity: 0;
     }
     100% {
+        opacity: 1;
         background-color: hsl(200, 20%, 95%);
     }
 }

@@ -2,9 +2,9 @@
     <Splide :options="options" :has-track="false">
         <SplideTrack>
             <SplideSlide
-                v-for="recipe in storeRecipe.data"
+                v-for="recipe in storeRecipe.popularRecipes"
                 :key="recipe.recipe_id">
-                <ItemCard :data="recipe" :pending="storeRecipe.pending" />
+                <ItemCard :recipe="recipe" :pending="storeRecipe.pending" />
             </SplideSlide>
         </SplideTrack>
         <div class="splide__pagination">
@@ -28,6 +28,7 @@ const options = {
     gap: '2.5rem',
     easing: 'cubic-bezier(0.22, 0.61, 0.36, 1)',
     mediaQuery: 'min',
+    lazyLoad: 'sequential',
     breakpoints: {
         320: {
             perPage: 1,
@@ -42,7 +43,7 @@ const options = {
 };
 
 onMounted(async () => {
-    await storeRecipe.loadRecipes();
+    await storeRecipe.loadPopularRecipes();
 });
 </script>
 

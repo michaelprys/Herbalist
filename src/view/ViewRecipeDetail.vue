@@ -116,7 +116,7 @@ const getSrc = ext => {
 
 <style lang="scss">
 .section--recipe-details {
-    min-height: 100vh;
+    min-height: $h-section;
     @include bg;
     background-image: url('@img/decor/section/recipe-details/bg.jpg');
     padding-block: $spacing-common;
@@ -126,7 +126,6 @@ const getSrc = ext => {
     display: flex;
     justify-content: space-between;
     margin-top: calc($spacing-fixed-header - $m-6);
-    margin-bottom: $m-40;
     margin-inline: auto;
     max-width: 78rem;
     height: 43.8rem;

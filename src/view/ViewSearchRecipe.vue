@@ -7,7 +7,7 @@
                     class="search__input"
                     placeholder="Start typing a recipe name"
                     v-model="keyword"
-                    @input="loadRecipes" />
+                    @input="loadRecipesByKeyword" />
                 <!-- <router-link class="search__icon-magnifier" to="/">
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -51,7 +51,6 @@
 </template>
 
 <script setup>
-import { handleClick } from '@/helper';
 import { ref, computed } from 'vue';
 import { useStoreRecipe } from '@/store/storeRecipe';
 
@@ -59,20 +58,20 @@ const keyword = ref('');
 
 const storeRecipe = useStoreRecipe();
 
-const recipe = computed(() => storeRecipe.data);
+const recipe = computed(() => storeRecipe.recipeByKeyword);
 
-const loadRecipes = async () => {
+const loadRecipesByKeyword = async () => {
     if (keyword.value) {
-        await storeRecipe.loadRecipes(keyword.value);
+        await storeRecipe.loadRecipesByKeyword(keyword.value);
     }
 };
 </script>
 
 <style lang="scss">
 .section--search {
+    min-height: $h-section;
     @include bg;
     background-image: url('@img/decor/section/recipe-details/bg.jpg');
-    min-height: 100vh;
     text-align: center;
     padding-block: $spacing-common;
     padding-top: calc($spacing-fixed-header + $p-32);

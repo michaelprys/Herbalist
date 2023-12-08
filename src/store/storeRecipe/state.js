@@ -1,7 +1,11 @@
 export const state = () => {
     return {
-        data: [],
+        popularRecipes: [],
+        recipeByKeyword: [],
+        paginatedRecipes: [],
+        // ingredients: [],
         selectedRecipe: null,
+        recipesCount: 0,
         pending: false,
     };
 };

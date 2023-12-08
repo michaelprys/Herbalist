@@ -1,6 +1,6 @@
 export const actions = {
     // load recipes
-    async loadRecipes(keyword) {
+    async loadRecipesByKeyword(keyword) {
         try {
             this.pending = true;
             keyword ??= '';
@@ -9,7 +9,7 @@ export const actions = {
             );
             if (res.ok) {
                 const data = await res.json();
-                this.data = data;
+                this.recipeByKeyword = data;
             }
         } catch (err) {
             console.error('Error fetching recipes:', err);
@@ -19,11 +19,60 @@ export const actions = {
         }
     },
 
+    async loadPopularRecipes() {
+        try {
+            this.pending = true;
+            const res = await fetch(`/api/recipe?popular=true`);
+            if (res.ok) {
+                const data = await res.json();
+                this.popularRecipes = data;
+            }
+        } catch (err) {
+            console.error('Error fetching popular recipes:', err);
+            this.error = 'Failed to fetch popular recipes';
+        } finally {
+            this.pending = false;
+        }
+    },
+
+    async loadPaginatedRecipes(page, pageSize) {
+        try {
+            this.pending = true;
+            const params = new URLSearchParams({ page, pageSize });
+            const res = await fetch(`/api/recipe?${params.toString()}`);
+            if (res.ok) {
+                const data = await res.json();
+                this.paginatedRecipes = data;
+            }
+        } catch (err) {
+            console.error('Error fetching recipes:', err);
+            this.error = 'Failed to fetch recipes';
+        } finally {
+            this.pending = false;
+        }
+    },
+
+    async loadRecipesCount() {
+        try {
+            this.pending = true;
+            const res = await fetch(`/api/recipe?count=true`);
+            if (res.ok) {
+                const data = await res.json();
+                this.recipesCount = data;
+            }
+        } catch (err) {
+            console.error('Error fetching total recipes:', err);
+            this.error = 'Failed to fetch total recipes';
+        } finally {
+            this.pending = false;
+        }
+    },
+
     selectRecipe(recipe) {
         this.selectedRecipe = recipe;
     },
 
-    clearSelectedRecipe() {
-        this.selectedRecipe = null;
-    },
+    // clearSelectedRecipe() {
+    //     this.selectedRecipe = null;
+    // },
 };
