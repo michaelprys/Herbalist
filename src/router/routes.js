@@ -8,11 +8,6 @@ import ViewRecipeDetail from '@/view/ViewRecipeDetail.vue';
 
 export const routes = [
     {
-        path: '/:notFound',
-        name: 'notFound',
-        component: ViewNotFound,
-    },
-    {
         path: '/',
         name: 'home',
         component: ViewHome,
@@ -41,5 +36,10 @@ export const routes = [
         path: '/recipeDetail/:recipe?',
         name: 'recipeDetail',
         component: ViewRecipeDetail,
+    },
+    {
+        path: '/:notFound(.*)',
+        name: 'notFound',
+        component: ViewNotFound,
     },
 ];

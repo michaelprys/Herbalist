@@ -1,4 +1,5 @@
 <template>
+    <!-- TODO: change to proper classes according to BEM -->
     <div class="transition-container">
         <section class="section section--intro" id="intro">
             <div class="container">

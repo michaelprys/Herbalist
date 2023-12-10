@@ -5,7 +5,7 @@ export const router = createRouter({
     history: createWebHistory(),
     routes,
     scrollBehavior(to, from, savedPosition) {
-        if (savedPosition) {
+        if (savedPosition || to.query.page) {
             return savedPosition;
         } else if (to.hash) {
             return { el: to.hash, behavior: 'smooth' };

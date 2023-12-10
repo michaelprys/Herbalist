@@ -74,6 +74,8 @@ onMounted(() => {
     min-height: $h-section;
     padding-block: $spacing-common;
     padding-top: calc($spacing-fixed-header + $p-32);
+    @include bg;
+    background-image: url('@/assets/images/decor/section/intro/bg.jpg');
 }
 .login {
     position: relative;

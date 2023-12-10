@@ -16,9 +16,14 @@
             </div>
 
             <div class="pagination">
-                <button
+                <router-link
+                    :to="{
+                        query: {
+                            page: page.number,
+                        },
+                    }"
                     class="pagination__btn-first"
-                    type="button"
+                    :class="{ inactive: page.number === 1 }"
                     @click="toFirstPage">
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -31,10 +36,17 @@
                             d="M16.293 6.293 10.586 12l5.707 5.707 1.414-1.414L13.414 12l4.293-4.293z"></path>
                         First
                     </svg>
-                </button>
-                <button
+                </router-link>
+                <!-- ./button first page -->
+
+                <router-link
+                    :to="{
+                        query: {
+                            page: page.number,
+                        },
+                    }"
                     class="pagination__btn-prev"
-                    type="button"
+                    :class="{ inactive: page.number === 1 }"
                     @click="toPrevPage">
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -44,20 +56,36 @@
                         <path
                             d="M13.293 6.293 7.586 12l5.707 5.707 1.414-1.414L10.414 12l4.293-4.293z"></path>
                     </svg>
-                </button>
+                </router-link>
+                <!-- ./button prev -->
 
                 <ul class="pagination__list">
-                    <li
-                        class="pagination__item"
-                        v-for="pageNumber in totalPages"
-                        :key="pageNumber">
-                        {{ pageNumber }}
+                    <li class="pagination__item">
+                        <router-link
+                            :to="{
+                                query: {
+                                    page: page.number,
+                                },
+                            }"
+                            class="pagination__link"
+                            v-for="pageNumber in totalPages"
+                            :key="pageNumber"
+                            :class="{ active: pageNumber === page.number }"
+                            @click="toSpecificPage(pageNumber)">
+                            {{ pageNumber }}
+                        </router-link>
                     </li>
                 </ul>
+                <!-- ./button page number -->
 
-                <button
+                <router-link
+                    :to="{
+                        query: {
+                            page: page.number,
+                        },
+                    }"
                     class="pagination__btn-next"
-                    type="button"
+                    :class="{ inactive: page.number === totalPages }"
                     @click="toNextPage">
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -67,10 +95,17 @@
                         <path
                             d="M10.707 17.707 16.414 12l-5.707-5.707-1.414 1.414L13.586 12l-4.293 4.293z"></path>
                     </svg>
-                </button>
-                <button
+                </router-link>
+                <!-- ./button next page -->
+
+                <router-link
+                    :to="{
+                        query: {
+                            page: page.number,
+                        },
+                    }"
                     class="pagination__btn-last"
-                    type="button"
+                    :class="{ inactive: page.number === totalPages }"
                     @click="toLastPage">
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -82,7 +117,8 @@
                         <path
                             d="M6.704 6.29 5.296 7.71 9.621 12l-4.325 4.29 1.408 1.42L12.461 12z"></path>
                     </svg>
-                </button>
+                </router-link>
+                <!-- ./button last page -->
             </div>
         </div>
     </section>
@@ -90,8 +126,12 @@
 
 <script setup>
 import ItemCard from '@/component/ItemCard.vue';
-import { onMounted, reactive, computed } from 'vue';
+import { onMounted, reactive, computed, watch } from 'vue';
 import { useStoreRecipe } from '@/store/storeRecipe';
+import { useRouter, useRoute } from 'vue-router';
+
+const router = useRouter();
+const route = useRoute();
 
 const storeRecipe = useStoreRecipe();
 
@@ -99,6 +139,12 @@ const page = reactive({
     number: 1,
     size: 3,
 });
+
+const currentPage = {
+    query: {
+        page: page.number,
+    },
+};
 
 // const startPage = computed(() => {
 //     return Math.ceil(page.number * page.size);
@@ -111,8 +157,10 @@ const totalPages = computed(() => {
 const loadRecipes = async () =>
     await storeRecipe.loadPaginatedRecipes(page.number, page.size);
 
-// const toSpecificPage = async() => {
-// }
+const toSpecificPage = async pageNumber => {
+    page.number = pageNumber;
+    await loadRecipes();
+};
 
 const toFirstPage = async () => {
     page.number = 1;
@@ -125,22 +173,19 @@ const toLastPage = async () => {
 };
 
 const toPrevPage = async () => {
-    if (page.number > 1) {
-        page.number--;
-        await loadRecipes();
-    }
+    page.number--;
+    await loadRecipes();
 };
 
 const toNextPage = async () => {
-    if (page.number < totalPages.value) {
-        page.number++;
-        await loadRecipes();
-    }
+    page.number++;
+    await loadRecipes();
 };
 
 onMounted(async () => {
     await storeRecipe.loadRecipesCount();
     await loadRecipes();
+    await router.push(currentPage);
 });
 </script>
 
@@ -169,7 +214,6 @@ onMounted(async () => {
 .pagination {
     display: flex;
     justify-content: center;
-    align-items: center;
     margin-top: $m-10;
     line-height: 2rem;
     gap: $g-4;
@@ -179,24 +223,33 @@ onMounted(async () => {
             opacity: $op-80;
         }
         display: flex;
-        gap: $g-2_5;
         justify-content: space-between;
         border-radius: $br-full;
-        // background-color: $c-white;
-        // width: $w-48;
     }
     &__item {
+        display: flex;
+        gap: $g-2_5;
+    }
+    &__link {
         width: 2rem;
         height: 2rem;
         background-color: $c-white;
         cursor: pointer;
         text-align: center;
-        transition: $tr-smooth;
+        transition: background-color $tr-smooth;
         color: $c-grey-500;
         border-radius: $br-4;
-        &:hover,
+        user-select: none;
+        -webkit-user-drag: none;
         &.active {
-            background-color: #979797;
+            background-color: $c-grey-300;
+            color: $c-white;
+            &:hover {
+                background-color: lighten($c-grey-300, 4%);
+            }
+        }
+        &:hover {
+            background-color: $c-grey-300;
             color: $c-white;
         }
     }
@@ -204,32 +257,28 @@ onMounted(async () => {
     &__btn-next,
     &__btn-first,
     &__btn-last {
+        display: flex;
+        align-items: center;
         border-radius: $br-4;
         background-color: $c-white;
         cursor: pointer;
         fill: #979797;
         width: 2rem;
         height: 2rem;
-        transition: $tr-smooth;
+        transition: $tr-fast;
         color: #979797;
         text-align: center;
         font-size: $fs-small;
-        &:hover {
-            background-color: #979797;
-            fill: $c-white;
-        }
+        -webkit-user-drag: none;
         & svg {
             margin-inline: auto;
         }
-    }
-
-    &__btn-first,
-    &__btn-prev {
-        margin-right: $m-2;
-    }
-    &__btn-last,
-    &__btn-next {
-        margin-left: $m-2;
+        &.inactive {
+            background-color: rgb(217, 217, 217);
+            color: linen;
+            fill: rgb(173, 173, 173);
+            pointer-events: none;
+        }
     }
 }
 </style>
