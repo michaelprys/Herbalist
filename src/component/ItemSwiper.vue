@@ -15,12 +15,9 @@
 
 <script setup>
 import { Splide, SplideSlide, SplideTrack } from '@splidejs/vue-splide';
-import { onMounted, watch } from 'vue';
+import { onMounted } from 'vue';
 import { useStoreRecipe } from '@/store/storeRecipe';
 import ItemCard from '@/component/ItemCard.vue';
-// import { useRoute } from 'vue-router';
-
-// const route = useRoute();
 
 const storeRecipe = useStoreRecipe();
 
@@ -44,14 +41,6 @@ const options = {
         },
     },
 };
-
-// watch(
-//     () => route(newRoute),
-//     async newRoute => {
-//         await storeRecipe.loadPopularRecipes(newRoute);
-//     },
-//     { immediate: true }
-// );
 
 onMounted(async () => {
     await storeRecipe.loadPopularRecipes();

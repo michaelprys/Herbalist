@@ -19,12 +19,11 @@
                 <router-link
                     :to="{
                         query: {
-                            page: page.number,
+                            page: 1,
                         },
                     }"
                     class="pagination__btn-first"
-                    :class="{ inactive: page.number === 1 }"
-                    @click="toFirstPage">
+                    :class="{ inactive: page.number === 1 }">
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width="24"
@@ -42,12 +41,11 @@
                 <router-link
                     :to="{
                         query: {
-                            page: page.number,
+                            page: page.number - 1,
                         },
                     }"
                     class="pagination__btn-prev"
-                    :class="{ inactive: page.number === 1 }"
-                    @click="toPrevPage">
+                    :class="{ inactive: page.number === 1 }">
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width="24"
@@ -64,14 +62,13 @@
                         <router-link
                             :to="{
                                 query: {
-                                    page: page.number,
+                                    page: pageNumber,
                                 },
                             }"
                             class="pagination__link"
                             v-for="pageNumber in totalPages"
                             :key="pageNumber"
-                            :class="{ active: pageNumber === page.number }"
-                            @click="toSpecificPage(pageNumber)">
+                            :class="{ active: pageNumber === page.number }">
                             {{ pageNumber }}
                         </router-link>
                     </li>
@@ -81,12 +78,11 @@
                 <router-link
                     :to="{
                         query: {
-                            page: page.number,
+                            page: page.number + 1,
                         },
                     }"
                     class="pagination__btn-next"
-                    :class="{ inactive: page.number === totalPages }"
-                    @click="toNextPage">
+                    :class="{ inactive: page.number === totalPages }">
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width="24"
@@ -101,12 +97,11 @@
                 <router-link
                     :to="{
                         query: {
-                            page: page.number,
+                            page: totalPages,
                         },
                     }"
                     class="pagination__btn-last"
-                    :class="{ inactive: page.number === totalPages }"
-                    @click="toLastPage">
+                    :class="{ inactive: page.number === totalPages }">
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width="24"
@@ -128,27 +123,16 @@
 import ItemCard from '@/component/ItemCard.vue';
 import { onMounted, reactive, computed, watch } from 'vue';
 import { useStoreRecipe } from '@/store/storeRecipe';
-import { useRouter, useRoute } from 'vue-router';
+import { useRoute } from 'vue-router';
 
-const router = useRouter();
 const route = useRoute();
 
 const storeRecipe = useStoreRecipe();
 
 const page = reactive({
-    number: 1,
+    number: computed(() => parseInt(route.query.page) || 1),
     size: 3,
 });
-
-const currentPage = {
-    query: {
-        page: page.number,
-    },
-};
-
-// const startPage = computed(() => {
-//     return Math.ceil(page.number * page.size);
-// });
 
 const totalPages = computed(() => {
     return Math.ceil(storeRecipe.recipesCount / page.size);
@@ -157,35 +141,10 @@ const totalPages = computed(() => {
 const loadRecipes = async () =>
     await storeRecipe.loadPaginatedRecipes(page.number, page.size);
 
-const toSpecificPage = async pageNumber => {
-    page.number = pageNumber;
-    await loadRecipes();
-};
-
-const toFirstPage = async () => {
-    page.number = 1;
-    await loadRecipes();
-};
-
-const toLastPage = async () => {
-    page.number = totalPages.value;
-    await loadRecipes();
-};
-
-const toPrevPage = async () => {
-    page.number--;
-    await loadRecipes();
-};
-
-const toNextPage = async () => {
-    page.number++;
-    await loadRecipes();
-};
+watch(() => page.number, loadRecipes, { immediate: true });
 
 onMounted(async () => {
     await storeRecipe.loadRecipesCount();
-    await loadRecipes();
-    await router.push(currentPage);
 });
 </script>
 

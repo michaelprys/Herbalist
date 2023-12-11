@@ -6,5 +6,5 @@ export const useStoreRecipe = defineStore({
     id: 'storeRecipe',
     state,
     actions,
-    persist: true,
+    // persist: true,
 });

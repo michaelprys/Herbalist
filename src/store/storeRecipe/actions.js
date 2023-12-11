@@ -71,8 +71,4 @@ export const actions = {
     selectRecipe(recipe) {
         this.selectedRecipe = recipe;
     },
-
-    // clearSelectedRecipe() {
-    //     this.selectedRecipe = null;
-    // },
 };

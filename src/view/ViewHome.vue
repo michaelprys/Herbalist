@@ -1,6 +1,6 @@
 <template>
-    <!-- TODO: change to proper classes according to BEM -->
     <div class="transition-container">
+        <!-- TODO: change to proper classes according to BEM -->
         <section class="section section--intro" id="intro">
             <div class="container">
                 <h2 class="section--intro__suptitle">

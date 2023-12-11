@@ -108,10 +108,6 @@ const getSrc = ext => {
         import.meta.url
     ).href;
 };
-
-// onBeforeUnmount(() => {
-//     storeRecipe.clearSelectedRecipe();
-// });
 </script>
 
 <style lang="scss">

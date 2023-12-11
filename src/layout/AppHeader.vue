@@ -20,7 +20,9 @@
                     <li class="nav__menu-item">
                         <router-link
                             class="nav__menu-link nav__menu-link--primary"
-                            :to="{ name: 'recipes' }"
+                            :to="{
+                                name: 'recipes',
+                            }"
                             ><span>All Recipes</span>
                         </router-link>
                     </li>

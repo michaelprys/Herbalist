@@ -62,15 +62,16 @@ const onLoaded = () => {
         isSkeletonActive.value = false;
     }, 100);
 };
+
+const handleClick = () => {
+    storeRecipe.selectRecipe(props.recipe);
+};
+
 onMounted(() => {
     const img = new Image(getSrc('.jpg'));
     img.onload = onLoaded;
     img.src = getSrc('.jpg');
 });
-
-const handleClick = () => {
-    storeRecipe.selectRecipe(props.recipe);
-};
 </script>
 
 <style lang="scss">
