@@ -100,6 +100,7 @@
 
 <script setup>
 import { useStoreRecipe } from '@/store/storeRecipe';
+
 const storeRecipe = useStoreRecipe();
 
 const getSrc = ext => {

@@ -1,5 +1,4 @@
 export const actions = {
-    // load recipes
     async loadRecipesByKeyword(keyword) {
         try {
             this.pending = true;
@@ -63,6 +62,22 @@ export const actions = {
         } catch (err) {
             console.error('Error fetching total recipes:', err);
             this.error = 'Failed to fetch total recipes';
+        } finally {
+            this.pending = false;
+        }
+    },
+
+    async loadIngredients() {
+        try {
+            this.pending = true;
+            const res = await fetch(`/api/recipe?ingredient=true`);
+            if (res.ok) {
+                const data = await res.json();
+                this.ingredients = data;
+            }
+        } catch (err) {
+            console.error('Error fetching ingredients:', err);
+            this.error = 'Failed to fetch ingredients';
         } finally {
             this.pending = false;
         }

@@ -124,8 +124,8 @@ onMounted(() => {
     window.addEventListener('resize', handleResize);
 });
 onUnmounted(() => {
-    windowRemoveEventListener('scroll', handleScroll);
-    windowRemoveEventListener('resize', handleResize);
+    window.removeEventListener('scroll', handleScroll);
+    window.removeEventListener('resize', handleResize);
 });
 </script>
 

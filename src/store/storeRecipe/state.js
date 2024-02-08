@@ -3,7 +3,7 @@ export const state = () => {
         popularRecipes: [],
         recipeByKeyword: [],
         paginatedRecipes: [],
-        // ingredients: [],
+        ingredients: [],
         selectedRecipe: null,
         recipesCount: 0,
         pending: false,

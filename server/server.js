@@ -8,10 +8,11 @@ const app = express();
 const PORT = 8000;
 
 app.get('/api/recipe', async (req, res) => {
+    console.log('req.query:', req.query);
     const conn = await connectToDb();
     try {
-        const { count, popular, page, pageSize, keyword } = req.query;
-
+        const { keyword, popular, page, pageSize, count, ingredient } =
+            req.query;
         // by keyword
         if (keyword) {
             const recipe = await pool.query(
@@ -43,11 +44,17 @@ app.get('/api/recipe', async (req, res) => {
             );
             res.json(recipesCount.rows[0].count);
         }
+        // ingredient
+        if (ingredient) {
+            const ingredientRes = await pool.query(
+                'SELECT * FROM ingredient ORDER BY ingredient_id'
+            );
+            res.json(ingredientRes.rows);
+        }
     } catch (err) {
         console.error('Error processing pagination request:', err);
         res.status(500).json({ error: 'Internal Server Error' });
     } finally {
-        // db connection release
         if (conn) conn.release();
     }
 });

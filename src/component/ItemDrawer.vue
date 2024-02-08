@@ -104,7 +104,7 @@ defineProps(['showDrawer', 'closeDrawer', 'menuItems']);
         background-color: rgba(#272727, 0.97);
         transition: transform $tr-smooth;
         &.active {
-            transform: translate(-100%);
+            transform: translateX(-100%);
         }
     }
     &__link {

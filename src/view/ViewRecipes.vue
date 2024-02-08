@@ -141,7 +141,7 @@ const totalPages = computed(() => {
 const loadRecipes = async () =>
     await storeRecipe.loadPaginatedRecipes(page.number, page.size);
 
-watch(() => page.number, loadRecipes, { immediate: true });
+watch(() => route.query.page, loadRecipes, { immediate: true });
 
 onMounted(async () => {
     await storeRecipe.loadRecipesCount();
@@ -195,7 +195,7 @@ onMounted(async () => {
         background-color: $c-white;
         cursor: pointer;
         text-align: center;
-        transition: background-color $tr-smooth;
+        transition: background-color $tr-smooth, color $tr-smooth;
         color: $c-grey-500;
         border-radius: $br-4;
         user-select: none;
