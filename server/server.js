@@ -7,12 +7,12 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const app = express();
 const PORT = 8000;
 
+// recipe endpoint
 app.get('/api/recipe', async (req, res) => {
     console.log('req.query:', req.query);
     const conn = await connectToDb();
     try {
-        const { keyword, popular, page, pageSize, count, ingredient } =
-            req.query;
+        const { keyword, popular, page, pageSize, recipesCount } = req.query;
         // by keyword
         if (keyword) {
             const recipe = await pool.query(
@@ -38,12 +38,26 @@ app.get('/api/recipe', async (req, res) => {
             res.json(recipes.rows);
         }
         // total recipe count
-        if (count) {
+        if (recipesCount) {
             const recipesCount = await pool.query(
                 'SELECT COUNT(*) FROM recipe'
             );
             res.json(recipesCount.rows[0].count);
         }
+    } catch (err) {
+        console.error('Error processing request:', err);
+        res.status(500).json({ error: 'Internal Server Error' });
+    } finally {
+        if (conn) conn.release();
+    }
+});
+
+// ingredient endpoint
+app.get('/api/ingredient', async (req, res) => {
+    console.log('req.query: ', req.query);
+    const conn = await connectToDb();
+    try {
+        const { ingredient, ingredientCount, page, pageSize } = req.query;
         // ingredient
         if (ingredient) {
             const ingredientRes = await pool.query(
@@ -51,8 +65,24 @@ app.get('/api/recipe', async (req, res) => {
             );
             res.json(ingredientRes.rows);
         }
+        // pagination
+        if (page && pageSize) {
+            const offset = (page - 1) * pageSize;
+            const ingredients = await pool.query(
+                'SELECT * FROM ingredient ORDER BY ingredient_id LIMIT $1 OFFSET $2',
+                [pageSize, offset]
+            );
+            res.json(ingredients.rows);
+        }
+        // total ingredient count
+        if (ingredientCount) {
+            const ingredientCount = await pool.query(
+                'SELECT COUNT(*) FROM ingredient'
+            );
+            res.json(ingredientCount.rows[0].count);
+        }
     } catch (err) {
-        console.error('Error processing pagination request:', err);
+        console.error('Error processing request:', err);
         res.status(500).json({ error: 'Internal Server Error' });
     } finally {
         if (conn) conn.release();

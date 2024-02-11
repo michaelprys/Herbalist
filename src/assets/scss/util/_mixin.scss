@@ -49,3 +49,10 @@
     background-size: cover;
     flex-shrink: 0;
 }
+
+@mixin btn-inactive {
+    background-color: rgb(217, 217, 217);
+    color: linen;
+    fill: rgb(173, 173, 173);
+    pointer-events: none;
+}

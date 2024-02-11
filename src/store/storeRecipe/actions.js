@@ -54,7 +54,7 @@ export const actions = {
     async loadRecipesCount() {
         try {
             this.pending = true;
-            const res = await fetch(`/api/recipe?count=true`);
+            const res = await fetch(`/api/recipe?recipesCount=true`);
             if (res.ok) {
                 const data = await res.json();
                 this.recipesCount = data;
@@ -70,7 +70,7 @@ export const actions = {
     async loadIngredients() {
         try {
             this.pending = true;
-            const res = await fetch(`/api/recipe?ingredient=true`);
+            const res = await fetch(`/api/ingredient?ingredient=true`);
             if (res.ok) {
                 const data = await res.json();
                 this.ingredients = data;
@@ -78,6 +78,39 @@ export const actions = {
         } catch (err) {
             console.error('Error fetching ingredients:', err);
             this.error = 'Failed to fetch ingredients';
+        } finally {
+            this.pending = false;
+        }
+    },
+
+    async loadPaginatedIngredients(page, pageSize) {
+        try {
+            this.pending = true;
+            const params = new URLSearchParams({ page, pageSize });
+            const res = await fetch(`/api/ingredient?${params.toString()}`);
+            if (res.ok) {
+                const data = await res.json();
+                this.paginatedIngredients = data;
+            }
+        } catch (err) {
+            console.error('Error fetching ingredients:', err);
+            this.error = 'Failed to fetch ingredients';
+        } finally {
+            this.pending = false;
+        }
+    },
+
+    async loadIngredientsCount() {
+        try {
+            this.pending = true;
+            const res = await fetch(`/api/ingredient?ingredientCount=true`);
+            if (res.ok) {
+                const data = await res.json();
+                this.ingredientCount = data;
+            }
+        } catch (err) {
+            console.error('Error fetching total ingredients:', err);
+            this.error = 'Failed to fetch total ingredients';
         } finally {
             this.pending = false;
         }

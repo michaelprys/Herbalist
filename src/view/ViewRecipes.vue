@@ -126,7 +126,6 @@ import { useStoreRecipe } from '@/store/storeRecipe';
 import { useRoute } from 'vue-router';
 
 const route = useRoute();
-
 const storeRecipe = useStoreRecipe();
 
 const page = reactive({
@@ -233,10 +232,7 @@ onMounted(async () => {
             margin-inline: auto;
         }
         &.inactive {
-            background-color: rgb(217, 217, 217);
-            color: linen;
-            fill: rgb(173, 173, 173);
-            pointer-events: none;
+            @include btn-inactive;
         }
     }
 }
