@@ -27,7 +27,7 @@
                     <router-link
                         class="search__link"
                         :to="{
-                            name: 'recipeDetail',
+                            name: 'recipe-detail',
                             params: {
                                 recipe: result.slug,
                             },

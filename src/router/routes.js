@@ -1,5 +1,7 @@
 import ViewHome from '@/view/ViewHome.vue';
 import ViewRecipesByIngredient from '@/view/ViewRecipesByIngredient.vue';
+import ItemIngredientsList from '@/component/ItemIngredientsList.vue';
+import ItemRecipesList from '@/component/ItemRecipesList.vue';
 import ViewRecipes from '@/view/ViewRecipes.vue';
 import ViewSearchRecipe from '@/view/ViewSearchRecipe.vue';
 import ViewLogin from '@/view/ViewLogin.vue';
@@ -18,8 +20,8 @@ export const routes = [
         component: ViewLogin,
     },
     {
-        path: '/searchRecipes/:name?',
-        name: 'searchRecipes',
+        path: '/search-recipes/:name?',
+        name: 'search-recipes',
         component: ViewSearchRecipe,
     },
     {
@@ -28,13 +30,24 @@ export const routes = [
         component: ViewRecipes,
     },
     {
-        path: '/recipesByIngredient/:ingredient?',
-        name: 'recipesByIngredient',
+        path: '/ingredients',
         component: ViewRecipesByIngredient,
+        children: [
+            {
+                path: ':ingredient?',
+                name: 'ingredient',
+                component: ItemIngredientsList,
+            },
+            {
+                path: ':ingredient/recipes',
+                name: 'ingredientRecipes',
+                component: ItemRecipesList,
+            },
+        ],
     },
     {
-        path: '/recipeDetail/:recipe?',
-        name: 'recipeDetail',
+        path: '/recipe-detail/:recipe?',
+        name: 'recipe-detail',
         component: ViewRecipeDetail,
     },
     {

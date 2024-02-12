@@ -25,7 +25,7 @@
                 <router-link
                     class="card__link"
                     :to="{
-                        name: 'recipeDetail',
+                        name: 'recipe-detail',
                         params: { recipe: recipe.slug },
                     }"
                     @click="handleClick"

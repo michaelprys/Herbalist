@@ -20,7 +20,7 @@
                 </li>
                 <li>
                     <router-link
-                        :to="{ name: 'searchRecipes' }"
+                        :to="{ name: 'search-recipes' }"
                         class="drawer__link"
                         active-class="drawer__active-link"
                         >Search Recipes</router-link
@@ -28,7 +28,7 @@
                 </li>
                 <li>
                     <router-link
-                        :to="{ name: 'recipesByIngredient' }"
+                        :to="{ name: 'ingredient' }"
                         class="drawer__link"
                         active-class="drawer__active-link"
                         >Recipes By Ingredients</router-link

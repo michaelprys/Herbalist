@@ -29,14 +29,14 @@
                     <li class="nav__menu-item">
                         <router-link
                             class="nav__menu-link nav__menu-link--primary"
-                            :to="{ name: 'searchRecipes' }"
+                            :to="{ name: 'search-recipes' }"
                             ><span>Search Recipes</span>
                         </router-link>
                     </li>
                     <li class="nav__menu-item">
                         <router-link
                             class="nav__menu-link nav__menu-link--primary"
-                            :to="{ name: 'recipesByIngredient' }"
+                            :to="{ name: 'ingredient' }"
                             ><span>Recipes By Ingredients</span>
                         </router-link>
                     </li>

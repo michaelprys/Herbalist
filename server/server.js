@@ -57,7 +57,14 @@ app.get('/api/ingredient', async (req, res) => {
     console.log('req.query: ', req.query);
     const conn = await connectToDb();
     try {
-        const { ingredient, ingredientCount, page, pageSize } = req.query;
+        const {
+            ingredient,
+            ingredientCount,
+            page,
+            pageSize,
+            // recipesByIngredient,
+            // ingredientId,
+        } = req.query;
         // ingredient
         if (ingredient) {
             const ingredientRes = await pool.query(
@@ -81,6 +88,13 @@ app.get('/api/ingredient', async (req, res) => {
             );
             res.json(ingredientCount.rows[0].count);
         }
+        // if (recipesByIngredient) {
+        //     const recipesByIngredient = await pool.query(
+        //         'SELECT r.* FROM recipe r JOIN ingredient i ON i.recipe_id = r.id WHERE i.name = $1',
+        //         [ingredientId]
+        //     );
+        //     res.json(recipesByIngredient.rows);
+        // }
     } catch (err) {
         console.error('Error processing request:', err);
         res.status(500).json({ error: 'Internal Server Error' });
