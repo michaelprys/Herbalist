@@ -33,10 +33,10 @@
                                     >Home</router-link
                                 >
                                 <span>»</span>
-                                <router-link
-                                    :to="{ name: 'recipes' }"
+                                <a
                                     class="recipe__route-link"
-                                    >Recipes</router-link
+                                    @click="$router.back()"
+                                    >Recipes</a
                                 >
                                 <span>»</span>
                                 {{ storeRecipe.selectedRecipe.title }}
@@ -142,6 +142,7 @@ const getSrc = ext => {
             transition: background-size $tr-smooth;
             background-size: 0 2px;
             transition: 0.3s linear;
+            cursor: pointer;
             &:hover {
                 background-size: 100% 2px;
                 color: #349632;

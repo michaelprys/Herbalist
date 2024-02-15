@@ -70,6 +70,11 @@ const loadRecipesByKeyword = async () => {
 .section--search {
     min-height: $h-section;
     @include bg;
+    @supports (
+        background-image: url('@img/decor/section/recipe-details/bg.avif')
+    ) {
+        background-image: url('@img/decor/section/recipe-details/bg.avif');
+    }
     background-image: url('@img/decor/section/recipe-details/bg.jpg');
     text-align: center;
     padding-block: $spacing-common;

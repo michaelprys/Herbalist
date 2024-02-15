@@ -4,12 +4,17 @@
             <ItemCardSkeleton
                 v-if="!isLoaded"
                 :isSkeletonActive="isSkeletonActive" />
-            <img
-                class="card__image"
-                :src="getSrc('.jpg')"
-                :alt="recipe.alt"
-                width="15.625rem"
-                loading="lazy" />
+            <picture>
+                <source :srcset="getSrcSet('.avif')" type="image/avif" />
+                <source :srcset="getSrcSet('.webp')" type="image/webp" />
+                <img
+                    class="card__image"
+                    :src="getSrc('.jpg')"
+                    :alt="recipe.alt"
+                    width="15.625rem"
+                    loading="lazy" />
+            </picture>
+
             <svg
                 class="card__favorite-icon"
                 xmlns="http://www.w3.org/2000/svg"
@@ -55,6 +60,11 @@ const getSrc = ext => {
         import.meta.url
     ).href;
 };
+
+const getSrcSet = ext => {
+    return `${getSrc(ext).replace('.jpg', ext)}`;
+};
+
 const onLoaded = () => {
     isLoaded.value = true;
     setTimeout(() => {
@@ -78,10 +88,12 @@ onMounted(() => {
 .card {
     position: relative;
     display: flex;
-    justify-content: center;
     align-items: center;
     margin-top: $m-11;
     color: $c-grey-800;
+    max-width: 23.75rem;
+    user-select: none;
+    margin-inline: auto;
 
     &__favorite-icon {
         position: absolute;

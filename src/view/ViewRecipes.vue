@@ -4,16 +4,16 @@
             <h1 class="section__title section__title--recipes">
                 Herbal Recipes
             </h1>
-            <div class="recipes">
-                <div
+            <ul class="recipes">
+                <li
                     v-for="recipe in storeRecipe.paginatedRecipes"
                     :key="recipe.recipe_id">
                     <ItemCard
                         class="recipes__item"
                         :recipe="recipe"
-                        :pending="storeRecipe.pending"></ItemCard>
-                </div>
-            </div>
+                        :pending="storeRecipe.pending" />
+                </li>
+            </ul>
 
             <div class="pagination">
                 <router-link
@@ -36,6 +36,7 @@
                         First
                     </svg>
                 </router-link>
+
                 <!-- ./button first page -->
 
                 <router-link
@@ -121,7 +122,7 @@
 
 <script setup>
 import ItemCard from '@/component/ItemCard.vue';
-import { onMounted, reactive, computed, watch } from 'vue';
+import { onMounted, onBeforeUnmount, reactive, computed, watch } from 'vue';
 import { useStoreRecipe } from '@/store/storeRecipe';
 import { useRoute } from 'vue-router';
 
@@ -130,8 +131,18 @@ const storeRecipe = useStoreRecipe();
 
 const page = reactive({
     number: computed(() => parseInt(route.query.page) || 1),
-    size: 3,
+    size: parseInt(localStorage.getItem('pageSize')) || 3,
 });
+
+const handleResize = () => {
+    if (window.innerWidth <= 1280 && window.innerWidth >= 870) {
+        page.size = 2;
+    } else if (window.innerWidth < 870) {
+        page.size = 1;
+    } else {
+        page.size = 3;
+    }
+};
 
 const totalPages = computed(() => {
     return Math.ceil(storeRecipe.recipesCount / page.size);
@@ -140,23 +151,41 @@ const totalPages = computed(() => {
 const loadRecipes = async () =>
     await storeRecipe.loadPaginatedRecipes(page.number, page.size);
 
-watch(() => route.query.page, loadRecipes, { immediate: true });
-
 onMounted(async () => {
+    window.addEventListener('resize', handleResize);
     await storeRecipe.loadRecipesCount();
 });
+
+onBeforeUnmount(async () => {
+    window.removeEventListener('resize', handleResize);
+    await storeRecipe.loadRecipesCount();
+});
+
+watch(() => route.query.page, loadRecipes, { immediate: true });
+watch(
+    () => page.size,
+    newSize => {
+        localStorage.setItem('pageSize', newSize.toString());
+        loadRecipes();
+    }
+);
 </script>
 
 <style lang="scss">
 .section--recipes {
     min-height: $h-section;
     @include bg;
+    @supports (
+        background-image: url('@img/decor/section/recipe-details/bg.avif')
+    ) {
+        background-image: url('@img/decor/section/recipe-details/bg.avif');
+    }
     background-image: url('@img/decor/section/recipe-details/bg.jpg');
     padding-block: calc($spacing-common);
 }
 
 .section__title--recipes {
-    padding-left: 64px;
+    // padding-left: 64px;
     margin-top: calc($spacing-fixed-header - $m-12);
 }
 
@@ -164,9 +193,6 @@ onMounted(async () => {
     display: flex;
     justify-content: center;
     gap: $g-8;
-    &__item {
-        width: $w-96;
-    }
 }
 
 .pagination {

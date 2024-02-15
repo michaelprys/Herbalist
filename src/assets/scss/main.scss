@@ -1,40 +1,15 @@
 @import 'util';
 @import 'base';
 
-// html {
-//     &::-webkit-scrollbar {
-//         background-color: #2c2c2c;
-//         width: $w-2;
-//     }
-//     &::-webkit-scrollbar-thumb {
-//         background-color: #9f9f9f;
-//         border-radius: $br-4;
-//     }
-// }
-
 body {
     line-height: $lh-default;
     color: $c-white;
     font-weight: $fw-regular;
     font-family: $ff-primary, sans-serif;
     font-size: $fs-h6;
-    // @supports (background-image: url('@img/bg.webp')) {
-    //     background-image: url('@img/bg.webp');
-    // }
-    // background-image: url('@img/bg.jpg');
-
-    // background-position: center;
-    // background-repeat: no-repeat;
-    // background-size: cover;
     background-color: #194c5a;
-    // background-color: #000;
-
-    // background-attachment: fixed;
-    // scroll-snap-type: y proximity;
-    // scroll-snap-points-y: repeat(100vh);
 }
 
-// Burger size (make mixin)
 $bar-height: 0.1875rem;
 $burger-height: calc($bar-height * 3 + $g-2 * 2);
 $bar-width: 1.875rem;

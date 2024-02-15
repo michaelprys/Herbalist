@@ -40,6 +40,11 @@ onMounted(async () => {
 .section--ingredients {
     min-height: $h-section;
     @include bg;
+    @supports (
+        background-image: url('@img/decor/section/recipe-details/bg.avif')
+    ) {
+        background-image: url('@img/decor/section/recipe-details/bg.avif');
+    }
     background-image: url('@img/decor/section/recipe-details/bg.jpg');
     padding-block: $spacing-common;
 }

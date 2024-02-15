@@ -71,7 +71,7 @@ onMounted(() => {
 
 <style lang="scss">
 .section--login {
-    min-height: $h-section;
+    min-height: 100vh;
     padding-block: $spacing-common;
     padding-top: calc($spacing-fixed-header + $p-32);
     @include bg;

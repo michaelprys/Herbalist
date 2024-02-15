@@ -1,17 +1,18 @@
 <template>
     <main>
-        <RouterView #="{ Component }">
-            <transition mode="out-in" name="fade">
+        <!-- <RouterView #="{ Component }">
+            <Transition mode="out-in" name="fade">
                 <component :is="Component" :key="route.path" />
-            </transition>
-        </RouterView>
+            </Transition>
+        </RouterView> -->
+        <RouterView />
     </main>
 </template>
 
 <script setup>
-import { useRouter } from 'vue-router';
+// import { useRouter } from 'vue-router';
 
-const route = useRouter();
+// const route = useRouter();
 </script>
 
 <style lang="scss">

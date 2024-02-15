@@ -48,20 +48,19 @@ async function processImages(dir) {
                     await fs.access(avifPath);
                 } else if (dir.includes('decor')) {
                     // Check only for the /decor folder
-                    await fs.access(webpPath);
+                    await fs.access(avifPath);
                 }
             } catch (err) {
                 const sharpImage = sharp(filePath);
 
-                // Convert to .webp for /decor and /content
+                // Convert to .webp and .avif for /content
                 if (dir.includes('content')) {
-                    await sharpImage.webp().toFile(webpPath);
-                } else if (dir.includes('decor')) {
+                    await sharpImage.avif().toFile(webpPath);
                     await sharpImage.webp().toFile(webpPath);
                 }
 
-                // Convert to .avif only for /content
-                if (dir.includes('content')) {
+                // Convert to .avif for /decor
+                if (dir.includes('decor')) {
                     await sharpImage.avif().toFile(avifPath);
                 }
 

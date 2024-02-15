@@ -127,19 +127,23 @@
                                         >
                                     </a>
                                 </div>
-                                <!-- <picture>
-                <source
-                    srcset="@img/content/herb-notes/tumeric.avif"
-                    type="image/avif" />
-                <source
-                    srcset="@img/content/herb-notes/tumeric.webp"
-                    type="image/webp" /> -->
-                                <img
-                                    class="section--herb-notes__img--1"
-                                    src="@img/content/section/herb-notes/tumeric.jpg"
-                                    loading="lazy"
-                                    alt="tumeric" />
-                                <!-- </picture> -->
+                                <picture>
+                                    <source
+                                        srcset="
+                                            @img/content/section/herb-notes/turmeric.avif
+                                        "
+                                        type="image/avif" />
+                                    <source
+                                        srcset="
+                                            @img/content/section/herb-notes/turmeric.webp
+                                        "
+                                        type="image/webp" />
+                                    <img
+                                        class="section--herb-notes__img--1"
+                                        src="@img/content/section/herb-notes/turmeric.jpg"
+                                        loading="lazy"
+                                        alt="tumeric" />
+                                </picture>
                             </div>
                             <div class="section--herb-notes__wrapper-content">
                                 <h4 class="section--herb-notes__subtitle">
@@ -166,19 +170,23 @@
                                     </a>
                                 </div>
 
-                                <!-- <picture> -->
-                                <!-- <source
-                    srcset="@img/content/section/herb-notes/ginger.avif"
-                    type="image/avif" />
-                <source
-                    srcset="@img/content/section/herb-notes/ginger.webp"
-                    type="image/webp" /> -->
-                                <img
-                                    class="section--herb-notes__img--2"
-                                    src="@img/content/section/herb-notes/ginger.jpg"
-                                    loading="lazy"
-                                    alt="ginger" />
-                                <!-- </picture> -->
+                                <picture>
+                                    <source
+                                        srcset="
+                                            @img/content/section/herb-notes/ginger.avif
+                                        "
+                                        type="image/avif" />
+                                    <source
+                                        srcset="
+                                            @img/content/section/herb-notes/ginger.webp
+                                        "
+                                        type="image/webp" />
+                                    <img
+                                        class="section--herb-notes__img--2"
+                                        src="@img/content/section/herb-notes/ginger.jpg"
+                                        loading="lazy"
+                                        alt="ginger" />
+                                </picture>
                             </div>
 
                             <div class="section--herb-notes__wrapper-content">
@@ -298,6 +306,9 @@ const sliderOptions = {
     justify-content: center;
     flex-direction: column;
     position: relative;
+    @supports (background-image: url('@img/decor/section/intro/bg.avif')) {
+        background-image: url('@img/decor/section/intro/bg.avif');
+    }
     background-image: url('@img/decor/section/intro/bg.jpg');
     &__suptitle {
         font-size: $fs-h5;
@@ -376,6 +387,11 @@ const sliderOptions = {
         width: 100%;
         height: 100%;
         position: absolute;
+        @supports (
+            background-image: url('@img/decor/section/popular/bg.avif')
+        ) {
+            background-image: url('@img/decor/section/popular/bg.avif');
+        }
         background-image: url('@img/decor/section/popular/bg.jpg');
     }
     &__avatar {
@@ -384,29 +400,32 @@ const sliderOptions = {
         height: 240px;
         border-radius: $br-circle;
         &--1 {
-            // @supports (
-            //     background-image: url('@img/decor/section/feedback/avatar-1.webp')
-            // ) {
-            //     background-image: url('@img/decor/section/feedback/avatar-1.webp');
-            // }
+            @supports (
+                background-image:
+                    url('@img/decor/section/feedback/avatar-1.avif')
+            ) {
+                background-image: url('@img/decor/section/feedback/avatar-1.avif');
+            }
             background-color: $c-placeholder;
             background-image: url('@img/decor/section/feedback/avatar-1.jpg');
         }
         &--2 {
-            // @supports (
-            //     background-image: url('@img/decor/section/feedback/avatar-2.webp')
-            // ) {
-            //     background-image: url('@img/decor/section/feedback/avatar-2.webp');
-            // }
+            @supports (
+                background-image:
+                    url('@img/decor/section/feedback/avatar-2.avif')
+            ) {
+                background-image: url('@img/decor/section/feedback/avatar-2.avif');
+            }
             background-color: $c-placeholder;
             background-image: url('@img/decor/section/feedback/avatar-2.jpg');
         }
         &--3 {
-            // @supports (
-            //     background-image: url('@img/decor/section/feedback/avatar-3.webp')
-            // ) {
-            //     background-image: url('@img/decor/section/feedback/avatar-3.webp');
-            // }
+            @supports (
+                background-image:
+                    url('@img/decor/section/feedback/avatar-3.avif')
+            ) {
+                background-image: url('@img/decor/section/feedback/avatar-3.avif');
+            }
             background-color: $c-placeholder;
             background-image: url('@img/decor/section/feedback/avatar-3.jpg');
         }
@@ -444,6 +463,12 @@ const sliderOptions = {
         display: block;
         border-radius: $br-6;
         background-color: $c-placeholder;
+        @supports (
+            background-image:
+                url('@img/decor/section/philosophy/philosophy.avif')
+        ) {
+            background-image: url('@img/decor/section/philosophy/philosophy.avif');
+        }
         background-image: url('@img/decor/section/philosophy/philosophy.jpg');
         box-shadow: $dc-shadow-card;
     }
@@ -471,11 +496,11 @@ const sliderOptions = {
     }
     &__bg {
         @include bg;
-        // @supports (
-        //     background-image: url('@img/decor/herb-notes/bg.webp')
-        // ) {
-        //     background-image: url('@img/decor/herb-notes/bg.webp');
-        // }
+        @supports (
+            background-image: url('@img/decor/section/herb-notes/bg.avif')
+        ) {
+            background-image: url('@img/decor/section/herb-notes/bg.avif');
+        }
         background-image: url('@img/decor/section/herb-notes/bg.jpg');
     }
     &__subtitle {
@@ -559,6 +584,11 @@ const sliderOptions = {
         display: block;
         border-radius: $br-6;
         background-color: $c-placeholder;
+        @supports (
+            background-image: url('@img/decor/section/apart/apart.avif')
+        ) {
+            background-image: url('@img/decor/section/apart/apart.avif');
+        }
         background-image: url('@img/decor/section/apart/apart.jpg');
         box-shadow: $dc-shadow-card;
     }
