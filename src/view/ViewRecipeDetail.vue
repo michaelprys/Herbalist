@@ -36,7 +36,7 @@
                                 <a
                                     class="recipe__route-link"
                                     @click="$router.back()"
-                                    >Recipes</a
+                                    >Back</a
                                 >
                                 <span>»</span>
                                 {{ storeRecipe.selectedRecipe.title }}

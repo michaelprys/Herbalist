@@ -11,38 +11,30 @@
 <script setup>
 import { onMounted, computed, reactive, watch, onBeforeUnmount } from 'vue';
 import { useStoreRecipe } from '@/store/storeRecipe';
-import { useRoute } from 'vue-router';
+import { useRoute, useRouter } from 'vue-router';
 
 const route = useRoute();
+const router = useRouter();
 const storeRecipe = useStoreRecipe();
 
 const page = reactive({
     number: computed(() => parseInt(route.query.page) || 1),
-    size: parseInt(localStorage.getItem('pageSize')) || 32,
+    size: 32,
 });
 
 const handleResize = () => {
-    switch (true) {
-        case window.innerWidth <= 1535 && window.innerWidth > 1280:
-            page.size = 28;
-            break;
-        case window.innerWidth <= 1280 && window.innerWidth > 640:
-            page.size = 16;
-            break;
-        case window.innerWidth <= 640:
-            page.size = 8;
-            break;
-        default:
-            page.size = 32;
-            break;
-    }
+    const mq1535 = window.matchMedia('(width <= 1535px) and (width > 1280px)');
+    const mq1280 = window.matchMedia('(width <= 1280px) and (width > 640px)');
+    const mq640 = window.matchMedia('(width <= 640px)');
 
-    totalPages.value = Math.ceil(storeRecipe.ingredientCount / page.size);
-
-    if (page.number <= 0) {
-        page.number = 1;
-    } else if (page.number > totalPages.value) {
-        page.number = totalPages.value;
+    if (mq1535.matches) {
+        page.size = 28;
+    } else if (mq1280.matches) {
+        page.size = 16;
+    } else if (mq640.matches) {
+        page.size = 8;
+    } else {
+        page.size = 32;
     }
 };
 
@@ -50,25 +42,30 @@ const totalPages = computed(() => {
     return Math.ceil(storeRecipe.ingredientCount / page.size);
 });
 
-const loadIngredients = async () =>
+const loadIngredients = async () => {
     await storeRecipe.loadPaginatedIngredients(page.number, page.size);
+};
 
 // watchers
-watch(() => route.query.page, loadIngredients, { immediate: true });
-
-watch([() => page.size, () => page.number], ([newPageSize, newPageNumber]) => {
-    localStorage.setItem('pageSize', newPageSize.toString());
-    loadIngredients();
-
-    totalPages.value = Math.ceil(storeRecipe.ingredientCount / page.size);
-
-    // page number
-    if (newPageNumber <= 0) {
-        page.number = 1;
-    } else if (page.number > totalPages.value) {
-        page.number = totalPages.value;
+watch(
+    () => route.query.page,
+    newPage => {
+        const pageNumber = parseInt(newPage);
+        if (pageNumber < 1) {
+            router.push({ query: { page: 1 } });
+        } else {
+            loadIngredients();
+        }
+    },
+    { immediate: true }
+);
+watch(
+    () => page.size,
+    newSize => {
+        localStorage.setItem('ingredientPageSize', newSize.toString());
+        loadIngredients();
     }
-});
+);
 
 // hooks
 onMounted(async () => {
@@ -78,7 +75,6 @@ onMounted(async () => {
 
 onBeforeUnmount(async () => {
     window.removeEventListener('resize', handleResize);
-    await storeRecipe.loadRecipesCount();
 });
 </script>
 
@@ -165,7 +161,7 @@ onBeforeUnmount(async () => {
     &__btn-icon {
         &.inactive {
             fill: rgba(173, 173, 173, 0.746);
-            pointer-events: none;
+            cursor: not-allowed;
         }
     }
 }

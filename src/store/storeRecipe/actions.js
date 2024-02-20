@@ -34,10 +34,13 @@ export const actions = {
         }
     },
 
-    async loadPaginatedRecipes(page, pageSize) {
+    async loadPaginatedRecipes(pageNumber, pageSize) {
         try {
             this.pending = true;
-            const params = new URLSearchParams({ page, pageSize });
+            const params = new URLSearchParams({
+                page: pageNumber,
+                pageSize: pageSize,
+            });
             const res = await fetch(`/api/recipe?${params.toString()}`);
             if (res.ok) {
                 const data = await res.json();
@@ -78,6 +81,26 @@ export const actions = {
         } catch (err) {
             console.error('Error fetching ingredients:', err);
             this.error = 'Failed to fetch ingredients';
+        } finally {
+            this.pending = false;
+        }
+    },
+
+    async loadRecipesByIngredient(ingredientName) {
+        try {
+            this.pending = true;
+            const res = await fetch(
+                `/api/recipesByIngredient?ingredientName=${encodeURIComponent(
+                    ingredientName
+                )}`
+            );
+            if (res.ok) {
+                const data = await res.json();
+                this.recipesByIngredient = data;
+            }
+        } catch (err) {
+            console.error('Error fetching recipes by ingredient:', err);
+            this.error = 'Failed to fetch recipes by ingredient';
         } finally {
             this.pending = false;
         }

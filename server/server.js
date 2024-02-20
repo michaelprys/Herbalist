@@ -57,20 +57,14 @@ app.get('/api/ingredient', async (req, res) => {
     console.log('req.query: ', req.query);
     const conn = await connectToDb();
     try {
-        const {
-            ingredient,
-            ingredientCount,
-            page,
-            pageSize,
-            // recipesByIngredient,
-            // ingredientId,
-        } = req.query;
+        const { ingredient, ingredientCount, page, pageSize } = req.query;
         // ingredient
         if (ingredient) {
             const ingredientRes = await pool.query(
                 'SELECT * FROM ingredient ORDER BY ingredient_id'
             );
-            res.json(ingredientRes.rows);
+            res.json(ingredientRes);
+            console.log(ingredientRes);
         }
         // pagination
         if (page && pageSize) {
@@ -88,18 +82,25 @@ app.get('/api/ingredient', async (req, res) => {
             );
             res.json(ingredientCount.rows[0].count);
         }
-        // if (recipesByIngredient) {
-        //     const recipesByIngredient = await pool.query(
-        //         'SELECT r.* FROM recipe r JOIN ingredient i ON i.recipe_id = r.id WHERE i.name = $1',
-        //         [ingredientId]
-        //     );
-        //     res.json(recipesByIngredient.rows);
-        // }
     } catch (err) {
         console.error('Error processing request:', err);
         res.status(500).json({ error: 'Internal Server Error' });
     } finally {
         if (conn) conn.release();
+    }
+});
+
+app.get('/api/recipesByIngredient', async (req, res) => {
+    const ingredientName = req.query.ingredientName;
+    try {
+        const recipesByIngredient = await pool.query(
+            'SELECT recipe.* FROM recipe JOIN recipe_ingredient ON recipe.recipe_id = recipe_ingredient.recipe_id JOIN ingredient ON ingredient.ingredient_id  = recipe_ingredient.ingredient_id WHERE ingredient.name ILIKE $1;',
+            [`%${ingredientName}%`]
+        );
+        res.json(recipesByIngredient.rows);
+    } catch (err) {
+        console.error('Error processing request:', err);
+        res.status(500).json({ error: 'Internal Server Error' });
     }
 });
 

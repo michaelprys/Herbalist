@@ -131,13 +131,16 @@ const storeRecipe = useStoreRecipe();
 
 const page = reactive({
     number: computed(() => parseInt(route.query.page) || 1),
-    size: parseInt(localStorage.getItem('pageSize')) || 3,
+    size: parseInt(localStorage.getItem('recipePageSize')) || 3,
 });
 
 const handleResize = () => {
-    if (window.innerWidth <= 1280 && window.innerWidth >= 870) {
+    const mq1280 = window.matchMedia(`(width <= 1280px) and (width > 870px)`);
+    const mq870 = window.matchMedia(`(width <= 870px)`);
+
+    if (mq1280.matches) {
         page.size = 2;
-    } else if (window.innerWidth < 870) {
+    } else if (mq870.matches) {
         page.size = 1;
     } else {
         page.size = 3;
@@ -151,6 +154,15 @@ const totalPages = computed(() => {
 const loadRecipes = async () =>
     await storeRecipe.loadPaginatedRecipes(page.number, page.size);
 
+watch(() => route.query.page, loadRecipes, { immediate: true });
+watch(
+    () => page.size,
+    newSize => {
+        localStorage.setItem('recipePageSize', newSize.toString());
+        loadRecipes();
+    }
+);
+
 onMounted(async () => {
     window.addEventListener('resize', handleResize);
     await storeRecipe.loadRecipesCount();
@@ -158,17 +170,7 @@ onMounted(async () => {
 
 onBeforeUnmount(async () => {
     window.removeEventListener('resize', handleResize);
-    await storeRecipe.loadRecipesCount();
 });
-
-watch(() => route.query.page, loadRecipes, { immediate: true });
-watch(
-    () => page.size,
-    newSize => {
-        localStorage.setItem('pageSize', newSize.toString());
-        loadRecipes();
-    }
-);
 </script>
 
 <style lang="scss">

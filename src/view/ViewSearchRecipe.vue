@@ -31,7 +31,8 @@
                             params: {
                                 recipe: result.slug,
                             },
-                        }">
+                        }"
+                        @click="handleClick(result)">
                         <svg
                             class="search__icon-recipe"
                             xmlns="http://www.w3.org/2000/svg"
@@ -63,6 +64,10 @@ const loadRecipesByKeyword = async () => {
     if (keyword.value) {
         await storeRecipe.loadRecipesByKeyword(keyword.value);
     }
+};
+
+const handleClick = recipe => {
+    storeRecipe.selectRecipe(recipe);
 };
 </script>
 

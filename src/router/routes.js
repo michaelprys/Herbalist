@@ -39,7 +39,7 @@ export const routes = [
                 component: ItemIngredientsList,
             },
             {
-                path: ':ingredient/recipes',
+                path: ':ingredientName/recipes',
                 name: 'ingredientRecipes',
                 component: ItemRecipesList,
             },

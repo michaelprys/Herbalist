@@ -10,7 +10,7 @@
                     class="ingredient-list__link"
                     :to="{
                         name: 'ingredientRecipes',
-                        params: { ingredient: ingredient.slug },
+                        params: { ingredientName: ingredient.name },
                     }">
                     <span class="ingredient-list__wrapper">
                         <svg
