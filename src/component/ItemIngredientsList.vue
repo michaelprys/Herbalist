@@ -1,20 +1,20 @@
 <template>
-    <div class="ingredient-list">
-        <h1 class="ingredient-list__title">List of ingredients</h1>
-        <ul class="ingredient-list__list">
+    <div class="ingredients">
+        <h1 class="ingredients__title">List of ingredients</h1>
+        <ul class="ingredients__list">
             <li
-                class="ingredient-list__item"
+                class="ingredients__item"
                 v-for="ingredient in storeRecipe.paginatedIngredients"
                 :key="ingredient.ingredient_id">
                 <router-link
-                    class="ingredient-list__link"
+                    class="ingredients__link"
                     :to="{
                         name: 'ingredientRecipes',
                         params: { ingredientName: ingredient.name },
                     }">
-                    <span class="ingredient-list__wrapper">
+                    <span class="ingredients__wrapper">
                         <svg
-                            class="ingredient-list__icon"
+                            class="ingredients__icon"
                             xmlns="http://www.w3.org/2000/svg"
                             width="1.2rem"
                             height="1.2rem"
@@ -28,9 +28,9 @@
             </li>
         </ul>
     </div>
-    <div class="ingredient-list__pagination">
+    <div class="ingredients__pagination">
         <router-link
-            class="ingredient-list__btn-left"
+            class="ingredients__btn-left"
             :to="{
                 name: 'ingredient',
                 query: {
@@ -39,7 +39,7 @@
             }"
             :class="{ inactive: page.number === 1 }">
             <svg
-                class="ingredient-list__btn-icon"
+                class="ingredients__btn-icon"
                 :class="{ inactive: page.number === 1 }"
                 xmlns="http://www.w3.org/2000/svg"
                 width="2.8rem"
@@ -49,13 +49,13 @@
                     d="M13.939 4.939 6.879 12l7.06 7.061 2.122-2.122L11.121 12l4.94-4.939z"></path>
             </svg>
         </router-link>
-        <ul class="ingredient-list__pagination-list">
+        <ul class="ingredients__pagination-list">
             <li class="ingredient-list__pagination-item">
                 {{ page.number }} / {{ totalPages }}
             </li>
         </ul>
         <router-link
-            class="ingredient-list__btn-right"
+            class="ingredients__btn-right"
             :class="{ inactive: page.number === totalPages }"
             :to="{
                 name: 'ingredient',
@@ -64,7 +64,7 @@
                 },
             }">
             <svg
-                class="ingredient-list__btn-icon"
+                class="ingredients__btn-icon"
                 :class="{
                     inactive: page.number === totalPages,
                 }"

@@ -104,8 +104,8 @@ onBeforeUnmount(async () => {
     color: #4a5f72;
 }
 
-.ingredient-list,
-.recipes-list {
+.ingredients,
+.recipesOfIngredient {
     &__title {
         text-align: center;
         font-size: $fs-h1;
@@ -130,6 +130,8 @@ onBeforeUnmount(async () => {
         color: #4a5f72;
         padding-inline: $p-3;
         padding-block: $p-2;
+        height: 100%;
+        width: 100%;
     }
     &__icon {
         fill: #4a5f72c6;
@@ -161,13 +163,13 @@ onBeforeUnmount(async () => {
     &__btn-icon {
         &.inactive {
             fill: rgba(173, 173, 173, 0.746);
-            cursor: not-allowed;
+            pointer-events: none;
         }
     }
 }
 
 @media (width <= 1280px) {
-    .ingredient-list {
+    .ingredients {
         &__list {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -175,7 +177,7 @@ onBeforeUnmount(async () => {
     }
 }
 @media (width <= 760px) {
-    .ingredient-list {
+    .ingredients {
         &__list {
             grid-template-columns: repeat(2, 1fr);
         }
@@ -185,7 +187,7 @@ onBeforeUnmount(async () => {
     }
 }
 @media (width <= 640px) {
-    .ingredient-list {
+    .ingredients {
         &__list {
             grid-template-columns: repeat(1, 1fr);
         }

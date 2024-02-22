@@ -31,7 +31,7 @@
                     class="card__link"
                     :to="{
                         name: 'recipe-detail',
-                        params: { recipe: recipe.slug },
+                        params: { recipe: recipe.title }, // change title to slug
                     }"
                     @click="handleClick"
                     >View more</router-link

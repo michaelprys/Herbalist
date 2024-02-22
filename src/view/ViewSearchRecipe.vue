@@ -29,7 +29,7 @@
                         :to="{
                             name: 'recipe-detail',
                             params: {
-                                recipe: result.slug,
+                                recipe: result.title,
                             },
                         }"
                         @click="handleClick(result)">

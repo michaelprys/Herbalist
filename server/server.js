@@ -9,10 +9,10 @@ const PORT = 8000;
 
 // recipe endpoint
 app.get('/api/recipe', async (req, res) => {
-    console.log('req.query:', req.query);
     const conn = await connectToDb();
     try {
-        const { keyword, popular, page, pageSize, recipesCount } = req.query;
+        const { keyword, popular, page, pageSize, recipesCount, ingredients } =
+            req.query;
         // by keyword
         if (keyword) {
             const recipe = await pool.query(
@@ -98,6 +98,20 @@ app.get('/api/recipesByIngredient', async (req, res) => {
             [`%${ingredientName}%`]
         );
         res.json(recipesByIngredient.rows);
+    } catch (err) {
+        console.error('Error processing request:', err);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
+
+app.get('/api/ingredientsOfRecipe/:recipe', async (req, res) => {
+    const recipeName = req.params.recipe;
+    try {
+        const ingredientsOfRecipe = await pool.query(
+            'SELECT ingredient.* FROM ingredient JOIN recipe_ingredient ON ingredient.ingredient_id = recipe_ingredient.ingredient_id JOIN recipe ON recipe.recipe_id = recipe_ingredient.recipe_id WHERE recipe.title ILIKE $1;',
+            [`%${recipeName}%`]
+        );
+        res.json(ingredientsOfRecipe.rows);
     } catch (err) {
         console.error('Error processing request:', err);
         res.status(500).json({ error: 'Internal Server Error' });

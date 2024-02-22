@@ -9,6 +9,7 @@ export const state = () => {
         paginatedIngredients: [],
         ingredientCount: 0,
         recipesByIngredient: [],
+        ingredientsOfRecipe: [],
         pending: false,
     };
 };

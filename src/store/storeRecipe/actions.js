@@ -86,26 +86,6 @@ export const actions = {
         }
     },
 
-    async loadRecipesByIngredient(ingredientName) {
-        try {
-            this.pending = true;
-            const res = await fetch(
-                `/api/recipesByIngredient?ingredientName=${encodeURIComponent(
-                    ingredientName
-                )}`
-            );
-            if (res.ok) {
-                const data = await res.json();
-                this.recipesByIngredient = data;
-            }
-        } catch (err) {
-            console.error('Error fetching recipes by ingredient:', err);
-            this.error = 'Failed to fetch recipes by ingredient';
-        } finally {
-            this.pending = false;
-        }
-    },
-
     async loadPaginatedIngredients(page, pageSize) {
         try {
             this.pending = true;
@@ -134,6 +114,48 @@ export const actions = {
         } catch (err) {
             console.error('Error fetching total ingredients:', err);
             this.error = 'Failed to fetch total ingredients';
+        } finally {
+            this.pending = false;
+        }
+    },
+
+    async loadRecipesByIngredient(ingredientName) {
+        try {
+            this.pending = true;
+            const res = await fetch(
+                `/api/recipesByIngredient?ingredientName=${encodeURIComponent(
+                    ingredientName
+                )}`
+            );
+            if (res.ok) {
+                const data = await res.json();
+                this.recipesByIngredient = data;
+            }
+        } catch (err) {
+            console.error('Error fetching recipes by ingredient:', err);
+            this.error = 'Failed to fetch recipes by ingredient';
+        } finally {
+            this.pending = false;
+        }
+    },
+
+    async loadIngredientsOfRecipe(recipeName) {
+        try {
+            this.pending = true;
+            const res = await fetch(
+                `/api/ingredientsOfRecipe/${encodeURIComponent(recipeName)}`
+            );
+            if (res.ok) {
+                const data = await res.json();
+                this.ingredientsOfRecipe = data;
+                console.log(
+                    'Ingredients of recipe: ',
+                    this.ingredientsOfRecipe
+                );
+            }
+        } catch (err) {
+            console.error('Error fetching ingredients of this recipe:', err);
+            this.error = 'Failed to fetch ingredients of this recipe';
         } finally {
             this.pending = false;
         }

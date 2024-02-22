@@ -67,16 +67,15 @@
                                 }}
                             </p>
                             <h2 class="recipe__subtitle">Ingredients</h2>
-                            <!-- <div class="recipe__ingredients-wrapper">
-                                <ol
-                                    class="recipe__ingredients"
-                                    v-for="ingredient in storeRecipe.selectedRecipe.ingredient.split(
-                                        '\n'
-                                    )"
-                                    :key="ingredient.recipe_id">
-                                    <li>{{ ingredient }}</li>
+                            <div class="recipe__ingredients-wrapper">
+                                <ol class="recipe__ingredients">
+                                    <li
+                                        v-for="ingredient in storeRecipe.ingredientsOfRecipe"
+                                        :key="ingredient.ingredient_id">
+                                        {{ ingredient.name }}
+                                    </li>
                                 </ol>
-                            </div> -->
+                            </div>
                             <h2 class="recipe__subtitle">Method</h2>
                             <ol class="recipe__instructions">
                                 <li
@@ -100,8 +99,11 @@
 
 <script setup>
 import { useStoreRecipe } from '@/store/storeRecipe';
+import { onMounted } from 'vue';
+import { useRoute } from 'vue-router';
 
 const storeRecipe = useStoreRecipe();
+const route = useRoute();
 
 const getSrc = ext => {
     return new URL(
@@ -109,6 +111,10 @@ const getSrc = ext => {
         import.meta.url
     ).href;
 };
+
+onMounted(async () => {
+    await storeRecipe.loadIngredientsOfRecipe(route.params.recipe);
+});
 </script>
 
 <style lang="scss">
@@ -135,7 +141,7 @@ const getSrc = ext => {
         display: flex;
         gap: $g-2;
         &-link {
-            color: #4a5f72;
+            color: #339f4c;
             background: linear-gradient(#349632a7, #349632a7);
             background-repeat: no-repeat;
             background-position: bottom;
@@ -145,7 +151,6 @@ const getSrc = ext => {
             cursor: pointer;
             &:hover {
                 background-size: 100% 2px;
-                color: #349632;
             }
         }
     }
@@ -163,7 +168,6 @@ const getSrc = ext => {
         display: flex;
         justify-content: space-between;
         box-shadow: $dc-shadow-card;
-        // border: 0.625rem solid #e7e7e754;
         width: 100%;
         margin-inline: auto;
     }
