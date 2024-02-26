@@ -20,12 +20,13 @@ $tr-carousel: cubic-bezier(0.22, 0.61, 0.36, 1);
 // Animation
 $an-skeleton: skeleton-loading 1s linear infinite alternate;
 
-// Vue Router Transition
+// Vue Transition
 .fade-enter-active,
 .fade-leave-active {
-    transition: opacity 0.5s;
+    transition: opacity 0.5s ease;
 }
-.fade-enter,
+
+.fade-enter-from,
 .fade-leave-to {
     opacity: 0;
 }

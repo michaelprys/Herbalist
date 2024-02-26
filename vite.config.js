@@ -83,7 +83,9 @@ export default defineConfig({
             '@img': fileURLToPath(
                 new URL('./src/assets/images', import.meta.url)
             ),
-            '@fonts': fileURLToPath(new URL('./fonts/', import.meta.url)),
+            '@fonts': fileURLToPath(
+                new URL('./public/fonts/', import.meta.url)
+            ),
         },
     },
 });

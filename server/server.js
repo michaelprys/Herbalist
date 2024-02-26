@@ -11,8 +11,7 @@ const PORT = 8000;
 app.get('/api/recipe', async (req, res) => {
     const conn = await connectToDb();
     try {
-        const { keyword, popular, page, pageSize, recipesCount, ingredients } =
-            req.query;
+        const { keyword, popular, page, pageSize, recipesCount } = req.query;
         // by keyword
         if (keyword) {
             const recipe = await pool.query(

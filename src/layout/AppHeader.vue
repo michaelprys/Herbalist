@@ -49,16 +49,16 @@
                             About</router-link
                         >
                     </li>
-                    <li class="nav__menu-item">
-                        <router-link
-                            class="nav__menu-link nav__menu-link--secondary"
-                            :to="{ name: 'login' }"
-                            >Log In</router-link
-                        >
+                    <li class="nav__menu-link nav__menu-link--login">
+                        <button
+                            class="nav__menu-btn"
+                            type="button"
+                            @click="openModal">
+                            Login
+                        </button>
                     </li>
                 </ul>
             </div>
-
             <ItemBurgerMenu
                 :class="{ active: showDrawer }"
                 @click="toggleDrawer"
@@ -79,11 +79,13 @@ import ItemBurgerMenu from '@/component/ItemBurgerMenu.vue';
 import ItemDrawer from '@/component/ItemDrawer.vue';
 import { ref, onMounted, onUnmounted } from 'vue';
 import { useRouter } from 'vue-router';
+import { useModal } from '@/use/useModal';
 
 const router = useRouter();
 const showDrawer = ref(false);
 const navBurgerRef = ref();
 const drawerRef = ref();
+const { openModal } = useModal();
 
 const toggleDrawer = () => {
     showDrawer.value = !showDrawer.value;
@@ -223,8 +225,8 @@ onUnmounted(() => {
             opacity: $op-100;
         }
     }
-    &__menu-link--secondary {
-        display: block;
+    &__menu-link--secondary,
+    &__menu-link--login {
         position: relative;
         margin-inline: $m-6;
         font-size: $fs-h6;
@@ -237,7 +239,16 @@ onUnmounted(() => {
             color 0.3s linear;
         opacity: $op-70;
         padding-inline: $p-3;
+        cursor: pointer;
 
+        // login button
+        & button {
+            width: 100%;
+            background: none;
+            color: inherit;
+            font: inherit;
+            text-transform: uppercase;
+        }
         &::after {
             content: '';
             position: absolute;
@@ -255,6 +266,9 @@ onUnmounted(() => {
             color: $c-black;
         }
     }
+    &__menu-link--login {
+        margin-right: 0;
+    }
 }
 // * Media -------------------/
 @media (width <= $screen-xl) {
@@ -266,7 +280,8 @@ onUnmounted(() => {
 
         padding-inline: calc($p-12 - 2rem);
         &__menu-link--primary,
-        &__menu-link--secondary {
+        &__menu-link--secondary,
+        &__menu-link--login {
             display: $none;
         }
     }

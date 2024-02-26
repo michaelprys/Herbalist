@@ -35,16 +35,16 @@
                     >
                 </li>
                 <li>
-                    <a class="drawer__link" href="#about"> About</a>
+                    <a class="drawer__link" href="#about">About</a>
                 </li>
-                <li>
+                <!-- <li>
                     <router-link
                         :to="{ name: 'login' }"
                         class="drawer__link"
                         active-class="drawer__active-link"
                         >Log In</router-link
                     >
-                </li>
+                </li> -->
             </ul>
         </nav>
         <div

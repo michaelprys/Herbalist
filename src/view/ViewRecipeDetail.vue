@@ -214,7 +214,7 @@ onMounted(async () => {
         border-radius: $br-4;
     }
     &__title {
-        font-size: $fs-lg;
+        font-size: $fs-h1;
     }
     &__description {
         font-size: $fs-h5;
@@ -290,8 +290,11 @@ onMounted(async () => {
 }
 @media (width <= $screen-sm) {
     .recipe {
+        &__route {
+            font-size: $fs-base;
+        }
         &__title {
-            font-size: $fs-h2;
+            font-size: $fs-h3;
         }
         &__subtitle {
             font-size: $fs-h4;

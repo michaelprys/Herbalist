@@ -11,10 +11,9 @@
 
 <script setup>
 // import { useRouter } from 'vue-router';
-
 // const route = useRouter();
 </script>
 
 <style lang="scss">
-@import '../assets/scss/util/animation.scss';
+@import '@/assets/scss/util/animation.scss';
 </style>

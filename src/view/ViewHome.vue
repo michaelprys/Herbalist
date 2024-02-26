@@ -121,9 +121,16 @@
                                 class="section--herb-notes__wrapper-img section--herb-notes__wrapper-img--1">
                                 <div class="section--herb-notes__overlay">
                                     <a href="#">
-                                        <span
+                                        <router-link
+                                            :to="{
+                                                name: 'ingredientRecipes',
+                                                params: {
+                                                    ingredientName: 'Turmeric',
+                                                },
+                                            }"
                                             class="section--herb-notes__overlay-link"
-                                            >See recipes with turmeric</span
+                                            >See recipes with
+                                            turmeric</router-link
                                         >
                                     </a>
                                 </div>
@@ -163,10 +170,17 @@
                                 class="section--herb-notes__wrapper-img section--herb-notes__wrapper-img--2">
                                 <div class="section--herb-notes__overlay">
                                     <a href="#">
-                                        <span
+                                        <router-link
                                             class="section--herb-notes__overlay-link"
-                                            >See recipes with ginger</span
-                                        >
+                                            :to="{
+                                                name: 'ingredientRecipes',
+                                                params: {
+                                                    ingredientName: 'Ginger',
+                                                },
+                                            }">
+                                            See recipes with ginger
+                                        </router-link>
+                                        <span></span>
                                     </a>
                                 </div>
 

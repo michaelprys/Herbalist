@@ -13,7 +13,9 @@
                         d="M13.293 6.293 7.586 12l5.707 5.707 1.414-1.414L10.414 12l4.293-4.293z"></path>
                 </svg>
             </a>
-            <h1 class="recipesOfIngredient__title">Recipes by ingredient</h1>
+            <h1 class="recipesOfIngredient__title">
+                Recipes with <span>{{ route.params.ingredientName }}</span>
+            </h1>
         </div>
         <ul class="recipesOfIngredient__list">
             <li
@@ -69,6 +71,9 @@ onMounted(async () => {
         &:hover {
             fill: #4a5f72;
         }
+    }
+    &__title span {
+        text-transform: lowercase;
     }
 }
 </style>

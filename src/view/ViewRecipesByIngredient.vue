@@ -92,12 +92,13 @@ onBeforeUnmount(async () => {
 }
 
 .list-wrapper {
+    position: relative;
     display: flex;
     flex-direction: column;
     margin-top: calc($spacing-fixed-header - $m-12);
     background-color: #ffffffda;
     margin-inline: auto;
-    min-height: 41em;
+    min-height: 41.8em;
     border-radius: $br-4;
     box-shadow: $dc-shadow-card;
     padding: $p-10;
@@ -169,20 +170,35 @@ onBeforeUnmount(async () => {
 }
 
 @media (width <= 1280px) {
-    .ingredients {
+    .ingredients,
+    .recipesOfIngredient {
         &__list {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
         }
     }
+    .recipesOfIngredient {
+        &__title {
+            font-size: $fs-h3;
+        }
+    }
 }
 @media (width <= 760px) {
     .ingredients {
+        &__title {
+            font-size: $fs-h3;
+        }
         &__list {
             grid-template-columns: repeat(2, 1fr);
         }
         &__item {
             font-size: 17px;
+        }
+    }
+    .recipesOfIngredient {
+        &__title {
+            font-size: $fs-h5;
+            margin-left: 2.8rem;
         }
     }
 }
