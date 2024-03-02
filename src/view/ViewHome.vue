@@ -470,6 +470,7 @@ const sliderOptions = {
 
 .section--philosophy {
     padding-block: $spacing-common;
+    min-height: 100vh;
     &__img {
         @include bg;
         width: 400px;

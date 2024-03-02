@@ -1,5 +1,7 @@
 <template>
-    <ModalLogin />
+    <Teleport to="body">
+        <ModalLogin />
+    </Teleport>
 </template>
 
 <script setup>

@@ -1,73 +1,76 @@
 <template>
-    <header class="header" :class="{ hidden: hideHeader }">
-        <nav class="nav">
-            <div class="nav__item">
-                <router-link class="nav__logo" :to="{ name: 'home' }">
-                    <picture>
-                        <source
-                            srcset="@img/content/logo/header-logo.avif"
-                            type="image/avif" />
-                        <img
-                            class="nav__logo-image"
-                            src="@img/content/logo/header-logo.png"
-                            alt="Herbalist Logo" />
-                    </picture>
-                    <span class="nav__logo-name">Herbalist</span>
-                </router-link>
-            </div>
-            <div class="nav__item nav__item--menus">
-                <ul class="nav__menu">
-                    <li class="nav__menu-item">
-                        <router-link
-                            class="nav__menu-link nav__menu-link--primary"
-                            :to="{
-                                name: 'recipes',
-                            }"
-                            ><span>All Recipes</span>
-                        </router-link>
-                    </li>
-                    <li class="nav__menu-item">
-                        <router-link
-                            class="nav__menu-link nav__menu-link--primary"
-                            :to="{ name: 'search-recipes' }"
-                            ><span>Search Recipes</span>
-                        </router-link>
-                    </li>
-                    <li class="nav__menu-item">
-                        <router-link
-                            class="nav__menu-link nav__menu-link--primary"
-                            :to="{ name: 'ingredient' }"
-                            ><span>Recipes By Ingredients</span>
-                        </router-link>
-                    </li>
-                </ul>
-                <ul class="nav__menu">
-                    <li class="nav__menu-item">
-                        <router-link
-                            class="nav__menu-link nav__menu-link--secondary"
-                            :to="{ name: 'home', hash: '#about' }">
-                            About</router-link
-                        >
-                    </li>
-                    <li class="nav__menu-link nav__menu-link--login">
-                        <button
-                            class="nav__menu-btn"
-                            type="button"
-                            @click="openModal">
-                            Login
-                        </button>
-                    </li>
-                </ul>
-            </div>
+    <header id="header">
+        <div class="nav-wrapper" :class="{ hidden: hideNav }">
+            <nav class="nav">
+                <div class="nav__item">
+                    <router-link class="nav__logo" :to="{ name: 'home' }">
+                        <picture>
+                            <source
+                                srcset="@img/content/logo/header-logo.avif"
+                                type="image/avif" />
+                            <img
+                                class="nav__logo-image"
+                                src="@img/content/logo/header-logo.png"
+                                alt="Herbalist Logo" />
+                        </picture>
+                        <span class="nav__logo-name">Herbalist</span>
+                    </router-link>
+                </div>
+                <div class="nav__item nav__item--menus">
+                    <ul class="nav__menu">
+                        <li class="nav__menu-item">
+                            <router-link
+                                class="nav__menu-link nav__menu-link--primary"
+                                :to="{
+                                    name: 'recipes',
+                                }"
+                                ><span>All Recipes</span>
+                            </router-link>
+                        </li>
+                        <li class="nav__menu-item">
+                            <router-link
+                                class="nav__menu-link nav__menu-link--primary"
+                                :to="{ name: 'search-recipes' }"
+                                ><span>Search Recipes</span>
+                            </router-link>
+                        </li>
+                        <li class="nav__menu-item">
+                            <router-link
+                                class="nav__menu-link nav__menu-link--primary"
+                                :to="{ name: 'ingredient' }"
+                                ><span>Recipes By Ingredients</span>
+                            </router-link>
+                        </li>
+                    </ul>
+                    <ul class="nav__menu">
+                        <li class="nav__menu-item">
+                            <router-link
+                                class="nav__menu-link nav__menu-link--secondary"
+                                :to="{ name: 'home', hash: '#about' }">
+                                About</router-link
+                            >
+                        </li>
+                        <li class="nav__menu-item">
+                            <button
+                                class="nav__menu-btn"
+                                type="button"
+                                @click="openModal">
+                                Login
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
             <ItemBurgerMenu
-                :class="{ active: showDrawer }"
+                :class="{ active: showDrawer, hidden: hideNav }"
                 @click="toggleDrawer"
                 ref="navBurgerRef" />
-        </nav>
-        <ItemDrawer
-            :showDrawer="showDrawer"
-            :closeDrawer="closeDrawer"
-            ref="drawerRef" />
+            <ItemDrawer
+                :class="{ hidden: hideNav }"
+                :showDrawer="showDrawer"
+                :closeDrawer="closeDrawer"
+                ref="drawerRef" />
+        </div>
     </header>
 </template>
 
@@ -78,27 +81,39 @@
 import ItemBurgerMenu from '@/component/ItemBurgerMenu.vue';
 import ItemDrawer from '@/component/ItemDrawer.vue';
 import { ref, onMounted, onUnmounted } from 'vue';
-import { useRouter } from 'vue-router';
+import { useRouter, useRoute } from 'vue-router';
 import { useModal } from '@/use/useModal';
 
 const router = useRouter();
+const route = useRoute();
 const showDrawer = ref(false);
 const navBurgerRef = ref();
 const drawerRef = ref();
-const { openModal } = useModal();
+const { openModal } = useModal(showDrawer);
 
 const toggleDrawer = () => {
     showDrawer.value = !showDrawer.value;
+    if (showDrawer.value === true) {
+        document.body.style.overflow = 'hidden';
+    } else {
+        document.body.style.overflow = 'auto';
+    }
 };
 
 const closeDrawer = () => {
     showDrawer.value = false;
+    if (showDrawer.value === true) {
+        document.body.style.overflow = 'hidden';
+    } else {
+        document.body.style.overflow = 'auto';
+    }
 };
 
 // reset drawer position
 const handleResize = () => {
     if (window.innerWidth > 1280) {
         closeDrawer();
+        document.body.style.overflow = 'auto';
     }
 };
 
@@ -106,15 +121,15 @@ const handleResize = () => {
 router.afterEach(() => closeDrawer());
 
 // hide on scroll
-const hideHeader = ref(false);
+const hideNav = ref(false);
 let lastScrollY = window.scrollY;
 
 const handleScroll = () => {
     if (!showDrawer.value) {
         if (lastScrollY < window.scrollY && window.scrollY >= 50) {
-            hideHeader.value = true;
+            hideNav.value = true;
         } else {
-            hideHeader.value = false;
+            hideNav.value = false;
         }
         lastScrollY = window.scrollY;
     }
@@ -132,11 +147,12 @@ onUnmounted(() => {
 </script>
 
 <style lang="scss">
-// * Header -------------------/
-.header {
+// * Nav-wrapper -------------------/
+.nav-wrapper {
     position: fixed;
-    top: $top-0;
-    z-index: $z-index-10;
+    top: 0;
+    width: 100%;
+    z-index: 10;
     width: $w-full;
     min-height: $h-header;
     background-color: $c-grey-800;
@@ -153,7 +169,6 @@ onUnmounted(() => {
     justify-content: space-between;
     align-items: center;
     padding-inline: $p-12;
-    z-index: $z-index-1000;
     &__item {
         display: flex;
         flex-direction: column-reverse;
@@ -194,6 +209,10 @@ onUnmounted(() => {
         padding-right: $p-0;
     }
 
+    &__menu-item:nth-child(2) &__menu-btn {
+        margin-right: 0;
+    }
+
     &__menu-link {
         &:hover {
             opacity: $op-100;
@@ -225,8 +244,15 @@ onUnmounted(() => {
             opacity: $op-100;
         }
     }
+    &__menu-btn {
+        height: 100%;
+        font-family: inherit;
+        color: inherit;
+        background: none;
+        text-transform: uppercase;
+    }
     &__menu-link--secondary,
-    &__menu-link--login {
+    &__menu-btn {
         position: relative;
         margin-inline: $m-6;
         font-size: $fs-h6;
@@ -240,15 +266,6 @@ onUnmounted(() => {
         opacity: $op-70;
         padding-inline: $p-3;
         cursor: pointer;
-
-        // login button
-        & button {
-            width: 100%;
-            background: none;
-            color: inherit;
-            font: inherit;
-            text-transform: uppercase;
-        }
         &::after {
             content: '';
             position: absolute;
@@ -266,9 +283,6 @@ onUnmounted(() => {
             color: $c-black;
         }
     }
-    &__menu-link--login {
-        margin-right: 0;
-    }
 }
 // * Media -------------------/
 @media (width <= $screen-xl) {
@@ -281,7 +295,7 @@ onUnmounted(() => {
         padding-inline: calc($p-12 - 2rem);
         &__menu-link--primary,
         &__menu-link--secondary,
-        &__menu-link--login {
+        &__menu-btn {
             display: $none;
         }
     }

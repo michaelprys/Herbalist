@@ -33,7 +33,7 @@ li {
 
 a {
     display: block;
-    color: $c-white;
+    color: #fff;
     text-decoration: none;
 }
 button {
@@ -46,7 +46,7 @@ picture,
 svg,
 video {
     display: block;
-    max-width: $w-full;
+    max-width: 100%;
 }
 
 body {

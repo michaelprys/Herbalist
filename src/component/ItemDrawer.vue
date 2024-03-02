@@ -1,8 +1,9 @@
 <template>
     <section class="drawer">
         <nav class="drawer__wrapper" :class="{ active: showDrawer }">
-            <ul>
-                <li>
+            <div class="drawer__header"></div>
+            <ul class="drawer__list">
+                <li class="drawer__item">
                     <router-link
                         to="/"
                         class="drawer__link"
@@ -10,7 +11,7 @@
                         >Home</router-link
                     >
                 </li>
-                <li>
+                <li class="drawer__item">
                     <router-link
                         :to="{ name: 'recipes' }"
                         class="drawer__link"
@@ -18,7 +19,7 @@
                         >All Recipes</router-link
                     >
                 </li>
-                <li>
+                <li class="drawer__item">
                     <router-link
                         :to="{ name: 'search-recipes' }"
                         class="drawer__link"
@@ -26,7 +27,7 @@
                         >Search Recipes</router-link
                     >
                 </li>
-                <li>
+                <li class="drawer__item">
                     <router-link
                         :to="{ name: 'ingredient' }"
                         class="drawer__link"
@@ -34,46 +35,68 @@
                         >Recipes By Ingredients</router-link
                     >
                 </li>
-                <li>
-                    <a class="drawer__link" href="#about">About</a>
+                <li class="drawer__item">
+                    <button class="drawer__btn" @click="delayNavigation">
+                        About
+                    </button>
                 </li>
-                <!-- <li>
-                    <router-link
-                        :to="{ name: 'login' }"
-                        class="drawer__link"
-                        active-class="drawer__active-link"
-                        >Log In</router-link
-                    >
-                </li> -->
+                <li class="drawer__item">
+                    <button class="drawer__btn" @click="toggleDrawerAndModal">
+                        Log In
+                    </button>
+                </li>
             </ul>
         </nav>
-        <div
-            class="drawer__overlay"
-            :class="{ active: showDrawer }"
-            ref="drawerOverlayRef"
-            @click="closeDrawer"></div>
+        <ItemDarkOverlay :class="{ active: showDrawer }" @click="closeDrawer" />
     </section>
 </template>
 
 <script setup>
-defineProps(['showDrawer', 'closeDrawer', 'menuItems']);
+import ItemDarkOverlay from '@/component/ItemDarkOverlay.vue';
+import { useModal } from '@/use/useModal';
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
+const props = defineProps(['showDrawer', 'closeDrawer']);
+
+const toggleDrawerAndModal = () => {
+    setTimeout(() => {
+        openModal();
+    }, 300);
+    props.closeDrawer();
+    document.body.style.overflow = 'hidden';
+};
+
+const delayNavigation = () => {
+    props.closeDrawer();
+    setTimeout(() => {
+        router.push({ name: 'home', hash: '#about' });
+    }, 300);
+};
+
+const { openModal } = useModal();
 </script>
 
 <style lang="scss">
 .drawer {
-    &__overlay {
-        visibility: $hidden;
+    position: relative;
+    z-index: 11;
+    &__header {
         position: fixed;
-        max-height: calc(100vh - 9rem);
-        width: $w-screen;
-        min-height: $h-screen;
-        opacity: $op-0;
-        transition: opacity $tr-smooth, visibility $tr-smooth;
-        will-change: opacity;
-        background-color: rgba($c-black, 0.5);
-        &.active {
-            visibility: visible;
-            opacity: $op-100;
+        top: 0;
+        right: 0;
+        min-height: $h-header;
+        width: 100%;
+        background-color: #272727;
+        &::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            height: 1px;
+            width: 100%;
+            background-color: $c-white;
+            opacity: 12%;
         }
     }
     &__wrapper {
@@ -87,27 +110,40 @@ defineProps(['showDrawer', 'closeDrawer', 'menuItems']);
             background-color: $c-grey-300;
         }
         position: fixed;
-        overflow-y: scroll;
         top: $top-0;
         bottom: $bottom-0;
-        left: $left-full;
+        left: 100%;
+        padding-top: $h-header;
         display: $none;
-        z-index: $z-index-100;
+        z-index: 2;
         display: flex;
         flex-direction: column;
         min-width: $w-80;
         min-height: $h-screen;
-        padding-top: calc($burger-height + $m-2_5 + 4.1rem);
         font-size: $fs-h5;
         text-transform: uppercase;
         backdrop-filter: $dc-blur-hard;
-        background-color: rgba(#272727, 0.97);
+        background-color: #272727;
         transition: transform $tr-smooth;
+
         &.active {
             transform: translateX(-100%);
         }
     }
-    &__link {
+    &__list {
+        overflow-y: auto;
+    }
+    &__btn {
+        font-family: inherit;
+        color: inherit;
+        background: none;
+        text-transform: uppercase;
+        font-size: inherit;
+        width: 100%;
+        text-align: left;
+    }
+    &__link,
+    &__btn {
         padding-inline: $p-6;
         padding-block: $p-4;
         opacity: $op-70;
@@ -129,9 +165,11 @@ defineProps(['showDrawer', 'closeDrawer', 'menuItems']);
 }
 
 @media (width <= $screen-sm) {
-    .drawer__wrapper {
-        min-width: $w-full;
-        font-size: $fs-h5;
+    .drawer {
+        &__wrapper {
+            min-width: $w-full;
+            font-size: $fs-h5;
+        }
     }
 }
 </style>

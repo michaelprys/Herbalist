@@ -1,22 +1,19 @@
 import { ref } from 'vue';
 
-const modalLoginRef = ref(null);
 const modalVisible = ref(false);
 
-export const useModal = () => {
+export const useModal = showDrawer => {
     const openModal = () => {
         modalVisible.value = true;
-        document.body.style.cssText =
-            'position: fixed; height: 100%; width: 100%; top: 0; left: 0; overflow-y: scroll;';
+        document.body.style.overflow = 'hidden';
     };
 
     const closeModal = () => {
         modalVisible.value = false;
-        document.body.style.cssText = 'position: static;';
+        document.body.style.overflow = 'auto';
     };
     return {
         modalVisible,
-        modalLoginRef,
         closeModal,
         openModal,
     };

@@ -9,6 +9,11 @@
     display: $none;
     flex-direction: column;
     gap: $g-2;
+    position: fixed;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 100;
     background: $none;
     padding-block: calc($p-3 + 0.3125rem);
     padding-inline: $p-3;
@@ -35,7 +40,7 @@
         left: $left-full;
     }
     &.active {
-        transition: opacity $tr-smooth;
+        transition: $tr-fast;
     }
     &.active span {
         width: $w-0;

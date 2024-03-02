@@ -1,7 +1,14 @@
 <template>
-    <Transition name="fade">
-        <div v-if="modalVisible" class="login" ref="modalLoginRef">
-            <div class="login__bg" @click.self="closeModal">
+    <div class="modal-login">
+        <ItemDarkOverlay
+            :class="{ active: modalVisible }"
+            :style="{
+                zIndex: 100,
+                transition: 'opacity 0.5s, visibility 0.5s',
+            }"
+            @click="closeModal" />
+        <Transition name="pop">
+            <div v-if="modalVisible" class="login">
                 <form class="login__form" action="">
                     <button
                         class="login__close-btn"
@@ -74,34 +81,32 @@
                     </div>
                 </form>
             </div>
-        </div>
-    </Transition>
+        </Transition>
+    </div>
 </template>
 
 <script setup>
+import ItemDarkOverlay from '@/component/ItemDarkOverlay.vue';
 import { useModal } from '@/use/useModal';
-import { ref } from 'vue';
 
-const { modalLoginRef, closeModal, modalVisible } = useModal();
+const { modalVisible, closeModal } = useModal();
 </script>
 
 <style lang="scss">
 .login {
     position: fixed;
-    width: 100%;
-    height: 100%;
-    z-index: 50;
-    border: none;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+    width: fit-content;
+    height: fit-content;
+    z-index: 110;
     border-radius: $br-10;
     color: $c-white;
+    border: none;
     background: none;
-    box-shadow: 0 0 1em rgb(0 0 0 / 0.3);
-    &__bg {
-        background-color: rgba(0, 0, 0, 0.8);
-        width: 100%;
-        height: 100%;
-        z-index: 49;
-    }
     &__close-btn {
         position: absolute;
         top: 5px;
@@ -117,9 +122,6 @@ const { modalLoginRef, closeModal, modalVisible } = useModal();
         }
     }
     &__form {
-        position: relative;
-        top: 50%;
-        transform: translateY(-50%);
         width: $w-96;
         padding: $p-10;
         margin-inline: $auto;
