@@ -1,0 +1,17 @@
+@import 'utils';
+@import 'base';
+
+body {
+    line-height: $lh-default;
+    color: $c-white;
+    font-weight: $fw-regular;
+    font-family: $ff-primary, sans-serif;
+    font-size: $fs-h6;
+    background-color: #194c5a;
+    touch-action: manipulation;
+}
+
+$bar-height: 0.1875rem;
+$burger-height: calc($bar-height * 3 + $g-2 * 2);
+$bar-width: 1.875rem;
+$x-width: calc($burger-height * 1.41421356237);

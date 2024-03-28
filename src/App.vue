@@ -6,8 +6,8 @@
 </template>
 
 <script setup>
-import AppHeader from '@/layout/AppHeader.vue';
-import AppMain from '@/layout/AppMain.vue';
-import AppFooter from '@/layout/AppFooter.vue';
-import AppModal from '@/layout/AppModal.vue';
+import AppHeader from '@/components/layout/AppHeader.vue';
+import AppMain from '@/components/layout/AppMain.vue';
+import AppFooter from '@/components/layout/AppFooter.vue';
+import AppModal from '@/components/layout/AppModal.vue';
 </script>

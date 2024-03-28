@@ -1,0 +1,28 @@
+.container {
+    width: $w-full;
+    padding-inline: $p-5;
+    margin-inline: auto;
+}
+
+@media (width > $screen-xs) {
+    .container {
+        max-width: $container-md;
+    }
+}
+
+@media (width > $screen-lg) {
+    .container {
+        max-width: $container-lg;
+    }
+}
+@media (width > $screen-xl) {
+    .container {
+        max-width: $container-xl;
+    }
+}
+
+@media (width > $screen-xxl) {
+    .container {
+        max-width: $container-xxl;
+    }
+}

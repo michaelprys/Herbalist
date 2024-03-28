@@ -4,11 +4,11 @@
     "private": true,
     "type": "module",
     "scripts": {
-        "dev": "concurrently --kill others \"node --watch server/server.js\" \"vite --port=3000 --open\"",
+        "dev": "concurrently --kill others \"node --watch server/server.js\" \"vite --port=3000 --host --open\"",
         "build": "vite build",
-        "preview": "vite preview --port=3000 --open",
+        "preview": "vite preview --port=3000 --host --open",
         "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore",
-        "convert": "node tool/imageConversion.js"
+        "convert": "node utils/imageConversion.js"
     },
     "dependencies": {
         "@splidejs/vue-splide": "^0.6.12",

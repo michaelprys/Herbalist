@@ -56,7 +56,8 @@ app.get('/api/ingredient', async (req, res) => {
     console.log('req.query: ', req.query);
     const conn = await connectToDb();
     try {
-        const { ingredient, ingredientCount, page, pageSize } = req.query;
+        const { ingredient, ingredientCount, page, pageSize, keyword } =
+            req.query;
         // ingredient
         if (ingredient) {
             const ingredientRes = await pool.query(
@@ -64,6 +65,14 @@ app.get('/api/ingredient', async (req, res) => {
             );
             res.json(ingredientRes);
             console.log(ingredientRes);
+        }
+        // ingredient by keyword
+        if (keyword) {
+            const ingredientByKeyword = await pool.query(
+                'SELECT * from ingredient WHERE name ILIKE $1 ORDER BY ingredient_id',
+                [`%${keyword}%`]
+            );
+            res.json(ingredientByKeyword.rows);
         }
         // pagination
         if (page && pageSize) {
@@ -89,6 +98,7 @@ app.get('/api/ingredient', async (req, res) => {
     }
 });
 
+// recipes by ingredient endpoint
 app.get('/api/recipesByIngredient', async (req, res) => {
     const ingredientName = req.query.ingredientName;
     try {
@@ -103,6 +113,7 @@ app.get('/api/recipesByIngredient', async (req, res) => {
     }
 });
 
+// ingredients of recipe endpoint
 app.get('/api/ingredientsOfRecipe/:recipe', async (req, res) => {
     const recipeName = req.params.recipe;
     try {
@@ -120,7 +131,6 @@ app.get('/api/ingredientsOfRecipe/:recipe', async (req, res) => {
 app.listen(PORT, () => {
     console.log(`Server started at http://localhost:${PORT}`);
 });
-
 app.use(express.static(path.join(__dirname, '../dist')));
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, '../dist/index.html'));

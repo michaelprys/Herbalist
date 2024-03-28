@@ -1,11 +1,11 @@
-import ViewHome from '@/view/ViewHome.vue';
-import ViewRecipesByIngredient from '@/view/ViewRecipesByIngredient.vue';
-import ItemIngredientsList from '@/component/ItemIngredientsList.vue';
-import ItemRecipesList from '@/component/ItemRecipesList.vue';
-import ViewRecipes from '@/view/ViewRecipes.vue';
-import ViewSearchRecipe from '@/view/ViewSearchRecipe.vue';
-import ViewNotFound from '@/view/ViewNotFound.vue';
-import ViewRecipeDetail from '@/view/ViewRecipeDetail.vue';
+import ViewHome from '@/views/ViewHome.vue';
+import ViewRecipesByIngredient from '@/views/ViewRecipesByIngredient.vue';
+import ItemIngredientsList from '@/components/common/ItemIngredientsList.vue';
+import ItemRecipesList from '@/components/common/ItemRecipesList.vue';
+import ViewRecipes from '@/views/ViewRecipes.vue';
+import ViewSearchRecipe from '@/views/ViewSearchRecipe.vue';
+import ViewNotFound from '@/views/ViewNotFound.vue';
+import ViewRecipeDetail from '@/views/ViewRecipeDetail.vue';
 
 export const routes = [
     {

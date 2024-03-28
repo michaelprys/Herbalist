@@ -14,15 +14,10 @@ export const router = createRouter({
                 } else {
                     setTimeout(() => {
                         resolve({ el: to.hash, behavior: 'smooth' });
-                    }, 20);
+                    }, 500);
                 }
             });
         } else {
-            // return new Promise(resolve => {
-            //     setTimeout(() => {
-            //         resolve({ top: 0 });
-            //     }, 500);
-            // });
             return { top: 0 };
         }
     },

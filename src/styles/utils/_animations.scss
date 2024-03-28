@@ -1,0 +1,55 @@
+// Duration
+$dur-1000: 1000s;
+$dur-700: 700ms;
+$dur-500: 500ms;
+$dur-400: 400ms;
+$dur-300: 300ms;
+$dur-200: 200ms;
+$dur-150: 150ms;
+$dur-100: 100ms;
+$dur-75: 75ms;
+$dur-0: 0s;
+
+// Transition
+$tr-basic: $dur-300 ease-in-out;
+$tr-smooth: $dur-200 cubic-bezier(0.55, 0.085, 0.68, 0.53);
+$tr-fast: $dur-100 ease-in-out;
+$tr-button: $dur-200;
+$tr-carousel: cubic-bezier(0.22, 0.61, 0.36, 1);
+$tr-slow: $dur-500 ease-in-out;
+
+// Animation
+$an-skeleton: skeleton-loading 1s linear infinite alternate;
+
+// Vue Transition
+.fade-enter-active,
+.fade-leave-active {
+    transition: opacity 0.4s linear;
+}
+.fade-enter-from,
+.fade-leave-to {
+    opacity: 0;
+}
+
+.pop-enter-active,
+.pop-leave-active {
+    transition: transform 0.4s cubic-bezier(0.5, 0, 0.5, 1), opacity 0.4s linear;
+}
+.pop-enter-from,
+.pop-leave-to {
+    opacity: 0;
+    transform: scale(0.3) translateY(-50%);
+}
+
+.list-enter-active,
+.list-leave-active {
+    transition: all 1s ease;
+}
+.list-enter-from,
+.list-leave-to {
+    opacity: 0;
+    transition: transform 1s ease-in-out;
+}
+.list-leave-active {
+    position: absolute;
+}
