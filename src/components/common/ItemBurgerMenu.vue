@@ -17,7 +17,7 @@
     background: none;
     padding-block: calc($p-3 + 0.3125rem);
     padding-inline: $p-3;
-    border-radius: $br-circle;
+    border-radius: $br-round;
     transition: background-color $tr-fast;
     &:hover {
         background-color: $c-grey;
@@ -37,7 +37,7 @@
         transform-origin: left center;
         rotate: z -180deg;
         position: relative;
-        left: $left-full;
+        left: 100%;
     }
     &.active {
         transition: $tr-fast;

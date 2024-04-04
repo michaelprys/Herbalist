@@ -4,7 +4,7 @@
             <h2 class="section__suptitle">
                 —&nbsp Revitalize, Nourish, Thrive &nbsp—
             </h2>
-            <h1 class="section__title">Welcome to Herbalist</h1>
+            <h1 class="section__intro-title">Welcome to Herbalist</h1>
             <router-link class="section__button" to="#popular">
                 Popular recipes
             </router-link>
@@ -24,17 +24,17 @@
     justify-content: center;
     flex-direction: column;
     position: relative;
-    @supports (background-image: url('@img/decor/section/intro/bg.avif')) {
-        background-image: url('@img/decor/section/intro/bg.avif');
+    @supports (background-image: url('@img/section/intro/bg.avif')) {
+        background-image: url('@img/section/intro/bg.avif');
     }
-    background-image: url('@img/decor/section/intro/bg.jpg');
+    background-image: url('@img/section/intro/bg.jpg');
     &__suptitle {
         font-size: $fs-h5;
         font-family: $ff-tertiary;
         text-align: center;
         text-transform: uppercase;
     }
-    &__title {
+    &__intro-title {
         font-size: 8rem;
         font-family: $ff-intro;
         text-align: center;
@@ -45,7 +45,7 @@
         position: absolute;
         bottom: 8rem;
         left: 50%;
-        transform: $translateX-half-neg;
+        transform: translateX(-50%);
         padding-block: $p-4;
         padding-inline: $p-8;
         border-radius: $br-2;
@@ -67,7 +67,7 @@
         &__suptitle {
             font-size: $fs-h6;
         }
-        &__title {
+        &__intro-title {
             font-size: 7rem;
         }
     }
@@ -77,7 +77,7 @@
         &__suptitle {
             font-size: $fs-base;
         }
-        &__title {
+        &__intro-title {
             font-size: 5rem;
         }
     }
@@ -87,7 +87,7 @@
         &__suptitle {
             font-size: 0.85rem;
         }
-        &__title {
+        &__intro-title {
             font-size: 4rem;
         }
         &__button {

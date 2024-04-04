@@ -79,26 +79,26 @@ onBeforeUnmount(async () => {
 </script>
 
 <style scoped lang="scss">
+.container {
+    padding-top: $h-header;
+}
+
 .section {
-    min-height: $h-section;
+    min-height: 100svh;
     @include bg;
-    @supports (
-        background-image: url('@img/decor/section/recipe-details/bg.avif')
-    ) {
-        background-image: url('@img/decor/section/recipe-details/bg.avif');
+    @supports (background-image: url('@img/section/recipe-details/bg.avif')) {
+        background-image: url('@img/section/recipe-details/bg.avif');
     }
-    background-image: url('@img/decor/section/recipe-details/bg.jpg');
-    padding-block: $spacing-common;
+    background-image: url('@img/section/recipe-details/bg.jpg');
 }
 
 .list-wrapper {
     position: relative;
     display: flex;
     flex-direction: column;
-    margin-top: calc($spacing-fixed-header - 4.1rem);
+    min-height: 45.3212rem;
     background-color: #ffffffda;
     margin-inline: auto;
-    min-height: 42.5em;
     border-radius: $br-4;
     box-shadow: $dc-shadow-card;
     padding-block: $p-10;

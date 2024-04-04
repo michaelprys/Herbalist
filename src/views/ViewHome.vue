@@ -2,9 +2,9 @@
     <div class="transition-container">
         <SectionIntro />
         <SectionPopular />
-        <SectionFeedback />
-        <SectionPhilosophy />
         <SectionHerbNotes />
+        <SectionPhilosophy />
+        <SectionFeedback />
         <SectionApart />
     </div>
 </template>
@@ -18,6 +18,4 @@ import SectionHerbNotes from '@/components/sections/Home/SectionHerbNotes.vue';
 import SectionApart from '@/components/sections/Home/SectionApart.vue';
 </script>
 
-<style lang="scss">
-@import '@splidejs/vue-splide/css/core';
-</style>
+<style scoped lang="scss"></style>

@@ -45,14 +45,7 @@
                     }"
                     class="pagination__btn-prev"
                     :class="{ inactive: page.number === 1 }">
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="24"
-                        height="24"
-                        viewBox="0 0 24 24">
-                        <path
-                            d="M13.293 6.293 7.586 12l5.707 5.707 1.414-1.414L10.414 12l4.293-4.293z"></path>
-                    </svg>
+                    <IconBtnPrev />
                 </router-link>
                 <!-- ./button prev -->
 
@@ -82,14 +75,7 @@
                     }"
                     class="pagination__btn-next"
                     :class="{ inactive: page.number === totalPages }">
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="24"
-                        height="24"
-                        viewBox="0 0 24 24">
-                        <path
-                            d="M10.707 17.707 16.414 12l-5.707-5.707-1.414 1.414L13.586 12l-4.293 4.293z"></path>
-                    </svg>
+                    <IconBtnNext />
                 </router-link>
                 <!-- ./button next page -->
 
@@ -123,6 +109,8 @@ import ItemCard from '@/components/common/ItemCard.vue';
 import { onMounted, onBeforeUnmount, reactive, computed, watch } from 'vue';
 import { useStoreRecipe } from '@/stores/storeRecipe';
 import { useRoute } from 'vue-router';
+import IconBtnPrev from '@/components/icons/IconBtnPrev.vue';
+import IconBtnNext from '@/components/icons/IconBtnNext.vue';
 
 const route = useRoute();
 const storeRecipe = useStoreRecipe();
@@ -171,27 +159,23 @@ onBeforeUnmount(async () => {
 </script>
 
 <style scoped lang="scss">
+.container {
+    margin-top: $h-header;
+}
+
 .section {
-    min-height: $h-section;
+    min-height: 100svh;
     @include bg;
-    @supports (
-        background-image: url('@img/decor/section/recipe-details/bg.avif')
-    ) {
-        background-image: url('@img/decor/section/recipe-details/bg.avif');
+    @supports (background-image: url('@img/section/recipe-details/bg.avif')) {
+        background-image: url('@img/section/recipe-details/bg.avif');
     }
-    background-image: url('@img/decor/section/recipe-details/bg.jpg');
-    padding-block: calc($spacing-common);
-    &__title {
-        margin-top: calc($spacing-fixed-header - $m-12);
-        font-size: $fs-lg;
-    }
+    background-image: url('@img/section/recipe-details/bg.jpg');
 }
 
 .recipes {
     display: flex;
     justify-content: center;
     gap: $g-8;
-    margin-top: $m-8;
 }
 
 .pagination {

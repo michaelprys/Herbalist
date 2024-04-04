@@ -8,14 +8,9 @@ const sourceDir = path.join(__dirname, '../src/assets/images');
 
 async function main() {
     try {
-        const convertedDecor = await processImages(
-            path.join(sourceDir, 'decor')
-        );
-        const convertedContent = await processImages(
-            path.join(sourceDir, 'content')
-        );
+        const convertedContent = await processImages(sourceDir);
 
-        if (convertedDecor || convertedContent) {
+        if (convertedContent) {
             console.log('\x1b[32m- Images converted.');
         } else {
             console.log('\x1b[36m- Nothing to convert.');
@@ -41,15 +36,14 @@ async function processImages(dir) {
             const avifPath = path.join(dir, baseName + '.avif');
 
             try {
-                if (dir.includes('content') || dir.includes('decor')) {
+                if (sourceDir) {
                     await fs.access(avifPath);
                 }
             } catch (err) {
                 const sharpImage = sharp(filePath);
-                if (dir.includes('decor') || dir.includes('content')) {
+                if (sourceDir) {
                     await sharpImage.avif().toFile(avifPath);
                 }
-
                 converted = true;
             }
         }

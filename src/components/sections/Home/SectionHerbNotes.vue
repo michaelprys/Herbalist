@@ -20,13 +20,11 @@
                         </div>
                         <picture>
                             <source
-                                srcset="
-                                    @img/content/section/herb-notes/turmeric.avif
-                                "
+                                srcset="@img/section/herb-notes/turmeric.avif"
                                 type="image/avif" />
                             <img
                                 class="content__img--1"
-                                src="@img/content/section/herb-notes/turmeric.jpg"
+                                src="@img/section/herb-notes/turmeric.jpg"
                                 loading="lazy"
                                 alt="tumeric" />
                         </picture>
@@ -58,13 +56,11 @@
                         </div>
                         <picture>
                             <source
-                                srcset="
-                                    @img/content/section/herb-notes/ginger.avif
-                                "
+                                srcset="@img/section/herb-notes/ginger.avif"
                                 type="image/avif" />
                             <img
                                 class="content__img--2"
-                                src="@img/content/section/herb-notes/ginger.jpg"
+                                src="@img/section/herb-notes/ginger.jpg"
                                 loading="lazy"
                                 alt="ginger" />
                         </picture>
@@ -87,16 +83,14 @@
 
 <style scoped lang="scss">
 .section {
-    min-height: 100svh;
-    padding-block: $spacing-common;
     @include bg;
-    @supports (background-image: url('@img/decor/section/herb-notes/bg.avif')) {
-        background-image: url('@img/decor/section/herb-notes/bg.avif');
+    @supports (background-image: url('@img/section/herb-notes/bg.avif')) {
+        background-image: url('@img/section/herb-notes/bg.avif');
     }
-    background-image: url('@img/decor/section/herb-notes/bg.jpg');
+    background-image: url('@img/section/herb-notes/bg.jpg');
     &__title {
         font-size: $fs-lg;
-        text-shadow: $dc-shadow-dark;
+        text-shadow: 8px 8px 18px #000;
     }
 }
 
@@ -104,7 +98,6 @@
     display: flex;
     margin-inline: auto;
     gap: $g-12;
-    margin-top: $m-10;
     max-width: 72rem;
 }
 

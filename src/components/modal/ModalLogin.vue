@@ -161,8 +161,8 @@ const { modalVisible, closeModal } = useModal();
     &__input-icon {
         fill: $c-white;
         position: absolute;
-        transform: $translateY-half-neg;
-        top: $top-half;
+        transform: translateY(-50%);
+        top: 50%;
         right: 1rem;
     }
     &__options {
@@ -179,6 +179,7 @@ const { modalVisible, closeModal } = useModal();
         margin-block: $m-2;
         border-radius: $br-full;
         background-color: $c-white;
+        width: $w-full;
     }
     &__register {
         display: flex;
@@ -216,8 +217,8 @@ const { modalVisible, closeModal } = useModal();
                 position: absolute;
                 opacity: $op-0;
                 transform: translate(-50%, -50%);
-                top: $top-half;
-                left: $left-half;
+                top: 50%;
+                left: 50%;
                 width: $w-2;
                 min-height: $w-2;
                 background-color: $c-grey-600;

@@ -54,7 +54,7 @@ const isSkeletonActive = ref(props.pending === true || !isLoaded.value);
 
 const getSrc = ext => {
     return new URL(
-        `../../assets/images/content/recipe/${props.recipe.image}${ext}`,
+        `../../assets/images/recipe/${props.recipe.image}${ext}`,
         import.meta.url
     ).href;
 };
@@ -87,9 +87,9 @@ onMounted(() => {
     position: relative;
     display: flex;
     align-items: center;
-    margin-top: $m-5;
     color: $c-grey-800;
     max-width: 23.75rem;
+    width: 100%;
     user-select: none;
     margin-inline: auto;
     &__favorite-icon {
@@ -137,7 +137,6 @@ onMounted(() => {
     &__title {
         font-size: $fs-h5;
         font-weight: $fw-bold;
-        transition: $tr-basic;
         color: $c-grey-700;
     }
     &__text {
@@ -147,17 +146,6 @@ onMounted(() => {
     }
     &__link {
         @include button-style($c-pink);
-    }
-}
-
-@media (width <= $screen-sm) {
-    .card {
-        &__title {
-            font-size: $fs-h6;
-        }
-        &__text {
-            font-size: $fs-smaller;
-        }
     }
 }
 </style>

@@ -102,7 +102,7 @@ const route = useRoute();
 
 const getSrc = ext => {
     return new URL(
-        `../assets/images/content/recipe/${storeRecipe.selectedRecipe.image}${ext}`,
+        `../assets/images/recipe/${storeRecipe.selectedRecipe.image}${ext}`,
         import.meta.url
     ).href;
 };
@@ -113,20 +113,22 @@ onMounted(async () => {
 </script>
 
 <style scoped lang="scss">
+.container {
+    margin-top: $h-header;
+}
+
 .section {
-    min-height: $h-section;
+    min-height: 100svh;
     @include bg;
-    background-image: url('@img/decor/section/recipe-details/bg.jpg');
-    padding-block: $spacing-common;
+    background-image: url('@img/section/recipe-details/bg.jpg');
 }
 
 .recipe {
     display: flex;
     justify-content: space-between;
-    margin-top: calc($spacing-fixed-header - $m-8);
     margin-inline: auto;
     max-width: 78rem;
-    height: 43.8rem;
+    height: 45.3212rem;
     background-color: #ffffffda;
     color: #4a5f72;
     border-radius: $br-4;
@@ -151,7 +153,7 @@ onMounted(async () => {
     }
     &__bookmark {
         @include bg;
-        background-image: url('@img/decor/section/recipe-details/bookmark.png');
+        background-image: url('@img/section/recipe-details/bookmark.png');
         width: 80px;
         height: 80px;
         position: absolute;
@@ -250,7 +252,7 @@ onMounted(async () => {
             position: absolute;
             left: -1.5rem;
             top: 50%;
-            transform: $translateY-half-neg;
+            transform: translateY(-50%);
         }
     }
     &__instructions {
@@ -273,7 +275,7 @@ onMounted(async () => {
         }
         &__img-wrapper {
             box-shadow: none;
-            padding: 0;
+            padding: $p-0;
             width: 100%;
             height: 18.75rem;
         }
@@ -283,7 +285,7 @@ onMounted(async () => {
         &__content {
             flex-direction: column;
             min-height: 300px;
-            padding: 0;
+            padding: $p-0;
             border: none;
         }
         &__details {

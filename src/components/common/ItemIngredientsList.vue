@@ -120,7 +120,7 @@ const filteredIngredients = computed(() => {
 const props = defineProps(['totalPages', 'page']);
 </script>
 
-<style lang="scss">
+<style scoped lang="scss">
 .ingredients {
     &__not-found {
         margin-top: $m-4;

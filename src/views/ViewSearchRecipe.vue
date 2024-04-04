@@ -1,5 +1,5 @@
 <template>
-    <div class="section">
+    <section class="section">
         <div class="container">
             <label class="section__search">
                 <input
@@ -45,7 +45,7 @@
                 </li>
             </ul>
         </div>
-    </div>
+    </section>
 </template>
 
 <script setup>
@@ -70,18 +70,18 @@ const handleClick = recipe => {
 </script>
 
 <style scoped lang="scss">
+.container {
+    margin-top: calc($h-header * 2);
+}
+
 .section {
-    min-height: $h-section;
+    min-height: 100svh;
     @include bg;
-    @supports (
-        background-image: url('@img/decor/section/recipe-details/bg.avif')
-    ) {
-        background-image: url('@img/decor/section/recipe-details/bg.avif');
+    @supports (background-image: url('@img/section/recipe-details/bg.avif')) {
+        background-image: url('@img/section/recipe-details/bg.avif');
     }
-    background-image: url('@img/decor/section/recipe-details/bg.jpg');
+    background-image: url('@img/section/recipe-details/bg.jpg');
     text-align: center;
-    padding-block: $spacing-common;
-    padding-top: calc($spacing-fixed-header + $p-32);
     &__search {
         position: relative;
     }
@@ -100,7 +100,7 @@ const handleClick = recipe => {
     }
     &__icon-search {
         position: absolute;
-        padding: 5px;
+        padding: $p-2;
         font-size: $fs-h4;
         fill: $c-white;
         opacity: $op-75;
@@ -139,8 +139,8 @@ const handleClick = recipe => {
         }
     }
     &__icon-suggestion {
-        top: $top-half;
-        transform: $translateY-half-neg;
+        top: 50%;
+        transform: translateY(-50%);
         left: 1rem;
         position: absolute;
         fill: $c-grey-200;

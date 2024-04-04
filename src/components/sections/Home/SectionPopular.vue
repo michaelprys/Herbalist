@@ -12,14 +12,6 @@ import ItemCarousel from '@/components/common/ItemCarousel.vue';
 </script>
 
 <style scoped lang="scss">
-.section {
-    min-height: 100svh;
-    padding-block: $spacing-common;
-    &__title {
-        font-size: $fs-lg;
-    }
-}
-
 .carousel {
     max-width: $screen-xl;
     margin-inline: auto;
@@ -31,10 +23,21 @@ import ItemCarousel from '@/components/common/ItemCarousel.vue';
         margin-inline: auto;
         max-width: 53.125rem;
     }
+    .section {
+        &__title {
+            font-size: $fs-h1;
+        }
+    }
 }
 @media (width < $screen-md) {
     .carousel {
         max-width: 26.25rem;
+    }
+}
+
+@media (width < 29.375rem) {
+    .carousel {
+        padding-inline: $p-0;
     }
 }
 </style>

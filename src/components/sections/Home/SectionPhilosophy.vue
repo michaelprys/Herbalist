@@ -24,7 +24,6 @@
 
 <style scoped lang="scss">
 .section {
-    padding-block: $spacing-common;
     text-align: justify;
     hyphens: auto;
     &__title {
@@ -35,7 +34,6 @@
 .content {
     display: flex;
     gap: $g-20;
-    margin-top: $m-10;
     &__text {
         line-height: 2;
     }
@@ -47,12 +45,11 @@
         border-radius: $br-6;
         background-color: $c-placeholder;
         @supports (
-            background-image:
-                url('@img/decor/section/philosophy/philosophy.avif')
+            background-image: url('@img/section/philosophy/philosophy.avif')
         ) {
-            background-image: url('@img/decor/section/philosophy/philosophy.avif');
+            background-image: url('@img/section/philosophy/philosophy.avif');
         }
-        background-image: url('@img/decor/section/philosophy/philosophy.jpg');
+        background-image: url('@img/section/philosophy/philosophy.jpg');
         box-shadow: $dc-shadow-card;
     }
 }

@@ -52,8 +52,6 @@
 <style scoped lang="scss">
 .section {
     position: relative;
-    min-height: 100svh;
-    padding-block: $spacing-common;
     text-align: justify;
     hyphens: auto;
     &__title {
@@ -63,7 +61,6 @@
 
 .content {
     display: flex;
-    margin-top: $m-10;
     gap: $g-16;
     &__img {
         @include bg;
@@ -73,17 +70,15 @@
         display: block;
         border-radius: $br-6;
         background-color: $c-placeholder;
-        @supports (
-            background-image: url('@img/decor/section/apart/apart.avif')
-        ) {
-            background-image: url('@img/decor/section/apart/apart.avif');
+        @supports (background-image: url('@img/section/apart/apart.avif')) {
+            background-image: url('@img/section/apart/apart.avif');
         }
-        background-image: url('@img/decor/section/apart/apart.jpg');
+        background-image: url('@img/section/apart/apart.jpg');
         box-shadow: $dc-shadow-card;
     }
     &__list {
         line-height: 2;
-        margin-bottom: 11rem;
+        margin-bottom: $m-44;
     }
     &__item {
         margin-top: $m-6;
@@ -95,8 +90,8 @@
         &::before {
             position: absolute;
             content: '';
-            padding: calc($p-1_5 + 0.125rem);
-            border-radius: $br-circle;
+            padding: $p-2;
+            border-radius: $br-round;
             background-color: $c-white;
             top: 12px;
             left: 0;
@@ -107,10 +102,10 @@
         position: absolute;
         left: 50%;
         bottom: 8%;
-        transform: $translateX-half-neg;
+        transform: translateX(-50%);
         border: 2px solid $c-white;
-        padding: 0.1875rem;
-        border-radius: $br-circle;
+        padding: $p-1_5;
+        border-radius: $br-round;
         opacity: $op-80;
         transition: opacity $tr-smooth;
         cursor: pointer;
@@ -123,6 +118,7 @@
 @media (width <= $screen-lg) {
     .content {
         flex-direction: column;
+        gap: $g-12;
         &__img {
             margin-inline: auto;
         }

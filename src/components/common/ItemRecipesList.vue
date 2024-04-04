@@ -67,7 +67,7 @@ onMounted(async () => {
         fill: #4a5f72a9;
         transition: fill $tr-smooth;
         cursor: pointer;
-        margin-left: 0.8rem;
+        margin-left: $m-4;
         &:hover {
             fill: #4a5f72;
         }

@@ -6,11 +6,11 @@
                     <router-link class="nav__logo" :to="{ name: 'home' }">
                         <picture>
                             <source
-                                srcset="@img/content/logo/header-logo.avif"
+                                srcset="@img/logo/header-logo.avif"
                                 type="image/avif" />
                             <img
                                 class="nav__logo-image"
-                                src="@img/content/logo/header-logo.png"
+                                src="@img/logo/header-logo.png"
                                 alt="Herbalist Logo" />
                         </picture>
                         <span class="nav__logo-name">Herbalist</span>
@@ -75,14 +75,15 @@
 </template>
 
 <script setup>
-/*
-    imports
-*/
 import ItemBurgerMenu from '@/components/common/ItemBurgerMenu.vue';
 import ItemDrawer from '@/components/common/ItemDrawer.vue';
-import { ref, onMounted, onUnmounted, watch } from 'vue';
+import { ref, watchEffect } from 'vue';
 import { useRouter } from 'vue-router';
 import { useModal } from '@/use/useModal';
+import { useWindowSize, useWindowScroll } from '@vueuse/core';
+
+const { width } = useWindowSize();
+const { y } = useWindowScroll();
 
 const router = useRouter();
 const showDrawer = ref(false);
@@ -98,38 +99,27 @@ const closeDrawer = () => {
     showDrawer.value = false;
 };
 
-// close drawer on window resize
-const handleResize = () => {
-    if ((window.innerWidth > 1280) & !modalVisible.value) {
-        closeDrawer();
-    }
-};
-
 // close drawer on route change
 router.afterEach(() => closeDrawer());
 
-// hide on scroll
+// close drawer on window resize
+watchEffect(() => {
+    if ((width.value > 1280) & !modalVisible.value) {
+        closeDrawer();
+    }
+});
+// hide header on scroll
 const hideNav = ref(false);
-let lastScrollY = window.scrollY;
-
-const hideOnScroll = () => {
+let lastScrollY = y.value;
+watchEffect(() => {
     if (!showDrawer.value && !modalVisible.value) {
-        if (lastScrollY < window.scrollY && window.scrollY >= 50) {
+        if (lastScrollY < y.value && y.value >= 50) {
             hideNav.value = true;
         } else {
             hideNav.value = false;
         }
-        lastScrollY = window.scrollY;
+        lastScrollY = y.value;
     }
-};
-
-onMounted(() => {
-    window.addEventListener('scroll', hideOnScroll);
-    window.addEventListener('resize', handleResize);
-});
-onUnmounted(() => {
-    window.removeEventListener('scroll', hideOnScroll);
-    window.removeEventListener('resize', handleResize);
 });
 </script>
 
@@ -137,15 +127,14 @@ onUnmounted(() => {
 .nav-wrapper {
     position: fixed;
     top: 0;
-    width: 100%;
-    z-index: 10;
     width: $w-full;
+    z-index: 10;
     min-height: $h-header;
     background-color: $c-grey-800;
-    transform: $translateY-0;
+    transform: translateY(0);
     transition: transform $dur-300;
     &.hidden {
-        transform: $translateY-full-neg;
+        transform: translateY(-100%);
     }
 }
 
@@ -154,7 +143,6 @@ onUnmounted(() => {
     justify-content: space-between;
     align-items: center;
     padding-inline: $p-12;
-    // z-index: 12;
     &__item {
         display: flex;
         flex-direction: column-reverse;
@@ -196,7 +184,7 @@ onUnmounted(() => {
     }
 
     &__menu-item:nth-child(2) &__menu-btn {
-        margin-right: 0;
+        margin-right: $m-0;
     }
 
     &__menu-link {
@@ -256,10 +244,10 @@ onUnmounted(() => {
             content: '';
             position: absolute;
             width: $w-full - 1;
-            padding-block: calc($p-px / 2);
-            left: $left-half;
+            padding-block: 0.5px;
+            left: 50%;
             top: 93%;
-            transform: $translateX-half-neg;
+            transform: translateX(-50%);
             transition: opacity $tr-smooth;
             background-color: $c-pink;
         }
@@ -274,10 +262,10 @@ onUnmounted(() => {
 @media (width <= $screen-xl) {
     .nav {
         position: absolute;
-        top: $top-half;
-        transform: $translateY-half-neg;
+        top: 50%;
+        transform: translateY(-50%);
         width: $w-full;
-        padding-inline: calc($p-12 - 2rem);
+        padding-inline: $p-8;
         &__menu-link--primary,
         &__menu-link--secondary,
         &__menu-btn {

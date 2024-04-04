@@ -1,54 +1,52 @@
 <template>
-    <section class="section">
-        <nav class="drawer" :class="{ active: showDrawer }">
-            <div class="drawer__header"></div>
-            <ul class="drawer__list">
-                <li class="drawer__item">
-                    <router-link
-                        to="/"
-                        class="drawer__link"
-                        active-class="drawer__active-link"
-                        >Home</router-link
-                    >
-                </li>
-                <li class="drawer__item">
-                    <router-link
-                        :to="{ name: 'recipes' }"
-                        class="drawer__link"
-                        active-class="drawer__active-link"
-                        >Recipes</router-link
-                    >
-                </li>
-                <li class="drawer__item">
-                    <router-link
-                        :to="{ name: 'search-recipes' }"
-                        class="drawer__link"
-                        active-class="drawer__active-link"
-                        >Search Recipes</router-link
-                    >
-                </li>
-                <li class="drawer__item">
-                    <router-link
-                        :to="{ name: 'ingredient' }"
-                        class="drawer__link"
-                        active-class="drawer__active-link"
-                        >Recipes By Ingredients</router-link
-                    >
-                </li>
-                <li class="drawer__item">
-                    <button class="drawer__btn" @click="delayNavigation">
-                        About
-                    </button>
-                </li>
-                <li class="drawer__item">
-                    <button class="drawer__btn" @click="toggleDrawerAndModal">
-                        Log In
-                    </button>
-                </li>
-            </ul>
-        </nav>
-        <ItemDarkOverlay :class="{ active: showDrawer }" @click="closeDrawer" />
-    </section>
+    <nav class="drawer" :class="{ active: showDrawer }">
+        <div class="drawer__header"></div>
+        <ul class="drawer__list">
+            <li class="drawer__item">
+                <router-link
+                    to="/"
+                    class="drawer__link"
+                    active-class="drawer__active-link"
+                    >Home</router-link
+                >
+            </li>
+            <li class="drawer__item">
+                <router-link
+                    :to="{ name: 'recipes' }"
+                    class="drawer__link"
+                    active-class="drawer__active-link"
+                    >Recipes</router-link
+                >
+            </li>
+            <li class="drawer__item">
+                <router-link
+                    :to="{ name: 'search-recipes' }"
+                    class="drawer__link"
+                    active-class="drawer__active-link"
+                    >Search Recipes</router-link
+                >
+            </li>
+            <li class="drawer__item">
+                <router-link
+                    :to="{ name: 'ingredient' }"
+                    class="drawer__link"
+                    active-class="drawer__active-link"
+                    >Recipes By Ingredients</router-link
+                >
+            </li>
+            <li class="drawer__item">
+                <button class="drawer__btn" @click="delayNavigation">
+                    About
+                </button>
+            </li>
+            <li class="drawer__item">
+                <button class="drawer__btn" @click="toggleDrawerAndModal">
+                    Log In
+                </button>
+            </li>
+        </ul>
+    </nav>
+    <ItemDarkOverlay :class="{ active: showDrawer }" @click="closeDrawer" />
 </template>
 
 <script setup>
@@ -82,7 +80,7 @@ const delayNavigation = () => {
 }
 .drawer {
     &::-webkit-scrollbar {
-        width: 15px;
+        width: $w-3_5;
         background-color: $c-white;
         position: absolute;
         right: 0;
@@ -91,8 +89,8 @@ const delayNavigation = () => {
         background-color: $c-grey-300;
     }
     position: fixed;
-    top: $top-0;
-    bottom: $bottom-0;
+    top: 0;
+    bottom: 0;
     left: 100%;
     padding-top: $h-header;
     display: none;

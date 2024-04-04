@@ -20,9 +20,8 @@
 
 <style scoped lang="scss">
 .section {
-    min-height: 100svh;
     @include bg;
-    background-image: url('@/assets/images/decor/section/intro/bg.jpg');
+    background-image: url('@/assets/images/section/intro/bg.jpg');
     display: flex;
     align-items: center;
     justify-content: center;
@@ -53,7 +52,7 @@
         background-size: contain;
         background-position: center;
         background-repeat: no-repeat;
-        background-image: url('@img/decor/section/not-found/not-found.png');
+        background-image: url('@img/section/not-found/not-found.png');
         width: 100%;
         height: 150px;
         opacity: 0.8;
@@ -71,7 +70,7 @@
         color: #ffffff;
         margin-top: auto;
         width: 40%;
-        transition: color $tr-button;
+        transition: color $tr-smooth;
         &:hover {
             color: #4a5f72eb;
         }

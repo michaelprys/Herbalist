@@ -1,0 +1,14 @@
+// section
+.section {
+    padding-block: $p-10;
+    &__title {
+        font-size: $fs-lg;
+        margin-bottom: $m-10;
+    }
+}
+
+// hamburger menu
+$bar-height: 0.1875rem;
+$burger-height: calc($bar-height * 3 + $g-2 * 2);
+$bar-width: 1.875rem;
+$x-width: calc($burger-height * 1.41421356237);

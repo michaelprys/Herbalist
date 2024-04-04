@@ -13,9 +13,8 @@
     font-size: $fs-medium;
     text-align: center;
     padding: $p-3;
-    width: $w-full;
     border-radius: $br-6;
-    transition: background-color $tr-button;
+    transition: background-color $tr-smooth;
     color: $c-grey-1100;
     background-color: $c-grey-100;
     &:hover {
