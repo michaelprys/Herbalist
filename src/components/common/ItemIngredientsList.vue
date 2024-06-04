@@ -9,15 +9,7 @@
                 v-model="keyword"
                 @input="loadIngredientsByKeyword" />
             <router-link class="ingredients__search-link" to="/">
-                <svg
-                    class="ingredients__search-icon"
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="1.5rem"
-                    height="1.5rem"
-                    viewBox="0 0 24 24">
-                    <path
-                        d="M10 18a7.952 7.952 0 0 0 4.897-1.688l4.396 4.396 1.414-1.414-4.396-4.396A7.952 7.952 0 0 0 18 10c0-4.411-3.589-8-8-8s-8 3.589-8 8 3.589 8 8 8zm0-14c3.309 0 6 2.691 6 6s-2.691 6-6 6-6-2.691-6-6 2.691-6 6-6z"></path>
-                </svg>
+                <IconSearch class="ingredients__search-icon" />
             </router-link>
         </label>
         <ul class="ingredients__list" v-if="filteredIngredients.length > 0">
@@ -51,16 +43,10 @@
                 },
             }"
             :class="{ inactive: page.number === 1 }">
-            <svg
+            <IconPrev
+                style="width: 3.5rem; height: 3.5rem"
                 class="ingredients__btn-icon"
-                :class="{ inactive: page.number === 1 }"
-                xmlns="http://www.w3.org/2000/svg"
-                width="2.8rem"
-                height="2.8rem"
-                viewBox="0 0 24 24">
-                <path
-                    d="M13.939 4.939 6.879 12l7.06 7.061 2.122-2.122L11.121 12l4.94-4.939z"></path>
-            </svg>
+                :class="{ inactive: page.number === 1 }" />
         </router-link>
         <ul class="ingredients__pagination-list">
             <li class="ingredient-list__pagination-item">
@@ -76,31 +62,27 @@
                     page: page.number + 1,
                 },
             }">
-            <svg
+            <IconNext
+                style="width: 3.5rem; height: 3.5rem"
                 class="ingredients__btn-icon"
                 :class="{
                     inactive: page.number === totalPages,
-                }"
-                xmlns="http://www.w3.org/2000/svg"
-                width="2.8rem"
-                height="2.8rem"
-                viewBox="0 0 24 24">
-                <path
-                    d="M10.061 19.061 17.121 12l-7.06-7.061-2.122 2.122L12.879 12l-4.94 4.939z"></path>
-            </svg>
+                }" />
         </router-link>
     </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { useStoreRecipe } from '@/stores/storeRecipe';
 import { ref, computed } from 'vue';
+import IconPrev from '@/components/icons/IconPrev.vue';
+import IconNext from '@/components/icons/IconNext.vue';
+import IconSearch from '@/components/icons/IconSearch.vue';
 import IconMeal from '@/components/icons/IconMeal.vue';
+
 const storeRecipe = useStoreRecipe();
 
 const keyword = ref('');
-
-const ingredient = computed(() => storeRecipe.ingredientByKeyword);
 
 const loadIngredientsByKeyword = async () => {
     if (keyword.value) {
@@ -117,7 +99,12 @@ const filteredIngredients = computed(() => {
     );
 });
 
-const props = defineProps(['totalPages', 'page']);
+const props = defineProps<{
+    totalPages: number;
+    page: {
+        number: number;
+    };
+}>();
 </script>
 
 <style scoped lang="scss">
@@ -235,17 +222,10 @@ const props = defineProps(['totalPages', 'page']);
             font-size: $fs-h3;
         }
         &__list {
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: repeat(1, 1fr);
         }
         &__item {
             font-size: 1rem;
-        }
-    }
-}
-@media (width <= 40rem) {
-    .ingredients {
-        &__list {
-            grid-template-columns: repeat(1, 1fr);
         }
     }
 }

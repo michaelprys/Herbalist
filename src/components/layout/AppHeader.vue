@@ -1,7 +1,7 @@
 <template>
     <header id="header">
         <div class="nav-wrapper" :class="{ hidden: hideNav }">
-            <nav class="nav">
+            <nav class="nav" ref="focusWithinRef">
                 <div class="nav__item">
                     <router-link class="nav__logo" :to="{ name: 'home' }">
                         <picture>
@@ -24,14 +24,7 @@
                                 :to="{
                                     name: 'recipes',
                                 }"
-                                ><span>Recipes</span>
-                            </router-link>
-                        </li>
-                        <li class="nav__menu-item">
-                            <router-link
-                                class="nav__menu-link nav__menu-link--primary"
-                                :to="{ name: 'search-recipes' }"
-                                ><span>Search Recipes</span>
+                                ><span>Browse Recipes</span>
                             </router-link>
                         </li>
                         <li class="nav__menu-item">
@@ -61,64 +54,41 @@
                     </ul>
                 </div>
             </nav>
-            <ItemBurgerMenu
-                :class="{ active: showDrawer, hidden: hideNav }"
-                @click="toggleDrawer"
-                ref="navBurgerRef" />
-            <ItemDrawer
-                :class="{ hidden: hideNav }"
-                :showDrawer="showDrawer"
-                :closeDrawer="closeDrawer"
-                ref="drawerRef" />
+            <button class="nav__hamburger-menu" @click="openDrawer">
+                <IconHamburger />
+            </button>
         </div>
+        <ItemDrawer />
     </header>
 </template>
 
-<script setup>
-import ItemBurgerMenu from '@/components/common/ItemBurgerMenu.vue';
+<script setup lang="ts">
+import IconHamburger from '@/components/icons/IconHamburger.vue';
 import ItemDrawer from '@/components/common/ItemDrawer.vue';
 import { ref, watchEffect } from 'vue';
-import { useRouter } from 'vue-router';
-import { useModal } from '@/use/useModal';
-import { useWindowSize, useWindowScroll } from '@vueuse/core';
+import { useOverlay } from '@/use/useOverlay';
+import { useWindowScroll, useFocusWithin } from '@vueuse/core';
 
-const { width } = useWindowSize();
-const { y } = useWindowScroll();
-
-const router = useRouter();
-const showDrawer = ref(false);
-const navBurgerRef = ref();
-const drawerRef = ref();
-const { modalVisible, openModal } = useModal();
-
-const toggleDrawer = () => {
-    showDrawer.value = !showDrawer.value;
-};
-
-const closeDrawer = () => {
-    showDrawer.value = false;
-};
-
-// close drawer on route change
-router.afterEach(() => closeDrawer());
-
-// close drawer on window resize
-watchEffect(() => {
-    if ((width.value > 1280) & !modalVisible.value) {
-        closeDrawer();
-    }
-});
-// hide header on scroll
+const focusWithinRef = ref<HTMLElement | null>(null);
 const hideNav = ref(false);
+const { y } = useWindowScroll();
+const { focused } = useFocusWithin(focusWithinRef);
+
+const { state: modalState, open: openModal } = useOverlay('modalLogin');
+const { state: drawerState, open: openDrawer } = useOverlay('drawer');
+
 let lastScrollY = y.value;
 watchEffect(() => {
-    if (!showDrawer.value && !modalVisible.value) {
+    if (!drawerState.value && !modalState.value) {
         if (lastScrollY < y.value && y.value >= 50) {
             hideNav.value = true;
         } else {
             hideNav.value = false;
         }
         lastScrollY = y.value;
+    }
+    if (focused.value && !focusWithinRef.value) {
+        hideNav.value = false;
     }
 });
 </script>
@@ -128,11 +98,11 @@ watchEffect(() => {
     position: fixed;
     top: 0;
     width: $w-full;
-    z-index: 10;
+    z-index: 2;
     min-height: $h-header;
     background-color: $c-grey-800;
     transform: translateY(0);
-    transition: transform $dur-300;
+    transition: transform 0.3s;
     &.hidden {
         transform: translateY(-100%);
     }
@@ -257,6 +227,16 @@ watchEffect(() => {
             color: $c-black;
         }
     }
+    &__hamburger-menu {
+        display: none;
+        @include btn-hover;
+        position: absolute;
+        right: 20px;
+        top: 50%;
+        transform: translateY(-50%);
+        fill: $c-white;
+        padding: $p-1_5;
+    }
 }
 
 @media (width <= $screen-xl) {
@@ -270,6 +250,20 @@ watchEffect(() => {
         &__menu-link--secondary,
         &__menu-btn {
             display: none;
+        }
+        &__hamburger-menu {
+            display: block;
+        }
+    }
+}
+@media (width <= $screen-sm) {
+    .nav {
+        &__logo {
+            width: 8rem;
+            height: 8rem;
+        }
+        &__logo-name {
+            font-size: $fs-small;
         }
     }
 }

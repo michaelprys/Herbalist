@@ -2,8 +2,6 @@
     <div class="dark-overlay"></div>
 </template>
 
-<script setup></script>
-
 <style scoped lang="scss">
 .dark-overlay {
     visibility: hidden;
@@ -12,6 +10,7 @@
     width: 100vw;
     min-height: 100vh;
     opacity: $op-0;
+    z-index: 2;
     transition: opacity $tr-smooth, visibility $tr-smooth;
     will-change: opacity;
     background-color: rgba($c-black, 0.7);

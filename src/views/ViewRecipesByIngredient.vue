@@ -8,8 +8,8 @@
     </section>
 </template>
 
-<script setup>
-import { onMounted, computed, reactive, watch, onBeforeUnmount } from 'vue';
+<script setup lang="ts">
+import { onMounted, computed, reactive, watch } from 'vue';
 import { useStoreRecipe } from '@/stores/storeRecipe';
 import { useRoute, useRouter } from 'vue-router';
 
@@ -17,26 +17,15 @@ const route = useRoute();
 const router = useRouter();
 const storeRecipe = useStoreRecipe();
 
-const page = reactive({
-    number: computed(() => parseInt(route.query.page) || 1),
+interface Page {
+    number: number;
+    size: number;
+}
+
+const page = reactive<Page>({
+    number: computed(() => parseInt(route.query.page as string) || 1).value,
     size: 32,
 });
-
-const handleResize = () => {
-    const mq1535 = window.matchMedia('(width <= 1535px) and (width > 1280px)');
-    const mq1280 = window.matchMedia('(width <= 1280px) and (width > 640px)');
-    const mq640 = window.matchMedia('(width <= 640px)');
-
-    if (mq1535.matches) {
-        page.size = 28;
-    } else if (mq1280.matches) {
-        page.size = 16;
-    } else if (mq640.matches) {
-        page.size = 8;
-    } else {
-        page.size = 32;
-    }
-};
 
 const totalPages = computed(() => {
     return Math.ceil(storeRecipe.ingredientCount / page.size);
@@ -50,7 +39,7 @@ const loadIngredients = async () => {
 watch(
     () => route.query.page,
     newPage => {
-        const pageNumber = parseInt(newPage);
+        const pageNumber = parseInt(newPage as string);
         if (pageNumber < 1) {
             router.push({ query: { page: 1 } });
         } else {
@@ -61,7 +50,7 @@ watch(
 );
 watch(
     () => page.size,
-    newSize => {
+    (newSize: number) => {
         localStorage.setItem('ingredientPageSize', newSize.toString());
         loadIngredients();
     }
@@ -69,12 +58,7 @@ watch(
 
 // hooks
 onMounted(async () => {
-    window.addEventListener('resize', handleResize);
     await storeRecipe.loadIngredientsCount();
-});
-
-onBeforeUnmount(async () => {
-    window.removeEventListener('resize', handleResize);
 });
 </script>
 
@@ -101,19 +85,13 @@ onBeforeUnmount(async () => {
     margin-inline: auto;
     border-radius: $br-4;
     box-shadow: $dc-shadow-card;
-    padding-block: $p-10;
-    padding-inline: $p-10;
+    padding: $p-10;
     color: #4a5f72;
 }
 
 @media (width <= $screen-sm) {
     .list-wrapper {
         padding-inline: $p-5;
-    }
-}
-@media (width <= 40rem) {
-    .list-wrapper {
-        min-height: 39em;
     }
 }
 </style>

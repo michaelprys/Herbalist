@@ -1,19 +1,38 @@
 <template>
     <section class="section">
-        <div class="container">
-            <h1 class="section__title">Herbal Recipes</h1>
-            <TransitionGroup class="recipes" name="list" tag="ul">
-                <li
-                    v-for="recipe in storeRecipe.paginatedRecipes"
-                    :key="recipe.recipe_id">
-                    <ItemCard
-                        class="recipes__item"
-                        :recipe="recipe"
-                        :pending="storeRecipe.pending" />
-                </li>
-            </TransitionGroup>
-
-            <div class="pagination">
+        <div class="container-recipes">
+            <div class="controls">
+                <label class="controls__search">
+                    <input
+                        type="text"
+                        class="controls__input"
+                        placeholder="Search recipe"
+                        v-model="keyword"
+                        @input="loadRecipesByKeyword" />
+                </label>
+                <select class="controls__filter" name="filter" id="type">
+                    <option value="">Filter by</option>
+                    <option value="drinks">Drinks</option>
+                    <option value="soups">Soups</option>
+                    <option value="salads">Salads</option>
+                    <option value="main course">Main Course</option>
+                </select>
+            </div>
+            <div class="recipes">
+                <div class="recipes__inner">
+                    <TransitionGroup class="recipes__list" name="list" tag="ul">
+                        <li
+                            v-for="recipe in storeRecipe.paginatedRecipes"
+                            :key="recipe.recipe_id">
+                            <ItemCard
+                                class="recipes__item"
+                                :recipe="recipe"
+                                :pending="storeRecipe.pending" />
+                        </li>
+                    </TransitionGroup>
+                </div>
+            </div>
+            <div class="pagination" v-if="width > 1040">
                 <router-link
                     :to="{
                         query: {
@@ -22,17 +41,7 @@
                     }"
                     class="pagination__btn-first"
                     :class="{ inactive: page.number === 1 }">
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="24"
-                        height="24"
-                        viewBox="0 0 24 24">
-                        <path
-                            d="m12.707 7.707-1.414-1.414L5.586 12l5.707 5.707 1.414-1.414L8.414 12z"></path>
-                        <path
-                            d="M16.293 6.293 10.586 12l5.707 5.707 1.414-1.414L13.414 12l4.293-4.293z"></path>
-                        First
-                    </svg>
+                    <IconToFirstPage />
                 </router-link>
 
                 <!-- ./button first page -->
@@ -45,26 +54,13 @@
                     }"
                     class="pagination__btn-prev"
                     :class="{ inactive: page.number === 1 }">
-                    <IconBtnPrev />
+                    <IconPrev />
                 </router-link>
                 <!-- ./button prev -->
 
-                <ul class="pagination__list">
-                    <li class="pagination__item">
-                        <router-link
-                            :to="{
-                                query: {
-                                    page: pageNumber,
-                                },
-                            }"
-                            class="pagination__link"
-                            v-for="pageNumber in totalPages"
-                            :key="pageNumber"
-                            :class="{ active: pageNumber === page.number }">
-                            {{ pageNumber }}
-                        </router-link>
-                    </li>
-                </ul>
+                <span class="pagination__numbers">
+                    {{ page.number }} / {{ totalPages }}
+                </span>
                 <!-- ./button page number -->
 
                 <router-link
@@ -75,7 +71,7 @@
                     }"
                     class="pagination__btn-next"
                     :class="{ inactive: page.number === totalPages }">
-                    <IconBtnNext />
+                    <IconNext />
                 </router-link>
                 <!-- ./button next page -->
 
@@ -87,55 +83,52 @@
                     }"
                     class="pagination__btn-last"
                     :class="{ inactive: page.number === totalPages }">
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="24"
-                        height="24"
-                        viewBox="0 0 24 24">
-                        <path
-                            d="M10.296 7.71 14.621 12l-4.325 4.29 1.408 1.42L17.461 12l-5.757-5.71z"></path>
-                        <path
-                            d="M6.704 6.29 5.296 7.71 9.621 12l-4.325 4.29 1.408 1.42L12.461 12z"></path>
-                    </svg>
+                    <IconToLastPage />
                 </router-link>
                 <!-- ./button last page -->
+            </div>
+            <div class="loading" v-else>
+                <span></span>
+                <span></span>
+                <span></span>
             </div>
         </div>
     </section>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import ItemCard from '@/components/common/ItemCard.vue';
-import { onMounted, onBeforeUnmount, reactive, computed, watch } from 'vue';
+import { onMounted, ref, reactive, computed, watch, watchEffect } from 'vue';
 import { useStoreRecipe } from '@/stores/storeRecipe';
 import { useRoute } from 'vue-router';
-import IconBtnPrev from '@/components/icons/IconBtnPrev.vue';
-import IconBtnNext from '@/components/icons/IconBtnNext.vue';
+import IconToFirstPage from '@/components/icons/IconToFirstPage.vue';
+import IconToLastPage from '@/components/icons/IconToLastPage.vue';
+import IconPrev from '@/components/icons/IconPrev.vue';
+import IconNext from '@/components/icons/IconNext.vue';
+import { useWindowSize } from '@vueuse/core';
+
+const { width } = useWindowSize();
 
 const route = useRoute();
 const storeRecipe = useStoreRecipe();
 
-const page = reactive({
-    number: computed(() => parseInt(route.query.page) || 1),
+interface Page {
+    number: number;
+    size: number;
+}
+
+const page = reactive<Page>({
+    number: 1,
     size: 3,
+});
+
+watchEffect(() => {
+    page.number = parseInt(route.query.page as string) || 1;
 });
 
 const totalPages = computed(() => {
     return Math.ceil(storeRecipe.recipesCount / page.size);
 });
-
-const handleResize = () => {
-    const mq1280 = window.matchMedia(`(width <= 1280px) and (width > 870px)`);
-    const mq870 = window.matchMedia(`(width <= 870px)`);
-
-    if (mq1280.matches) {
-        page.size = 2;
-    } else if (mq870.matches) {
-        page.size = 1;
-    } else {
-        page.size = 3;
-    }
-};
 
 const loadRecipes = async () =>
     await storeRecipe.loadPaginatedRecipes(page.number, page.size);
@@ -143,24 +136,37 @@ const loadRecipes = async () =>
 watch(() => route.query.page, loadRecipes, { immediate: true });
 watch(
     () => page.size,
-    newSize => {
+    (newSize: number) => {
         loadRecipes();
     }
 );
 
-onMounted(async () => {
-    window.addEventListener('resize', handleResize);
-    await storeRecipe.loadRecipesCount();
-});
+// search
+const keyword = ref('');
 
-onBeforeUnmount(async () => {
-    window.removeEventListener('resize', handleResize);
+// const recipe = computed(() => storeRecipe.recipeByKeyword);
+
+const loadRecipesByKeyword = async () => {
+    if (keyword.value) {
+        await storeRecipe.loadRecipesByKeyword(keyword.value);
+    }
+};
+
+// const handleClick = recipe => {
+//     storeRecipe.selectRecipe(recipe);
+// };
+
+onMounted(async () => {
+    await storeRecipe.loadRecipesCount();
 });
 </script>
 
 <style scoped lang="scss">
-.container {
-    margin-top: $h-header;
+.container-recipes {
+    position: relative;
+    margin-top: $m-44;
+    max-width: 100%;
+    padding-inline: $p-4;
 }
 
 .section {
@@ -171,11 +177,69 @@ onBeforeUnmount(async () => {
     }
     background-image: url('@img/section/recipe-details/bg.jpg');
 }
-
+.controls {
+    position: absolute;
+    width: $w-56;
+    top: 24px;
+    left: 48px;
+    z-index: 10;
+    background-color: $c-white;
+    border-radius: $br-4;
+    box-shadow: $dc-shadow-card;
+    padding: $p-4;
+    color: #4a5f72;
+    &__input {
+        width: 100%;
+        height: $h-12;
+        font-size: $fs-base;
+        padding-inline: $p-10;
+        border-radius: $br-4;
+        border: none;
+        &::placeholder {
+            font-size: $fs-base;
+            padding-left: $p-3;
+        }
+    }
+    &__filter {
+        margin-top: $m-4;
+        border: none;
+        width: 100%;
+        height: $h-12;
+        border-radius: $br-4;
+        font-size: $fs-base;
+        & option {
+            background-color: $c-pink;
+            color: $c-black;
+        }
+    }
+    &__input,
+    &__filter {
+        border: $bw-2 solid rgba(128, 128, 128, 0.193);
+        outline: 2px solid transparent;
+        font-family: $ff-primary;
+        padding: $p-2;
+        text-align: left;
+        transition: outline $tr-fast;
+        &:focus {
+            outline-color: $c-pink;
+        }
+    }
+}
 .recipes {
     display: flex;
-    justify-content: center;
-    gap: $g-8;
+    flex-direction: column;
+    align-items: center;
+    &__inner {
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__list {
+        display: flex;
+        justify-content: center;
+        gap: $g-8;
+        margin-top: $m-6;
+    }
 }
 
 .pagination {
@@ -184,42 +248,11 @@ onBeforeUnmount(async () => {
     margin-top: $m-10;
     line-height: 2rem;
     gap: $g-4;
-    &__list {
-        & .disabled {
-            cursor: not-allowed;
-            opacity: $op-80;
-        }
-        display: flex;
-        justify-content: space-between;
-        border-radius: $br-full;
-    }
-    &__item {
-        display: flex;
-        gap: $g-2_5;
-    }
-    &__link {
-        width: 2rem;
-        height: 2rem;
+    &__numbers {
         background-color: $c-white;
-        cursor: pointer;
-        text-align: center;
-        transition: background-color $tr-smooth, color $tr-smooth;
         color: $c-grey-500;
+        padding-inline: $p-2;
         border-radius: $br-4;
-        user-select: none;
-        -webkit-user-drag: none;
-
-        &.active {
-            background-color: $c-grey-300;
-            color: $c-white;
-            &:hover {
-                background-color: lighten($c-grey-300, 4%);
-            }
-        }
-        &:hover {
-            background-color: $c-grey-300;
-            color: $c-white;
-        }
     }
     &__btn-prev,
     &__btn-next,
@@ -227,12 +260,12 @@ onBeforeUnmount(async () => {
     &__btn-last {
         display: flex;
         align-items: center;
-        border-radius: $br-4;
         background-color: $c-white;
         cursor: pointer;
         fill: #979797;
-        width: 2rem;
-        height: 2rem;
+        width: $w-8;
+        height: $h-8;
+        border-radius: $br-4;
         transition: $tr-fast;
         color: #979797;
         text-align: center;
@@ -245,10 +278,46 @@ onBeforeUnmount(async () => {
             @include btn-inactive;
             cursor: not-allowed;
         }
+        &:hover {
+            background-color: $c-grey-300;
+            fill: $c-white;
+        }
     }
 }
 
-@media (width <= $screen-md) {
+.loading {
+    display: flex;
+    justify-content: center;
+    gap: $g-2_5;
+    margin-top: $m-6;
+    & span {
+        width: $w-3_5;
+        height: $h-3_5;
+        background-color: $c-white;
+        border-radius: $br-full;
+        animation: loading 2s infinite ease-in-out;
+        &:nth-child(2) {
+            animation-delay: 0.4s;
+        }
+        &:nth-child(3) {
+            animation-delay: 0.8s;
+        }
+    }
+}
+
+@media (width <= $screen-xl) {
+    .container--recipes {
+        max-width: $container-xl;
+    }
+}
+@media (width <= $screen-lg) {
+    .recipes {
+        &__list {
+            flex-wrap: wrap;
+        }
+    }
+}
+@media (width <= 50.125rem) {
     .section {
         &__title {
             font-size: $fs-h1;

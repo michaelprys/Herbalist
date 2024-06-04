@@ -1,7 +1,7 @@
-import vue from '@vitejs/plugin-vue';
+import { fileURLToPath, URL } from 'node:url';
 import { defineConfig } from 'vite';
+import vue from '@vitejs/plugin-vue';
 import legacy from '@vitejs/plugin-legacy';
-import { fileURLToPath, URL } from 'url';
 
 import { ViteImageOptimizer } from 'vite-plugin-image-optimizer';
 
@@ -44,7 +44,6 @@ export default defineConfig({
             },
             cache: false,
             cacheLocation: undefined,
-            dynamicImport: true,
         }),
     ],
     server: {

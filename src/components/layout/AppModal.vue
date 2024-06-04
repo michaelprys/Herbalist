@@ -4,6 +4,6 @@
     </Teleport>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import ModalLogin from '@/components/modal/ModalLogin.vue';
 </script>

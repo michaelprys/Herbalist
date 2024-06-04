@@ -7,7 +7,7 @@
     </section>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import ItemCarousel from '@/components/common/ItemCarousel.vue';
 </script>
 

@@ -9,4 +9,9 @@ body {
     font-size: $fs-h6;
     background-color: #194c5a;
     color: $c-white;
+    position: relative;
+}
+
+:focus-visible {
+    outline: 2px solid rgb(72, 182, 218);
 }

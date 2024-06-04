@@ -1,5 +1,4 @@
 <template>
-    <!-- <div class="overlay"> -->
     <section class="section">
         <div class="container">
             <h3 class="section__title">Herb Notes</h3>
@@ -79,7 +78,7 @@
     </section>
 </template>
 
-<script setup></script>
+<script setup lang="ts"></script>
 
 <style scoped lang="scss">
 .section {
@@ -131,7 +130,8 @@
             rgba(#d6e4f3, 0.52),
             rgba(#fad9a8, 0.73)
         );
-        &:hover {
+        &:hover,
+        &:focus-within {
             opacity: 1;
         }
     }

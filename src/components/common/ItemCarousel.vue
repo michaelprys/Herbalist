@@ -19,26 +19,26 @@
                     class="carousel__btn-prev"
                     @click="prev"
                     :class="{ inactive: !hasPrev }">
-                    <IconBtnPrev />
+                    <IconPrev />
                 </button>
                 <button
                     class="carousel__btn-next"
                     @click="next"
                     :class="{ inactive: !hasNext }">
-                    <IconBtnNext />
+                    <IconNext />
                 </button>
             </div>
         </div>
     </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ref, onMounted } from 'vue';
 import { useStoreRecipe } from '@/stores/storeRecipe';
 import ItemCard from '@/components/common/ItemCard.vue';
 import VueHorizontal from 'vue-horizontal';
-import IconBtnPrev from '@/components/icons/IconBtnPrev.vue';
-import IconBtnNext from '@/components/icons/IconBtnNext.vue';
+import IconPrev from '@/components/icons/IconPrev.vue';
+import IconNext from '@/components/icons/IconNext.vue';
 import { useWindowSize } from '@vueuse/core';
 
 const { width } = useWindowSize();
@@ -50,13 +50,23 @@ const hasPrev = ref(false);
 const hasNext = ref(true);
 
 const prev = () => {
-    horizontal.value.prev({ stopPropagation: () => {} });
+    if (horizontal.value !== null) {
+        horizontal.value.prev({ stopPropagation: () => {} });
+    }
 };
 const next = () => {
-    horizontal.value.next({ stopPropagation: () => {} });
+    if (horizontal.value !== null) {
+        horizontal.value.next({ stopPropagation: () => {} });
+    }
 };
 
-const onScroll = ({ hasPrev: prev, hasNext: next }) => {
+const onScroll = ({
+    hasPrev: prev,
+    hasNext: next,
+}: {
+    hasPrev: boolean;
+    hasNext: boolean;
+}) => {
     hasPrev.value = prev;
     hasNext.value = next;
 };
@@ -70,7 +80,6 @@ onMounted(async () => {
 :deep(.v-hl-svg) {
     border: 1px solid #bebebe;
 }
-
 .wrapper {
     display: flex;
     flex-direction: column;
@@ -103,36 +112,20 @@ onMounted(async () => {
         }
     }
 }
-.pagination {
-    margin-top: $m-4;
-    display: flex;
-}
-.dot {
-    padding: $p-2_5;
-    cursor: pointer;
-    div {
-        padding: $p-2_5;
-        border-radius: $br-round;
-        background-color: #ffffff6a;
-        transition: $tr-smooth;
-    }
-    &:hover div {
-        background-color: $c-white;
-        opacity: $op-100;
-    }
-    &.current div {
-        background-color: $c-white;
-    }
-}
 
 @media (width <= $screen-xxl) {
     .carousel {
         max-width: 49.5rem;
     }
 }
-@media (width <= 864px) {
+@media (width <= 54rem) {
     .carousel {
-        max-width: 380px;
+        max-width: 360px;
+    }
+}
+@media (width >= 20rem) and (width <= 26.25rem) {
+    .carousel {
+        max-width: 18.75rem;
     }
 }
 </style>

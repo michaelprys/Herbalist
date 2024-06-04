@@ -42,20 +42,11 @@
                                 {{ storeRecipe.selectedRecipe.title }}
                             </h1>
                             <div class="recipe__preparation">
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    width="2rem"
-                                    height="2rem"
-                                    viewBox="0 0 24 24">
-                                    <path
-                                        d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8z"></path>
-                                    <path d="M13 7h-2v6h6v-2h-4z"></path>
-                                </svg>
+                                <IconPreparation />
                                 <span
                                     >{{
                                         storeRecipe.selectedRecipe.prep_time
-                                    }}
-                                    min</span
+                                    }}min</span
                                 >
                             </div>
                             <p class="recipe__description">
@@ -77,10 +68,12 @@
                             <ol class="recipe__instructions">
                                 <li
                                     class="recipe__instruction"
-                                    v-for="step in storeRecipe.selectedRecipe.method.split(
+                                    v-for="(
+                                        step, i
+                                    ) in storeRecipe.selectedRecipe.method.split(
                                         '\n'
                                     )"
-                                    :key="step.recipe_id">
+                                    :key="i">
                                     {{ step }}
                                 </li>
                             </ol>
@@ -92,23 +85,28 @@
     </section>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { useStoreRecipe } from '@/stores/storeRecipe';
 import { onMounted } from 'vue';
 import { useRoute } from 'vue-router';
+import IconPreparation from '@/components/icons/IconPreparation.vue';
 
 const storeRecipe = useStoreRecipe();
 const route = useRoute();
 
-const getSrc = ext => {
-    return new URL(
-        `../assets/images/recipe/${storeRecipe.selectedRecipe.image}${ext}`,
-        import.meta.url
-    ).href;
+const getSrc = (ext: string) => {
+    if (storeRecipe.selectedRecipe !== null) {
+        return new URL(
+            `../assets/images/recipe/${storeRecipe.selectedRecipe.image}${ext}`,
+            import.meta.url
+        ).href;
+    } else {
+        return '';
+    }
 };
 
 onMounted(async () => {
-    await storeRecipe.loadIngredientsOfRecipe(route.params.recipe);
+    await storeRecipe.loadIngredientsOfRecipe(route.params.recipe as string);
 });
 </script>
 

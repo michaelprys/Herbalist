@@ -1,22 +1,18 @@
+import type { RouteRecordRaw } from 'vue-router';
+
 import ViewHome from '@/views/ViewHome.vue';
 import ViewRecipesByIngredient from '@/views/ViewRecipesByIngredient.vue';
 import ItemIngredientsList from '@/components/common/ItemIngredientsList.vue';
 import ItemRecipesList from '@/components/common/ItemRecipesList.vue';
 import ViewRecipes from '@/views/ViewRecipes.vue';
-import ViewSearchRecipe from '@/views/ViewSearchRecipe.vue';
 import ViewNotFound from '@/views/ViewNotFound.vue';
 import ViewRecipeDetail from '@/views/ViewRecipeDetail.vue';
 
-export const routes = [
+export const routes: Readonly<RouteRecordRaw[]> = [
     {
         path: '/',
         name: 'home',
         component: ViewHome,
-    },
-    {
-        path: '/search-recipes/:name?',
-        name: 'search-recipes',
-        component: ViewSearchRecipe,
     },
     {
         path: '/recipes',

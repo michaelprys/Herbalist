@@ -11,8 +11,8 @@
     </div>
 </template>
 
-<script setup>
-const props = defineProps(['isSkeletonActive']);
+<script setup lang="ts">
+const props = defineProps<{ isSkeletonActive: boolean }>();
 </script>
 
 <style lang="scss">
@@ -64,17 +64,6 @@ const props = defineProps(['isSkeletonActive']);
         &:last-child {
             width: 80%;
         }
-    }
-}
-
-@keyframes skeleton-loading {
-    0% {
-        background-color: hsl(200, 20%, 70%);
-        opacity: 0;
-    }
-    100% {
-        opacity: 1;
-        background-color: hsl(200, 20%, 95%);
     }
 }
 </style>

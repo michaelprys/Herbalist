@@ -13,15 +13,7 @@
                     width="15.625rem"
                     loading="lazy" />
             </picture>
-            <svg
-                class="card__favorite-icon"
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24">
-                <path
-                    d="M19 10.132v-6c0-1.103-.897-2-2-2H7c-1.103 0-2 .897-2 2V22l7-4.666L19 22V10.132z"></path>
-            </svg>
+            <IconFavorite class="card__favorite-icon" />
             <div class="card__content">
                 <h2 class="card__title">{{ recipe.title }}</h2>
                 <p class="card__text">{{ recipe.short_description }}</p>
@@ -32,34 +24,39 @@
                         params: { recipe: recipe.title }, // TODO change title to slug
                     }"
                     @click="handleClick"
-                    >View more</router-link
+                    >See full</router-link
                 >
             </div>
         </div>
     </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ref, onMounted } from 'vue';
 import { useStoreRecipe } from '@/stores/storeRecipe';
+import IconFavorite from '@/components/icons/IconFavorite.vue';
 import ItemCardSkeleton from '@/components/common/ItemCardSkeleton.vue';
+import type { Recipe } from '@/types/dbTypes';
 
 const storeRecipe = useStoreRecipe();
 
 const isLoaded = ref(false);
 
-const props = defineProps(['recipe', 'pending']);
+const props = defineProps<{
+    recipe: Recipe;
+    pending: boolean;
+}>();
 
 const isSkeletonActive = ref(props.pending === true || !isLoaded.value);
 
-const getSrc = ext => {
+const getSrc = (ext: string) => {
     return new URL(
         `../../assets/images/recipe/${props.recipe.image}${ext}`,
         import.meta.url
     ).href;
 };
 
-const getSrcSet = ext => {
+const getSrcSet = (ext: string) => {
     return `${getSrc(ext).replace('.jpg', ext)}`;
 };
 
@@ -76,7 +73,7 @@ const handleClick = () => {
 };
 
 onMounted(() => {
-    const img = new Image(getSrc('.jpg'));
+    const img = new Image();
     img.onload = onLoaded;
     img.src = getSrc('.jpg');
 });
@@ -88,7 +85,7 @@ onMounted(() => {
     display: flex;
     align-items: center;
     color: $c-grey-800;
-    max-width: 23.75rem;
+    max-width: 380px;
     width: 100%;
     user-select: none;
     margin-inline: auto;
@@ -146,6 +143,17 @@ onMounted(() => {
     }
     &__link {
         @include button-style($c-pink);
+    }
+}
+
+@media (width <= 54rem) {
+    .card {
+        max-width: 22.5rem;
+    }
+}
+@media (width >= 20rem) and (width <= 26.25rem) {
+    .card {
+        max-width: 18.75rem;
     }
 }
 </style>

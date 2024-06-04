@@ -2,7 +2,7 @@
     <section class="section" id="intro">
         <div class="container">
             <h2 class="section__suptitle">
-                —&nbsp Revitalize, Nourish, Thrive &nbsp—
+                —&nbsp; Revitalize, Nourish, Thrive &nbsp;—
             </h2>
             <h1 class="section__intro-title">Welcome to Herbalist</h1>
             <router-link class="section__button" to="#popular">
@@ -12,7 +12,7 @@
     </section>
 </template>
 
-<script setup></script>
+<script setup lang="ts"></script>
 
 <style scoped lang="scss">
 .section {
@@ -94,6 +94,15 @@
             padding-block: $p-3_5;
             padding-inline: $p-6;
             font-size: $fs-smaller;
+        }
+    }
+}
+@media (width <= $screen-sm) {
+    .section {
+        &__button {
+            padding-block: $p-3_5;
+            padding-inline: $p-6;
+            font-size: $fs-mini;
         }
     }
 }

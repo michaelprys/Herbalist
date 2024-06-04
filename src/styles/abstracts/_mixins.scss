@@ -10,6 +10,7 @@
 }
 
 @mixin button-style($c-btn-hvr) {
+    font-family: $ff-primary;
     font-size: $fs-medium;
     text-align: center;
     padding: $p-3;
@@ -57,4 +58,13 @@
     color: linen;
     fill: rgb(173, 173, 173);
     pointer-events: none;
+}
+
+@mixin btn-hover {
+    background: none;
+    transition: background-color $tr-smooth;
+    border-radius: $br-full;
+    &:hover {
+        background-color: $c-grey;
+    }
 }

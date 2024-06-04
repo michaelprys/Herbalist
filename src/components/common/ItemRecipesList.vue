@@ -21,7 +21,7 @@
             <li
                 class="recipesOfIngredient__item"
                 v-for="recipe in storeRecipe.recipesByIngredient"
-                :key="recipe">
+                :key="recipe.recipe_id">
                 <router-link
                     class="recipesOfIngredient__link"
                     :to="{
@@ -36,21 +36,24 @@
     </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { useStoreRecipe } from '@/stores/storeRecipe';
 import { onMounted } from 'vue';
 import { useRoute } from 'vue-router';
+import type { Recipe } from '@/types/dbTypes';
 
 const route = useRoute();
 
 const storeRecipe = useStoreRecipe();
 
-const handleClick = recipe => {
+const handleClick = (recipe: Recipe) => {
     storeRecipe.selectRecipe(recipe);
 };
 
 onMounted(async () => {
-    await storeRecipe.loadRecipesByIngredient(route.params.ingredientName);
+    await storeRecipe.loadRecipesByIngredient(
+        route.params.ingredientName as string
+    );
 });
 </script>
 

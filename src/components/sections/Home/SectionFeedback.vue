@@ -55,9 +55,9 @@
     </section>
 </template>
 
-<script setup>
+<script setup lang="ts">
 // import { ref, onMounted, onUnmounted } from 'vue';
-import VueHorizontal from 'vue-horizontal';
+// import VueHorizontal from 'vue-horizontal';
 
 // const hasPrev = ref(false);
 // const hasNext = ref(false);

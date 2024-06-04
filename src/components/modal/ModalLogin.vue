@@ -1,99 +1,90 @@
 <template>
-    <div class="modal-login">
+    <div class="modal-wrapper" @keydown.esc="closeModal">
         <ItemDarkOverlay
-            :class="{ active: modalVisible }"
+            :class="{ active: modalState }"
             :style="{
                 zIndex: 100,
                 transition: 'opacity 0.5s, visibility 0.5s',
-            }"
-            @click="closeModal" />
+            }" />
         <Transition name="pop">
-            <div class="login" v-if="modalVisible">
-                <form class="login__form" action="">
-                    <button
-                        class="login__close-btn"
-                        type="button"
-                        @click="closeModal">
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="2.3rem"
-                            height="2.3rem"
-                            viewBox="0 0 24 24">
-                            <path
-                                d="m16.192 6.344-4.243 4.242-4.242-4.242-1.414 1.414L10.535 12l-4.242 4.242 1.414 1.414 4.242-4.242 4.243 4.242 1.414-1.414L13.364 12l4.242-4.242z"></path>
-                        </svg>
-                    </button>
-                    <h1 class="login__title">Login</h1>
+            <div class="modal" v-if="modalState" ref="clickOutsideRef">
+                <div ref="focusRef">
+                    <form class="modal__form" action="">
+                        <button
+                            class="modal__close-btn"
+                            type="button"
+                            @click="closeModal">
+                            <IconClose />
+                        </button>
+                        <h1 class="modal__title">Login</h1>
 
-                    <div class="login__input-wrapper">
-                        <input
-                            class="login__input"
-                            type="text"
-                            placeholder="Username" />
-                        <svg
-                            class="login__input-icon"
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="24"
-                            height="24"
-                            viewBox="0 0 24 24">
-                            <path
-                                d="M12 2a5 5 0 1 0 5 5 5 5 0 0 0-5-5zm0 8a3 3 0 1 1 3-3 3 3 0 0 1-3 3zm9 11v-1a7 7 0 0 0-7-7h-4a7 7 0 0 0-7 7v1h2v-1a5 5 0 0 1 5-5h4a5 5 0 0 1 5 5v1z"></path>
-                        </svg>
-                    </div>
+                        <div class="modal__input-wrapper">
+                            <input
+                                class="modal__input"
+                                type="text"
+                                placeholder="Username" />
+                            <IconUsername class="modal__input-icon" />
+                        </div>
 
-                    <div class="login__input-wrapper">
-                        <input
-                            class="login__input"
-                            type="text"
-                            placeholder="Password" />
-                        <svg
-                            class="login__input-icon"
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="24"
-                            height="24"
-                            viewBox="0 0 24 24">
-                            <path
-                                d="M12 2C9.243 2 7 4.243 7 7v3H6c-1.103 0-2 .897-2 2v8c0 1.103.897 2 2 2h12c1.103 0 2-.897 2-2v-8c0-1.103-.897-2-2-2h-1V7c0-2.757-2.243-5-5-5zm6 10 .002 8H6v-8h12zm-9-2V7c0-1.654 1.346-3 3-3s3 1.346 3 3v3H9z"></path>
-                        </svg>
-                    </div>
+                        <div class="modal__input-wrapper">
+                            <input
+                                class="modal__input"
+                                type="text"
+                                placeholder="Password" />
+                            <IconPassword class="modal__input-icon" />
+                        </div>
 
-                    <div class="login__options">
-                        <label class="login__checkbox-container" for="checkbox">
-                            <input type="checkbox" id="checkbox" /> Remember me
-                        </label>
+                        <div class="modal__options">
+                            <label
+                                class="modal__checkbox-container"
+                                for="checkbox">
+                                <input type="checkbox" id="checkbox" /> Remember
+                                me
+                            </label>
 
-                        <router-link
-                            class="login__forgot"
-                            :to="{ name: 'home' }"
-                            >Forgot password?</router-link
-                        >
-                    </div>
+                            <router-link
+                                class="modal__forgot"
+                                :to="{ name: 'home' }"
+                                >Forgot password?</router-link
+                            >
+                        </div>
 
-                    <button class="login__button" type="submit">Login</button>
+                        <button class="modal__button" type="submit">
+                            Sign in
+                        </button>
 
-                    <div class="login__register">
-                        <span>Don't have an account?</span>
-                        <router-link
-                            class="login__register-link"
-                            :to="{ name: 'home' }"
-                            >Register</router-link
-                        >
-                    </div>
-                </form>
+                        <div class="modal__register">
+                            <span>Don't have an account?</span>
+                            <router-link
+                                class="modal__register-link"
+                                :to="{ name: 'home' }"
+                                >Register</router-link
+                            >
+                        </div>
+                    </form>
+                </div>
             </div>
         </Transition>
     </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
+import IconUsername from '@/components/icons/IconUsername.vue';
+import IconPassword from '@/components/icons/IconPassword.vue';
+import IconClose from '@/components/icons/IconClose.vue';
 import ItemDarkOverlay from '@/components/common/ItemDarkOverlay.vue';
-import { useModal } from '@/use/useModal';
+import { useOverlay } from '@/use/useOverlay';
 
-const { modalVisible, closeModal } = useModal();
+const {
+    state: modalState,
+    close: closeModal,
+    focusRef,
+    clickOutsideRef,
+} = useOverlay('modalLogin');
 </script>
 
 <style scoped lang="scss">
-.login {
+.modal {
     position: fixed;
     top: 0;
     right: 0;

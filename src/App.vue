@@ -1,25 +1,19 @@
 <template>
     <AppHeader></AppHeader>
     <main>
-        <RouterView #="{ Component }">
+        <!-- <RouterView #="{ Component }">
             <Transition mode="out-in" name="fade">
-                <component :is="Component" :key="route.path" />
+                <component :is="Component" :key="$route.path" />
             </Transition>
-        </RouterView>
+        </RouterView> -->
+        <RouterView />
     </main>
     <AppFooter></AppFooter>
     <AppModal></AppModal>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import AppHeader from '@/components/layout/AppHeader.vue';
 import AppFooter from '@/components/layout/AppFooter.vue';
 import AppModal from '@/components/layout/AppModal.vue';
-
-import { useRouter } from 'vue-router';
-const route = useRouter();
 </script>
-
-<style scoped lang="scss">
-@import '@/styles/abstracts/animations.scss';
-</style>
