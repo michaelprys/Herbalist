@@ -46,7 +46,8 @@
                                 <span
                                     >{{
                                         storeRecipe.selectedRecipe.prep_time
-                                    }}min</span
+                                    }}
+                                    min</span
                                 >
                             </div>
                             <p class="recipe__description">
@@ -112,12 +113,13 @@ onMounted(async () => {
 
 <style scoped lang="scss">
 .container {
-    margin-top: $h-header;
+    margin-top: 7rem;
 }
 
 .section {
     min-height: 100svh;
     @include bg;
+    background-attachment: fixed;
     background-image: url('@img/section/recipe-details/bg.jpg');
 }
 
@@ -157,7 +159,7 @@ onMounted(async () => {
         position: absolute;
         top: -1.85%;
         right: 6%;
-        z-index: 5;
+        z-index: 1;
     }
     &__content {
         display: flex;

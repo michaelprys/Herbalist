@@ -1,4 +1,5 @@
-import { Pool } from 'pg';
+import pg from 'pg';
+const { Pool } = pg;
 
 export const pool = new Pool({
     user: 'postgres',
@@ -11,3 +12,5 @@ export const pool = new Pool({
 export const connectToDb = () => {
     return pool.connect();
 };
+
+export default pool;

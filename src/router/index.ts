@@ -18,7 +18,7 @@ export const router = createRouter({
                 }
             });
         } else {
-            return { left: 0, top: 0 };
+            // return { left: 0, top: 0 };
         }
         // else {
         //     return new Promise(resolve => {

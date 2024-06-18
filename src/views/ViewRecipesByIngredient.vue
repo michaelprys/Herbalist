@@ -9,7 +9,7 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, computed, reactive, watch } from 'vue';
+import { onMounted, computed, reactive, watchEffect } from 'vue';
 import { useStoreRecipe } from '@/stores/storeRecipe';
 import { useRoute, useRouter } from 'vue-router';
 
@@ -23,7 +23,7 @@ interface Page {
 }
 
 const page = reactive<Page>({
-    number: computed(() => parseInt(route.query.page as string) || 1).value,
+    number: parseInt(route.query.page as string) || 1,
     size: 32,
 });
 
@@ -35,28 +35,16 @@ const loadIngredients = async () => {
     await storeRecipe.loadPaginatedIngredients(page.number, page.size);
 };
 
-// watchers
-watch(
-    () => route.query.page,
-    newPage => {
-        const pageNumber = parseInt(newPage as string);
-        if (pageNumber < 1) {
-            router.push({ query: { page: 1 } });
-        } else {
-            loadIngredients();
-        }
-    },
-    { immediate: true }
-);
-watch(
-    () => page.size,
-    (newSize: number) => {
-        localStorage.setItem('ingredientPageSize', newSize.toString());
-        loadIngredients();
+watchEffect(async () => {
+    const pageNumber = parseInt(route.query.page as string) || 1;
+    if (pageNumber < 1) {
+        router.push({ query: { page: 1 } });
+    } else {
+        page.number = pageNumber;
+        await loadIngredients();
     }
-);
+});
 
-// hooks
 onMounted(async () => {
     await storeRecipe.loadIngredientsCount();
 });
@@ -64,7 +52,7 @@ onMounted(async () => {
 
 <style scoped lang="scss">
 .container {
-    padding-top: $h-header;
+    padding-top: 6.5rem;
 }
 
 .section {
@@ -74,13 +62,14 @@ onMounted(async () => {
         background-image: url('@img/section/recipe-details/bg.avif');
     }
     background-image: url('@img/section/recipe-details/bg.jpg');
+    background-attachment: fixed;
 }
 
 .list-wrapper {
     position: relative;
     display: flex;
     flex-direction: column;
-    min-height: 45.3212rem;
+    min-height: 46.5rem;
     background-color: #ffffffda;
     margin-inline: auto;
     border-radius: $br-4;

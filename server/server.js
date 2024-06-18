@@ -12,20 +12,21 @@ app.get('/api/recipe', async (req, res) => {
     const conn = await connectToDb();
     try {
         const { keyword, popular, page, pageSize, recipesCount } = req.query;
+        console.log('Request received with params:', req.query);
         // by keyword
         if (keyword) {
             const recipe = await pool.query(
                 'SELECT * FROM recipe WHERE title ILIKE $1 ORDER BY recipe_id',
                 [`%${keyword}%`]
             );
-            res.json(recipe.rows);
+            return res.json(recipe.rows);
         }
         // popular recipes
         if (popular) {
             const popularRecipes = await pool.query(
                 'SELECT * FROM recipe WHERE recipe_id IN (1, 3, 4, 7, 9, 10) ORDER BY recipe_id'
             );
-            res.json(popularRecipes.rows);
+            return res.json(popularRecipes.rows);
         }
         // pagination
         if (page && pageSize) {
@@ -34,18 +35,20 @@ app.get('/api/recipe', async (req, res) => {
                 'SELECT * FROM recipe ORDER BY recipe_id LIMIT $1 OFFSET $2',
                 [pageSize, offset]
             );
-            res.json(recipes.rows);
+            return res.json(recipes.rows);
         }
         // total recipe count
         if (recipesCount) {
             const recipesCount = await pool.query(
                 'SELECT COUNT(*) FROM recipe'
             );
-            res.json(recipesCount.rows[0].count);
+            return res.json(recipesCount.rows[0].count);
         }
+
+        return res.status(400).json({ error: 'Invalid query parameters' });
     } catch (err) {
         console.error('Error processing request:', err);
-        res.status(500).json({ error: 'Internal Server Error' });
+        return res.status(500).json({ error: 'Internal Server Error' });
     } finally {
         if (conn) conn.release();
     }
@@ -63,8 +66,7 @@ app.get('/api/ingredient', async (req, res) => {
             const ingredientRes = await pool.query(
                 'SELECT * FROM ingredient ORDER BY ingredient_id'
             );
-            res.json(ingredientRes);
-            console.log(ingredientRes);
+            return res.json(ingredientRes);
         }
         // ingredient by keyword
         if (keyword) {
@@ -72,7 +74,7 @@ app.get('/api/ingredient', async (req, res) => {
                 'SELECT * from ingredient WHERE name ILIKE $1 ORDER BY ingredient_id',
                 [`%${keyword}%`]
             );
-            res.json(ingredientByKeyword.rows);
+            return res.json(ingredientByKeyword.rows);
         }
         // pagination
         if (page && pageSize) {
@@ -81,18 +83,18 @@ app.get('/api/ingredient', async (req, res) => {
                 'SELECT * FROM ingredient ORDER BY ingredient_id LIMIT $1 OFFSET $2',
                 [pageSize, offset]
             );
-            res.json(ingredients.rows);
+            return res.json(ingredients.rows);
         }
         // total ingredient count
         if (ingredientCount) {
             const ingredientCount = await pool.query(
                 'SELECT COUNT(*) FROM ingredient'
             );
-            res.json(ingredientCount.rows[0].count);
+            return res.json(ingredientCount.rows[0].count);
         }
     } catch (err) {
         console.error('Error processing request:', err);
-        res.status(500).json({ error: 'Internal Server Error' });
+        return res.status(500).json({ error: 'Internal Server Error' });
     } finally {
         if (conn) conn.release();
     }
@@ -106,7 +108,7 @@ app.get('/api/recipesByIngredient', async (req, res) => {
             'SELECT recipe.* FROM recipe JOIN recipe_ingredient ON recipe.recipe_id = recipe_ingredient.recipe_id JOIN ingredient ON ingredient.ingredient_id  = recipe_ingredient.ingredient_id WHERE ingredient.name ILIKE $1;',
             [`%${ingredientName}%`]
         );
-        res.json(recipesByIngredient.rows);
+        return res.json(recipesByIngredient.rows);
     } catch (err) {
         console.error('Error processing request:', err);
         res.status(500).json({ error: 'Internal Server Error' });
@@ -121,10 +123,10 @@ app.get('/api/ingredientsOfRecipe/:recipe', async (req, res) => {
             'SELECT ingredient.* FROM ingredient JOIN recipe_ingredient ON ingredient.ingredient_id = recipe_ingredient.ingredient_id JOIN recipe ON recipe.recipe_id = recipe_ingredient.recipe_id WHERE recipe.title ILIKE $1;',
             [`%${recipeName}%`]
         );
-        res.json(ingredientsOfRecipe.rows);
+        return res.json(ingredientsOfRecipe.rows);
     } catch (err) {
         console.error('Error processing request:', err);
-        res.status(500).json({ error: 'Internal Server Error' });
+        return res.status(500).json({ error: 'Internal Server Error' });
     }
 });
 

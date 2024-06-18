@@ -12,28 +12,32 @@
                 <IconSearch class="ingredients__search-icon" />
             </router-link>
         </label>
-        <ul class="ingredients__list" v-if="filteredIngredients.length > 0">
-            <li
-                class="ingredients__item"
-                v-for="ingredient in filteredIngredients"
-                :key="ingredient.ingredient_id">
-                <router-link
-                    class="ingredients__link"
-                    :to="{
-                        name: 'ingredientRecipes',
-                        params: { ingredientName: ingredient.name },
-                    }">
-                    <span class="ingredients__wrapper">
-                        <IconMeal class="ingredients__icon" />
-                        {{ ingredient.name }}
-                    </span>
-                </router-link>
-            </li>
-        </ul>
-
-        <p class="ingredients__not-found" v-else>No ingredients found.</p>
+        <Transition name="fade" mode="out-in">
+            <ul
+                class="ingredients__list"
+                v-if="filteredIngredients.length > 0"
+                :key="page.number">
+                <li
+                    class="ingredients__item"
+                    v-for="ingredient in filteredIngredients"
+                    :key="ingredient.ingredient_id">
+                    <router-link
+                        class="ingredients__link"
+                        :to="{
+                            name: 'ingredientRecipes',
+                            params: { ingredientName: ingredient.name },
+                        }">
+                        <span class="ingredients__wrapper">
+                            <IconMeal class="ingredients__icon" />
+                            {{ ingredient.name }}
+                        </span>
+                    </router-link>
+                </li>
+            </ul>
+            <p class="ingredients__not-found" v-else>No ingredients found.</p>
+        </Transition>
     </div>
-    <div class="ingredients__pagination">
+    <div class="ingredients__pagination" v-if="isVisible">
         <router-link
             class="ingredients__btn-left"
             :to="{
@@ -64,7 +68,7 @@
             }">
             <IconNext
                 style="width: 3.5rem; height: 3.5rem"
-                class="ingredients__btn-icon"
+                class="ingredi ents__btn-icon"
                 :class="{
                     inactive: page.number === totalPages,
                 }" />
@@ -80,6 +84,7 @@ import IconNext from '@/components/icons/IconNext.vue';
 import IconSearch from '@/components/icons/IconSearch.vue';
 import IconMeal from '@/components/icons/IconMeal.vue';
 
+const isVisible = ref(true);
 const storeRecipe = useStoreRecipe();
 
 const keyword = ref('');
@@ -191,19 +196,17 @@ const props = defineProps<{
     &__pagination-item {
         font-size: $fs-h5;
     }
-    &__btn-icon {
-        fill: #4a5f72ad;
-        transition: fill $tr-smooth;
-        &:hover {
-            fill: #4a5f72;
-        }
-    }
     &__btn-left,
     &__btn-right,
     &__btn-icon {
+        transition: fill $tr-smooth;
+        fill: #4a5f72ad;
         &.inactive {
             fill: rgba(173, 173, 173, 0.746);
             pointer-events: none;
+        }
+        &:hover {
+            fill: #4a5f72;
         }
     }
 }

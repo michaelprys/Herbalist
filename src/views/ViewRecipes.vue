@@ -1,25 +1,17 @@
 <template>
     <section class="section">
         <div class="container-recipes">
-            <div class="controls">
-                <label class="controls__search">
-                    <input
-                        type="text"
-                        class="controls__input"
-                        placeholder="Search recipe"
-                        v-model="keyword"
-                        @input="loadRecipesByKeyword" />
-                </label>
-                <select class="controls__filter" name="filter" id="type">
-                    <option value="">Filter by</option>
-                    <option value="drinks">Drinks</option>
-                    <option value="soups">Soups</option>
-                    <option value="salads">Salads</option>
-                    <option value="main course">Main Course</option>
-                </select>
-            </div>
             <div class="recipes">
                 <div class="recipes__inner">
+                    <!-- <div class="recipes__controls">
+                        <select class="recipes__filter" name="filter" id="type">
+                            <option value="">Filter by</option>
+                            <option value="drinks">Drinks</option>
+                            <option value="soups">Soups</option>
+                            <option value="salads">Salads</option>
+                            <option value="main course">Main Course</option>
+                        </select>
+                    </div> -->
                     <TransitionGroup class="recipes__list" name="list" tag="ul">
                         <li
                             v-for="recipe in storeRecipe.paginatedRecipes"
@@ -130,8 +122,13 @@ const totalPages = computed(() => {
     return Math.ceil(storeRecipe.recipesCount / page.size);
 });
 
-const loadRecipes = async () =>
-    await storeRecipe.loadPaginatedRecipes(page.number, page.size);
+const loadRecipes = async () => {
+    try {
+        await storeRecipe.loadPaginatedRecipes(page.number, page.size);
+    } catch (error) {
+        console.error('Failed to load recipes:', error);
+    }
+};
 
 watch(() => route.query.page, loadRecipes, { immediate: true });
 watch(
@@ -141,23 +138,22 @@ watch(
     }
 );
 
-// search
-const keyword = ref('');
+// const keyword = ref('');
 
 // const recipe = computed(() => storeRecipe.recipeByKeyword);
 
-const loadRecipesByKeyword = async () => {
-    if (keyword.value) {
-        await storeRecipe.loadRecipesByKeyword(keyword.value);
-    }
-};
+// const loadRecipesByKeyword = async () => {
+//     if (keyword.value) {
+//         await storeRecipe.loadRecipesByKeyword(keyword.value);
+//     }
+// };
 
 // const handleClick = recipe => {
 //     storeRecipe.selectRecipe(recipe);
 // };
 
 onMounted(async () => {
-    await storeRecipe.loadRecipesCount();
+    console.log(await storeRecipe.loadRecipesCount());
 });
 </script>
 
@@ -172,39 +168,36 @@ onMounted(async () => {
 .section {
     min-height: 100svh;
     @include bg;
+    background-attachment: fixed;
     @supports (background-image: url('@img/section/recipe-details/bg.avif')) {
         background-image: url('@img/section/recipe-details/bg.avif');
     }
     background-image: url('@img/section/recipe-details/bg.jpg');
 }
-.controls {
-    position: absolute;
-    width: $w-56;
-    top: 24px;
-    left: 48px;
-    z-index: 10;
-    background-color: $c-white;
-    border-radius: $br-4;
-    box-shadow: $dc-shadow-card;
-    padding: $p-4;
-    color: #4a5f72;
-    &__input {
-        width: 100%;
-        height: $h-12;
-        font-size: $fs-base;
-        padding-inline: $p-10;
+
+.recipes {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    &__inner {
+        display: flex;
+        flex-direction: column;
+    }
+    &__list {
+        display: flex;
+        justify-content: center;
+        gap: $g-8;
+        margin-top: $m-6;
+    }
+    &__controls {
+        margin-left: auto;
+        width: $w-24;
         border-radius: $br-4;
-        border: none;
-        &::placeholder {
-            font-size: $fs-base;
-            padding-left: $p-3;
-        }
+        color: #4a5f72;
     }
     &__filter {
-        margin-top: $m-4;
         border: none;
         width: 100%;
-        height: $h-12;
         border-radius: $br-4;
         font-size: $fs-base;
         & option {
@@ -223,22 +216,6 @@ onMounted(async () => {
         &:focus {
             outline-color: $c-pink;
         }
-    }
-}
-.recipes {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    &__inner {
-        display: flex;
-        flex-direction: column;
-    }
-
-    &__list {
-        display: flex;
-        justify-content: center;
-        gap: $g-8;
-        margin-top: $m-6;
     }
 }
 

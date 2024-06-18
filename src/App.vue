@@ -1,12 +1,11 @@
 <template>
     <AppHeader></AppHeader>
     <main>
-        <!-- <RouterView #="{ Component }">
+        <RouterView #="{ Component }">
             <Transition mode="out-in" name="fade">
                 <component :is="Component" :key="$route.path" />
             </Transition>
-        </RouterView> -->
-        <RouterView />
+        </RouterView>
     </main>
     <AppFooter></AppFooter>
     <AppModal></AppModal>

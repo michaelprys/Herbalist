@@ -1,107 +1,93 @@
 <template>
-    <section class="section">
+    <section class="section" ref="target">
         <div class="section__bg"></div>
-        <vue-horizontal
-            class="carousel"
-            responsive
-            ref="horizontal"
-            :button="false"
-            @scroll-debounce="onScrollDebounce"
-            :displacement="displacement">
-            <div class="carousel__slide">
-                <div class="carousel__wrapper">
-                    <div class="carousel__avatar carousel__avatar--1"></div>
-                    <div class="carousel__content">
-                        <blockquote class="carousel__quote">
+        <Swiper class="swiper" v-bind="swiperOptions" @swiper="onSwiper">
+            ``<SwiperSlide class="swiper__slide">
+                <div class="swiper__wrapper">
+                    <div class="swiper__avatar swiper__avatar--1"></div>
+                    <div class="swiper__content">
+                        <blockquote class="swiper__quote">
                             "These recipes have proven to be transformative for
                             individuals, contributing to their well-being in
                             profound ways."
                         </blockquote>
-                        <span class="carousel__name"
+                        <span class="swiper__name"
                             >Maija Ahnger, Herbalist
                         </span>
                     </div>
                 </div>
-            </div>
-            <div class="carousel__slide">
-                <div class="carousel__wrapper">
-                    <div class="carousel__avatar carousel__avatar--2"></div>
-                    <div class="carousel__content">
-                        <blockquote class="carousel__quote">
+            </SwiperSlide>
+            <SwiperSlide class="swiper__slide">
+                <div class="swiper__wrapper">
+                    <div class="swiper__avatar swiper__avatar--2"></div>
+                    <div class="swiper__content">
+                        <blockquote class="swiper__quote">
                             "Explore adaptogenic herbs like ashwagandha or
                             rhodiola to help your body adapt to stress and
                             promote overall balance."
                         </blockquote>
-                        <span class="carousel__name"
+                        <span class="swiper__name"
                             >Akari Fujimura, Naturopath
                         </span>
                     </div>
                 </div>
-            </div>
-            <div class="carousel__slide">
-                <div class="carousel__wrapper">
-                    <div class="carousel__avatar carousel__avatar--3"></div>
-                    <div class="carousel__content">
-                        <blockquote class="carousel__quote">
+            </SwiperSlide>
+            <SwiperSlide class="swiper__slide">
+                <div class="swiper__wrapper">
+                    <div class="swiper__avatar swiper__avatar--3"></div>
+                    <div class="swiper__content">
+                        <blockquote class="swiper__quote">
                             "Consider calendula salves or creams for skin
                             irritations and minor wounds due to its soothing and
                             healing properties."
                         </blockquote>
-                        <span class="carousel__name">Yu Ming, Herbalist </span>
+                        <span class="swiper__name">Yu Ming, Herbalist </span>
                     </div>
                 </div>
-            </div>
-        </vue-horizontal>
+            </SwiperSlide>
+        </Swiper>
     </section>
 </template>
 
 <script setup lang="ts">
-// import { ref, onMounted, onUnmounted } from 'vue';
-// import VueHorizontal from 'vue-horizontal';
+import { watchEffect, ref, onUnmounted } from 'vue';
+import { Swiper, SwiperSlide } from 'swiper/vue';
+import { Autoplay } from 'swiper/modules';
 
-// const hasPrev = ref(false);
-// const hasNext = ref(false);
-// const displacement = ref(1.0);
-// const horizontal = ref(null);
-// let interval = null;
+const swiperOptions = {
+    modules: [Autoplay],
+    autoplay: {
+        delay: 4000,
+        disableOnInteraction: true,
+    },
+    loop: true,
+};
 
-// const onScrollDebounce = ({ hasNext, hasPrev }) => {
-//     hasPrev.value = hasPrev;
-//     hasNext.value = hasNext;
-// };
+const target = ref<HTMLElement | null>(null);
+const isVisible = ref(false);
 
-// const play = () => {
-//     if (!hasNext.value && hasPrev.value) {
-//         horizontal.value.scrollToIndex(0);
-//         displacement.value = 1.0;
-//         return;
-//     }
+const onSwiper = swiper => {
+    const observer = new IntersectionObserver(
+        ([entry]) => {
+            isVisible.value = entry.isIntersecting;
+            if (isVisible.value) {
+                swiper.autoplay.start();
+            } else {
+                swiper.autoplay.stop();
+            }
+        },
+        { threshold: 0 }
+    );
+    if (target.value) {
+        observer.observe(target.value);
+    } else {
+        observer.unobserve(target.value);
+    }
+};
 
-//     if (hasNext.value) {
-//         horizontal.value.next();
-//         displacement.value = 0.6;
-//     }
-// };
-
-// onMounted(() => {
-//     const observer = new IntersectionObserver(
-//         records => {
-//             const visible = records.some(record => record.isIntersecting);
-//             if (visible) {
-//                 interval = setInterval(play, 3000);
-//             } else {
-//                 clearInterval(interval);
-//             }
-//         },
-//         { rootMargin: '10% 0% 10% 0%', threshold: 1.0 }
-//     );
-
-//     observer.observe(horizontal.value.$el);
-// });
-
-// onUnmounted(() => {
-//     clearInterval(interval);
-// });
+watchEffect(() => {
+    console.log(isVisible.value);
+});
 </script>
 
 <style scoped lang="scss">
@@ -111,8 +97,7 @@
     margin-inline: auto;
     width: 100%;
     height: 100%;
-    padding-block: $p-6;
-
+    padding-block: $p-9;
     &__bg {
         @include bg;
         position: absolute;
@@ -127,7 +112,7 @@
     }
 }
 
-.carousel {
+.swiper {
     max-width: 87.1875rem;
     margin-inline: auto;
     &__slide {
@@ -143,8 +128,8 @@
 
     &__avatar {
         @include bg;
-        width: 240px;
-        height: 240px;
+        width: 250px;
+        height: 250px;
         border-radius: $br-round;
         &--1 {
             @supports (
@@ -177,7 +162,7 @@
     &__quote,
     &__name {
         color: $c-grey-500;
-        font-size: $fs-h5;
+        font-size: 1.3125rem;
         font-style: italic;
     }
     &__quote {
@@ -199,7 +184,7 @@
 }
 
 @media (width <= $screen-xxl) {
-    .carousel {
+    .swiper {
         max-width: 72.1875rem;
         &__slide {
             min-width: 72.1875rem;
@@ -207,7 +192,7 @@
     }
 }
 @media (width <= $screen-xl) {
-    .carousel {
+    .swiper {
         max-width: 62.1875rem;
         &__slide {
             min-width: 62.1875rem;
@@ -215,7 +200,7 @@
     }
 }
 @media (width <= $screen-lg) {
-    .carousel {
+    .swiper {
         &__wrapper {
             flex-direction: column;
         }
@@ -236,42 +221,19 @@
     }
 }
 @media (width <= 57.5rem) {
-    .carousel {
+    .swiper {
         max-width: $container-sm;
         &__slide {
             min-width: $container-sm;
         }
     }
 }
-@media (width <= 46.25rem) {
-    .carousel {
-        max-width: 33.75rem;
-        &__slide {
-            min-width: 33.75rem;
-        }
-    }
-}
+
 @media (width <= $screen-sm) {
-    .carousel {
+    .swiper {
         max-width: 25rem;
         &__slide {
             min-width: 25rem;
-        }
-    }
-}
-@media (width <= 480px) {
-    .carousel {
-        max-width: 20rem;
-        &__slide {
-            min-width: 20rem;
-        }
-    }
-}
-@media (width <= 23.75rem) {
-    .carousel {
-        max-width: 17rem;
-        &__slide {
-            min-width: 17rem;
         }
     }
 }
