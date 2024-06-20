@@ -189,10 +189,6 @@ export const useStoreRecipe = defineStore({
                 if (res.ok) {
                     const data = await res.json();
                     this.ingredientsOfRecipe = data;
-                    console.log(
-                        'Ingredients of recipe: ',
-                        this.ingredientsOfRecipe
-                    );
                 }
             } catch (err) {
                 console.error(

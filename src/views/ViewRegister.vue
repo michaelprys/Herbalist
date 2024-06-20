@@ -76,6 +76,7 @@ import IconClose from '@/components/icons/IconClose.vue';
     justify-content: center;
     align-items: center;
     min-height: 100svh;
+    padding-block: $p-24;
     @include bg;
     background-image: url('@/assets/images/section/register/bg.jpg');
 }

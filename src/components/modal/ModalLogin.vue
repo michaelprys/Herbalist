@@ -8,62 +8,71 @@
             }" />
         <Transition name="pop">
             <div class="modal" v-if="modalState" ref="clickOutsideRef">
-                <div ref="focusRef">
-                    <form class="modal__form" action="">
-                        <button
-                            class="modal__close-btn"
-                            type="button"
-                            @click="closeModal">
-                            <IconClose />
-                        </button>
-                        <h1 class="modal__title">Login</h1>
+                <div class="modal-wrapper">
+                    <div ref="focusRef">
+                        <form class="modal__form" @submit.prevent="login">
+                            <button
+                                class="modal__close-btn"
+                                type="button"
+                                @click="closeModal">
+                                <IconClose />
+                            </button>
+                            <h1 class="modal__title">Login</h1>
 
-                        <div class="modal__input-wrapper">
-                            <input
-                                class="modal__input"
-                                type="text"
-                                placeholder="Username" />
-                            <IconUsername class="modal__input-icon" />
-                        </div>
+                            <div class="modal__input-wrapper">
+                                <input
+                                    class="modal__input"
+                                    type="text"
+                                    placeholder="Username"
+                                    v-model="userData.username" />
+                                <IconUsername class="modal__input-icon" />
+                            </div>
 
-                        <div class="modal__input-wrapper">
-                            <input
-                                class="modal__input"
-                                type="text"
-                                placeholder="Password" />
-                            <IconPassword class="modal__input-icon" />
-                        </div>
+                            <div class="modal__input-wrapper">
+                                <input
+                                    class="modal__input"
+                                    type="password"
+                                    placeholder="Password"
+                                    v-model="userData.password" />
+                                <IconPassword class="modal__input-icon" />
+                            </div>
 
-                        <div class="modal__options">
-                            <label
-                                class="modal__checkbox-container"
-                                for="checkbox">
-                                <input type="checkbox" id="checkbox" /> Remember
-                                me
-                            </label>
+                            <div class="modal__options">
+                                <label
+                                    class="modal__checkbox-container"
+                                    for="checkbox">
+                                    <input type="checkbox" id="checkbox" />
+                                    Remember me
+                                </label>
 
-                            <router-link
-                                class="modal__forgot"
-                                :to="{ name: 'home' }"
-                                >Forgot password?</router-link
-                            >
-                        </div>
+                                <router-link
+                                    class="modal__forgot"
+                                    :to="{ name: 'home' }"
+                                    >Forgot password?</router-link
+                                >
+                            </div>
 
-                        <button class="modal__button" type="submit">
-                            Sign in
-                        </button>
+                            <button class="modal__button" type="submit">
+                                Sign in
+                            </button>
 
-                        <div class="modal__register">
-                            <span>Don't have an account?</span>
-                            <router-link
-                                class="modal__register-link"
-                                :to="{ name: 'register' }"
-                                @click="closeModal"
-                                >Register</router-link
-                            >
-                        </div>
-                    </form>
+                            <div class="modal__register">
+                                <span>Don't have an account?</span>
+                                <router-link
+                                    class="modal__register-link"
+                                    :to="{ name: 'register' }"
+                                    @click="closeModal"
+                                    >Register</router-link
+                                >
+                            </div>
+                        </form>
+                    </div>
                 </div>
+                <Transition name="bounce">
+                    <div class="modal__error" v-if="errorVisible">
+                        {{ error }}
+                    </div>
+                </Transition>
             </div>
         </Transition>
     </div>
@@ -74,7 +83,11 @@ import IconUsername from '@/components/icons/IconUsername.vue';
 import IconPassword from '@/components/icons/IconPassword.vue';
 import IconClose from '@/components/icons/IconClose.vue';
 import ItemDarkOverlay from '@/components/common/ItemDarkOverlay.vue';
+import { ref, reactive } from 'vue';
 import { useOverlay } from '@/use/useOverlay';
+import { useStoreAuth } from '@/stores/storeAuth';
+import { useRouter } from 'vue-router';
+import type { User } from '@/types/dbTypes';
 
 const {
     state: modalState,
@@ -82,9 +95,54 @@ const {
     focusRef,
     clickOutsideRef,
 } = useOverlay('modalLogin');
+
+// auth
+
+const storeAuth = useStoreAuth();
+const router = useRouter();
+
+const userData = reactive<User>({
+    user_id: 0,
+    username: '',
+    password: '',
+});
+
+const error = ref('');
+const errorVisible = ref(false);
+let timeout: number;
+
+const login = async () => {
+    error.value = '';
+    errorVisible.value = false;
+
+    try {
+        await storeAuth.login(userData);
+        router.push('/home');
+    } catch (err) {
+        error.value = err.message;
+        errorVisible.value = true;
+
+        if (timeout) {
+            clearTimeout(timeout);
+        }
+
+        timeout = setTimeout(() => {
+            errorVisible.value = false;
+            error.value = '';
+        }, 3000);
+    }
+};
 </script>
 
 <style scoped lang="scss">
+.modal-wrapper {
+    display: flex;
+    flex-direction: column;
+    border: none;
+    border-radius: $br-10;
+    background-color: rgba($c-olive, 0.99);
+    position: relative;
+}
 .modal {
     position: fixed;
     top: 0;
@@ -95,10 +153,7 @@ const {
     width: fit-content;
     height: fit-content;
     z-index: 110;
-    border-radius: $br-10;
     color: $c-white;
-    border: none;
-    background-color: rgba($c-olive, 0.99);
     &__close-btn {
         position: absolute;
         top: 5px;
@@ -183,7 +238,6 @@ const {
     &__register-link {
         @include underline;
     }
-
     &__checkbox-container {
         display: flex;
         align-items: center;
@@ -222,6 +276,18 @@ const {
                 opacity: $op-100;
             }
         }
+    }
+    &__error {
+        position: absolute;
+        color: $c-white;
+        background-color: #d34045df;
+        border-radius: $br-8;
+        text-align: center;
+        width: 40%;
+        margin-top: $m-5;
+        font-size: $fs-base;
+        padding-block: $p-1_5;
+        left: 0;
     }
 }
 </style>

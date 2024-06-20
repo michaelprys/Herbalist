@@ -36,3 +36,21 @@ $tr-carousel: cubic-bezier(0.22, 0.61, 0.36, 1);
 .list-leave-active {
     position: absolute;
 }
+
+.bounce-enter-active {
+    animation: bounce-in 0.5s;
+}
+.bounce-leave-active {
+    animation: bounce-in 0.5s reverse;
+}
+@keyframes bounce-in {
+    0% {
+        transform: scale(0);
+    }
+    50% {
+        transform: scale(1.15);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
