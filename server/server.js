@@ -1,11 +1,15 @@
 import express from 'express';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import argon2 from 'argon2';
+import jwt from 'jsonwebtoken';
 import { connectToDb, pool } from './db.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const app = express();
 const PORT = 8000;
+
+app.use(express.json());
 
 // recipe endpoint
 app.get('/api/recipe', async (req, res) => {
@@ -130,6 +134,64 @@ app.get('/api/ingredientsOfRecipe/:recipe', async (req, res) => {
     }
 });
 
+// Authentication
+// registration
+app.post('/register', async (req, res) => {
+    const { firstname, lastname, username, password, repeatPassword } =
+        req.body;
+
+    if (password !== repeatPassword) {
+        return res.status(400).json({ error: 'Passwords do not match' });
+    }
+
+    const encryptedPassword = await argon2.hash(password);
+
+    try {
+        const newUser = await pool.query(
+            'INSERT INTO users (firstname, lastname, username, password) VALUES ($1, $2) RETURNING *',
+            [firstname, lastname, username, encryptedPassword]
+        );
+        const token = jwt.sign({ id: newUser.rows[0].id }, 'secretkey', {
+            expiresIn: '1h',
+        });
+        res.json({ token });
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
+
+// login
+app.post('/login', async (req, res) => {
+    const { username, password } = req.body;
+
+    try {
+        const user = await pool.query(
+            'SELECT * FROM users WHERE username = $1',
+            [username]
+        );
+        if (user.rows.length === 0)
+            return res
+                .status(400)
+                .json({ error: 'Invalid username or password' });
+
+        const validPassword = await argon2.verify(
+            password,
+            user.rows[0].password
+        );
+
+        if (!validPassword)
+            return res.status(400).json({ error: 'Invalid password' });
+
+        const token = jwt.sign({ id: user.rows[0].id }, 'secretkey', {
+            expiresIn: '1h',
+        });
+        res.json({ token });
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
+
+// server launch
 app.listen(PORT, () => {
     console.log(`Server started at http://localhost:${PORT}`);
 });

@@ -84,10 +84,6 @@ const onSwiper = swiper => {
         observer.unobserve(target.value);
     }
 };
-
-watchEffect(() => {
-    console.log(isVisible.value);
-});
 </script>
 
 <style scoped lang="scss">

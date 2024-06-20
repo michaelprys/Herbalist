@@ -57,7 +57,8 @@
                             <span>Don't have an account?</span>
                             <router-link
                                 class="modal__register-link"
-                                :to="{ name: 'home' }"
+                                :to="{ name: 'register' }"
+                                @click="closeModal"
                                 >Register</router-link
                             >
                         </div>

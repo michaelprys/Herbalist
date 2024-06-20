@@ -5,14 +5,20 @@ import ViewRecipesByIngredient from '@/views/ViewRecipesByIngredient.vue';
 import ItemIngredientsList from '@/components/common/ItemIngredientsList.vue';
 import ItemRecipesList from '@/components/common/ItemRecipesList.vue';
 import ViewRecipes from '@/views/ViewRecipes.vue';
-import ViewNotFound from '@/views/ViewNotFound.vue';
 import ViewRecipeDetail from '@/views/ViewRecipeDetail.vue';
+import ViewNotFound from '@/views/ViewNotFound.vue';
+import ViewRegister from '@/views/ViewRegister.vue';
 
 export const routes: Readonly<RouteRecordRaw[]> = [
     {
         path: '/',
         name: 'home',
         component: ViewHome,
+    },
+    {
+        path: '/register',
+        name: 'register',
+        component: ViewRegister,
     },
     {
         path: '/recipes',

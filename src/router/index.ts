@@ -18,14 +18,11 @@ export const router = createRouter({
                 }
             });
         } else {
-            // return { left: 0, top: 0 };
+            return new Promise(resolve => {
+                setTimeout(() => {
+                    resolve({ left: 0, top: 0 });
+                }, 400);
+            });
         }
-        // else {
-        //     return new Promise(resolve => {
-        //         setTimeout(() => {
-        //             resolve({ left: 0, top: 0 });
-        //         }, 400);
-        //     });
-        // }
     },
 });
