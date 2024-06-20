@@ -59,7 +59,7 @@ export const useStoreRecipe = defineStore({
         async loadPopularRecipes() {
             try {
                 this.pending = true;
-                const res = await fetch(`/api/recipe?popular=true`);
+                const res = await fetch('/api/recipe?popular=true');
                 if (res.ok) {
                     const data = await res.json();
                     this.popularRecipes = data;
@@ -95,7 +95,7 @@ export const useStoreRecipe = defineStore({
         async loadRecipesCount() {
             try {
                 this.pending = true;
-                const res = await fetch(`/api/recipe?recipesCount=true`);
+                const res = await fetch('/api/recipe?recipesCount=true');
                 if (res.ok) {
                     const data = await res.json();
                     this.recipesCount = data;
