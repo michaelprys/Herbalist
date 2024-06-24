@@ -48,6 +48,7 @@ export const useStoreAuth = defineStore({
                     throw new Error('Failed to register');
                 }
                 const data = await res.json();
+                console.log("You're successfully registered", data.token);
                 this.setToken(data.token);
                 localStorage.setItem('token', data.token);
             } catch (error) {

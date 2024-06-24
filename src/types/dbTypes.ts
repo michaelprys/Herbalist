@@ -22,6 +22,7 @@ export interface User {
     lastname?: string;
     username: string;
     password: string;
+    repeatPassword?: string;
     email?: string;
     created_at?: Date;
 }

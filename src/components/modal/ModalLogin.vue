@@ -70,6 +70,7 @@
                 </div>
                 <Transition name="bounce">
                     <div class="modal__error" v-if="errorVisible">
+                        <IconError />
                         {{ error }}
                     </div>
                 </Transition>
@@ -82,6 +83,8 @@
 import IconUsername from '@/components/icons/IconUsername.vue';
 import IconPassword from '@/components/icons/IconPassword.vue';
 import IconClose from '@/components/icons/IconClose.vue';
+import IconError from '../icons/IconError.vue';
+
 import ItemDarkOverlay from '@/components/common/ItemDarkOverlay.vue';
 import { ref, reactive } from 'vue';
 import { useOverlay } from '@/use/useOverlay';
@@ -131,6 +134,11 @@ const login = async () => {
             error.value = '';
         }, 3000);
     }
+};
+
+const resetForm = () => {
+    userData.username = '';
+    userData.password = '';
 };
 </script>
 
@@ -280,14 +288,19 @@ const login = async () => {
     &__error {
         position: absolute;
         color: $c-white;
-        background-color: #d34045df;
+        background-color: #d34058df;
         border-radius: $br-8;
-        text-align: center;
-        width: 40%;
-        margin-top: $m-5;
+        text-align: left;
+        width: 100%;
+        margin-top: $m-10;
         font-size: $fs-base;
-        padding-block: $p-1_5;
-        left: 0;
+        padding: $p-3_5;
+        padding-left: $p-10;
+        & svg {
+            position: absolute;
+            left: 10px;
+            fill: $c-white;
+        }
     }
 }
 </style>

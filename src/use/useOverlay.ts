@@ -8,23 +8,32 @@ interface OverlayStates {
 
 const overlayStates: OverlayStates = reactive({});
 
-export const useOverlay = (name: string) => {
+export const useOverlay = (
+    name: string,
+    options?: { clearData?: () => void }
+) => {
     const focusRef = ref(null);
     const clickOutsideRef = ref<HTMLElement>();
     const { defaultState = false } = {};
     const { activate, deactivate } = useFocusTrap(focusRef);
 
-    const open = async () => {
+    const open = () => {
         overlayStates[name] = true;
         document.body.style.overflow = 'hidden';
     };
     const close = () => {
+        if (options?.clearData) {
+            options.clearData();
+        }
         overlayStates[name] = false;
         deactivate();
         document.body.style.overflow = '';
     };
 
     onClickOutside(clickOutsideRef, () => {
+        if (options?.clearData) {
+            options.clearData();
+        }
         if (overlayStates[name]) {
             close();
         }

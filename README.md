@@ -1,10 +1,10 @@
-# Herbalist - a herbal recipe library.
+# 🍃 Herbalist - a herbal recipe library.
 
 ## Browse herbal recipes to learn about their effectiveness and positive impact on your body.
 
 This project is built using the PEVN stack.
 
-This template should help get you started developing with Vue 3 in Vite.
+The template below should help get you started developing with Vue 3 in Vite.
 
 ## Recommended IDE Setup
 

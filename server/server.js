@@ -148,7 +148,7 @@ app.post('/register', async (req, res) => {
 
     try {
         const newUser = await pool.query(
-            'INSERT INTO users (firstname, lastname, username, password) VALUES ($1, $2) RETURNING *',
+            'INSERT INTO users (firstname, lastname, username, password) VALUES ($1, $2, $3, $4) RETURNING *',
             [firstname, lastname, username, encryptedPassword]
         );
         const token = jwt.sign({ id: newUser.rows[0].id }, 'secretkey', {

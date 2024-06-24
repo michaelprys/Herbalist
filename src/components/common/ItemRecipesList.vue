@@ -139,7 +139,7 @@ onMounted(async () => {
     &__item {
         transition: background-color $tr-smooth;
         border-radius: $br-4;
-        background-color: #4a5f7212;
+        background-color: #4a5f721b;
         font-size: $fs-base;
         &:hover {
             background-color: #4a5f7230;

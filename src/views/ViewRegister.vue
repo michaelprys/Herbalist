@@ -2,7 +2,7 @@
     <div class="register-wrapper">
         <div class="container">
             <section class="register">
-                <form class="register__form" action="">
+                <form class="register__form" @submit.prevent="register">
                     <button class="register__close-btn" type="button"></button>
                     <h1 class="register__title">Join us</h1>
 
@@ -10,39 +10,59 @@
                         <input
                             class="register__input"
                             type="text"
-                            placeholder="First name" />
+                            placeholder="First name"
+                            v-model="userData.firstname" />
                         <IconUsername class="register__input-icon" />
                     </div>
+                    <span class="register__required" v-if="required.firstname"
+                        >Required field</span
+                    >
                     <div class="register__input-wrapper">
                         <input
                             class="register__input"
                             type="text"
-                            placeholder="Last name" />
+                            placeholder="Last name"
+                            v-model="userData.lastname" />
                         <IconUsername class="register__input-icon" />
                     </div>
+                    <span class="register__required" v-if="required.lastname"
+                        >Required field</span
+                    >
                     <div class="register__input-wrapper">
                         <input
                             class="register__input"
                             type="text"
-                            placeholder="Username" />
+                            placeholder="Username"
+                            v-model="userData.username" />
                         <IconUsername class="register__input-icon" />
                     </div>
-
+                    <span class="register__required" v-if="required.username"
+                        >Required field</span
+                    >
                     <div class="register__input-wrapper">
                         <input
                             class="register__input"
                             type="text"
-                            placeholder="Password" />
+                            placeholder="Password"
+                            v-model="userData.password" />
                         <IconPassword class="register__input-icon" />
                     </div>
-
+                    <span class="register__required" v-if="required.password"
+                        >Required field</span
+                    >
                     <div class="register__input-wrapper">
                         <input
                             class="register__input"
                             type="text"
-                            placeholder="Repeat password" />
+                            placeholder="Repeat password"
+                            v-model="userData.repeatPassword" />
                         <IconPassword class="register__input-icon" />
                     </div>
+                    <span
+                        class="register__required"
+                        v-if="required.repeatPassword"
+                        >Required field</span
+                    >
                     <div class="register__button-wrapper">
                         <button class="register__button" type="submit">
                             Join
@@ -62,7 +82,38 @@
 <script setup lang="ts">
 import IconUsername from '@/components/icons/IconUsername.vue';
 import IconPassword from '@/components/icons/IconPassword.vue';
-import IconClose from '@/components/icons/IconClose.vue';
+import { useStoreAuth } from '@/stores/storeAuth';
+import { reactive } from 'vue';
+import type { User } from '@/types/dbTypes';
+import { ref } from 'vue';
+
+const storeAuth = useStoreAuth();
+
+const userData = reactive({
+    firstname: '',
+    lastname: '',
+    username: '',
+    password: '',
+    repeatPassword: '',
+});
+
+const required = reactive({
+    firstname: false,
+    lastname: false,
+    username: false,
+    password: false,
+    repeatPassword: false,
+});
+
+const register = () => {
+    Object.keys(required).forEach(key => {
+        required[key] = !userData[key];
+    });
+
+    if (Object.values(required).some(required => required)) {
+        return;
+    }
+};
 </script>
 
 <style scoped lang="scss">
@@ -77,8 +128,12 @@ import IconClose from '@/components/icons/IconClose.vue';
     align-items: center;
     min-height: 100svh;
     padding-block: $p-24;
+    background-attachment: fixed;
     @include bg;
-    background-image: url('@/assets/images/section/register/bg.jpg');
+    @supports (background-image: url('@img/section/intro/bg.avif')) {
+        background-image: url('@img/section/intro/bg.avif');
+    }
+    background-image: url('@img/section/intro/bg.jpg');
 }
 .register {
     display: flex;
@@ -169,6 +224,13 @@ import IconClose from '@/components/icons/IconClose.vue';
     }
     &__success {
         font-size: $fs-h4;
+    }
+    &__required {
+        display: block;
+        color: rgb(255, 128, 128);
+        font-size: $fs-medium;
+        padding-left: calc($p-6 - 2px);
+        margin-top: $m-2_5;
     }
 }
 </style>

@@ -4,7 +4,7 @@
     "private": true,
     "type": "module",
     "scripts": {
-        "dev": "concurrently \"tsx --watch server/server.js\" \"vite --port=3000 --host --open\"",
+        "dev": "concurrently \"tsx --watch server/server.js \" \"vite --port=3000 --host --open\"",
         "build": "run-p type-check \"build-only {@}\" --",
         "preview": "vite preview --port=3000 --host --open",
         "build-only": "vite build",
