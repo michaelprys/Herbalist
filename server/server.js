@@ -137,10 +137,10 @@ app.get('/api/ingredientsOfRecipe/:recipe', async (req, res) => {
 // Authentication
 // registration
 app.post('/register', async (req, res) => {
-    const { firstname, lastname, username, password, repeatPassword } =
+    const { firstname, lastname, username, password, confirmPassword } =
         req.body;
 
-    if (password !== repeatPassword) {
+    if (password !== confirmPassword) {
         return res.status(400).json({ error: 'Passwords do not match' });
     }
 

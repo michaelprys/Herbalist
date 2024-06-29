@@ -13,9 +13,8 @@
         "convert": "node utils/imageConversion.js"
     },
     "dependencies": {
-        "@splidejs/vue-splide": "^0.6.12",
-        "@vueuse/core": "^10.10.0",
-        "@vueuse/integrations": "^10.10.0",
+        "@vueuse/core": "^10.11.0",
+        "@vueuse/integrations": "^10.11.0",
         "argon2": "^0.40.3",
         "express": "^4.19.2",
         "focus-trap": "^7.5.4",
@@ -24,26 +23,26 @@
         "pinia": "^2.1.7",
         "pinia-plugin-persistedstate": "^3.2.1",
         "swiper": "^11.1.4",
-        "vue": "^3.4.27",
-        "vue-router": "^4.3.2"
+        "valibot": "^0.35.0",
+        "vue": "^3.4.31",
+        "vue-router": "^4.4.0"
     },
     "devDependencies": {
         "@rushstack/eslint-patch": "^1.10.3",
         "@tsconfig/node20": "^20.1.4",
-        "@types/node": "^20.14.2",
+        "@types/node": "^20.14.9",
         "@vitejs/plugin-legacy": "^5.4.1",
         "@vitejs/plugin-vue": "^5.0.5",
         "@vue/eslint-config-typescript": "^13.0.0",
         "@vue/tsconfig": "^0.5.1",
-        "eslint": "^8.57.0",
+        "eslint": "^9.6.0",
         "eslint-plugin-vue": "^9.26.0",
-        "sass": "^1.77.4",
+        "sass": "^1.77.6",
         "sharp": "^0.33.4",
         "terser": "^5.31.1",
-        "tsx": "^4.15.1",
-        "typescript": "^5.4.5",
-        "vite": "^5.2.13",
+        "typescript": "^5.5.2",
+        "vite": "^5.3.2",
         "vite-plugin-image-optimizer": "^1.1.8",
-        "vue-tsc": "^2.0.21"
+        "vue-tsc": "^2.0.22"
     }
 }

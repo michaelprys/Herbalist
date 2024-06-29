@@ -24,7 +24,7 @@
                                     class="modal__input"
                                     type="text"
                                     placeholder="Username"
-                                    v-model="userData.username" />
+                                    v-model="loginData.username" />
                                 <IconUsername class="modal__input-icon" />
                             </div>
 
@@ -33,7 +33,7 @@
                                     class="modal__input"
                                     type="password"
                                     placeholder="Password"
-                                    v-model="userData.password" />
+                                    v-model="loginData.password" />
                                 <IconPassword class="modal__input-icon" />
                             </div>
 
@@ -68,12 +68,18 @@
                         </form>
                     </div>
                 </div>
-                <Transition name="bounce">
-                    <div class="modal__error" v-if="errorVisible">
-                        <IconError />
-                        {{ error }}
-                    </div>
-                </Transition>
+                <TransitionGroup name="bounce">
+                    <template v-if="issueVisible">
+                        <div
+                            class="modal__error"
+                            v-for="(issue, i) in issues?.username ||
+                            issues?.password"
+                            :key="i">
+                            <IconError />
+                            {{ issue }}
+                        </div>
+                    </template>
+                </TransitionGroup>
             </div>
         </Transition>
     </div>
@@ -83,14 +89,24 @@
 import IconUsername from '@/components/icons/IconUsername.vue';
 import IconPassword from '@/components/icons/IconPassword.vue';
 import IconClose from '@/components/icons/IconClose.vue';
-import IconError from '../icons/IconError.vue';
+import IconError from '@/components/icons/IconError.vue';
 
 import ItemDarkOverlay from '@/components/common/ItemDarkOverlay.vue';
 import { ref, reactive } from 'vue';
 import { useOverlay } from '@/use/useOverlay';
 import { useStoreAuth } from '@/stores/storeAuth';
 import { useRouter } from 'vue-router';
-import type { User } from '@/types/dbTypes';
+import {
+    object,
+    pipe,
+    string,
+    nonEmpty,
+    safeParse,
+    flatten,
+    InferInput,
+    regex,
+    type FlatErrors,
+} from 'valibot';
 
 const {
     state: modalState,
@@ -99,46 +115,49 @@ const {
     clickOutsideRef,
 } = useOverlay('modalLogin');
 
-// auth
-
 const storeAuth = useStoreAuth();
 const router = useRouter();
 
-const userData = reactive<User>({
-    user_id: 0,
+const LoginSchema = object({
+    username: pipe(
+        string(),
+        nonEmpty('Username name is required'),
+        regex(/^\p{L}+$/u, 'First name must consist of letters')
+    ),
+    password: pipe(string(), nonEmpty('Password is required')),
+});
+
+type LoginData = InferInput<typeof LoginSchema>;
+
+const loginData: LoginData = reactive({
     username: '',
     password: '',
 });
 
-const error = ref('');
-const errorVisible = ref(false);
+const issues = ref<FlatErrors<typeof LoginSchema>['nested']>();
+
+const issueVisible = ref(false);
 let timeout: number;
 
 const login = async () => {
-    error.value = '';
-    errorVisible.value = false;
+    const result = safeParse(LoginSchema, loginData, {
+        abortPipeEarly: true,
+    });
 
-    try {
-        await storeAuth.login(userData);
+    if (result.success) {
+        issues.value = undefined;
+        await storeAuth.login(loginData);
         router.push('/home');
-    } catch (err) {
-        error.value = err.message;
-        errorVisible.value = true;
-
+    } else {
+        issues.value = flatten<typeof LoginSchema>(result.issues).nested;
+        issueVisible.value = true;
         if (timeout) {
             clearTimeout(timeout);
         }
-
         timeout = setTimeout(() => {
-            errorVisible.value = false;
-            error.value = '';
+            issueVisible.value = false;
         }, 3000);
     }
-};
-
-const resetForm = () => {
-    userData.username = '';
-    userData.password = '';
 };
 </script>
 

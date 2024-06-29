@@ -15,14 +15,3 @@ export interface Ingredient {
     name: string;
     slug: string;
 }
-
-export interface User {
-    user_id: number;
-    firstname?: string;
-    lastname?: string;
-    username: string;
-    password: string;
-    repeatPassword?: string;
-    email?: string;
-    created_at?: Date;
-}

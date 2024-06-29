@@ -14,9 +14,14 @@
                             v-model="userData.firstname" />
                         <IconUsername class="register__input-icon" />
                     </div>
-                    <span class="register__required" v-if="required.firstname"
-                        >Required field</span
-                    >
+                    <template v-if="issues?.firstname">
+                        <span
+                            class="register__errors"
+                            v-for="(issue, i) in issues.firstname"
+                            :key="i"
+                            >{{ issue }}</span
+                        >
+                    </template>
                     <div class="register__input-wrapper">
                         <input
                             class="register__input"
@@ -25,20 +30,47 @@
                             v-model="userData.lastname" />
                         <IconUsername class="register__input-icon" />
                     </div>
-                    <span class="register__required" v-if="required.lastname"
-                        >Required field</span
-                    >
+                    <template v-if="issues?.lastname">
+                        <span
+                            class="register__errors"
+                            v-for="(issue, i) in issues.lastname"
+                            :key="i"
+                            >{{ issue }}</span
+                        >
+                    </template>
+
+                    <div class="register__input-wrapper">
+                        <input
+                            class="register__input"
+                            type="text"
+                            placeholder="@example.com"
+                            v-model="userData.email" />
+                        <IconEmail class="register__input-icon" />
+                    </div>
+                    <template v-if="issues?.email">
+                        <span
+                            class="register__errors"
+                            v-for="(issue, i) in issues.email"
+                            :key="i"
+                            >{{ issue }}</span
+                        >
+                    </template>
                     <div class="register__input-wrapper">
                         <input
                             class="register__input"
                             type="text"
                             placeholder="Username"
                             v-model="userData.username" />
-                        <IconUsername class="register__input-icon" />
+                        <IconName class="register__input-icon" />
                     </div>
-                    <span class="register__required" v-if="required.username"
-                        >Required field</span
-                    >
+                    <template v-if="issues?.username">
+                        <span
+                            class="register__errors"
+                            v-for="(issue, i) in issues.username"
+                            :key="i"
+                            >{{ issue }}</span
+                        >
+                    </template>
                     <div class="register__input-wrapper">
                         <input
                             class="register__input"
@@ -47,26 +79,32 @@
                             v-model="userData.password" />
                         <IconPassword class="register__input-icon" />
                     </div>
-                    <span class="register__required" v-if="required.password"
-                        >Required field</span
-                    >
+                    <template v-if="issues?.password">
+                        <span
+                            class="register__errors"
+                            v-for="(issue, i) in issues.password"
+                            :key="i"
+                            >{{ issue }}</span
+                        >
+                    </template>
                     <div class="register__input-wrapper">
                         <input
                             class="register__input"
                             type="text"
-                            placeholder="Repeat password"
-                            v-model="userData.repeatPassword" />
+                            placeholder="Confirm password"
+                            v-model="userData.confirmPassword" />
                         <IconPassword class="register__input-icon" />
                     </div>
-                    <span
-                        class="register__required"
-                        v-if="required.repeatPassword"
-                        >Required field</span
-                    >
+                    <template v-if="issues?.confirmPassword">
+                        <span
+                            class="register__errors"
+                            v-for="(issue, i) in issues.confirmPassword"
+                            :key="i"
+                            >{{ issue }}</span
+                        >
+                    </template>
                     <div class="register__button-wrapper">
-                        <button class="register__button" type="submit">
-                            Join
-                        </button>
+                        <button class="register__button">Join</button>
                     </div>
                 </form>
                 <!-- <div class="register__complete">
@@ -80,38 +118,95 @@
 </template>
 
 <script setup lang="ts">
+import IconName from '@/components/icons/IconName.vue';
 import IconUsername from '@/components/icons/IconUsername.vue';
 import IconPassword from '@/components/icons/IconPassword.vue';
+import IconEmail from '@/components/icons/IconEmail.vue';
 import { useStoreAuth } from '@/stores/storeAuth';
-import { reactive } from 'vue';
-import type { User } from '@/types/dbTypes';
+import { reactive, watchEffect } from 'vue';
 import { ref } from 'vue';
+import {
+    object,
+    pipe,
+    string,
+    minLength,
+    nonEmpty,
+    email,
+    safeParse,
+    regex,
+    flatten,
+    forward,
+    partialCheck,
+    InferInput,
+    config,
+    type FlatErrors,
+} from 'valibot';
 
 const storeAuth = useStoreAuth();
 
-const userData = reactive({
+const letters = new RegExp(/^\p{L}+$/u);
+
+const UserSchema = pipe(
+    config(
+        object({
+            firstname: pipe(
+                string(),
+                nonEmpty('First name is required'),
+                regex(letters, 'First name must consist of letters')
+            ),
+            lastname: pipe(
+                string(),
+                nonEmpty('Last name is required'),
+                regex(letters, 'Last name must consist of letters')
+            ),
+            username: pipe(string(), nonEmpty('Username name is required')),
+            email: pipe(
+                string(),
+                nonEmpty('Email is required'),
+                email('The email must be in the format name@example.com')
+            ),
+            password: pipe(
+                string(),
+                nonEmpty('Password is required'),
+                minLength(6, 'Password must be at least 6 characters long')
+            ),
+            confirmPassword: string(),
+        }),
+        {
+            abortPipeEarly: true,
+        }
+    ),
+    forward(
+        partialCheck(
+            [['password'], ['confirmPassword']],
+            input => input.password === input.confirmPassword,
+            'Passwords do not match'
+        ),
+        ['confirmPassword']
+    )
+);
+
+type UserData = InferInput<typeof UserSchema>;
+
+const userData: UserData = reactive({
     firstname: '',
     lastname: '',
     username: '',
+    email: '',
     password: '',
-    repeatPassword: '',
+    confirmPassword: '',
 });
 
-const required = reactive({
-    firstname: false,
-    lastname: false,
-    username: false,
-    password: false,
-    repeatPassword: false,
-});
+const issues = ref<FlatErrors<typeof UserSchema>['nested']>();
 
-const register = () => {
-    Object.keys(required).forEach(key => {
-        required[key] = !userData[key];
-    });
+const register = async () => {
+    const result = safeParse(UserSchema, userData);
 
-    if (Object.values(required).some(required => required)) {
-        return;
+    if (result.success) {
+        issues.value = undefined;
+        await storeAuth.register(userData);
+    } else {
+        issues.value = flatten<typeof UserSchema>(result.issues).nested;
     }
 };
 </script>
@@ -127,7 +222,7 @@ const register = () => {
     justify-content: center;
     align-items: center;
     min-height: 100svh;
-    padding-block: $p-24;
+    padding-block: $p-20;
     background-attachment: fixed;
     @include bg;
     @supports (background-image: url('@img/section/intro/bg.avif')) {
@@ -225,7 +320,7 @@ const register = () => {
     &__success {
         font-size: $fs-h4;
     }
-    &__required {
+    &__errors {
         display: block;
         color: rgb(255, 128, 128);
         font-size: $fs-medium;
