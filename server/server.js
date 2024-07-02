@@ -136,53 +136,62 @@ app.get('/api/ingredientsOfRecipe/:recipe', async (req, res) => {
 
 // Authentication
 // registration
-app.post('/register', async (req, res) => {
-    const { firstname, lastname, username, password, confirmPassword } =
+app.post('/api/register', async (req, res) => {
+    const { firstname, lastname, email, username, password, confirmPassword } =
         req.body;
 
     if (password !== confirmPassword) {
         return res.status(400).json({ error: 'Passwords do not match' });
     }
 
-    const encryptedPassword = await argon2.hash(password);
-
     try {
+        const existingUser = await pool.query(
+            'SELECT * FROM users WHERE username = $1',
+            [username]
+        );
+        if (existingUser.rows.length > 0) {
+            return res.status(400).json({ error: 'User already exists' });
+        }
+
+        const encryptedPassword = await argon2.hash(password);
+
         const newUser = await pool.query(
-            'INSERT INTO users (firstname, lastname, username, password) VALUES ($1, $2, $3, $4) RETURNING *',
-            [firstname, lastname, username, encryptedPassword]
+            'INSERT INTO users (firstname, lastname, email, username, password) VALUES ($1, $2, $3, $4, $5) RETURNING *',
+            [firstname, lastname, email, username, encryptedPassword]
         );
         const token = jwt.sign({ id: newUser.rows[0].id }, 'secretkey', {
             expiresIn: '1h',
         });
-        res.json({ token });
+        res.json({
+            token,
+            message: 'You have successfully registered and logged in',
+        });
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
 });
 
 // login
-app.post('/login', async (req, res) => {
+app.post('/api/login', async (req, res) => {
     const { username, password } = req.body;
 
     try {
-        const user = await pool.query(
+        const result = await pool.query(
             'SELECT * FROM users WHERE username = $1',
             [username]
         );
-        if (user.rows.length === 0)
+        if (result.rows.length === 0)
             return res
                 .status(400)
                 .json({ error: 'Invalid username or password' });
 
-        const validPassword = await argon2.verify(
-            password,
-            user.rows[0].password
-        );
-
-        if (!validPassword)
+        const user = result.rows[0];
+        const validPassword = await argon2.verify(user.password, password);
+        if (!validPassword) {
             return res.status(400).json({ error: 'Invalid password' });
+        }
 
-        const token = jwt.sign({ id: user.rows[0].id }, 'secretkey', {
+        const token = jwt.sign({ id: user.id }, 'secretkey', {
             expiresIn: '1h',
         });
         res.json({ token });

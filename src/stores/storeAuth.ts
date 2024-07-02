@@ -1,5 +1,16 @@
 import { defineStore } from 'pinia';
-import type { User } from '@/types/dbTypes';
+
+interface User {
+    username: string;
+    password: string;
+}
+
+interface RegisterUser extends User {
+    firstname: string;
+    lastname: string;
+    email: string;
+    confirmPassword: string;
+}
 
 interface State {
     user: User | null;
@@ -35,8 +46,10 @@ export const useStoreAuth = defineStore({
             }
         },
 
-        async register(user: User) {
+        async register(user: RegisterUser) {
             try {
+                console.log('Tryin with user: ', user);
+
                 const res = await fetch('api/register', {
                     method: 'POST',
                     headers: {
@@ -45,10 +58,14 @@ export const useStoreAuth = defineStore({
                     body: JSON.stringify(user),
                 });
                 if (!res.ok) {
-                    throw new Error('Failed to register');
+                    const errorText = await res.text();
+                    console.error('Failed to register: ', errorText);
+                    throw new Error(`Failed to register: ${errorText}`);
                 }
+
                 const data = await res.json();
                 console.log("You're successfully registered", data.token);
+
                 this.setToken(data.token);
                 localStorage.setItem('token', data.token);
             } catch (error) {

@@ -14,14 +14,10 @@
                             v-model="userData.firstname" />
                         <IconUsername class="register__input-icon" />
                     </div>
-                    <template v-if="issues?.firstname">
-                        <span
-                            class="register__errors"
-                            v-for="(issue, i) in issues.firstname"
-                            :key="i"
-                            >{{ issue }}</span
-                        >
-                    </template>
+                    <ItemValidationError
+                        class="register__errors"
+                        :fieldName="'firstname'"
+                        :issues="issues" />
                     <div class="register__input-wrapper">
                         <input
                             class="register__input"
@@ -30,15 +26,10 @@
                             v-model="userData.lastname" />
                         <IconUsername class="register__input-icon" />
                     </div>
-                    <template v-if="issues?.lastname">
-                        <span
-                            class="register__errors"
-                            v-for="(issue, i) in issues.lastname"
-                            :key="i"
-                            >{{ issue }}</span
-                        >
-                    </template>
-
+                    <ItemValidationError
+                        class="register__errors"
+                        :fieldName="'lastname'"
+                        :issues="issues" />
                     <div class="register__input-wrapper">
                         <input
                             class="register__input"
@@ -47,14 +38,10 @@
                             v-model="userData.email" />
                         <IconEmail class="register__input-icon" />
                     </div>
-                    <template v-if="issues?.email">
-                        <span
-                            class="register__errors"
-                            v-for="(issue, i) in issues.email"
-                            :key="i"
-                            >{{ issue }}</span
-                        >
-                    </template>
+                    <ItemValidationError
+                        class="register__errors"
+                        :fieldName="'email'"
+                        :issues="issues" />
                     <div class="register__input-wrapper">
                         <input
                             class="register__input"
@@ -63,14 +50,10 @@
                             v-model="userData.username" />
                         <IconName class="register__input-icon" />
                     </div>
-                    <template v-if="issues?.username">
-                        <span
-                            class="register__errors"
-                            v-for="(issue, i) in issues.username"
-                            :key="i"
-                            >{{ issue }}</span
-                        >
-                    </template>
+                    <ItemValidationError
+                        class="register__errors"
+                        :fieldName="'username'"
+                        :issues="issues" />
                     <div class="register__input-wrapper">
                         <input
                             class="register__input"
@@ -79,14 +62,10 @@
                             v-model="userData.password" />
                         <IconPassword class="register__input-icon" />
                     </div>
-                    <template v-if="issues?.password">
-                        <span
-                            class="register__errors"
-                            v-for="(issue, i) in issues.password"
-                            :key="i"
-                            >{{ issue }}</span
-                        >
-                    </template>
+                    <ItemValidationError
+                        class="register__errors"
+                        :fieldName="'password'"
+                        :issues="issues" />
                     <div class="register__input-wrapper">
                         <input
                             class="register__input"
@@ -95,14 +74,10 @@
                             v-model="userData.confirmPassword" />
                         <IconPassword class="register__input-icon" />
                     </div>
-                    <template v-if="issues?.confirmPassword">
-                        <span
-                            class="register__errors"
-                            v-for="(issue, i) in issues.confirmPassword"
-                            :key="i"
-                            >{{ issue }}</span
-                        >
-                    </template>
+                    <ItemValidationError
+                        class="register__errors"
+                        :fieldName="'confirmPassword'"
+                        :issues="issues" />
                     <div class="register__button-wrapper">
                         <button class="register__button">Join</button>
                     </div>
@@ -118,6 +93,7 @@
 </template>
 
 <script setup lang="ts">
+import ItemValidationError from '@/components/common/ItemValidationError.vue';
 import IconName from '@/components/icons/IconName.vue';
 import IconUsername from '@/components/icons/IconUsername.vue';
 import IconPassword from '@/components/icons/IconPassword.vue';
@@ -203,7 +179,7 @@ const register = async () => {
     const result = safeParse(UserSchema, userData);
 
     if (result.success) {
-        issues.value = undefined;
+        issues.value = {};
         await storeAuth.register(userData);
     } else {
         issues.value = flatten<typeof UserSchema>(result.issues).nested;

@@ -41,7 +41,10 @@
                                 <label
                                     class="modal__checkbox-container"
                                     for="checkbox">
-                                    <input type="checkbox" id="checkbox" />
+                                    <input
+                                        type="checkbox"
+                                        id="checkbox"
+                                        v-model="rememberMe" />
                                     Remember me
                                 </label>
 
@@ -70,14 +73,17 @@
                 </div>
                 <TransitionGroup name="bounce">
                     <template v-if="issueVisible">
-                        <div
+                        <ItemValidationError
                             class="modal__error"
-                            v-for="(issue, i) in issues?.username ||
-                            issues?.password"
-                            :key="i">
-                            <IconError />
-                            {{ issue }}
-                        </div>
+                            style="display: flex"
+                            :fieldName="
+                                issues?.username ? 'username' : 'password'
+                            "
+                            :issues="issues">
+                            <template #icon>
+                                <IconError class="modal__error-icon" />
+                            </template>
+                        </ItemValidationError>
                     </template>
                 </TransitionGroup>
             </div>
@@ -86,13 +92,14 @@
 </template>
 
 <script setup lang="ts">
+import ItemValidationError from '@/components/common/ItemValidationError.vue';
 import IconUsername from '@/components/icons/IconUsername.vue';
 import IconPassword from '@/components/icons/IconPassword.vue';
 import IconClose from '@/components/icons/IconClose.vue';
 import IconError from '@/components/icons/IconError.vue';
 
 import ItemDarkOverlay from '@/components/common/ItemDarkOverlay.vue';
-import { ref, reactive } from 'vue';
+import { ref, reactive, onMounted } from 'vue';
 import { useOverlay } from '@/use/useOverlay';
 import { useStoreAuth } from '@/stores/storeAuth';
 import { useRouter } from 'vue-router';
@@ -117,6 +124,8 @@ const {
 
 const storeAuth = useStoreAuth();
 const router = useRouter();
+
+const rememberMe = ref(false);
 
 const LoginSchema = object({
     username: pipe(
@@ -145,7 +154,14 @@ const login = async () => {
     });
 
     if (result.success) {
-        issues.value = undefined;
+        issues.value = {};
+        // if (loginData.username) {
+        //     if (rememberMe.value) {
+        //         localStorage.setItem('rememberedUsername', loginData.username);
+        //     } else {
+        //         localStorage.removeItem('rememberedUsername');
+        //     }
+        // }
         await storeAuth.login(loginData);
         router.push('/home');
     } else {
@@ -159,6 +175,14 @@ const login = async () => {
         }, 3000);
     }
 };
+
+// onMounted(() => {
+//     const savedUsername = localStorage.getItem('rememberedUsername');
+//     if (savedUsername) {
+//         loginData.username = savedUsername;
+//         rememberMe.value = true;
+//     }
+// });
 </script>
 
 <style scoped lang="scss">
@@ -315,11 +339,11 @@ const login = async () => {
         font-size: $fs-base;
         padding: $p-3_5;
         padding-left: $p-10;
-        & svg {
-            position: absolute;
-            left: 10px;
-            fill: $c-white;
-        }
+    }
+    &__error-icon {
+        position: absolute;
+        left: 10px;
+        fill: $c-white;
     }
 }
 </style>
